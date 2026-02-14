@@ -1,0 +1,52 @@
+{
+  "common": {
+    "nav": {
+      "features": "Features",
+      "howItWorks": "How it Works",
+      "stats": "Stats",
+      "community": "Community"
+    },
+    "buttons": {
+      "app": "⚡ App",
+      "learnMore": "Learn More",
+      "getStarted": "Get Started",
+      "connectWallet": "Connect Wallet"
+    },
+    "footer": {
+      "tagline": "Secure, trustless escrow for blockchain transactions. Built for Web3, powered by smart contracts.",
+      "sections": {
+        "product": {
+          "title": "Product",
+          "features": "Features",
+          "howItWorks": "How it Works",
+          "community": "Community",
+          "faq": "FAQ"
+        },
+        "resources": {
+          "title": "Resources",
+          "documentation": "Documentation",
+          "apiReference": "API",
+          "contracts": "Contracts",
+          "support": "Support"
+        },
+        "legal": {
+          "title": "Legal",
+          "privacy": "Privacy Policy",
+          "terms": "Terms of Service",
+          "agentTos": "Agent Terms"
+        }
+      },
+      "copyright": "© {year} Zenland. All rights reserved.",
+      "bottomLinks": {
+        "privacy": "Privacy",
+        "terms": "Terms"
+      }
+    },
+    "accessibility": {
+      "openMenu": "Open menu",
+      "closeMenu": "Close menu",
+      "changeLanguage": "Change language",
+      "selectLanguage": "Select language"
+    }
+  }
+}

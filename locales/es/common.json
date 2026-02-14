@@ -1,0 +1,52 @@
+{
+  "common": {
+    "nav": {
+      "features": "Características",
+      "howItWorks": "Cómo Funciona",
+      "stats": "Stats",
+      "community": "Community"
+    },
+    "buttons": {
+      "app": "⚡ App",
+      "learnMore": "Más Información",
+      "getStarted": "Comenzar",
+      "connectWallet": "Conectar Billetera"
+    },
+    "footer": {
+      "tagline": "Escrow seguro y sin confianza para transacciones blockchain. Construido para Web3, impulsado por contratos inteligentes.",
+      "sections": {
+        "product": {
+          "title": "Producto",
+          "features": "Características",
+          "howItWorks": "Cómo Funciona",
+          "community": "Community",
+          "faq": "Preguntas Frecuentes"
+        },
+        "resources": {
+          "title": "Recursos",
+          "documentation": "Documentación",
+          "apiReference": "API",
+          "contracts": "Contracts",
+          "support": "Soporte"
+        },
+        "legal": {
+          "title": "Legal",
+          "privacy": "Política de Privacidad",
+          "terms": "Términos de Servicio",
+          "agentTos": "Términos de Agente"
+        }
+      },
+      "copyright": "© {year} Zenland. Todos los derechos reservados.",
+      "bottomLinks": {
+        "privacy": "Privacidad",
+        "terms": "Términos"
+      }
+    },
+    "accessibility": {
+      "openMenu": "Abrir menú",
+      "closeMenu": "Cerrar menú",
+      "changeLanguage": "Cambiar idioma",
+      "selectLanguage": "Seleccionar idioma"
+    }
+  }
+}

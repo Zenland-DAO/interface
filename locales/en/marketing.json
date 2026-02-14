@@ -1,0 +1,291 @@
+{
+  "marketing": {
+    "meta": {
+      "title": "Zenland - Web3 Escrow Platform",
+      "description": "Secure, trustless escrow for blockchain transactions. No intermediaries, just smart contracts."
+    },
+    "hero": {
+      "badge": "Web3 Native",
+      "title": {
+        "line1": "Web3",
+        "highlight": "Escrow",
+        "line2": "Platform."
+      },
+      "description": "Secure your transactions with on-chain escrow. No intermediaries, no trust required. Just smart contracts protecting both parties.",
+      "stats": {
+        "fee": {
+          "value": "1%",
+          "label": "Fee (min $0.50, max $50)"
+        },
+        "onchain": {
+          "value": "100%",
+          "label": "On-Chain"
+        },
+        "available": {
+          "value": "24/7",
+          "label": "Available"
+        }
+      }
+    },
+    "protocolStats": {
+      "badge": "Live On-Chain Data",
+      "title": "Protocol Statistics",
+      "subtitle": "Real-time data from the Ethereum blockchain. Every transaction is verifiable.",
+      "header": {
+        "title": "Zenland Protocol",
+        "subtitle": "Decentralized Escrow System"
+      },
+      "stats": {
+        "tvl": {
+          "label": "Total Value Locked",
+          "subValue": "Secured in smart contracts"
+        },
+        "volume": {
+          "label": "Total Volume",
+          "subValue": "All-time transaction volume"
+        },
+        "security": {
+          "label": "Security Status",
+          "subValue": "100% transparent & verifiable",
+          "value": "On-Chain"
+        }
+      },
+      "metrics": {
+        "title": "Protocol Metrics",
+        "escrowsCreated": "Escrows Created",
+        "activeNow": "Active Now",
+        "registeredAgents": "Registered Agents",
+        "availableAgents": "Available Agents"
+      },
+      "activity": {
+        "title": "Recent Activity",
+        "live": "Live",
+        "escrowed": "escrowed",
+        "noActivity": "No recent activity",
+        "timeAgo": {
+          "justNow": "just now",
+          "minutes": "{count}m ago",
+          "hours": "{count}h ago",
+          "days": "{count}d ago"
+        }
+      },
+      "trustBadges": {
+        "onChain": "On-Chain Verified",
+        "openSource": "Open Source",
+        "nonCustodial": "Non-Custodial",
+        "gasOptimized": "Gas Optimized"
+      },
+      "footer": {
+        "updateInterval": "Data updates every 30 seconds",
+        "poweredBy": "Powered by Zenland Indexer"
+      }
+    },
+    "features": {
+      "title": "Why Zenland?",
+      "subtitle": "Built for the decentralized future. Every feature designed with security and transparency in mind.",
+      "items": {
+        "onchain": {
+          "title": "Fully On-Chain",
+          "description": "All escrow logic lives on the blockchain. Transparent, immutable, and verifiable by anyone."
+        },
+        "disputes": {
+          "title": "Dispute Resolution",
+          "description": "Professional agents available to resolve disputes fairly and efficiently when needed."
+        },
+        "instant": {
+          "title": "Instant Settlement",
+          "description": "Release funds instantly when conditions are met. No waiting for banks or intermediaries."
+        }
+      }
+    },
+    "bento": {
+      "title": "Designed for the",
+      "titleHighlight": "modern economy.",
+      "subtitle": "Zenland removes the complexity of traditional escrow. No gatekeepers, no hidden fees, just pure code.",
+      "fees": {
+        "badge": "Pricing",
+        "value": "1%",
+        "title": "Omega Low Fees.",
+        "description": "No hidden costs. No monthly subscriptions.",
+        "highlight": "$50 max",
+        "descriptionSuffix": "Just 1% fee — capped at",
+        "footnote": "* Lowest fees in the escrow market"
+      },
+      "noCoding": {
+        "title": "No Coding.",
+        "description": "Visual contract builder. Drag, drop, and deploy secure escrow agreements in minutes."
+      },
+      "instant": {
+        "title": "Instant Settlement",
+        "description": "Funds released instantly on-chain.",
+        "highlight": "Zero waiting."
+      }
+    },
+    "wallets": {
+      "title": "Connect Your Wallet",
+      "subtitle": "Zenland supports all popular Web3 wallets. For the best experience, use NYKNYC — our recommended smart wallet with zero gas fees.",
+      "nyknyc": {
+        "badge": "Recommended",
+        "title": "NYKNYC Wallet",
+        "description": "The smart wallet built for Zenland. Powered by ERC-4337 account abstraction, NYKNYC lets you interact with Zenland without worrying about gas fees.",
+        "benefits": {
+          "gasless": "Zero Gas Fees — Zenland sponsors all transactions",
+          "agentFree": "Free Agent Registration & all agent actions",
+          "escrowFree": "Free Escrow Creation & all escrow actions",
+          "smartAccount": "ERC-4337 Smart Account technology"
+        },
+        "cta": "Get NYKNYC"
+      },
+      "otherWallets": "Also supports all popular wallets"
+    },
+    "networks": {
+      "title": "Ecosystem",
+      "subtitle": "Zenland is deployed on Ethereum — the most secure and decentralized blockchain network.",
+      "ethereum": "Ethereum",
+      "mainnet": "Mainnet",
+      "tagline": "Battle-tested security since 2015"
+    },
+    "howItWorks": {
+      "title": "How It Works",
+      "subtitle": "Three simple steps to secure your transaction. No coding required.",
+      "steps": {
+        "create": {
+          "step": "01",
+          "title": "Create Escrow",
+          "description": "Define terms, set conditions, and deposit funds into the smart contract."
+        },
+        "work": {
+          "step": "02",
+          "title": "Work Together",
+          "description": "Complete the work or deliver the product. All parties can track progress."
+        },
+        "release": {
+          "step": "03",
+          "title": "Release Funds",
+          "description": "Once conditions are met, release funds instantly to the other party."
+        }
+      }
+    },
+    "community": {
+      "title": "Join Our Community",
+      "subtitle": "Connect with fellow users, get support, participate in governance, and help shape the future of Zenland.",
+      "telegram": {
+        "title": "Telegram",
+        "description": "Join our Telegram group for real-time discussions, announcements, and quick support from the community.",
+        "cta": "Join the Chat"
+      },
+      "daoForum": {
+        "badge": "Governance Hub",
+        "title": "Zenland Forum",
+        "description": "The official Zenland forum — your gateway to DAO governance, dispute resolution, and community support.",
+        "features": {
+          "escalate": {
+            "title": "Escalate Cases to DAO",
+            "description": "Disputes can be escalated to the DAO for fair, decentralized resolution by the community."
+          },
+          "proposals": {
+            "title": "Discuss Proposals",
+            "description": "Participate in governance discussions about future protocol improvements and changes."
+          },
+          "developer": {
+            "title": "Developer Support",
+            "description": "Get technical help integrating with Zenland's smart contracts and APIs."
+          },
+          "onboarding": {
+            "title": "Agent Onboarding",
+            "description": "New agents can learn best practices and get help starting their escrow business."
+          }
+        },
+        "cta": "Visit DAOForum"
+      }
+    },
+    "openBook": {
+      "title": "DAO Governance & Management",
+      "subtitle": "Zenland is governed by a DAO. Use OpenBook to participate in governance and CreateDAO to launch your own.",
+      "openBook": {
+        "title": "📖 OpenBook",
+        "subtitle": "DAO Management Platform",
+        "description": "The complete dashboard for DAO governance. Create proposals, vote on important decisions, and monitor your DAO's financial health — all in one place.",
+        "features": {
+          "vote": {
+            "title": "Create & Vote on Proposals",
+            "description": "Submit governance proposals and cast your vote on important protocol decisions."
+          },
+          "monitor": {
+            "title": "Monitor Expenses & Revenue",
+            "description": "Track DAO treasury in real-time with detailed financial reporting."
+          },
+          "transparency": {
+            "title": "Full Transparency",
+            "description": "Every transaction, vote, and decision is recorded and visible to all token holders."
+          }
+        },
+        "cta": "Open Dashboard"
+      },
+      "createDAO": {
+        "subtitle": "Deploy Your DAO",
+        "description": "Launch a complete, production-ready DAO in a single transaction. No coding required — just configure your parameters and deploy.",
+        "highlight": {
+          "title": "Deploy in 1 Transaction",
+          "features": {
+            "governor": "Governor contract for proposal management",
+            "token": "ERC-20 governance token",
+            "timelock": "Timelock for secure execution"
+          }
+        },
+        "integration": "is built specifically for DAOs created with CreateDAO — seamless integration out of the box.",
+        "cta": "Create Your DAO"
+      }
+    },
+    "cta": {
+      "title": "Ready to get started?",
+      "subtitle": "Connect your wallet and create your first escrow in minutes."
+    },
+    "heroCard": {
+      "steps": {
+        "creation": {
+          "label": "Step 1: Creation",
+          "status": "Protected"
+        },
+        "protection": {
+          "label": "Step 2: Protection",
+          "status": "Locked"
+        },
+        "settlement": {
+          "label": "Step 3: Settlement",
+          "status": "Released"
+        }
+      },
+      "send": {
+        "label": "You Send",
+        "network": "Ethereum"
+      },
+      "recipient": {
+        "label": "To Recipient"
+      },
+      "secured": {
+        "title": "Funds Secured",
+        "description": "Smart contract has locked {amount} on Ethereum."
+      },
+      "released": {
+        "title": "Successfully Released",
+        "description": "Payment delivered to recipient instantly.",
+        "badge": "Explorer Verified"
+      },
+      "metrics": {
+        "gasFee": "Gas Fee",
+        "platform": "Platform",
+        "verified": "Multi-sig Verified Transaction"
+      },
+      "buttons": {
+        "start": "Start Secure Escrow",
+        "verifying": "Verifying on Chain...",
+        "completed": "Transaction Completed"
+      },
+      "badges": {
+        "zeroTrust": "Zero-Trust",
+        "encrypted": "Encrypted Details"
+      }
+    }
+  }
+}

@@ -1,0 +1,52 @@
+{
+  "common": {
+    "nav": {
+      "features": "功能",
+      "howItWorks": "工作原理",
+      "stats": "统计",
+      "community": "社区"
+    },
+    "buttons": {
+      "app": "⚡ 应用",
+      "learnMore": "了解更多",
+      "getStarted": "开始使用",
+      "connectWallet": "连接钱包"
+    },
+    "footer": {
+      "tagline": "区块链交易的安全、无信任托管。为Web3构建，由智能合约驱动。",
+      "sections": {
+        "product": {
+          "title": "产品",
+          "features": "功能",
+          "howItWorks": "工作原理",
+          "community": "社区",
+          "faq": "常见问题"
+        },
+        "resources": {
+          "title": "资源",
+          "documentation": "文档",
+          "apiReference": "API",
+          "contracts": "Contracts",
+          "support": "支持"
+        },
+        "legal": {
+          "title": "法律",
+          "privacy": "隐私政策",
+          "terms": "服务条款",
+          "agentTos": "代理条款"
+        }
+      },
+      "copyright": "© {year} Zenland。保留所有权利。",
+      "bottomLinks": {
+        "privacy": "隐私",
+        "terms": "条款"
+      }
+    },
+    "accessibility": {
+      "openMenu": "打开菜单",
+      "closeMenu": "关闭菜单",
+      "changeLanguage": "切换语言",
+      "selectLanguage": "选择语言"
+    }
+  }
+}

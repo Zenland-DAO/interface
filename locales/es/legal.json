@@ -1,0 +1,337 @@
+{
+  "legal": {
+    "terms": {
+      "meta": {
+        "title": "Terms of Service - Zenland DAO",
+        "description": "Terms and conditions for using the Zenland DAO decentralized escrow protocol."
+      },
+      "title": "Terms of Service",
+      "lastUpdated": "Last Updated",
+      "date": "February 3, 2026",
+      "sections": {
+        "introduction": {
+          "title": "1. Introduction",
+          "p1": "Welcome to Zenland DAO (\"Protocol,\" \"we,\" \"us,\" or \"our\"). These Terms of Service (\"Terms\") govern your access to and use of the Zenland decentralized escrow protocol, including our website, smart contracts, and any related services (collectively, the \"Services\").",
+          "p2": "Zenland DAO is a decentralized protocol with no central operator. It consists of open-source smart contracts deployed on the Ethereum blockchain that enable peer-to-peer escrow transactions. There is no company, corporation, or legal entity that operates or controls the Protocol."
+        },
+        "acceptance": {
+          "title": "2. Acceptance of Terms",
+          "content": "By accessing or using the Services, you agree to be bound by these Terms. If you do not agree to these Terms, you must not access or use the Services. Your continued use of the Services constitutes your acceptance of any modifications to these Terms."
+        },
+        "eligibility": {
+          "title": "3. Eligibility",
+          "content": "You must be at least 18 years old to use the Services. By using the Services, you represent and warrant that you are at least 18 years of age and have the legal capacity to enter into these Terms. You also represent that you are not a person barred from using the Services under the laws of any applicable jurisdiction."
+        },
+        "nature": {
+          "title": "4. Nature of the Protocol",
+          "p1": "Zenland DAO is a decentralized protocol that operates autonomously through smart contracts on the Ethereum blockchain. The Protocol does not have a central operator, administrator, or controlling entity.",
+          "p2": "The Protocol provides a non-custodial interface for users to interact with smart contracts. We do not hold, control, or have access to your funds at any time. All transactions are executed directly on the blockchain by the users themselves.",
+          "p3": "We do not operate any backend servers, databases, or centralized infrastructure. We do not collect, store, or process any personal data. The Protocol is purely a frontend interface to interact with decentralized smart contracts."
+        },
+        "smartContracts": {
+          "title": "5. Smart Contracts",
+          "p1": "The escrow functionality is provided by immutable smart contracts deployed on the Ethereum blockchain. Once deployed, these contracts cannot be modified, paused, or controlled by anyone, including the Protocol developers or DAO participants.",
+          "p2": "You acknowledge that smart contracts may contain bugs, vulnerabilities, or unexpected behaviors. You use the smart contracts entirely at your own risk. The Protocol provides no warranty that the smart contracts will function as intended or be free from errors."
+        },
+        "userResponsibilities": {
+          "title": "6. User Responsibilities",
+          "intro": "When using the Services, you are solely responsible for:",
+          "items": {
+            "wallet": "Managing and securing your cryptocurrency wallet and private keys",
+            "keys": "Any loss of funds due to lost, stolen, or compromised private keys",
+            "taxes": "Determining and fulfilling any tax obligations arising from your use of the Services",
+            "laws": "Compliance with all applicable laws and regulations in your jurisdiction",
+            "counterparty": "Evaluating the trustworthiness of counterparties in escrow transactions"
+          }
+        },
+        "prohibitedUses": {
+          "title": "7. Prohibited Uses",
+          "intro": "You agree not to use the Services for:",
+          "items": {
+            "illegal": "Any illegal activities or in furtherance of illegal activities",
+            "fraud": "Fraud, scams, or any form of deceptive practices",
+            "launder": "Money laundering or terrorist financing",
+            "terrorism": "Financing terrorism or any sanctioned activities",
+            "sanctions": "Transactions involving sanctioned persons, entities, or jurisdictions",
+            "minors": "Any transactions involving persons under 18 years of age",
+            "exploit": "Attempting to exploit, hack, or disrupt the smart contracts or Protocol"
+          }
+        },
+        "disputes": {
+          "title": "8. Dispute Resolution",
+          "p1": "Disputes between escrow parties are resolved exclusively by agents selected at the time of escrow creation. Agents are independent third parties who stake collateral and earn fees for resolving disputes. The Protocol and DAO do not participate in individual dispute resolution.",
+          "p2": "Agent decisions are final and binding. The Protocol has no ability to reverse, modify, or override agent decisions. By using an escrow with an agent, you agree to accept the agent's decision.",
+          "p3": "If you believe an agent has acted improperly (e.g., accepted bribes, acted in bad faith), you may submit a complaint to DAOForum.org with supporting evidence. The DAO may vote to slash the agent's stake, but this does not reverse the escrow outcome or provide you with any compensation."
+        },
+        "lockedEscrows": {
+          "title": "9. Locked Escrows (No Agent)",
+          "p1": "You may create escrows without an agent (\"locked escrows\"). In locked escrows, funds can only be released or refunded if both parties agree. If parties disagree, funds remain locked in the smart contract permanently.",
+          "warning": "⚠️ WARNING: Locked escrows can result in permanent loss of funds if parties cannot reach agreement. There is no mechanism to recover funds from a disputed locked escrow. Use locked escrows only with parties you trust or when the stakes justify the risk."
+        },
+        "fees": {
+          "title": "10. Fees",
+          "p1": "The Protocol charges a creation fee when escrows are created. Fees are collected by the DAO Treasury and may be changed through DAO governance for future escrows. Fee changes do not affect existing escrows.",
+          "p2": "Agents may charge additional fees for dispute resolution. Agent fees are displayed at the time of escrow creation and are deducted from the escrow amount when a dispute is resolved."
+        },
+        "risks": {
+          "title": "11. Risks",
+          "intro": "Using the Services involves significant risks, including but not limited to:",
+          "items": {
+            "volatility": "Cryptocurrency price volatility",
+            "bugs": "Smart contract bugs, vulnerabilities, or exploits",
+            "loss": "Permanent loss of funds due to user error, lost keys, or protocol issues",
+            "regulatory": "Regulatory changes that may affect the legality of the Services",
+            "network": "Blockchain network congestion, failures, or reorganizations"
+          }
+        },
+        "disclaimer": {
+          "title": "12. Disclaimer of Warranties",
+          "p1": "THE SERVICES ARE PROVIDED \"AS IS\" AND \"AS AVAILABLE\" WITHOUT WARRANTIES OF ANY KIND, EITHER EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO IMPLIED WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE, TITLE, AND NON-INFRINGEMENT.",
+          "p2": "We do not warrant that the Services will be uninterrupted, error-free, or secure, or that any defects will be corrected. We make no representations about the accuracy, reliability, completeness, or timeliness of any information provided through the Services."
+        },
+        "liability": {
+          "title": "13. Limitation of Liability",
+          "content": "TO THE MAXIMUM EXTENT PERMITTED BY LAW, IN NO EVENT SHALL ZENLAND DAO, ITS CONTRIBUTORS, DEVELOPERS, DAO PARTICIPANTS, OR AFFILIATES BE LIABLE FOR ANY INDIRECT, INCIDENTAL, SPECIAL, CONSEQUENTIAL, OR PUNITIVE DAMAGES, OR ANY LOSS OF PROFITS, REVENUE, DATA, OR USE, ARISING OUT OF OR IN CONNECTION WITH YOUR USE OF THE SERVICES, WHETHER BASED ON WARRANTY, CONTRACT, TORT (INCLUDING NEGLIGENCE), STRICT LIABILITY, OR ANY OTHER LEGAL THEORY, EVEN IF WE HAVE BEEN ADVISED OF THE POSSIBILITY OF SUCH DAMAGES. OUR TOTAL LIABILITY SHALL NOT EXCEED THE AMOUNT OF FEES YOU PAID TO THE PROTOCOL IN THE 12 MONTHS PRECEDING THE CLAIM."
+        },
+        "indemnification": {
+          "title": "14. Indemnification",
+          "content": "You agree to indemnify, defend, and hold harmless Zenland DAO, its contributors, developers, DAO participants, and affiliates from and against any and all claims, damages, losses, liabilities, costs, and expenses (including reasonable attorneys' fees) arising out of or in connection with: (a) your use of the Services; (b) your violation of these Terms; (c) your violation of any rights of any third party; or (d) your violation of any applicable laws or regulations."
+        },
+        "modifications": {
+          "title": "15. Modifications to Terms",
+          "content": "We may modify these Terms at any time by posting the revised Terms on our website. Your continued use of the Services after any such changes constitutes your acceptance of the new Terms. We encourage you to review these Terms periodically."
+        },
+        "governingLaw": {
+          "title": "16. Governing Law",
+          "content": "These Terms shall be governed by and construed in accordance with principles of law common to decentralized protocols. To the extent any traditional jurisdiction applies, any disputes shall be resolved through binding arbitration in accordance with applicable arbitration rules. You waive any right to participate in class action lawsuits or class-wide arbitration."
+        },
+        "contact": {
+          "title": "17. Contact",
+          "content": "As a decentralized protocol, Zenland DAO does not have traditional customer support channels. For community support and discussions, please visit DAOForum.org or our community Telegram channel."
+        }
+      },
+      "relatedLinks": {
+        "title": "Related Documents:",
+        "privacy": "Privacy Policy",
+        "agentTos": "Agent Terms & Conditions"
+      }
+    },
+    "privacy": {
+      "meta": {
+        "title": "Privacy Policy - Zenland DAO",
+        "description": "Privacy policy for the Zenland DAO decentralized escrow protocol - We don't collect your data."
+      },
+      "title": "Privacy Policy",
+      "lastUpdated": "Last Updated",
+      "date": "February 3, 2026",
+      "sections": {
+        "introduction": {
+          "title": "1. Introduction",
+          "p1": "This Privacy Policy describes how Zenland DAO (\"Protocol,\" \"we,\" \"us,\" or \"our\") handles information when you use our decentralized escrow protocol and related services.",
+          "p2": "Zenland DAO is fundamentally different from traditional web services. We are a decentralized protocol that prioritizes user privacy by design. This policy explains our approach to privacy and what limited information interactions may involve."
+        },
+        "noCollection": {
+          "title": "🛡️ We Don't Collect Your Data",
+          "p1": "Zenland DAO is designed with privacy as a core principle. Unlike traditional services, we do not collect, store, or process personal information. Specifically:",
+          "items": {
+            "noBackend": "No backend servers - The Protocol is a frontend interface only",
+            "noDatabase": "No databases - We have nowhere to store your data",
+            "noAnalytics": "No analytics - We don't use Google Analytics or any tracking services",
+            "noCookies": "No tracking cookies - We don't track your browsing behavior",
+            "noTracking": "No user tracking - We don't create user profiles or track sessions",
+            "noAccounts": "No user accounts - You connect with your own wallet, no registration required"
+          }
+        },
+        "blockchainData": {
+          "title": "2. Blockchain Data",
+          "p1": "When you use the Protocol to create or interact with escrows, your transactions are recorded on the Ethereum blockchain. This is a fundamental characteristic of blockchain technology, not a choice by the Protocol.",
+          "p2": "Blockchain data that becomes publicly visible includes:",
+          "items": {
+            "address": "Your wallet address",
+            "transactions": "Transaction history and amounts",
+            "escrowDetails": "Escrow creation, release, and dispute resolution records",
+            "termsHash": "Hash of escrow terms (not the terms themselves)"
+          },
+          "p3": "This blockchain data is permanent, publicly accessible, and cannot be deleted by anyone. This is inherent to blockchain technology and is outside our control."
+        },
+        "wallet": {
+          "title": "3. Wallet Connection",
+          "p1": "When you connect your wallet to use the Protocol, the connection is handled directly by your wallet provider (e.g., MetaMask, WalletConnect). We do not receive or store your wallet credentials, seed phrases, or private keys.",
+          "p2": "Your wallet address is visible to the Protocol only during your active session and is not stored or logged on any server."
+        },
+        "localStorage": {
+          "title": "4. Browser Local Storage",
+          "p1": "The Protocol may use your browser's local storage to save:",
+          "items": {
+            "preferences": "Your UI preferences",
+            "theme": "Theme settings (dark/light mode)",
+            "language": "Language preferences"
+          },
+          "p2": "This data is stored only on your device and is never transmitted to us or any third party. You can clear this data at any time through your browser settings."
+        },
+        "thirdParty": {
+          "title": "5. Third-Party Services",
+          "p1": "The Protocol may interact with third-party services to function:",
+          "items": {
+            "rpc": "Blockchain RPC providers (to read blockchain data and submit transactions)",
+            "wallets": "Wallet providers (to enable wallet connections)",
+            "indexer": "Blockchain indexers (to query historical data)"
+          },
+          "p2": "These third-party services have their own privacy policies. We encourage you to review their policies. We have no control over and assume no responsibility for their privacy practices."
+        },
+        "pdf": {
+          "title": "6. PDF Documents",
+          "p1": "When you create an escrow, a PDF document containing the terms may be generated in your browser. This PDF is generated entirely client-side and is not uploaded to or stored on any server.",
+          "p2": "You are responsible for storing and managing your escrow PDF documents. We do not have copies of these documents."
+        },
+        "rights": {
+          "title": "7. Your Rights",
+          "p1": "Since we don't collect personal data, traditional data protection rights (access, correction, deletion) do not apply in the conventional sense.",
+          "p2": "For blockchain data: Due to the immutable nature of blockchain technology, on-chain data cannot be modified or deleted. This is a fundamental characteristic of public blockchains."
+        },
+        "children": {
+          "title": "8. Children's Privacy",
+          "content": "The Services are not intended for individuals under 18 years of age. We do not knowingly provide services to minors. If you are under 18, please do not use the Services."
+        },
+        "changes": {
+          "title": "9. Changes to This Policy",
+          "content": "We may update this Privacy Policy from time to time. We will notify you of any changes by posting the new Privacy Policy on this page with an updated \"Last Updated\" date."
+        },
+        "contact": {
+          "title": "10. Contact",
+          "content": "If you have questions about this Privacy Policy, please reach out through our community channels at DAOForum.org or our Telegram community."
+        }
+      },
+      "relatedLinks": {
+        "title": "Related Documents:",
+        "terms": "Terms of Service",
+        "agentTos": "Agent Terms & Conditions"
+      }
+    },
+    "agentTos": {
+      "meta": {
+        "title": "Agent Terms & Conditions - Zenland DAO",
+        "description": "Terms and conditions for agents participating in the Zenland DAO dispute resolution system."
+      },
+      "title": "Agent Terms & Conditions",
+      "lastUpdated": "Last Updated",
+      "date": "February 3, 2026",
+      "importantNotice": {
+        "title": "⚠️ Important: Financial Risk Warning",
+        "content": "By becoming an agent, you agree to stake collateral that may be permanently slashed if you are found to have acted improperly. Please read these terms carefully before registering as an agent."
+      },
+      "sections": {
+        "introduction": {
+          "title": "1. Introduction",
+          "p1": "These Agent Terms & Conditions (\"Agent Terms\") govern your participation as a dispute resolution agent in the Zenland DAO protocol. These terms are in addition to the general Terms of Service, which also apply to you.",
+          "p2": "By registering as an agent, you acknowledge that you have read, understood, and agree to be bound by these Agent Terms and accept all associated risks, including the risk of losing your staked collateral."
+        },
+        "role": {
+          "title": "Role of an Agent",
+          "p1": "Agents are independent third-party dispute resolvers who help settle disagreements between escrow parties (buyers and sellers). As an agent, you are expected to:",
+          "items": {
+            "neutral": "Act as a neutral, impartial arbitrator in all disputes",
+            "review": "Carefully review evidence and communications from both parties",
+            "decide": "Make fair and reasonable decisions based on the escrow terms and evidence",
+            "timely": "Respond to dispute invitations within the required timeframe"
+          }
+        },
+        "staking": {
+          "title": "Staking Requirements",
+          "p1": "To register as an agent, you must stake collateral in two forms: stablecoins (e.g., USDC, USDT) and DAO governance tokens. Your stake determines your Maximum Arbitratable Value (MAV) - the maximum escrow value you can handle.",
+          "p2": "Your staking requirements include:",
+          "items": {
+            "stablecoin": "Minimum stablecoin stake as set by DAO governance",
+            "daoToken": "Minimum DAO token stake as set by DAO governance",
+            "mav": "MAV is calculated as: Stablecoin Stake × MAV Multiplier (set by DAO)",
+            "cooldown": "Unstaking requires a cooldown period and no active cases"
+          }
+        },
+        "responseTime": {
+          "title": "Response Time Requirements",
+          "p1": "When invited to resolve a dispute, you must respond within the agent response time (default: 7 days, configurable by DAO). If you fail to respond, either party can claim a timeout, which releases you from the case and may impact your reputation.",
+          "p2": "Consistent timeouts may result in reduced trust from escrow parties and potential DAO action. You should only register as an agent if you can commit to timely responses."
+        },
+        "slashing": {
+          "title": "Slashing and Penalties",
+          "warning": "YOUR ENTIRE STAKE (BOTH STABLECOIN AND DAO TOKENS) CAN BE SLASHED BY DAO GOVERNANCE.",
+          "p1": "If you are accused of misconduct (e.g., accepting bribes, colluding with a party, or making clearly biased decisions), escrow parties or community members may file a complaint against you.",
+          "p2": "The Zenland DAO governance has the authority to slash your stake if they determine, based on evidence, that you have acted improperly. This is a community governance decision, not an automated process.",
+          "process": {
+            "title": "Slashing Process:",
+            "step1": "A party creates a complaint thread on DAOForum.org with evidence",
+            "step2": "The community reviews and discusses the evidence",
+            "step3": "If there is sufficient evidence of misconduct, a DAO governance proposal is created",
+            "step4": "DAO token holders vote on whether to slash the agent's stake",
+            "step5": "If the proposal passes, your stake is slashed and you become inactive"
+          },
+          "consequences": "Slashing results in: (1) Partial or complete loss of your staked collateral, (2) Removal from the active agent registry, (3) Permanent record of the slashing on-chain. Slashed funds go to the DAO Treasury."
+        },
+        "prohibited": {
+          "title": "Prohibited Conduct",
+          "intro": "As an agent, you must not engage in:",
+          "items": {
+            "bribery": "Accepting bribes or payments from escrow parties outside of your stated fees",
+            "collusion": "Colluding with buyers, sellers, or other agents",
+            "conflict": "Handling disputes where you have a conflict of interest",
+            "bias": "Making decisions based on factors other than the escrow terms and evidence",
+            "negligence": "Gross negligence or failure to review case materials",
+            "manipulation": "Attempting to manipulate or exploit the protocol"
+          }
+        },
+        "fees": {
+          "title": "Agent Fees",
+          "p1": "You may set your own dispute resolution fee (within DAO-defined limits) when registering. This fee is deducted from the escrow amount when you resolve a dispute. You only earn fees when you actively resolve disputes.",
+          "p2": "Fee limits are set by DAO governance to prevent excessive fees. Currently, agent fees are capped at 10% of the escrow amount."
+        },
+        "daoGovernance": {
+          "title": "DAO Governance",
+          "p1": "The Zenland DAO has authority over protocol parameters that affect agents, including minimum stake requirements, MAV multipliers, fee limits, and slashing decisions.",
+          "p2": "By registering as an agent, you accept that:",
+          "items": {
+            "parameters": "DAO may change agent-related parameters at any time",
+            "slash": "DAO may vote to slash your stake for misconduct",
+            "stake": "Minimum stake requirements may be increased (existing agents are grandfathered)",
+            "fees": "Fee limits may be adjusted through governance"
+          }
+        },
+        "independent": {
+          "title": "Independent Contractor Status",
+          "p1": "Agents are independent third parties, not employees, contractors, or affiliates of Zenland DAO. There is no employment, partnership, or agency relationship between you and the Protocol or DAO.",
+          "p2": "You are solely responsible for your own taxes, compliance with local regulations, and any professional licensing requirements that may apply to dispute resolution services in your jurisdiction."
+        },
+        "disclaimer": {
+          "title": "Disclaimer",
+          "content": "THE PROTOCOL PROVIDES NO GUARANTEE OF DISPUTE VOLUME, EARNINGS, OR INCOME. YOUR PARTICIPATION AS AN AGENT IS ENTIRELY AT YOUR OWN RISK. THE PROTOCOL AND DAO SHALL NOT BE LIABLE FOR ANY LOSSES YOU INCUR AS AN AGENT, INCLUDING LOSSES FROM SLASHING, MARKET CONDITIONS, OR LACK OF DISPUTES."
+        },
+        "liability": {
+          "title": "Limitation of Liability",
+          "content": "TO THE MAXIMUM EXTENT PERMITTED BY LAW, ZENLAND DAO, ITS CONTRIBUTORS, DEVELOPERS, AND DAO PARTICIPANTS SHALL NOT BE LIABLE FOR ANY DAMAGES ARISING FROM YOUR PARTICIPATION AS AN AGENT, INCLUDING BUT NOT LIMITED TO SLASHED STAKES, LOST EARNINGS, REPUTATIONAL HARM, OR ANY INDIRECT, CONSEQUENTIAL, OR PUNITIVE DAMAGES."
+        },
+        "indemnification": {
+          "title": "Indemnification",
+          "content": "You agree to indemnify, defend, and hold harmless Zenland DAO, its contributors, developers, and DAO participants from any claims, damages, or expenses arising from: (a) your dispute resolution decisions; (b) your violation of these Agent Terms; (c) any claims by escrow parties related to your conduct as an agent; or (d) your violation of any applicable laws."
+        },
+        "termination": {
+          "title": "Termination",
+          "p1": "You may cease acting as an agent at any time by setting yourself as unavailable and unstaking your collateral after the cooldown period and once you have no active cases.",
+          "p2": "The DAO may deactivate your agent status through a governance vote if you are found to have violated these terms or engaged in misconduct."
+        },
+        "modifications": {
+          "title": "Modifications",
+          "content": "These Agent Terms may be modified through DAO governance. Continued participation as an agent after modifications constitutes acceptance of the new terms. Material changes will be announced through official DAO communication channels."
+        },
+        "agreement": {
+          "title": "Entire Agreement",
+          "content": "These Agent Terms, together with the general Terms of Service and Privacy Policy, constitute the entire agreement between you and the Protocol regarding your participation as an agent. These terms supersede any prior agreements or understandings."
+        }
+      },
+      "relatedLinks": {
+        "title": "Related Documents:",
+        "terms": "General Terms of Service",
+        "privacy": "Privacy Policy",
+        "daoForum": "DAOForum.org (Dispute Reports)"
+      }
+    }
+  }
+}

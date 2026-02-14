@@ -1,0 +1,513 @@
+"use client";
+
+/**
+ * ReviewStep Component
+ *
+ * Second step of the escrow creation wizard.
+ * Displays a summary of all entered information and fees.
+ * User can go back to edit or proceed to approval.
+ */
+
+import {
+  Card,
+  CardBody,
+  CardFooter,
+  Button,
+  Heading,
+  Text,
+} from "@/components/ui";
+import {
+  ArrowLeft,
+  ArrowRight,
+  User,
+  Coins,
+  Clock,
+  FileText,
+  Shield,
+  AlertTriangle,
+  Copy,
+  Check,
+  Wallet,
+  Calculator,
+  Download,
+  Loader2,
+} from "lucide-react";
+import { useState, useCallback } from "react";
+
+import { MarkdownRenderer } from "@/components/shared";
+
+import type { UseEscrowFormReturn } from "../useEscrowForm";
+
+// =============================================================================
+// SUB-COMPONENTS
+// =============================================================================
+
+interface SummaryRowProps {
+  icon?: React.ReactNode;
+  label: string;
+  value: React.ReactNode;
+  highlight?: boolean;
+  mono?: boolean;
+}
+
+function SummaryRow({ icon, label, value, highlight, mono }: SummaryRowProps) {
+  return (
+    <div className="flex items-start justify-between py-3">
+      <div className="flex items-center gap-2">
+        {icon && (
+          <span className="text-[var(--text-tertiary)]">{icon}</span>
+        )}
+        <Text variant="muted" className="text-sm">
+          {label}
+        </Text>
+      </div>
+      <div
+        className={`
+          text-right max-w-[60%]
+          ${highlight ? "font-semibold text-[var(--text-primary)]" : ""}
+          ${mono ? "font-mono text-sm" : ""}
+        `}
+      >
+        {value}
+      </div>
+    </div>
+  );
+}
+
+interface AddressDisplayProps {
+  address: string;
+}
+
+function AddressDisplay({ address }: AddressDisplayProps) {
+  const [copied, setCopied] = useState(false);
+
+  const handleCopy = useCallback(() => {
+    navigator.clipboard.writeText(address);
+    setCopied(true);
+    setTimeout(() => setCopied(false), 2000);
+  }, [address]);
+
+  const shortAddress = `${address.slice(0, 10)}...${address.slice(-8)}`;
+
+  return (
+    <div className="flex items-center gap-2">
+      <span className="font-mono text-sm">{shortAddress}</span>
+      <button
+        type="button"
+        onClick={handleCopy}
+        className="p-1 rounded hover:bg-neutral-100 dark:hover:bg-neutral-800 transition-colors"
+        title="Copy address"
+      >
+        {copied ? (
+          <Check size={14} className="text-success-500" />
+        ) : (
+          <Copy size={14} className="text-[var(--text-tertiary)]" />
+        )}
+      </button>
+    </div>
+  );
+}
+
+interface FeesBreakdownProps {
+  amount: string;
+  creationFee: string;
+  assignmentFee: string;
+  totalAmount: string;
+  tokenSymbol: string;
+  hasAgent: boolean;
+}
+
+function FeesBreakdown({
+  amount,
+  creationFee,
+  assignmentFee,
+  totalAmount,
+  tokenSymbol,
+  hasAgent,
+}: FeesBreakdownProps) {
+  return (
+    <Card className="bg-neutral-50 dark:bg-neutral-900/50 border-neutral-200 dark:border-neutral-800">
+      <CardBody className="p-4 space-y-3">
+        <div className="flex items-center gap-2 mb-2">
+          <Calculator size={16} className="text-primary-500" />
+          <Heading level={5} className="text-sm">
+            Fees Breakdown
+          </Heading>
+        </div>
+
+        <div className="space-y-2 text-sm">
+          <div className="flex justify-between">
+            <Text variant="muted">Escrow Amount</Text>
+            <Text>
+              {amount} {tokenSymbol}
+            </Text>
+          </div>
+
+          <div className="flex justify-between">
+            <Text variant="muted">Creation Fee</Text>
+            <Text>
+              {creationFee} {tokenSymbol}
+            </Text>
+          </div>
+
+          {hasAgent && (
+            <div className="flex justify-between">
+              <Text variant="muted">Agent Assignment Fee</Text>
+              <Text>
+                {assignmentFee} {tokenSymbol}
+              </Text>
+            </div>
+          )}
+
+          <div className="border-t border-neutral-200 dark:border-neutral-700 pt-2 mt-2">
+            <div className="flex justify-between font-semibold">
+              <Text>Total Required</Text>
+              <Text className="text-primary-600 dark:text-primary-400">
+                {totalAmount} {tokenSymbol}
+              </Text>
+            </div>
+          </div>
+        </div>
+      </CardBody>
+    </Card>
+  );
+}
+
+interface PredictedAddressCardProps {
+  address: string | undefined;
+}
+
+function PredictedAddressCard({ address }: PredictedAddressCardProps) {
+  const [copied, setCopied] = useState(false);
+
+  const handleCopy = useCallback(() => {
+    if (!address) return;
+    navigator.clipboard.writeText(address);
+    setCopied(true);
+    setTimeout(() => setCopied(false), 2000);
+  }, [address]);
+
+  if (!address) {
+    return (
+      <Card className="bg-neutral-50 dark:bg-neutral-900/50 border-neutral-200 dark:border-neutral-800">
+        <CardBody className="p-4">
+          <div className="flex items-center gap-2 text-[var(--text-tertiary)]">
+            <Wallet size={16} />
+            <Text variant="muted" className="text-sm">
+              Generating escrow address...
+            </Text>
+          </div>
+        </CardBody>
+      </Card>
+    );
+  }
+
+  return (
+    <Card className="bg-primary-50 dark:bg-primary-900/10 border-primary-200 dark:border-primary-800">
+      <CardBody className="p-4">
+        <div className="flex items-center justify-between">
+          <div className="flex items-center gap-2">
+            <Wallet size={16} className="text-primary-500" />
+            <Text className="text-sm font-medium text-primary-700 dark:text-primary-300">
+              Predicted Escrow Address
+            </Text>
+          </div>
+          <div className="flex items-center gap-2">
+            <span className="font-mono text-xs text-primary-600 dark:text-primary-400">
+              {address.slice(0, 10)}...{address.slice(-8)}
+            </span>
+            <button
+              type="button"
+              onClick={handleCopy}
+              className="p-1 rounded hover:bg-primary-100 dark:hover:bg-primary-800/30 transition-colors"
+              title="Copy address"
+            >
+              {copied ? (
+                <Check size={14} className="text-success-500" />
+              ) : (
+                <Copy size={14} className="text-primary-500" />
+              )}
+            </button>
+          </div>
+        </div>
+      </CardBody>
+    </Card>
+  );
+}
+
+// =============================================================================
+// MAIN COMPONENT
+// =============================================================================
+
+export interface ReviewStepProps {
+  form: UseEscrowFormReturn;
+}
+
+export function ReviewStep({ form }: ReviewStepProps) {
+  const {
+    formData,
+    computed,
+    display,
+    goBack,
+    goNext,
+    canProceed,
+    pdf,
+    generateSalt,
+    shouldRegenerateSalt,
+  } = form;
+
+  // Generate salt when entering review step (if not already generated)
+  // This is typically handled by goNext in FormStep, but we ensure it here too
+
+  return (
+    <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
+      {/* Main Review - Left Column */}
+      <div className="lg:col-span-2 space-y-6">
+        {/* Summary Card */}
+        <Card variant="elevated" className="border-none shadow-2xl shadow-primary-500/5">
+          <CardBody className="p-4 sm:p-8">
+            {/* Parties */}
+            <div className="space-y-1 pb-4 border-b border-[var(--border-secondary)]">
+              <div className="flex items-center gap-2 mb-3">
+                <div className="w-1 h-5 bg-primary-500 rounded-full" />
+                <Heading level={4} className="uppercase tracking-widest text-[10px] font-bold text-primary-500">
+                  Parties
+                </Heading>
+              </div>
+              <SummaryRow
+                icon={<User size={16} />}
+                label="Seller"
+                value={<AddressDisplay address={formData.sellerAddress} />}
+              />
+              {computed.hasAgent && (
+                <SummaryRow
+                  icon={<Shield size={16} />}
+                  label="Agent"
+                  value={<AddressDisplay address={formData.agentAddress} />}
+                />
+              )}
+            </div>
+
+            {/* Financial Details */}
+            <div className="space-y-1 py-4 border-b border-[var(--border-secondary)]">
+              <div className="flex items-center gap-2 mb-3">
+                <div className="w-1 h-5 bg-primary-500 rounded-full" />
+                <Heading level={4} className="uppercase tracking-widest text-[10px] font-bold text-primary-500">
+                  Financial Details
+                </Heading>
+              </div>
+              <SummaryRow
+                icon={<Coins size={16} />}
+                label="Amount"
+                value={`${display.amount} ${display.tokenSymbol}`}
+                highlight
+              />
+              <SummaryRow
+                icon={<Clock size={16} />}
+                label="Buyer Protection"
+                value={display.protectionTime}
+              />
+            </div>
+
+            {/* Contract Terms */}
+            <div className="py-4 border-b border-[var(--border-secondary)]">
+              <div className="flex items-center gap-2 mb-3">
+                <div className="w-1 h-5 bg-primary-500 rounded-full" />
+                <Heading level={4} className="uppercase tracking-widest text-[10px] font-bold text-primary-500">
+                  Contract Terms
+                </Heading>
+              </div>
+              <div className="p-4 rounded-xl bg-neutral-50 dark:bg-neutral-900/50 border border-neutral-200 dark:border-neutral-800">
+                <div className="flex items-start gap-2 mb-2">
+                  <FileText size={16} className="text-[var(--text-tertiary)] mt-0.5" />
+                  <div className="flex-1 min-w-0">
+                    {formData.terms ? (
+                      <MarkdownRenderer content={formData.terms} />
+                    ) : (
+                      <Text className="text-sm text-[var(--text-tertiary)]">No terms specified</Text>
+                    )}
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            {/* Agent Status */}
+            <div className="pt-4">
+              <div className="flex items-center gap-2 mb-3">
+                <div className="w-1 h-5 bg-primary-500 rounded-full" />
+                <Heading level={4} className="uppercase tracking-widest text-[10px] font-bold text-primary-500">
+                  Dispute Resolution
+                </Heading>
+              </div>
+              {computed.hasAgent ? (
+                <div className="flex items-center gap-3 p-4 rounded-xl bg-success-50 dark:bg-success-900/10 border border-success-200 dark:border-success-800">
+                  <Shield size={20} className="text-success-600 dark:text-success-400" />
+                  <div>
+                    <Text className="font-medium text-success-800 dark:text-success-200">
+                      Agent Assigned
+                    </Text>
+                    <Text variant="muted" className="text-xs">
+                      Disputes will be resolved by the assigned agent
+                    </Text>
+                  </div>
+                </div>
+              ) : (
+                <div className="flex items-start gap-3 p-4 rounded-xl bg-warning-50 dark:bg-warning-900/10 border border-warning-200 dark:border-warning-800">
+                  <AlertTriangle size={20} className="text-warning-600 dark:text-warning-400 mt-0.5" />
+                  <div>
+                    <Text className="font-medium text-warning-800 dark:text-warning-200">
+                      Locked Escrow (No Agent)
+                    </Text>
+                    <Text variant="muted" className="text-xs mt-1">
+                      This escrow has no dispute resolution. If a disagreement occurs,
+                      funds may be permanently locked.
+                    </Text>
+                  </div>
+                </div>
+              )}
+            </div>
+          </CardBody>
+
+          <CardFooter className="border-t border-[var(--border-secondary)] px-4 py-4 sm:px-8 sm:py-6 flex flex-col-reverse sm:flex-row items-center justify-between gap-4">
+            <Button
+              variant="outline"
+              size="lg"
+              className="w-full sm:w-auto"
+              onClick={goBack}
+              leftIcon={<ArrowLeft size={18} />}
+            >
+              Back to Edit
+            </Button>
+            <Button
+              variant="primary"
+              size="lg"
+              className="w-full sm:w-auto px-12"
+              onClick={goNext}
+              disabled={!canProceed}
+              rightIcon={<ArrowRight size={18} />}
+            >
+              Proceed to Approval
+            </Button>
+          </CardFooter>
+        </Card>
+
+        {/* Salt Regeneration Warning */}
+        {shouldRegenerateSalt && (
+          <Card className="border-warning-200 dark:border-warning-800 bg-warning-50 dark:bg-warning-900/10">
+            <CardBody className="p-4">
+              <div className="flex items-start gap-3">
+                <AlertTriangle size={20} className="text-warning-600 dark:text-warning-400 mt-0.5" />
+                <div className="flex-1">
+                  <Text className="font-medium text-warning-800 dark:text-warning-200">
+                    Form data changed
+                  </Text>
+                  <Text variant="muted" className="text-xs mt-1">
+                    The escrow parameters have changed since the address was predicted.
+                    Please regenerate the salt to get a new predicted address.
+                  </Text>
+                  <Button
+                    variant="outline"
+                    size="sm"
+                    className="mt-3"
+                    onClick={generateSalt}
+                  >
+                    Regenerate Address
+                  </Button>
+                </div>
+              </div>
+            </CardBody>
+          </Card>
+        )}
+      </div>
+
+      {/* Fees Sidebar - Right Column */}
+      <div className="space-y-4">
+        {/* Agreement PDF */}
+        <Card className="bg-neutral-50 dark:bg-neutral-900/50 border-neutral-200 dark:border-neutral-800">
+          <CardBody className="p-4 space-y-3">
+            <div className="flex items-center justify-between">
+              <div className="flex items-center gap-2">
+                <FileText size={16} className="text-primary-500" />
+                <Heading level={5} className="text-sm">
+                  Agreement PDF
+                </Heading>
+              </div>
+              {pdf.status === "loading" && (
+                <div className="flex items-center gap-2 text-xs text-[var(--text-tertiary)]">
+                  <Loader2 size={14} className="animate-spin" />
+                  <span>Generating…</span>
+                </div>
+              )}
+            </div>
+
+            {pdf.status === "error" && (
+              <div className="p-3 rounded-lg bg-error-50 dark:bg-error-900/10 border border-error-200 dark:border-error-800">
+                <Text className="text-xs text-error-700 dark:text-error-300">
+                  Failed to generate PDF: {pdf.error ?? "Unknown error"}
+                </Text>
+              </div>
+            )}
+
+            {pdf.pdfUrl ? (
+              <a
+                href={pdf.pdfUrl}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="block"
+              >
+                <Button
+                  variant="outline"
+                  size="sm"
+                  className="w-full"
+                  leftIcon={<Download size={16} />}
+                >
+                  Download PDF
+                </Button>
+              </a>
+            ) : (
+              <Button
+                variant="outline"
+                size="sm"
+                className="w-full"
+                leftIcon={<Download size={16} />}
+                onClick={() => void pdf.regenerate()}
+                disabled={pdf.status === "loading"}
+              >
+                Generate PDF
+              </Button>
+            )}
+
+            {pdf.termsHash && (
+              <Text variant="muted" className="text-[10px] font-mono break-all">
+                termsHash: {pdf.termsHash}
+              </Text>
+            )}
+          </CardBody>
+        </Card>
+
+        <FeesBreakdown
+          amount={display.amount}
+          creationFee={display.creationFee}
+          assignmentFee={display.assignmentFee}
+          totalAmount={display.totalAmount}
+          tokenSymbol={display.tokenSymbol}
+          hasAgent={computed.hasAgent}
+        />
+
+        <PredictedAddressCard address={display.predictedAddress} />
+
+        {/* Info Note */}
+        <Card className="bg-neutral-50 dark:bg-neutral-900/50 border-neutral-200 dark:border-neutral-800">
+          <CardBody className="p-4">
+            <Text variant="muted" className="text-xs leading-relaxed">
+              💡 The predicted address is deterministic. As long as the parameters
+              remain unchanged, the escrow will be deployed at this address.
+            </Text>
+          </CardBody>
+        </Card>
+      </div>
+    </div>
+  );
+}
+
+export default ReviewStep;
