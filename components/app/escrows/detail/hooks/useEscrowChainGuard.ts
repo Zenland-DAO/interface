@@ -43,6 +43,9 @@ export const SUPPORTED_CHAIN_IDS = {
   SEPOLIA: sepolia.id,
 } as const;
 
+/** Type for supported chain IDs */
+export type SupportedChainId = typeof SUPPORTED_CHAIN_IDS[keyof typeof SUPPORTED_CHAIN_IDS];
+
 /** Chain ID to name mapping */
 const CHAIN_NAMES: Record<number, string> = {
   [mainnet.id]: "Ethereum",
@@ -55,7 +58,7 @@ const CHAIN_NAMES: Record<number, string> = {
 
 export interface UseEscrowChainGuardParams {
   /** The chain ID where the escrow contract is deployed */
-  escrowChainId: number;
+  escrowChainId: SupportedChainId;
 }
 
 export interface UseEscrowChainGuardReturn {

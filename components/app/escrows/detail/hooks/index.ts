@@ -45,6 +45,7 @@ export {
 export {
   useEscrowChainGuard,
   SUPPORTED_CHAIN_IDS,
+  type SupportedChainId,
   type UseEscrowChainGuardParams,
   type UseEscrowChainGuardReturn,
 } from "./useEscrowChainGuard";

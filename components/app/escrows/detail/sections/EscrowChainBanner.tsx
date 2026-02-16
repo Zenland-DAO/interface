@@ -17,7 +17,7 @@
 
 import { AlertTriangle, Info, ArrowRight, XCircle } from "lucide-react";
 import { Button } from "@/components/ui";
-import { useEscrowChainGuard, type UseEscrowChainGuardReturn } from "../hooks";
+import { useEscrowChainGuard, type UseEscrowChainGuardReturn, type SupportedChainId } from "../hooks";
 
 // =============================================================================
 // TYPES
@@ -25,7 +25,7 @@ import { useEscrowChainGuard, type UseEscrowChainGuardReturn } from "../hooks";
 
 export interface EscrowChainBannerProps {
   /** Chain ID where the escrow is deployed */
-  escrowChainId: number;
+  escrowChainId: SupportedChainId;
   /** Optional custom container className */
   className?: string;
 }

@@ -14,7 +14,7 @@ import { Zap, CheckCircle, AlertTriangle } from "lucide-react";
 
 import { Card, CardHeader, CardBody, Heading, Text } from "@/components/ui";
 import { useEscrowDetail } from "../EscrowDetailContext";
-import { useEscrowChainGuard } from "../hooks";
+import { useEscrowChainGuard, type SupportedChainId } from "../hooks";
 import { isTerminalState } from "../types";
 import { STATE_LABELS, STATE_DESCRIPTIONS } from "../constants";
 import { formatAmount } from "@/lib/utils/amount";
@@ -57,7 +57,7 @@ export function ActionsCard() {
   const { isPending } = write;
 
   // Chain validation - disable actions if on wrong chain
-  const chainGuard = useEscrowChainGuard({ escrowChainId: escrow.chainId });
+  const chainGuard = useEscrowChainGuard({ escrowChainId: escrow.chainId as SupportedChainId });
   const { isWrongChain, isOnSupportedChain, isConnected, escrowChainName } = chainGuard;
   const isChainMismatch = isConnected && (isWrongChain || !isOnSupportedChain);
 

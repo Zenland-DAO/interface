@@ -101,6 +101,7 @@ function ErrorState({ message }: { message?: string }) {
 // =============================================================================
 
 import { useEscrowDetail } from "./EscrowDetailContext";
+import { type SupportedChainId } from "./hooks";
 
 function EscrowDetailLayout() {
   const { escrow } = useEscrowDetail();
@@ -108,7 +109,7 @@ function EscrowDetailLayout() {
   return (
     <div className="max-w-4xl mx-auto space-y-6 animate-fade-in">
       {/* Chain Validation Banner - Shows wrong chain/testnet warnings */}
-      <EscrowChainBanner escrowChainId={escrow.chainId} className="" />
+      <EscrowChainBanner escrowChainId={escrow.chainId as SupportedChainId} className="" />
 
       {/* Page Header - Full Width */}
       <EscrowHeader />
