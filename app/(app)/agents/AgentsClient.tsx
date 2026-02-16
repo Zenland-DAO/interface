@@ -282,24 +282,24 @@ export function AgentsClient({ isSelectMode = false }: AgentsClientProps) {
                   </div>
 
                   {/* Card Footer */}
-                  <div className="mt-4 pt-3 border-t border-[var(--border-secondary)]">
+                  <div className="mt-auto pt-3 border-t border-[var(--border-secondary)]">
                     {isSelectMode ? (
-                      <div className="flex items-center gap-2">
+                      <div className="flex flex-col gap-2">
                         <Button
                           size="sm"
-                          className="flex-1"
+                          className="w-full"
                           onClick={(e) => handleSelect(e, agent.id)}
                         >
-                          <CheckCircle2 size={14} className="mr-1" />
-                          Select
+                          <CheckCircle2 size={14} className="mr-1.5" />
+                          Select Agent
                         </Button>
                         <Button
-                          variant="ghost"
+                          variant="outline"
                           size="sm"
-                          className="text-xs px-3"
+                          className="w-full"
                         >
-                          Details
-                          <ArrowRight size={12} className="ml-1" />
+                          View Details
+                          <ArrowRight size={14} className="ml-1.5" />
                         </Button>
                       </div>
                     ) : (

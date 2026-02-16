@@ -115,22 +115,36 @@ export const DEFAULT_FORM_DATA: EscrowFormData = {
 };
 
 // =============================================================================
-// QUOTE PARAMETERS (For Change Detection)
+// CRITICAL PARAMETERS (For Salt/Quote/PDF Regeneration)
 // =============================================================================
 
 /**
- * Parameters that affect the predicted escrow address.
- * When these change, the salt may need to be regenerated.
+ * Parameters that affect the predicted escrow address and PDF content.
+ * When ANY of these change, the entire flow must be re-done:
+ * salt → quote → PDF
+ *
+ * These parameters are embedded in the PDF metadata (signed) and the PDF document:
+ * - escrowAddress (derived from salt + params)
+ * - buyer, seller, agent
+ * - token, amount
+ * - buyerProtectionTime
+ * - terms (in PDF document)
+ *
+ * IMPORTANT: This list must match what's sent to the PDF service.
+ * The termsHash (keccak256 of PDF bytes) is stored on-chain as proof.
  */
 export interface QuoteCriticalParams {
   seller: string;
   token: Address;
   amount: string;
   agent: string | null;
+  buyerProtectionTime: number;
+  terms: string;
 }
 
 /**
- * Check if critical params have changed (requires salt regeneration).
+ * Check if critical params have changed (requires full regeneration).
+ * When this returns true, we must: clear salt → clear quote → clear PDF.
  */
 export function haveCriticalParamsChanged(
   previous: QuoteCriticalParams | null,
@@ -143,7 +157,9 @@ export function haveCriticalParamsChanged(
     previous.token.toLowerCase() !== current.token.toLowerCase() ||
     previous.amount !== current.amount ||
     (previous.agent?.toLowerCase() ?? null) !==
-      (current.agent?.toLowerCase() ?? null)
+      (current.agent?.toLowerCase() ?? null) ||
+    previous.buyerProtectionTime !== current.buyerProtectionTime ||
+    previous.terms !== current.terms
   );
 }
 

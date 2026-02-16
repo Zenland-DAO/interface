@@ -12,3 +12,4 @@ export { EscrowProtection } from "./EscrowProtection";
 export { EscrowAgentTimer } from "./EscrowAgentTimer";
 export { EscrowContractInfo } from "./EscrowContractInfo";
 export { EscrowAcceptanceTimer } from "./EscrowAcceptanceTimer";
+export { EscrowChainBanner, type EscrowChainBannerProps } from "./EscrowChainBanner";

@@ -24,6 +24,7 @@ import {
   EscrowAgentTimer,
   EscrowContractInfo,
   EscrowAcceptanceTimer,
+  EscrowChainBanner,
 } from "./sections";
 import { ActionsCard } from "./actions";
 
@@ -99,9 +100,16 @@ function ErrorState({ message }: { message?: string }) {
 // MAIN LAYOUT
 // =============================================================================
 
+import { useEscrowDetail } from "./EscrowDetailContext";
+
 function EscrowDetailLayout() {
+  const { escrow } = useEscrowDetail();
+
   return (
     <div className="max-w-4xl mx-auto space-y-6 animate-fade-in">
+      {/* Chain Validation Banner - Shows wrong chain/testnet warnings */}
+      <EscrowChainBanner escrowChainId={escrow.chainId} className="" />
+
       {/* Page Header - Full Width */}
       <EscrowHeader />
 
@@ -157,6 +165,7 @@ export function EscrowDetailClient({ id }: EscrowDetailClientProps) {
   // Transform indexer data to our EscrowData type
   const escrow: EscrowData = {
     id: escrowData.id as Address,
+    chainId: escrowData.chainId,
     buyer: escrowData.buyer as Address,
     seller: escrowData.seller as Address,
     agent: escrowData.agent as Address | null,

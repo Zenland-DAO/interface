@@ -71,6 +71,8 @@ export function isParty(role: EscrowRole): boolean {
 export interface EscrowData {
   /** Escrow contract address (primary key) */
   id: Address;
+  /** Chain ID where this escrow is deployed (1 for mainnet, 11155111 for sepolia) */
+  chainId: number;
   /** Buyer's address */
   buyer: Address;
   /** Seller's address */

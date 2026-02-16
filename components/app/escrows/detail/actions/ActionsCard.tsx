@@ -6,13 +6,15 @@
  * Main container for all escrow actions.
  * Orchestrates which action components to show based on user role and escrow state.
  * Manages the confirmation modal state.
+ * Disables all actions when wallet is on wrong chain.
  */
 
 import { useState, useCallback } from "react";
-import { Zap, CheckCircle } from "lucide-react";
+import { Zap, CheckCircle, AlertTriangle } from "lucide-react";
 
 import { Card, CardHeader, CardBody, Heading, Text } from "@/components/ui";
 import { useEscrowDetail } from "../EscrowDetailContext";
+import { useEscrowChainGuard } from "../hooks";
 import { isTerminalState } from "../types";
 import { STATE_LABELS, STATE_DESCRIPTIONS } from "../constants";
 import { formatAmount } from "@/lib/utils/amount";
@@ -53,6 +55,11 @@ export function ActionsCard() {
   const { escrow, tokenInfo, write, actions, role } = useEscrowDetail();
   const { hasAnyAction } = actions;
   const { isPending } = write;
+
+  // Chain validation - disable actions if on wrong chain
+  const chainGuard = useEscrowChainGuard({ escrowChainId: escrow.chainId });
+  const { isWrongChain, isOnSupportedChain, isConnected, escrowChainName } = chainGuard;
+  const isChainMismatch = isConnected && (isWrongChain || !isOnSupportedChain);
 
   // Modal state
   const [activeModal, setActiveModal] = useState<ModalType>(null);
@@ -158,8 +165,25 @@ export function ActionsCard() {
             </div>
           )}
 
+          {/* Chain Mismatch Warning - Actions blocked */}
+          {!isTerminal && isChainMismatch && (
+            <div className="text-center py-4 space-y-3">
+              <div className="w-12 h-12 bg-warning-50 dark:bg-warning-900/20 rounded-full flex items-center justify-center mx-auto">
+                <AlertTriangle size={24} className="text-warning-500" />
+              </div>
+              <div>
+                <Text className="font-semibold text-warning-700 dark:text-warning-300">
+                  Wrong Network
+                </Text>
+                <Text variant="muted" className="text-sm mt-1">
+                  Switch to {escrowChainName} to perform actions on this escrow.
+                </Text>
+              </div>
+            </div>
+          )}
+
           {/* No Actions Available (but not terminal) */}
-          {!isTerminal && !hasAnyAction && role.role === "viewer" && (
+          {!isTerminal && !isChainMismatch && !hasAnyAction && role.role === "viewer" && (
             <div className="text-center py-4">
               <Text variant="muted" className="text-sm">
                 Connect your wallet to interact with this escrow.
@@ -167,7 +191,7 @@ export function ActionsCard() {
             </div>
           )}
 
-          {!isTerminal && !hasAnyAction && role.role !== "viewer" && (
+          {!isTerminal && !isChainMismatch && !hasAnyAction && role.role !== "viewer" && (
             <div className="text-center py-4">
               <Text variant="muted" className="text-sm">
                 No actions available at this time.
@@ -175,8 +199,8 @@ export function ActionsCard() {
             </div>
           )}
 
-          {/* Role-Based Actions */}
-          {!isTerminal && hasAnyAction && (
+          {/* Role-Based Actions - Only show when chain matches */}
+          {!isTerminal && !isChainMismatch && hasAnyAction && (
             <div className="space-y-4">
               <PendingActions />
               {/* Primary Actions (by role) */}

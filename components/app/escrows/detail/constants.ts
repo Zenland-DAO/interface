@@ -351,14 +351,14 @@ export const ROLE_COLORS = {
 export const BPS_DENOMINATOR = 10000;
 
 /**
- * Minimum split percentage (1%).
+ * Minimum split percentage (0%).
  */
-export const MIN_SPLIT_BPS = 100;
+export const MIN_SPLIT_BPS = 0;
 
 /**
- * Maximum split percentage (99%).
+ * Maximum split percentage (100%).
  */
-export const MAX_SPLIT_BPS = 9900;
+export const MAX_SPLIT_BPS = 10000;
 
 /**
  * Timer update interval in milliseconds.

@@ -28,19 +28,19 @@ export function AgentContact() {
           <Heading level={4}>Professional Summary & Contact</Heading>
         </div>
       </CardHeader>
-      <CardBody className="p-6 space-y-6">
+      <CardBody className="p-4 sm:p-6 space-y-4 sm:space-y-6">
         {/* Bio / Description */}
         <div className="space-y-2">
           <Text variant="caption" className="text-xs font-medium uppercase tracking-wider text-[var(--text-tertiary)]">
             Bio / Description
           </Text>
-          <Text className="whitespace-pre-wrap leading-relaxed">
+          <Text className="whitespace-pre-wrap leading-relaxed text-sm sm:text-base">
             {agent.description || "No professional summary provided by this agent."}
           </Text>
         </div>
 
         {/* Contact Channels */}
-        <div className="pt-4 border-t border-[var(--border-secondary)] space-y-3">
+        <div className="pt-3 sm:pt-4 border-t border-[var(--border-secondary)] space-y-3">
           <Text variant="caption" className="text-xs font-medium uppercase tracking-wider text-[var(--text-tertiary)]">
             Contact Channels
           </Text>

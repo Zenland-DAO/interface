@@ -200,9 +200,9 @@ export function ContactDisplay({
     );
   }
 
-  // Expanded variant
+  // Expanded variant - grid layout for consistent widths
   return (
-    <div className={`flex flex-wrap gap-4 ${className}`}>
+    <div className={`grid grid-cols-1 sm:grid-cols-2 gap-3 ${className}`}>
       {entries.map((entry, idx) => (
         <ContactItem 
           key={`${entry.name}-${idx}`} 

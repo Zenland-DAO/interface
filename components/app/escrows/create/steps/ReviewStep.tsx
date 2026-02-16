@@ -252,12 +252,10 @@ export function ReviewStep({ form }: ReviewStepProps) {
     goNext,
     canProceed,
     pdf,
-    generateSalt,
-    shouldRegenerateSalt,
   } = form;
 
-  // Generate salt when entering review step (if not already generated)
-  // This is typically handled by goNext in FormStep, but we ensure it here too
+  // Check if we're in a regenerating state (PDF is loading or no PDF yet)
+  const isRegenerating = pdf.status === "loading" || !pdf.pdfUrl;
 
   return (
     <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
@@ -383,36 +381,28 @@ export function ReviewStep({ form }: ReviewStepProps) {
               size="lg"
               className="w-full sm:w-auto px-12"
               onClick={goNext}
-              disabled={!canProceed}
-              rightIcon={<ArrowRight size={18} />}
+              disabled={!canProceed || isRegenerating}
+              rightIcon={isRegenerating ? <Loader2 size={18} className="animate-spin" /> : <ArrowRight size={18} />}
             >
-              Proceed to Approval
+              {isRegenerating ? "Generating Agreement..." : "Proceed to Approval"}
             </Button>
           </CardFooter>
         </Card>
 
-        {/* Salt Regeneration Warning */}
-        {shouldRegenerateSalt && (
-          <Card className="border-warning-200 dark:border-warning-800 bg-warning-50 dark:bg-warning-900/10">
+        {/* Auto-regeneration Info - shows when regenerating */}
+        {isRegenerating && (
+          <Card className="border-primary-200 dark:border-primary-800 bg-primary-50 dark:bg-primary-900/10">
             <CardBody className="p-4">
               <div className="flex items-start gap-3">
-                <AlertTriangle size={20} className="text-warning-600 dark:text-warning-400 mt-0.5" />
+                <Loader2 size={20} className="text-primary-600 dark:text-primary-400 mt-0.5 animate-spin" />
                 <div className="flex-1">
-                  <Text className="font-medium text-warning-800 dark:text-warning-200">
-                    Form data changed
+                  <Text className="font-medium text-primary-800 dark:text-primary-200">
+                    Generating Agreement
                   </Text>
                   <Text variant="muted" className="text-xs mt-1">
-                    The escrow parameters have changed since the address was predicted.
-                    Please regenerate the salt to get a new predicted address.
+                    Your escrow agreement PDF is being generated. This document will be
+                    cryptographically linked to your smart contract.
                   </Text>
-                  <Button
-                    variant="outline"
-                    size="sm"
-                    className="mt-3"
-                    onClick={generateSalt}
-                  >
-                    Regenerate Address
-                  </Button>
                 </div>
               </div>
             </CardBody>

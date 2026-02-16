@@ -675,13 +675,53 @@ export function useEscrowForm(): UseEscrowFormReturn {
   }, [canGoBack, currentStep, goToStep]);
 
   // ==========================================================================
-  // SALT MANAGEMENT
+  // AUTO-REGENERATION: Salt, Quote, PDF
   // ==========================================================================
+  // When critical params change, we must regenerate everything automatically.
+  // This is NOT optional - the PDF bytes (termsHash) are stored on-chain as proof.
+  // The flow is: params change → clear salt → new salt generated → new quote → new PDF
 
-  const shouldRegenerateSalt = useMemo(
-    () => computed.criticalParamsChanged && !!state.salt.value,
-    [computed.criticalParamsChanged, state.salt.value]
-  );
+  // Track if we've already triggered regeneration for the current params
+  const lastCriticalParamsRef = useRef<string | null>(null);
+
+  // Auto-clear and regenerate when critical params change
+  useEffect(() => {
+    // Only run when on review step - on form step, user is still editing
+    if (currentStep !== "review") {
+      lastCriticalParamsRef.current = null;
+      return;
+    }
+
+    // Serialize current critical params for comparison
+    const currentParamsKey = computed.criticalParams
+      ? JSON.stringify(computed.criticalParams)
+      : null;
+
+    // If no params yet, nothing to do
+    if (!currentParamsKey) return;
+
+    // If params haven't changed since last check, nothing to do
+    if (lastCriticalParamsRef.current === currentParamsKey) return;
+
+    // If critical params changed and we had a previous salt, regenerate
+    if (computed.criticalParamsChanged && state.salt.value) {
+      // Clear stale data first
+      ctx.dispatch({ type: "SET_PDF", url: null, termsHash: null });
+      ctx.dispatch({ type: "SET_QUOTE", quote: null });
+
+      // Generate new salt (which will trigger new quote → new PDF)
+      ctx.generateSalt();
+    }
+
+    // Remember we've handled these params
+    lastCriticalParamsRef.current = currentParamsKey;
+  }, [
+    currentStep,
+    computed.criticalParams,
+    computed.criticalParamsChanged,
+    state.salt.value,
+    ctx,
+  ]);
 
   // ==========================================================================
   // SUBMISSION
@@ -848,9 +888,9 @@ export function useEscrowForm(): UseEscrowFormReturn {
     goNext,
     goBack,
 
-    // Salt
+    // Salt (regeneration is now automatic, but we keep the flag for backward compatibility)
     generateSalt: ctx.generateSalt,
-    shouldRegenerateSalt,
+    shouldRegenerateSalt: false, // Always false - regeneration is now automatic
 
     // Submission
     submissionStatus,

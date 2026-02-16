@@ -211,7 +211,7 @@ export function AgentDashboardClient() {
               <div className="space-y-2">
                 <div className="flex flex-col items-center lg:items-start gap-2">
                   <Heading level={2} className="truncate tracking-tight m-0 text-3xl">
-                    {agent.contact ? agent.contact.split("|")[0].trim() : displayAddress}
+                    {displayAddress}
                   </Heading>
                   <div className="flex flex-wrap items-center justify-center lg:justify-start gap-2">
                     {formattedJoinedDate && (

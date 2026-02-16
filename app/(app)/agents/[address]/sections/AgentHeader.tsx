@@ -104,10 +104,10 @@ export function AgentHeader() {
           </div>
 
           {/* Actions */}
-          <div className="flex flex-col sm:flex-row gap-2 shrink-0">
+          <div className="flex flex-col gap-2 w-full sm:w-auto sm:shrink-0">
             {isOwnProfile ? (
-              <Link href="/agents/dashboard">
-                <Button variant="primary" leftIcon={<Activity size={16} />}>
+              <Link href="/agents/dashboard" className="w-full sm:w-auto">
+                <Button variant="primary" leftIcon={<Activity size={16} />} className="w-full sm:w-auto">
                   Go to Dashboard
                 </Button>
               </Link>
@@ -116,12 +116,13 @@ export function AgentHeader() {
                 variant="primary"
                 onClick={onSelectAgent}
                 leftIcon={<CheckCircle2 size={16} />}
+                className="w-full sm:w-auto"
               >
                 Select Agent
               </Button>
             )}
             {!isSelectMode && (
-              <Button variant="outline" leftIcon={<ExternalLink size={16} />}>
+              <Button variant="outline" leftIcon={<ExternalLink size={16} />} className="w-full sm:w-auto">
                 View on Explorer
               </Button>
             )}

@@ -40,3 +40,11 @@ export {
   type UseEscrowActionsParams,
   type UseEscrowActionsReturn,
 } from "./useEscrowActions";
+
+// Chain validation
+export {
+  useEscrowChainGuard,
+  SUPPORTED_CHAIN_IDS,
+  type UseEscrowChainGuardParams,
+  type UseEscrowChainGuardReturn,
+} from "./useEscrowChainGuard";

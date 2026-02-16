@@ -580,6 +580,8 @@ export function EscrowFormProvider({
     );
 
     // Critical params for change detection
+    // These params affect the predicted escrow address AND the PDF content.
+    // If any of these change, we must regenerate: salt → quote → PDF
     const criticalParams: QuoteCriticalParams | null =
       formData.sellerAddress && tokenAddress && formData.amount
         ? {
@@ -587,6 +589,8 @@ export function EscrowFormProvider({
             token: tokenAddress,
             amount: formData.amount,
             agent: hasAgent ? formData.agentAddress : null,
+            buyerProtectionTime: buyerProtectionTimeSeconds,
+            terms: formData.terms,
           }
         : null;
 
