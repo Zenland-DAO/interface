@@ -11,6 +11,14 @@ const nextConfig: NextConfig = {
   // Enable standalone output for Docker deployment
   output: "standalone",
   
+  // Image optimization configuration for better LCP
+  images: {
+    formats: ["image/avif", "image/webp"],
+    deviceSizes: [640, 750, 828, 1080, 1200, 1920],
+    imageSizes: [16, 32, 48, 64, 96, 128, 256, 384],
+    minimumCacheTTL: 31536000, // 1 year
+  },
+  
   onDemandEntries: {
     // Keep pages in memory for 1 hour (default is ~15-60s)
     maxInactiveAge: 60 * 60 * 1000,

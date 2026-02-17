@@ -120,6 +120,13 @@ jobs:
             # Restart the container with the new image
             docker compose -f docker-compose.prod.yml up -d
             
+            # Wait for container to be ready
+            sleep 5
+            
+            # Reload nginx to resolve new container IP
+            # (Required because nginx caches DNS and the container gets a new IP after recreation)
+            docker exec zenland-nginx nginx -s reload
+            
             # Clean up old images
             docker image prune -f
             

@@ -8,13 +8,23 @@ import { Globe, Check } from "lucide-react";
 import { useRouter as useNextRouter } from "next/navigation";
 import { useState, useRef, useEffect } from "react";
 
+interface LanguageSwitcherProps {
+  /**
+   * Variant of the language switcher
+   * - "default": Dropdown menu (for header/desktop)
+   * - "mobile": Inline buttons (for mobile drawer)
+   */
+  variant?: "default" | "mobile";
+}
+
 /**
  * LanguageSwitcher Component
  * 
  * Dropdown component for switching between available locales.
  * Uses next-intl navigation for locale-aware routing.
+ * Supports a mobile variant that renders inline buttons instead of a dropdown.
  */
-export function LanguageSwitcher() {
+export function LanguageSwitcher({ variant = "default" }: LanguageSwitcherProps) {
   const locale = useLocale();
   const tA11y = useTranslations("common.accessibility");
 
@@ -73,6 +83,40 @@ export function LanguageSwitcher() {
     setIsOpen(false);
   };
 
+  // Mobile variant: render inline buttons instead of dropdown
+  if (variant === "mobile") {
+    return (
+      <div className="flex flex-col gap-1" role="group" aria-label={tA11y("selectLanguage")}>
+        <div className="flex items-center gap-2 px-4 py-2 text-sm font-medium text-[var(--text-secondary)]">
+          <Globe className="w-4 h-4" />
+          <span>{tA11y("changeLanguage")}</span>
+        </div>
+        <div className="flex flex-wrap gap-2 px-4">
+          {locales.map((loc) => (
+            <button
+              key={loc}
+              type="button"
+              onClick={() => handleLocaleChange(loc)}
+              className={`
+                flex items-center gap-2 px-3 py-2 text-sm font-medium rounded-lg transition-colors
+                ${locale === loc 
+                  ? "bg-primary-500/10 text-primary-500 ring-1 ring-primary-500/30" 
+                  : "text-[var(--text-primary)] hover:bg-[var(--state-hover)] bg-[var(--bg-secondary)]"
+                }
+              `}
+              aria-pressed={locale === loc}
+            >
+              <span>{localeFlags[loc]}</span>
+              <span>{localeNames[loc]}</span>
+              {locale === loc && <Check className="w-3 h-3" />}
+            </button>
+          ))}
+        </div>
+      </div>
+    );
+  }
+
+  // Default variant: dropdown menu
   return (
     <div className="relative" ref={dropdownRef}>
       <button

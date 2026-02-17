@@ -63,6 +63,12 @@ export default async function RootLayout({
   return (
     <html lang={locale} translate="no" className={`${inter.variable} ${figtree.variable} notranslate`} suppressHydrationWarning>
       <head>
+        {/* Preconnect to critical origins for faster LCP */}
+        <link rel="preconnect" href="https://api.zen.land" />
+        <link rel="preconnect" href="https://api.web3modal.org" />
+        <link rel="dns-prefetch" href="https://api.zen.land" />
+        <link rel="dns-prefetch" href="https://api.web3modal.org" />
+        
         {/* Prevent flash of wrong theme */}
         <script
           dangerouslySetInnerHTML={{

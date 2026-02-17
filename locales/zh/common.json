@@ -4,7 +4,8 @@
       "features": "功能",
       "howItWorks": "工作原理",
       "stats": "统计",
-      "community": "社区"
+      "community": "社区",
+      "blog": "博客"
     },
     "buttons": {
       "app": "⚡ 应用",
@@ -27,7 +28,7 @@
           "documentation": "文档",
           "apiReference": "API",
           "contracts": "Contracts",
-          "support": "支持"
+          "blog": "博客"
         },
         "legal": {
           "title": "法律",

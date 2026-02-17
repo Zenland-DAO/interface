@@ -4,7 +4,8 @@
       "features": "Características",
       "howItWorks": "Cómo Funciona",
       "stats": "Stats",
-      "community": "Community"
+      "community": "Community",
+      "blog": "Blog"
     },
     "buttons": {
       "app": "⚡ App",
@@ -27,7 +28,7 @@
           "documentation": "Documentación",
           "apiReference": "API",
           "contracts": "Contracts",
-          "support": "Soporte"
+          "blog": "Blog"
         },
         "legal": {
           "title": "Legal",

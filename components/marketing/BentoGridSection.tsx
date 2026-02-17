@@ -62,12 +62,12 @@ export function BentoGridSection() {
             {/* Background Image */}
             <div className="absolute inset-0 z-0">
               <NextImage
-                src="/images/bento-fees.png"
+                src="/images/bento-fees.webp"
                 alt="1% Fees Abstract"
                 fill
                 className="object-cover object-right lg:object-center opacity-70 group-hover:opacity-90 transition-all duration-700"
                 priority
-                unoptimized
+                sizes="(max-width: 768px) 100vw, 58vw"
               />
             </div>
 
@@ -106,11 +106,11 @@ export function BentoGridSection() {
               {/* Background Image */}
               <div className="absolute inset-0 z-0 opacity-20 group-hover:opacity-40 transition-all duration-700 group-hover:scale-110">
                  <NextImage
-                  src="/images/bento-nocode.png"
+                  src="/images/bento-nocode.webp"
                   alt="No Code Blocks"
                   fill
                   className="object-cover object-center"
-                  unoptimized
+                  sizes="(max-width: 768px) 100vw, 42vw"
                 />
               </div>
             </motion.div>
@@ -140,11 +140,11 @@ export function BentoGridSection() {
                {/* Background Image */}
                <div className="absolute inset-0 z-0 opacity-50 mix-blend-screen group-hover:opacity-70 transition-all duration-700 group-hover:scale-105">
                 <NextImage
-                  src="/images/bento-instant.png"
+                  src="/images/bento-instant.webp"
                   alt="Instant Settlement"
                   fill
                   className="object-cover object-center opacity-50 group-hover:opacity-70 transition-all duration-700"
-                  unoptimized
+                  sizes="(max-width: 768px) 100vw, 42vw"
                 />
               </div>
 

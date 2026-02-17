@@ -38,7 +38,7 @@ const footerSections: FooterSection[] = [
       { labelKey: "resources.documentation", href: "https://docs.zen.land/" },
       { labelKey: "resources.apiReference", href: "https://api.zen.land/" },
       { labelKey: "resources.contracts", href: "https://github.com/zenland-dao/core" },
-      { labelKey: "resources.support", href: "https://t.me/zenland_support" },
+      { labelKey: "resources.blog", href: "https://zen.land/blog" },
     ],
   },
   {

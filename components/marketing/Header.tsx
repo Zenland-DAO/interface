@@ -25,6 +25,7 @@ const navLinks: NavLink[] = [
   { labelKey: "howItWorks", href: "#how-it-works" },
   { labelKey: "stats", href: "#stats" },
   { labelKey: "community", href: "#community" },
+  { labelKey: "blog", href: "https://zen.land/blog" },
 ];
 
 export function Header() {
@@ -182,7 +183,7 @@ export function Header() {
                 
                 {/* Language Switcher in Mobile Menu */}
                 <div className="mt-6 pt-6 border-t border-[var(--border-secondary)]">
-                  <LanguageSwitcher />
+                  <LanguageSwitcher variant="mobile" />
                 </div>
               </div>
             </motion.div>
