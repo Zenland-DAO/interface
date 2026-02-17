@@ -3,7 +3,7 @@
 import { useMemo } from "react";
 import { useRouter } from "next/navigation";
 import { useConnection, useDisconnect } from "wagmi";
-import { User, Wallet, Settings, LogOut, ChevronDown } from "lucide-react";
+import { Wallet, Settings, LogOut, ChevronDown } from "lucide-react";
 import { BaseHeader, Dropdown, DropdownItem, DropdownDivider, ThemeToggle, Logo, Button } from "@/components/ui";
 import { formatAddress } from "@/lib/wagmi/formatAddress";
 import { useWalletModal } from "@/components/providers/WalletModalContext";

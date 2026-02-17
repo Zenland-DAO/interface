@@ -15,3 +15,4 @@ export { BentoGridSection } from "./BentoGridSection";
 export { CommunitySection } from "./CommunitySection";
 export { LanguageSwitcher } from "./LanguageSwitcher";
 export { OpenBookSection } from "./OpenBookSection";
+export { FAQSection } from "./FAQSection";

@@ -63,7 +63,7 @@ export function BentoGridSection() {
             <div className="absolute inset-0 z-0">
               <NextImage
                 src="/images/bento-fees.webp"
-                alt="1% Fees Abstract"
+                alt="Zenland's low 1% platform fee visualization - the lowest fees in blockchain escrow, capped at $50 maximum"
                 fill
                 className="object-cover object-right lg:object-center opacity-70 group-hover:opacity-90 transition-all duration-700"
                 priority
@@ -107,7 +107,7 @@ export function BentoGridSection() {
               <div className="absolute inset-0 z-0 opacity-20 group-hover:opacity-40 transition-all duration-700 group-hover:scale-110">
                  <NextImage
                   src="/images/bento-nocode.webp"
-                  alt="No Code Blocks"
+                  alt="No coding required - Zenland's visual contract builder for creating escrow agreements without programming"
                   fill
                   className="object-cover object-center"
                   sizes="(max-width: 768px) 100vw, 42vw"
@@ -141,7 +141,7 @@ export function BentoGridSection() {
                <div className="absolute inset-0 z-0 opacity-50 mix-blend-screen group-hover:opacity-70 transition-all duration-700 group-hover:scale-105">
                 <NextImage
                   src="/images/bento-instant.webp"
-                  alt="Instant Settlement"
+                  alt="Instant settlement on Zenland - funds released immediately on-chain when escrow conditions are met"
                   fill
                   className="object-cover object-center opacity-50 group-hover:opacity-70 transition-all duration-700"
                   sizes="(max-width: 768px) 100vw, 42vw"

@@ -21,6 +21,7 @@ import { Heading, Text, WalletOption } from "@/components/ui";
 import { useWalletModal } from "@/components/providers/WalletModalContext";
 import { useEnsureChain } from "@/hooks/wallet/useEnsureChain";
 import { getWalletMetadata } from "@/lib/wallets";
+import { trackWalletConnected } from "@/lib/analytics/gtag";
 
 // Defer state updates to avoid `react-hooks/set-state-in-effect`.
 function defer(fn: () => void) {
@@ -179,7 +180,11 @@ export function ConnectWalletModal() {
     connect.mutate(
       { connector },
       {
-        onSuccess: () => setConnectingUid(null),
+        onSuccess: () => {
+          setConnectingUid(null);
+          // Track wallet connection for analytics
+          trackWalletConnected(connector.name);
+        },
         onError: () => setConnectingUid(null),
       }
     );

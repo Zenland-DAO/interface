@@ -1,10 +1,37 @@
+import type { Metadata } from "next";
 import { PageHeader } from "@/components/shared";
 import { AgentsClient } from "./AgentsClient";
 import { AgentHeaderActions } from "@/components/app/agents/AgentHeaderActions";
 
-export const metadata = {
+export const metadata: Metadata = {
   title: "Agents | Zenland",
-  description: "Browse and select dispute resolution agents",
+  description:
+    "Browse verified dispute resolution agents on Zenland. Find trusted arbitrators for your crypto escrow transactions with transparent fees and ratings.",
+  keywords: [
+    "escrow agents",
+    "dispute resolution",
+    "crypto arbitrators",
+    "blockchain mediators",
+    "trusted agents",
+    "escrow arbitration",
+  ],
+  openGraph: {
+    title: "Agents | Zenland",
+    description:
+      "Browse verified dispute resolution agents on Zenland. Find trusted arbitrators for your crypto escrow transactions.",
+    type: "website",
+    url: "https://zen.land/agents",
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Agents | Zenland",
+    description:
+      "Browse verified dispute resolution agents on Zenland. Find trusted arbitrators for your crypto escrow transactions.",
+  },
+  robots: {
+    index: true,
+    follow: true,
+  },
 };
 
 interface AgentsPageProps {

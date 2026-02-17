@@ -32,6 +32,7 @@ import {
   bpsToPercent,
 } from "@/lib/constants/agent";
 import { buildWeb3ErrorReport, copyWeb3ErrorReportToClipboard } from "@/lib/blockchain/errorReport";
+import { trackAgentRegistered } from "@/lib/analytics/gtag";
 
 // Approval UI is shared via TokenApprovalAction
 
@@ -304,10 +305,12 @@ export function RegistrationForm() {
     };
   }, [formData, contactState, address, chainId, status, getStorageKey, combinedContact]);
 
-  // Clear draft on success
+  // Clear draft on success and track registration
   useEffect(() => {
     if (status === "success") {
       clearDraft();
+      // Track successful agent registration for analytics
+      trackAgentRegistered();
     }
   }, [status, clearDraft]);
 

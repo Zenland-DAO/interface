@@ -237,6 +237,38 @@
         "cta": "Crear Tu DAO"
       }
     },
+    "faq": {
+      "title": "Preguntas Frecuentes",
+      "subtitle": "Todo lo que necesitas saber sobre el escrow de criptomonedas y cómo Zenland protege tus transacciones.",
+      "moreQuestions": "¿Tienes más preguntas?",
+      "viewDocs": "Consulta nuestra documentación",
+      "items": {
+        "whatIsCryptoEscrow": {
+          "question": "¿Qué es el escrow de criptomonedas y cómo funciona Zenland?",
+          "answer": "El escrow de criptomonedas es un método seguro para proteger transacciones de criptomonedas entre partes que no confían completamente entre sí. Zenland utiliza contratos inteligentes en Ethereum para bloquear fondos hasta que se cumplan las condiciones predefinidas, eliminando la necesidad de intermediarios tradicionales."
+        },
+        "howToCreate": {
+          "question": "¿Cómo creo un escrow en Zenland?",
+          "answer": "Crear un escrow es simple: conecta tu billetera, define los términos y condiciones, establece el monto del pago y deposita los fondos en el contrato inteligente. No se requiere programación - nuestra interfaz visual te guía a través de todo el proceso en minutos."
+        },
+        "fundsProtection": {
+          "question": "¿Cómo se protegen los fondos en el escrow blockchain?",
+          "answer": "Toda la lógica de escrow vive en la blockchain de Ethereum. Los fondos están bloqueados en contratos inteligentes auditados que son transparentes, inmutables y verificables por cualquiera. Zenland es sin custodia - nunca tenemos acceso a tus fondos."
+        },
+        "disputeResolution": {
+          "question": "¿Qué pasa si hay una disputa?",
+          "answer": "Agentes profesionales están disponibles para resolver disputas de manera justa y eficiente. Si es necesario, los casos pueden escalarse al DAO de Zenland para una resolución comunitaria descentralizada. Nuestro sistema de resolución de disputas garantiza que ambas partes sean tratadas justamente."
+        },
+        "fees": {
+          "question": "¿Cuáles son las tarifas de Zenland para servicios de escrow?",
+          "answer": "Zenland cobra solo 1% de tarifa de plataforma con un mínimo de $0.50 y máximo de $50 por transacción - la más baja en el mercado de escrow de criptomonedas. Sin costos ocultos, sin suscripciones mensuales. Usar la billetera NYKNYC hace que las transacciones sean completamente sin gas."
+        },
+        "supportedCrypto": {
+          "question": "¿Qué criptomonedas y redes soporta Zenland?",
+          "answer": "Zenland actualmente opera en la mainnet de Ethereum, soportando ETH y tokens ERC-20 incluyendo USDC, USDT y otras stablecoins populares. Nos enfocamos en Ethereum por su seguridad probada en batalla y amplia adopción."
+        }
+      }
+    },
     "cta": {
       "title": "¿Listo para empezar?",
       "subtitle": "Conecta tu billetera y crea tu primer escrow en minutos."

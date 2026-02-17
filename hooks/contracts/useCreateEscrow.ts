@@ -15,6 +15,7 @@ import {
 } from "@/lib/contracts/abis/escrowFactory";
 import { getContractAddresses } from "@/lib/contracts";
 import { humanizeBlockchainError } from "@/lib/blockchain/errors";
+import { trackEscrowCreated } from "@/lib/analytics/gtag";
 
 /**
  * Status of the escrow creation process.
@@ -187,6 +188,9 @@ export function useCreateEscrow(): UseCreateEscrowReturn {
       didSendCreateTxRef.current = false;
       return;
     }
+
+    // Track successful escrow creation for analytics
+    trackEscrowCreated();
 
     createInFlightRef.current.resolve(escrowAddress);
     createInFlightRef.current = null;

@@ -9,13 +9,24 @@ import {
   WalletSupportSection, 
   BentoGridSection,
   CommunitySection,
-  OpenBookSection
+  OpenBookSection,
+  FAQSection
 } from "@/components/marketing";
 import { ProtocolStatsSectionClient } from "@/components/marketing/ProtocolStatsSectionClient";
 import { AnimateOnScroll } from "@/hooks";
 
+/** Site URL for SEO */
+const SITE_URL = "https://zen.land";
+
+/** Locale to OpenGraph locale mapping */
+const OG_LOCALES: Record<string, string> = {
+  en: "en_US",
+  es: "es_ES",
+  zh: "zh_CN",
+};
+
 /**
- * Generate localized metadata
+ * Generate localized metadata with proper hreflang and canonical URLs
  */
 export async function generateMetadata({ params }: { params: Promise<{ locale: string }> }) {
   const { locale } = await params;
@@ -24,6 +35,22 @@ export async function generateMetadata({ params }: { params: Promise<{ locale: s
   return {
     title: t("title"),
     description: t("description"),
+    alternates: {
+      canonical: `${SITE_URL}/${locale}`,
+      languages: {
+        "en": `${SITE_URL}/en`,
+        "es": `${SITE_URL}/es`,
+        "zh": `${SITE_URL}/zh`,
+        "x-default": `${SITE_URL}/en`,
+      },
+    },
+    openGraph: {
+      title: t("title"),
+      description: t("description"),
+      url: `${SITE_URL}/${locale}`,
+      locale: OG_LOCALES[locale] || "en_US",
+      alternateLocale: Object.values(OG_LOCALES).filter((l) => l !== OG_LOCALES[locale]),
+    },
   };
 }
 
@@ -186,6 +213,9 @@ export default async function LandingPage() {
 
       {/* OpenBook + CreateDAO Section */}
       <OpenBookSection />
+
+      {/* FAQ Section - SEO optimized with visible content matching JSON-LD */}
+      <FAQSection />
 
       {/* CTA Section */}
       <section className="py-20 sm:py-24 lg:py-32 bg-gradient-to-br from-primary-500/5 via-transparent to-transparent">
