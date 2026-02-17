@@ -261,7 +261,7 @@
         },
         "fees": {
           "question": "What are Zenland's fees for escrow services?",
-          "answer": "Zenla xnd charges just 1% platform fee with a minimum of $0.50 and maximum of $50 per transaction - the lowest in the crypto escrow market. No hidden costs, no monthly subscriptions. Using NYKNYC wallet makes transactions completely gas-free."
+          "answer": "Zenland charges just 1% platform fee with a minimum of $0.50 and maximum of $50 per transaction - the lowest in the crypto escrow market. No hidden costs, no monthly subscriptions. Using NYKNYC wallet makes transactions completely gas-free."
         },
         "supportedCrypto": {
           "question": "Which cryptocurrencies and networks does Zenland support?",

@@ -1,6 +1,8 @@
 "use client";
 
+import { useState } from "react";
 import dynamic from "next/dynamic";
+import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 
 // Dynamic import with SSR disabled - must be in a client component
 const ProtocolStatsSection = dynamic(
@@ -21,7 +23,25 @@ const ProtocolStatsSection = dynamic(
  * Client wrapper for ProtocolStatsSection that handles SSR.
  * This wrapper uses dynamic import with ssr: false to avoid React Query
  * hydration issues with the SDK hooks.
+ * 
+ * Includes its own QueryClientProvider since marketing pages don't have
+ * the full AppProviders (for LCP optimization).
  */
 export function ProtocolStatsSectionClient() {
-  return <ProtocolStatsSection />;
+  // Create a standalone QueryClient for the stats section
+  const [queryClient] = useState(() => new QueryClient({
+    defaultOptions: {
+      queries: {
+        staleTime: 1000 * 60 * 5, // 5 minutes
+        gcTime: 1000 * 60 * 10, // 10 minutes
+        refetchOnWindowFocus: false,
+      },
+    },
+  }));
+
+  return (
+    <QueryClientProvider client={queryClient}>
+      <ProtocolStatsSection />
+    </QueryClientProvider>
+  );
 }
