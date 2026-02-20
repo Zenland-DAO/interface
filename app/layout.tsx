@@ -14,13 +14,13 @@ const TWITTER_HANDLE = "@zenland_app";
 
 const inter = Inter({
   subsets: ["latin"],
-  display: "swap",
+  display: "optional",
   variable: "--font-inter",
 });
 
 const figtree = Figtree({
   subsets: ["latin"],
-  display: "swap",
+  display: "optional",
   variable: "--font-figtree",
   weight: ["400", "500", "600", "700"],
 });

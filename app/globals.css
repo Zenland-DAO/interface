@@ -342,10 +342,14 @@
     font-size: 100%;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
-    scrollbar-gutter: stable;
-    /* Global mobile overflow protection */
-    overflow-x: hidden;
     width: 100%;
+  }
+
+  /* Safari doesn't support scrollbar-gutter — guard it */
+  @supports (scrollbar-gutter: stable) {
+    html {
+      scrollbar-gutter: stable;
+    }
   }
 
   /* Avoid global margin/padding resets — Tailwind utilities should control spacing */
@@ -353,20 +357,29 @@
   ::before,
   ::after {
     box-sizing: border-box;
-    /* Prevent elements from accidentally being larger than their containers */
-    max-width: 100vw;
   }
 
   body {
     font-family: var(--font-sans);
-    background: var(--bg-page-gradient);
     color: var(--text-primary);
     min-height: 100vh;
-    transition: background-color 0.3s ease, color 0.3s ease;
     /* Global mobile overflow protection */
     overflow-x: hidden;
     width: 100%;
-    position: relative;
+  }
+
+  /*
+   * Page gradient on a fixed pseudo-element.
+   * Fixed elements are GPU-composited in Safari — the gradient
+   * never repaints during scroll, eliminating the white/black
+   * flash on iOS Safari.
+   */
+  body::before {
+    content: "";
+    position: fixed;
+    inset: 0;
+    z-index: -1;
+    background: var(--bg-page-gradient);
   }
 
   /* Handle potentially unbreakable strings globally */
@@ -380,6 +393,16 @@
   input[type="submit"],
   input[type="reset"] {
     cursor: pointer;
+  }
+
+  /* Eliminate 300ms tap delay on iOS Safari for interactive elements */
+  button,
+  [role="button"],
+  a,
+  input,
+  select,
+  textarea {
+    touch-action: manipulation;
   }
 
   /* Handle disabled state */
@@ -547,13 +570,19 @@
      Elements fade in and slide up on scroll
      ========================================== */
 
-  /* Native smooth scroll for everyone by default (good for mobile) */
-  html {
-    scroll-behavior: smooth;
+  /*
+   * Smooth scroll only for non-touch, non-reduced-motion users.
+   * On iOS Safari, scroll-behavior: smooth conflicts with native
+   * momentum scrolling and causes page jumps.
+   */
+  @media (pointer: fine) and (prefers-reduced-motion: no-preference) {
+    html {
+      scroll-behavior: smooth;
+    }
   }
 
-  /* Disable native smooth scroll ONLY when Lenis is active on desktop
-     to prevent conflict between JS and CSS engines. */
+  /* Disable native smooth scroll when Lenis is active (desktop)
+     to prevent conflict between JS and CSS scroll engines. */
   html.lenis-active {
     scroll-behavior: auto;
   }

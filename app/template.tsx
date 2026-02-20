@@ -2,14 +2,20 @@
 
 import { motion } from "framer-motion";
 
+/**
+ * Page transition template.
+ * Uses opacity-only animation to reduce GPU pressure on Safari iOS.
+ * Scale + translate transforms force full-page compositing which is
+ * expensive on Safari's weaker GPU pipeline.
+ */
 export default function Template({ children }: { children: React.ReactNode }) {
   return (
     <motion.div
-      initial={{ opacity: 0, scale: 0.98, y: 4 }}
-      animate={{ opacity: 1, scale: 1, y: 0 }}
+      initial={{ opacity: 0 }}
+      animate={{ opacity: 1 }}
       transition={{
-        duration: 0.5,
-        ease: [0.16, 1, 0.3, 1], // Custom Apple-style ease
+        duration: 0.3,
+        ease: [0.16, 1, 0.3, 1],
       }}
     >
       {children}

@@ -5,10 +5,10 @@ import { Heading, Text, Container, Button } from "@/components/ui";
 import Link from "next/link";
 import Image from "next/image";
 import { useTranslations } from "next-intl";
-import { 
-  BookOpen, 
-  Vote, 
-  PieChart, 
+import {
+  BookOpen,
+  Vote,
+  PieChart,
   Eye,
   Zap,
   ArrowRight,
@@ -96,18 +96,18 @@ export function OpenBookSection() {
                 const Icon = openBookFeatureIcons[featureKey];
 
                 return (
-                <div key={featureKey} className="flex items-start gap-4">
-                  <div className="w-10 h-10 rounded-xl bg-amber-500/10 flex items-center justify-center flex-shrink-0">
-                    <Icon className="w-5 h-5 text-amber-500" />
+                  <div key={featureKey} className="flex items-start gap-4">
+                    <div className="w-10 h-10 rounded-xl bg-amber-500/10 flex items-center justify-center flex-shrink-0">
+                      <Icon className="w-5 h-5 text-amber-500" />
+                    </div>
+                    <div>
+                      <h4 className="font-semibold mb-1">{t(`openBook.features.${featureKey}.title`)}</h4>
+                      <p className="text-sm text-[var(--text-tertiary)]">
+                        {t(`openBook.features.${featureKey}.description`)}
+                      </p>
+                    </div>
                   </div>
-                  <div>
-                    <h4 className="font-semibold mb-1">{t(`openBook.features.${featureKey}.title`)}</h4>
-                    <p className="text-sm text-[var(--text-tertiary)]">
-                      {t(`openBook.features.${featureKey}.description`)}
-                    </p>
-                  </div>
-                </div>
-              );
+                );
               })}
             </div>
 
@@ -167,7 +167,7 @@ export function OpenBookSection() {
             <div className="flex items-start gap-3 p-4 bg-[var(--bg-tertiary)]/50 rounded-xl mb-8">
               <BookOpen className="w-5 h-5 text-amber-500 mt-0.5 flex-shrink-0" />
               <p className="text-sm text-[var(--text-tertiary)]">
-                <span className="text-amber-500 font-medium">OpenBook</span> is built specifically for DAOs created with CreateDAO — 
+                <span className="text-amber-500 font-medium">OpenBook</span> —
                 {t("createDAO.integration")}
               </p>
             </div>

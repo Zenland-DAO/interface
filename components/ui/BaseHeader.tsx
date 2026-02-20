@@ -52,6 +52,7 @@ export function BaseHeader({
         bg-[var(--nav-bg)]
         backdrop-blur-xl
         supports-[backdrop-filter]:bg-[var(--nav-bg)]
+        transform-gpu
         ${className}
       `.trim()}
     >
