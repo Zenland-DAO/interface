@@ -943,30 +943,77 @@ export function useEscrowForm(): UseEscrowFormReturn {
 // =============================================================================
 
 /**
- * Hook for listening to agent selection via postMessage.
- * Used to receive agent selection from the agents page opened in a new tab.
+ * Validate an incoming agent selection message payload.
+ * Shared between BroadcastChannel and localStorage fallback listeners.
+ */
+function isValidAgentSelectionMessage(
+  data: unknown
+): data is { type: "AGENT_SELECTED"; address: string } {
+  return (
+    !!data &&
+    typeof data === "object" &&
+    (data as Record<string, unknown>).type === "AGENT_SELECTED" &&
+    typeof (data as Record<string, unknown>).address === "string" &&
+    isAddress((data as Record<string, unknown>).address as string)
+  );
+}
+
+/**
+ * Hook for listening to agent selection via cross-tab messaging.
+ *
+ * Listens on two channels simultaneously for maximum browser coverage:
+ * - BroadcastChannel API (modern browsers, Safari 15.4+)
+ * - localStorage storage event (universal fallback, covers older iOS Safari)
+ *
+ * Used by the escrow creation form to receive agent selection from the
+ * agents page opened in a new tab.
  */
 export function useAgentSelectionListener(
   onAgentSelected: (address: string) => void
 ) {
   useEffect(() => {
-    const handleMessage = (event: MessageEvent) => {
-      // Validate message format
-      if (
-        event.data &&
-        typeof event.data === "object" &&
-        event.data.type === "AGENT_SELECTED" &&
-        typeof event.data.address === "string" &&
-        isAddress(event.data.address)
-      ) {
-        onAgentSelected(event.data.address);
+    // Avoid importing the constant to prevent circular deps — use the
+    // same literal string that the sender uses.
+    const CHANNEL_NAME = "agent-selection";
+    const cleanups: (() => void)[] = [];
+
+    // ── Primary: BroadcastChannel (Safari 15.4+, Chrome 54+, Firefox 38+) ──
+    if (typeof BroadcastChannel !== "undefined") {
+      try {
+        const channel = new BroadcastChannel(CHANNEL_NAME);
+        channel.onmessage = (event: MessageEvent) => {
+          if (isValidAgentSelectionMessage(event.data)) {
+            onAgentSelected(event.data.address);
+          }
+        };
+        cleanups.push(() => channel.close());
+      } catch {
+        // BroadcastChannel constructor can throw in rare edge cases
+      }
+    }
+
+    // ── Fallback: localStorage storage event (universal support) ──
+    // The 'storage' event fires in *other* tabs when localStorage changes,
+    // which is exactly the cross-tab pattern we need.
+    const handleStorageEvent = (event: StorageEvent) => {
+      if (event.key !== CHANNEL_NAME || !event.newValue) return;
+      try {
+        const data: unknown = JSON.parse(event.newValue);
+        if (isValidAgentSelectionMessage(data)) {
+          onAgentSelected(data.address);
+        }
+      } catch {
+        // Invalid JSON — ignore
       }
     };
 
-    window.addEventListener("message", handleMessage);
+    window.addEventListener("storage", handleStorageEvent);
+    cleanups.push(() =>
+      window.removeEventListener("storage", handleStorageEvent)
+    );
 
     return () => {
-      window.removeEventListener("message", handleMessage);
+      cleanups.forEach((fn) => fn());
     };
   }, [onAgentSelected]);
 }

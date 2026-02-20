@@ -177,6 +177,7 @@ export {
   type UseAgentSelectionSenderReturn,
   type AgentSelectedMessage,
   AGENT_SELECTED_MESSAGE_TYPE,
+  AGENT_SELECTION_CHANNEL,
 } from "./useAgentSelectionSender";
 
 // =============================================================================

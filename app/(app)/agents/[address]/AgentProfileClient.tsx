@@ -153,6 +153,7 @@ export function AgentProfileClient({ address, isSelectMode = false }: AgentProfi
     totalSlashed: String(agentData.totalSlashed || "0"),
     totalResolved: agentData.totalResolved,
     activeCases: agentData.activeCases,
+    totalEscrowsAssigned: agentData.totalEscrowsAssigned,
     assignmentFeeBps: agentData.assignmentFeeBps,
     disputeFeeBps: agentData.disputeFeeBps,
   };

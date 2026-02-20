@@ -5,9 +5,9 @@
  *
  * Displays key agent statistics in a grid:
  * - Cases Resolved
- * - Active Cases
- * - Assignment Fee
+ * - Total Escrows
  * - Dispute Fee
+ * - Assignment Fee
  */
 
 import { CheckCircle2, Activity, CircleDollarSign, Coins } from "lucide-react";
@@ -41,8 +41,8 @@ export function AgentStats() {
       color: "success",
     },
     {
-      label: "Active Cases",
-      value: agent.activeCases,
+      label: "Total Escrows",
+      value: agent.totalEscrowsAssigned,
       icon: Activity,
       color: "primary",
     },

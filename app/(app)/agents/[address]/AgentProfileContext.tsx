@@ -28,6 +28,7 @@ export interface AgentData {
   totalSlashed: string;
   totalResolved: number;
   activeCases: number;
+  totalEscrowsAssigned: number;
   assignmentFeeBps: number;
   disputeFeeBps: number;
 }
