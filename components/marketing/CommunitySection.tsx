@@ -1,34 +1,43 @@
 "use client";
 
 import { useScrollAnimation } from "@/hooks";
-import { Heading, Text, Container, Button } from "@/components/ui";
+import { Heading, Text, Container } from "@/components/ui";
+// import { Button } from "@/components/ui"; // Temporarily unused - for DAOForum
 import Link from "next/link";
-import Image from "next/image";
+// import Image from "next/image"; // Temporarily unused - for DAOForum
 import { useTranslations } from "next-intl";
 import { 
   MessageCircle, 
-  Scale, 
-  FileText, 
-  Code, 
-  UserPlus,
+  // Scale, 
+  // FileText, 
+  // Code, 
+  // UserPlus,
   ArrowRight,
-  ExternalLink
+  // ExternalLink
 } from "lucide-react";
 
 // Logos
-import DAOForumLogo from "@/src/assets/daoforum.png";
+// import DAOForumLogo from "@/src/assets/daoforum.png";
 
 /**
  * DAOForum features - detailed breakdown of what users can do
+ * TEMPORARILY COMMENTED OUT FOR BHW LAUNCH - will be restored later
  */
-const daoForumFeatureKeys = ["escalate", "proposals", "developer", "onboarding"] as const;
+// const daoForumFeatureKeys = ["escalate", "proposals", "developer", "onboarding"] as const;
 
-const daoForumFeatureIcons = {
-  escalate: Scale,
-  proposals: FileText,
-  developer: Code,
-  onboarding: UserPlus,
-} as const;
+// const daoForumFeatureIcons = {
+//   escalate: Scale,
+//   proposals: FileText,
+//   developer: Code,
+//   onboarding: UserPlus,
+// } as const;
+
+// X (Twitter) icon component
+const XIcon = ({ className }: { className?: string }) => (
+  <svg viewBox="0 0 24 24" className={className} fill="currentColor">
+    <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z" />
+  </svg>
+);
 
 export function CommunitySection() {
   const t = useTranslations("marketing.community");
@@ -89,9 +98,33 @@ export function CommunitySection() {
             </div>
           </Link>
 
-          {/* DAOForum Card - Larger, more detailed */}
-          <div className="relative bg-[var(--bg-secondary)]/30 border border-[var(--border-secondary)] rounded-[2rem] p-8 transition-all duration-300 hover:border-primary-500/50">
-            {/* Logo & Header */}
+          {/* X (Twitter) Card */}
+          <Link
+            href="https://x.com/zenland_app"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="group relative bg-[var(--bg-secondary)]/30 border border-[var(--border-secondary)] rounded-[2rem] p-8 transition-all duration-300 hover:border-[var(--text-primary)]/50 hover:bg-[var(--text-primary)]/5 flex flex-col"
+          >
+            {/* Icon */}
+            <div className="w-16 h-16 rounded-2xl bg-[var(--text-primary)]/10 flex items-center justify-center mb-6 group-hover:bg-[var(--text-primary)]/20 transition-colors">
+              <XIcon className="w-8 h-8 text-[var(--text-primary)]" />
+            </div>
+
+            <h3 className="text-2xl font-bold mb-3 tracking-tight group-hover:text-[var(--text-primary)] transition-colors">
+              {t("twitter.title")}
+            </h3>
+            <p className="text-[var(--text-secondary)] mb-6 flex-1">
+              {t("twitter.description")}
+            </p>
+
+            <div className="flex items-center gap-2 text-[var(--text-tertiary)] group-hover:text-[var(--text-primary)] transition-colors font-semibold">
+              {t("twitter.cta")}
+              <ArrowRight className="w-4 h-4 transition-transform group-hover:translate-x-1" />
+            </div>
+          </Link>
+
+          {/* DAOForum Card - TEMPORARILY COMMENTED OUT FOR BHW LAUNCH */}
+          {/* <div className="relative bg-[var(--bg-secondary)]/30 border border-[var(--border-secondary)] rounded-[2rem] p-8 transition-all duration-300 hover:border-primary-500/50">
             <div className="flex items-start justify-between mb-6">
               <Image
                 src={DAOForumLogo}
@@ -112,7 +145,6 @@ export function CommunitySection() {
               {t("daoForum.description")}
             </p>
 
-            {/* Features Grid */}
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 mb-8">
               {daoForumFeatureKeys.map((featureKey) => {
                 const Icon = daoForumFeatureIcons[featureKey];
@@ -133,14 +165,13 @@ export function CommunitySection() {
               })}
             </div>
 
-            {/* CTA */}
             <Link href="https://daoforum.org/threads/zenland-dao-official-governance-proposals-thread.34/" target="_blank" rel="noopener noreferrer">
               <Button variant="outline" size="lg" className="w-full group">
                 {t("daoForum.cta")}
                 <ExternalLink className="ml-2 w-4 h-4 transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
               </Button>
             </Link>
-          </div>
+          </div> */}
         </div>
       </Container>
     </section>

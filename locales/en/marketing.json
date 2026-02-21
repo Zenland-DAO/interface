@@ -174,6 +174,11 @@
         "description": "Join our Telegram group for real-time discussions, announcements, and quick support from the community.",
         "cta": "Join the Chat"
       },
+      "twitter": {
+        "title": "X (Twitter)",
+        "description": "Follow us on X for the latest updates, announcements, and insights from the Zenland team.",
+        "cta": "Follow Us"
+      },
       "daoForum": {
         "badge": "Governance Hub",
         "title": "Zenland Forum",
