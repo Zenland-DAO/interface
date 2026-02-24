@@ -16,19 +16,22 @@ const WALLET_ICONS: Record<string, string> = {
   nyknyc: "/assets/wallets/nyknyc-icon.svg",
   NYKNYC: "/assets/wallets/nyknyc-icon.svg",
   
-  // MetaMask
+  // MetaMask (injected EIP-6963 + MetaMask SDK connector)
   metamask: "/assets/wallets/metamask-icon.svg",
   MetaMask: "/assets/wallets/metamask-icon.svg",
   "io.metamask": "/assets/wallets/metamask-icon.svg",
+  metaMaskSDK: "/assets/wallets/metamask-icon.svg",
   
   // WalletConnect
   walletConnect: "/assets/wallets/walletconnect-icon.svg",
   WalletConnect: "/assets/wallets/walletconnect-icon.svg",
   
-  // Coinbase
+  // Coinbase / Base Account (Coinbase smart wallet SDK)
   coinbaseWallet: "/assets/wallets/coinbase-icon.svg",
   "Coinbase Wallet": "/assets/wallets/coinbase-icon.svg",
   coinbase: "/assets/wallets/coinbase-icon.svg",
+  baseAccount: "/assets/wallets/coinbase-icon.svg",
+  "Base Account": "/assets/wallets/coinbase-icon.svg",
   
   // Brave
   brave: "/assets/wallets/brave-icon.svg",

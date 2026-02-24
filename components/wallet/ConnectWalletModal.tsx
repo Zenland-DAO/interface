@@ -92,13 +92,21 @@ export function ConnectWalletModal() {
 
   const isConnected = connection.status === "connected";
 
-  // Determine connector availability
+  // Determine connector availability.
+  // WalletConnect is always available (it doesn't need a pre-existing browser
+  // provider — it connects via relay), so we only gate injected-style connectors.
   useEffect(() => {
     let isActive = true;
 
     async function run() {
       const entries = await Promise.all(
         connectors.map(async (connector) => {
+          // SDK-based connectors (WalletConnect, MetaMask SDK, Base Account, NYKNYC)
+          // have their own connection mechanism and don't require a browser extension.
+          // Only `injected` connectors need a pre-existing provider in the browser.
+          if (connector.type !== "injected") {
+            return [connector.uid, true] as const;
+          }
           try {
             const provider = await connector.getProvider();
             return [connector.uid, !!provider] as const;
