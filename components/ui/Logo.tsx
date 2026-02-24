@@ -1,15 +1,13 @@
-"use client";
-
 import { forwardRef, type ComponentPropsWithoutRef } from "react";
 import Link from "next/link";
 import Image from "next/image";
-import { useTheme } from "@/components/providers";
 
 /**
  * Logo Component
  *
- * The Zenland brand logo using theme-aware SVG.
- * Supports different sizes and can be used as a link or static element.
+ * Theme-aware logo using CSS dark-mode classes instead of useTheme().
+ * Both SVGs are rendered server-side; CSS shows the correct one immediately
+ * based on the `.dark` class on <html> — no JS execution required.
  *
  * @example
  * // As a link (default)
@@ -41,22 +39,30 @@ const sizeConfig: Record<LogoSize, { width: number; height: number }> = {
 };
 
 const LogoContent = ({ size = "md" }: { size?: LogoSize }) => {
-  const { theme } = useTheme();
   const config = sizeConfig[size];
-  const src = theme === "dark"
-    ? "/branding/logo/svg/logo-dark.svg"
-    : "/branding/logo/svg/logo-light.svg";
 
   return (
-    <Image
-      src={src}
-      alt="Zenland"
-      width={config.width}
-      height={config.height}
-      className="flex-shrink-0"
-      unoptimized
-      priority
-    />
+    <>
+      {/* Light logo: visible by default, hidden when .dark is on <html> */}
+      <Image
+        src="/branding/logo/svg/logo-light.svg"
+        alt="Zenland"
+        width={config.width}
+        height={config.height}
+        className="flex-shrink-0 dark:hidden"
+        unoptimized
+        priority
+      />
+      {/* Dark logo: hidden by default, shown when .dark is on <html> */}
+      <Image
+        src="/branding/logo/svg/logo-dark.svg"
+        alt="Zenland"
+        width={config.width}
+        height={config.height}
+        className="flex-shrink-0 hidden dark:block"
+        unoptimized
+      />
+    </>
   );
 };
 

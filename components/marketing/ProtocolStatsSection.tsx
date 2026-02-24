@@ -572,7 +572,7 @@ export function ProtocolStatsSection() {
                   <TrustBadge 
                     icon={<Link2 className="w-3.5 h-3.5" />} 
                     label={t("trustBadges.onChain")} 
-                    href={`${BLOCK_EXPLORER_URL}/address/0x11c6bb595824014e1c11c6b4a6ad2095cf7d22ab`}
+                    href={`${BLOCK_EXPLORER_URL}/address/0xba2c6322fd59e2703a28d82db572950297600129`}
                   />
                   <TrustBadge 
                     icon={<Code2 className="w-3.5 h-3.5" />} 

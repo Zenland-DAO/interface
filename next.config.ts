@@ -10,7 +10,19 @@ const withNextIntl = createNextIntlPlugin("./i18n/request.ts");
 const nextConfig: NextConfig = {
   // Enable standalone output for Docker deployment
   output: "standalone",
-  
+
+  // Long-lived cache for static branding assets (SVGs are content-addressed via deploys)
+  async headers() {
+    return [
+      {
+        source: "/branding/:path*",
+        headers: [
+          { key: "Cache-Control", value: "public, max-age=31536000, immutable" },
+        ],
+      },
+    ];
+  },
+
   // Image optimization configuration for better LCP
   images: {
     formats: ["image/avif", "image/webp"],
@@ -27,10 +39,10 @@ const nextConfig: NextConfig = {
   },
   webpack: (config) => {
     // When using `npm link` / symlinked packages (e.g. `@zenland/sdk`), Node/webpack can end up
-    // loading a *second copy* of React and/or React Query from the linked package's node_modules.
+    // loading a *second copy* of React and/or React Query from the linked package’s node_modules.
     // That breaks context singletons (React Query throws: "No QueryClient set...").
     //
-    // These settings force a single instance by resolving everything to this app's node_modules.
+    // These settings force a single instance by resolving everything to this app’s node_modules.
     config.resolve.symlinks = false;
 
     // NOTE: aliasing only `react` is not enough. Next (and dependencies) can import

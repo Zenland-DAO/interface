@@ -15,9 +15,9 @@ export const CONTRACT_ADDRESSES = {
     daoToken: "0xe4b758C752DD784FFA1f3D402e4401F4dD52F1ee",
   },
   [mainnet.id]: {
-    escrowFactory: "0x11c6bb595824014e1c11c6b4a6ad2095cf7d22ab",
-    agentRegistry: "0xb528f6ba2d75c383dfe6cdab9957a6cd6b45d90d",
-    feeManager: "0x9c364b9b5020bc63e074d43f7c68493c0bbdb0cd",
+    escrowFactory: "0xba2c6322fd59e2703a28d82db572950297600129",
+    agentRegistry: "0x3406c744958b182d6edd2615ff9e53f0fbc60802",
+    feeManager: "0x14f582bd5ddbc3e8416b9d3a9e5f0d3b6ce4206f",
     daoToken: "0x5e7A494312d1943aa01682059dF1C0D2f3A27c32",
   },
 } as const;

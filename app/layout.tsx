@@ -1,7 +1,8 @@
 import type { Metadata } from "next";
 import { GoogleAnalytics } from "@next/third-parties/google";
 import { Inter, Figtree } from "next/font/google";
-import { ThemeProvider, LenisProvider } from "@/components/providers";
+import { ThemeProvider } from "@/components/providers/ThemeProvider";
+import { LenisProvider } from "@/components/providers/LenisProvider";
 import { Toaster } from "@/components/ui/Toaster";
 import { GA_MEASUREMENT_ID } from "@/lib/analytics/gtag";
 import { generateFAQSchema } from "@/lib/constants/faq";
@@ -134,6 +135,8 @@ export default async function RootLayout({
   return (
     <html lang={locale} translate="no" className={`${inter.variable} ${figtree.variable} notranslate`} suppressHydrationWarning>
       <head>
+        {/* Preconnect to Sentry ingestion endpoint to save ~300ms on first error report */}
+        <link rel="preconnect" href="https://o4510866637258752.ingest.de.sentry.io" />
         {/* Prevent flash of wrong theme */}
         <script
           dangerouslySetInnerHTML={{

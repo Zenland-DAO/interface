@@ -1,7 +1,7 @@
 "use client";
 
 import { Toaster as SonnerToaster } from "sonner";
-import { useTheme } from "@/components/providers";
+import { useTheme } from "@/components/providers/ThemeProvider";
 
 /**
  * Toaster component - wrapper around Sonner for toast notifications
