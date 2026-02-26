@@ -41,6 +41,12 @@
       "bottomLinks": {
         "privacy": "隐私",
         "terms": "条款"
+      },
+      "disclaimer": {
+        "title": "协议透明度",
+        "text": "Zenland 是一个源代码可用的协议，由 Zenland DAO 社区治理——而非注册金融公司。该协议 100% 非托管运行：资金直接进入以太坊上经过审计的智能合约。任何人或实体都无法持有您的资金。由于没有人可以访问或控制存入的资金，因此不需要托管许可证。",
+        "verifyCode": "验证代码",
+        "learnMore": "了解更多"
       }
     },
     "accessibility": {
@@ -48,6 +54,32 @@
       "closeMenu": "关闭菜单",
       "changeLanguage": "切换语言",
       "selectLanguage": "选择语言"
+    },
+    "notFound": {
+      "title": "页面未找到",
+      "code": "404",
+      "heading": "糟糕！此页面不存在",
+      "description": "您要查找的页面可能已被移动、删除或从未存在。让我们帮您找到正确的方向。",
+      "backHome": "返回首页",
+      "suggestions": {
+        "title": "以下是一些有用的链接：",
+        "home": {
+          "title": "首页",
+          "description": "返回主页"
+        },
+        "app": {
+          "title": "启动应用",
+          "description": "访问托管平台"
+        },
+        "docs": {
+          "title": "文档",
+          "description": "了解 Zenland 的工作原理"
+        },
+        "community": {
+          "title": "社区",
+          "description": "加入我们的 Telegram 群组"
+        }
+      }
     }
   }
 }

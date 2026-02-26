@@ -152,6 +152,36 @@ export function Footer() {
             </div>
           </div>
         </div>
+
+        {/* Protocol Transparency Disclaimer */}
+        <div className="mt-8 pt-6 border-t border-[var(--border-secondary)]">
+          <div className="max-w-3xl mx-auto text-center">
+            <h4 className="text-xs font-semibold text-[var(--text-tertiary)] uppercase tracking-wider mb-3">
+              {t("disclaimer.title")}
+            </h4>
+            <Text variant="small" className="text-[var(--text-tertiary)] leading-relaxed">
+              {t("disclaimer.text")}
+            </Text>
+            <div className="flex items-center justify-center gap-4 mt-4">
+              <a
+                href="https://github.com/zenland-dao"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="text-xs text-[var(--text-tertiary)] hover:text-[var(--text-primary)] transition-colors underline underline-offset-2"
+              >
+                {t("disclaimer.verifyCode")} →
+              </a>
+              <a
+                href="https://docs.zen.land/getting-started/what-is-zenland"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="text-xs text-[var(--text-tertiary)] hover:text-[var(--text-primary)] transition-colors underline underline-offset-2"
+              >
+                {t("disclaimer.learnMore")} →
+              </a>
+            </div>
+          </div>
+        </div>
       </Container>
     </footer>
   );

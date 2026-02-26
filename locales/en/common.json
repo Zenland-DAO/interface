@@ -41,6 +41,12 @@
       "bottomLinks": {
         "privacy": "Privacy",
         "terms": "Terms"
+      },
+      "disclaimer": {
+        "title": "Protocol Transparency",
+        "text": "Zenland is a source-available protocol governed by its community through the Zenland DAO — not a registered financial company. The protocol operates 100% non-custodially: funds go directly into audited smart contracts on Ethereum. No person or entity ever holds your funds. Because no one can access or control deposited funds, no escrow license is required.",
+        "verifyCode": "Verify the code",
+        "learnMore": "Learn more"
       }
     },
     "accessibility": {
@@ -48,6 +54,32 @@
       "closeMenu": "Close menu",
       "changeLanguage": "Change language",
       "selectLanguage": "Select language"
+    },
+    "notFound": {
+      "title": "Page Not Found",
+      "code": "404",
+      "heading": "Oops! This page doesn't exist",
+      "description": "The page you're looking for may have been moved, deleted, or never existed. Let's get you back on track.",
+      "backHome": "Back to Home",
+      "suggestions": {
+        "title": "Here are some helpful links:",
+        "home": {
+          "title": "Home",
+          "description": "Return to the main page"
+        },
+        "app": {
+          "title": "Launch App",
+          "description": "Access the escrow platform"
+        },
+        "docs": {
+          "title": "Documentation",
+          "description": "Learn how Zenland works"
+        },
+        "community": {
+          "title": "Community",
+          "description": "Join our Telegram group"
+        }
+      }
     }
   }
 }

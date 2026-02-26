@@ -41,6 +41,12 @@
       "bottomLinks": {
         "privacy": "Privacidad",
         "terms": "Términos"
+      },
+      "disclaimer": {
+        "title": "Transparencia del Protocolo",
+        "text": "Zenland es un protocolo de código disponible gobernado por su comunidad a través de Zenland DAO — no es una empresa financiera registrada. El protocolo opera 100% sin custodia: los fondos van directamente a contratos inteligentes auditados en Ethereum. Ninguna persona o entidad tiene acceso a tus fondos. Dado que nadie puede acceder o controlar los fondos depositados, no se requiere licencia de escrow.",
+        "verifyCode": "Verificar el código",
+        "learnMore": "Más información"
       }
     },
     "accessibility": {
@@ -48,6 +54,32 @@
       "closeMenu": "Cerrar menú",
       "changeLanguage": "Cambiar idioma",
       "selectLanguage": "Seleccionar idioma"
+    },
+    "notFound": {
+      "title": "Página No Encontrada",
+      "code": "404",
+      "heading": "¡Ups! Esta página no existe",
+      "description": "La página que buscas puede haber sido movida, eliminada o nunca existió. Vamos a ayudarte a volver al camino.",
+      "backHome": "Volver al Inicio",
+      "suggestions": {
+        "title": "Aquí hay algunos enlaces útiles:",
+        "home": {
+          "title": "Inicio",
+          "description": "Volver a la página principal"
+        },
+        "app": {
+          "title": "Abrir App",
+          "description": "Acceder a la plataforma de escrow"
+        },
+        "docs": {
+          "title": "Documentación",
+          "description": "Aprende cómo funciona Zenland"
+        },
+        "community": {
+          "title": "Comunidad",
+          "description": "Únete a nuestro grupo de Telegram"
+        }
+      }
     }
   }
 }

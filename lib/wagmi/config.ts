@@ -15,15 +15,15 @@ export const appChains = [mainnet, sepolia] as const;
  *
  * Requirements:
  * - NYKNYC (sponsored, gas-free transactions)
- * - WalletConnect for mobile wallet support (includes MetaMask mobile via QR)
+ * - WalletConnect for mobile wallet support (MetaMask mobile, Trust Wallet, Rainbow, etc.)
  * - Base Account (Coinbase) SDK for mobile deep-linking into Coinbase Wallet
- * - All EIP-6963 injected providers (MetaMask, Rabby, Coinbase, etc.) on desktop
+ * - All EIP-6963 injected providers (MetaMask, Rabby, Brave, OKX, Ledger, etc.) on desktop
  * - Only Mainnet + Sepolia chains
  * - SSR enabled for Next.js App Router
  *
- * Note: `injected()` uses EIP-6963 discovery (multiInjectedProviderDiscovery)
- * which automatically detects all browser wallets on desktop.
- * WalletConnect covers MetaMask mobile via QR code relay.
+ * Notes:
+ * - `injected()` uses EIP-6963 discovery for all browser wallets including MetaMask
+ * - WalletConnect provides QR code connection for MetaMask mobile
  */
 export const config = createConfig({
   chains: appChains,
