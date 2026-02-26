@@ -74,7 +74,7 @@ const nextConfig: NextConfig = {
 
     return config;
   },
-  transpilePackages: ["@wagmi/connectors", "wagmi", "viem", "@zenland/sdk"],
+  transpilePackages: ["@wagmi/connectors", "wagmi", "@zenland/sdk"],
 };
 
 export default withSentryConfig(withNextIntl(nextConfig), {
