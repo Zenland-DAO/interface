@@ -131,7 +131,7 @@
         "benefits": {
           "gasless": "零Gas费——Zenland赞助所有交易",
           "agentFree": "免费代理人注册和所有代理人操作",
-          "escrowFree": "免费托管创建和所有托管操作",
+          "escrowFree": "免费托管创建",
           "smartAccount": "ERC-4337智能账户技术"
         },
         "cta": "获取NYKNYC"

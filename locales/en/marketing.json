@@ -131,7 +131,7 @@
         "benefits": {
           "gasless": "Zero Gas Fees — Zenland sponsors all transactions",
           "agentFree": "Free Agent Registration & all agent actions",
-          "escrowFree": "Free Escrow Creation & all escrow actions",
+          "escrowFree": "Free Escrow Creation",
           "smartAccount": "ERC-4337 Smart Account technology"
         },
         "cta": "Get NYKNYC"

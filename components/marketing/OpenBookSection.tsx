@@ -112,7 +112,7 @@ export function OpenBookSection() {
             </div>
 
             {/* CTA */}
-            <Link href="https://openbook.to/" target="_blank" rel="noopener noreferrer">
+            <Link href="https://openbook.to/dao/zenland" target="_blank" rel="noopener noreferrer">
               <Button size="lg" className="w-full group bg-amber-500 hover:bg-amber-600 text-black">
                 {t("openBook.cta")}
                 <ArrowRight className="ml-2 w-4 h-4 transition-transform group-hover:translate-x-1" />
