@@ -18,7 +18,7 @@ export const CONTRACT_ADDRESSES = {
     escrowFactory: "0xba2c6322fd59e2703a28d82db572950297600129",
     agentRegistry: "0x3406c744958b182d6edd2615ff9e53f0fbc60802",
     feeManager: "0x14f582bd5ddbc3e8416b9d3a9e5f0d3b6ce4206f",
-    daoToken: "0x5e7A494312d1943aa01682059dF1C0D2f3A27c32",
+    daoToken: "0xa6be5ae3bc634cf44439845365a01c2cd705f32d",
   },
 } as const;
 

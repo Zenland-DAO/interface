@@ -9,7 +9,7 @@
  * Minimum stablecoin stake in USD (human-readable).
  * Contract stores this in WAD (18 decimals).
  */
-export const MIN_STABLECOIN_STAKE_USD = 1;
+export const MIN_STABLECOIN_STAKE_USD = 10;
 
 /**
  * Minimum DAO token stake (human-readable).

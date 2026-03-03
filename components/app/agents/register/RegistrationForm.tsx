@@ -546,7 +546,7 @@ export function RegistrationForm() {
                   {/* DAO token Stake */}
                   <div className="relative z-10">
                     <div className="flex justify-between items-center mb-2 px-1">
-                      <label className="text-xs font-bold uppercase tracking-wider text-[var(--text-tertiary)] ml-1">{daoTokenConfig?.symbol || "DAO"} Governance Stake</label>
+                      <label className="text-xs font-bold uppercase tracking-wider text-[var(--text-tertiary)] ml-1">ZEN Governance Stake</label>
                       <span className="text-[10px] text-[var(--text-tertiary)]">
                         Available: <span className="font-mono text-[var(--text-primary)]">{formatBalance(daoTokenBalance, daoTokenConfig?.decimals || 18)}</span> {daoTokenConfig?.symbol}
                       </span>

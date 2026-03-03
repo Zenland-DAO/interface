@@ -55,7 +55,7 @@ export const TOKEN_CONFIGS = {
       supportsPermit: false,
     },
     DAO: {
-      address: "0xcfCff2dAad166cd75458E5F4Dd0c1F01c35D8d9C" as Address,
+      address: "0xe4b758C752DD784FFA1f3D402e4401F4dD52F1ee" as Address,
       decimals: 18,
       symbol: "ZEN",
       name: "Zenland Token",
@@ -81,7 +81,7 @@ export const TOKEN_CONFIGS = {
       supportsPermit: false,
     },
     DAO: {
-      address: "0x5e7A494312d1943aa01682059dF1C0D2f3A27c32" as Address,
+      address: "0xa6be5ae3bc634cf44439845365a01c2cd705f32d" as Address,
       decimals: 18,
       symbol: "ZEN",
       name: "Zenland Token",
