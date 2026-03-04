@@ -62,9 +62,6 @@ export default async function PrivacyPage() {
             <ul className="list-disc list-inside text-[var(--text-secondary)] space-y-2 ml-4">
               <li>{t("sections.noCollection.items.noBackend")}</li>
               <li>{t("sections.noCollection.items.noDatabase")}</li>
-              <li>{t("sections.noCollection.items.noAnalytics")}</li>
-              <li>{t("sections.noCollection.items.noCookies")}</li>
-              <li>{t("sections.noCollection.items.noTracking")}</li>
               <li>{t("sections.noCollection.items.noAccounts")}</li>
             </ul>
           </section>

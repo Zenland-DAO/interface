@@ -185,8 +185,8 @@
         "description": "The official Zenland forum — your gateway to DAO governance, dispute resolution, and community support.",
         "features": {
           "escalate": {
-            "title": "Escalate Cases to DAO",
-            "description": "Disputes can be escalated to the DAO for fair, decentralized resolution by the community."
+            "title": "Report Agent Misconduct",
+            "description": "Report misbehaving agents to the DAO. The community can vote to slash their stakes as punishment."
           },
           "proposals": {
             "title": "Discuss Proposals",
@@ -262,7 +262,7 @@
         },
         "disputeResolution": {
           "question": "What happens if there is a dispute?",
-          "answer": "Professional agents are available to resolve disputes fairly and efficiently. If needed, cases can be escalated to the Zenland DAO for decentralized community resolution. Our dispute resolution system ensures both parties are treated fairly."
+          "answer": "Professional agents are available to resolve disputes fairly and efficiently. If an agent is unresponsive, either party can claim a timeout and settle via mutual agreement. The DAO oversees agent quality and can slash misbehaving agents' stakes."
         },
         "fees": {
           "question": "What are Zenland's fees for escrow services?",
@@ -270,7 +270,7 @@
         },
         "supportedCrypto": {
           "question": "Which cryptocurrencies and networks does Zenland support?",
-          "answer": "Zenland currently operates on Ethereum mainnet, supporting ETH and ERC-20 tokens including USDC, USDT, and other popular stablecoins. We focus on Ethereum for its battle-tested security and wide adoption."
+          "answer": "Zenland currently operates on Ethereum mainnet, supporting USDC and USDT stablecoins. More tokens can be added through DAO governance. We focus on Ethereum for its battle-tested security and wide adoption."
         }
       }
     },
@@ -312,7 +312,7 @@
       "metrics": {
         "gasFee": "Gas Fee",
         "platform": "Platform",
-        "verified": "Multi-sig Verified Transaction"
+        "verified": "Smart Contract Verified Transaction"
       },
       "buttons": {
         "start": "Start Secure Escrow",

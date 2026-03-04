@@ -185,8 +185,8 @@
         "description": "官方Zenland论坛——您进入DAO治理、争议解决和社区支持的门户。",
         "features": {
           "escalate": {
-            "title": "向DAO上报案件",
-            "description": "争议可以上报给DAO，由社区进行公平、去中心化的解决。"
+            "title": "举报代理人不当行为",
+            "description": "向DAO举报行为不当的代理人。社区可以投票削减其质押作为惩罚。"
           },
           "proposals": {
             "title": "讨论提案",
@@ -262,7 +262,7 @@
         },
         "disputeResolution": {
           "question": "如果发生争议怎么办？",
-          "answer": "专业代理人可以公平高效地解决争议。如果需要，案件可以升级到Zenland DAO进行去中心化社区解决。我们的争议解决系统确保双方都得到公平对待。"
+          "answer": "专业代理人可以公平高效地解决争议。如果代理人未响应，任何一方都可以申请超时并通过双方协商解决。DAO负责监督代理人质量，可以削减行为不当的代理人的质押。"
         },
         "fees": {
           "question": "Zenland的托管服务费用是多少？",
@@ -270,7 +270,7 @@
         },
         "supportedCrypto": {
           "question": "Zenland支持哪些加密货币和网络？",
-          "answer": "Zenland目前在以太坊主网上运行，支持ETH和ERC-20代币，包括USDC、USDT和其他流行的稳定币。我们专注于以太坊，因为它具有经过实战检验的安全性和广泛采用。"
+          "answer": "Zenland目前在以太坊主网上运行，支持USDC和USDT稳定币。更多代币可以通过DAO治理添加。我们专注于以太坊，因为它具有经过实战检验的安全性和广泛采用。"
         }
       }
     },
@@ -312,7 +312,7 @@
       "metrics": {
         "gasFee": "Gas费",
         "platform": "平台费",
-        "verified": "多签验证交易"
+        "verified": "智能合约验证交易"
       },
       "buttons": {
         "start": "开始安全托管",

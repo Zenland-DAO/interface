@@ -185,8 +185,8 @@
         "description": "El foro oficial de Zenland — tu puerta de entrada a la gobernanza del DAO, resolución de disputas y soporte comunitario.",
         "features": {
           "escalate": {
-            "title": "Escalar Casos al DAO",
-            "description": "Las disputas pueden escalarse al DAO para una resolución justa y descentralizada por la comunidad."
+            "title": "Reportar Mala Conducta de Agentes",
+            "description": "Reporta agentes que actúen mal al DAO. La comunidad puede votar para recortar sus stakes como castigo."
           },
           "proposals": {
             "title": "Discutir Propuestas",
@@ -262,7 +262,7 @@
         },
         "disputeResolution": {
           "question": "¿Qué pasa si hay una disputa?",
-          "answer": "Agentes profesionales están disponibles para resolver disputas de manera justa y eficiente. Si es necesario, los casos pueden escalarse al DAO de Zenland para una resolución comunitaria descentralizada. Nuestro sistema de resolución de disputas garantiza que ambas partes sean tratadas justamente."
+          "answer": "Agentes profesionales están disponibles para resolver disputas de manera justa y eficiente. Si un agente no responde, cualquiera de las partes puede reclamar un tiempo de espera y llegar a un acuerdo mutuo. El DAO supervisa la calidad de los agentes y puede recortar el stake de los agentes que actúen mal."
         },
         "fees": {
           "question": "¿Cuáles son las tarifas de Zenland para servicios de escrow?",
@@ -270,7 +270,7 @@
         },
         "supportedCrypto": {
           "question": "¿Qué criptomonedas y redes soporta Zenland?",
-          "answer": "Zenland actualmente opera en la mainnet de Ethereum, soportando ETH y tokens ERC-20 incluyendo USDC, USDT y otras stablecoins populares. Nos enfocamos en Ethereum por su seguridad probada en batalla y amplia adopción."
+          "answer": "Zenland actualmente opera en la mainnet de Ethereum, soportando las stablecoins USDC y USDT. Se pueden agregar más tokens a través de la gobernanza del DAO. Nos enfocamos en Ethereum por su seguridad probada en batalla y amplia adopción."
         }
       }
     },
@@ -312,7 +312,7 @@
       "metrics": {
         "gasFee": "Tarifa de Gas",
         "platform": "Plataforma",
-        "verified": "Transacción Verificada Multi-sig"
+        "verified": "Transacción Verificada por Contrato Inteligente"
       },
       "buttons": {
         "start": "Iniciar Escrow Seguro",

@@ -46,7 +46,7 @@ export const FAQ_ITEMS: FAQItem[] = [
   {
     key: "disputeResolution",
     question: "What happens if there is a dispute?",
-    answer: "Professional agents are available to resolve disputes fairly and efficiently. If needed, cases can be escalated to the Zenland DAO for decentralized community resolution. Our dispute resolution system ensures both parties are treated fairly.",
+    answer: "Professional agents are available to resolve disputes fairly and efficiently. If an agent is unresponsive, either party can claim a timeout and settle via mutual agreement. The DAO oversees agent quality and can slash misbehaving agents' stakes.",
   },
   {
     key: "fees",
@@ -56,7 +56,7 @@ export const FAQ_ITEMS: FAQItem[] = [
   {
     key: "supportedCrypto",
     question: "Which cryptocurrencies and networks does Zenland support?",
-    answer: "Zenland currently operates on Ethereum mainnet, supporting ETH and ERC-20 tokens including USDC, USDT, and other popular stablecoins. We focus on Ethereum for its battle-tested security and wide adoption.",
+    answer: "Zenland currently operates on Ethereum mainnet, supporting USDC and USDT stablecoins. More tokens can be added through DAO governance. We focus on Ethereum for its battle-tested security and wide adoption.",
   },
 ];
 
