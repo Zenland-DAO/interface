@@ -259,6 +259,9 @@ export function useCreateEscrow(): UseCreateEscrowReturn {
         resolve = res;
         reject = rej;
       });
+      // Prevent unhandled rejection when mutateAsync fails before
+      // anyone awaits the bridge promise (e.g. user rejects tx).
+      promise.catch(() => {});
       createInFlightRef.current = { promise, resolve, reject };
 
       try {
@@ -324,6 +327,9 @@ export function useCreateEscrow(): UseCreateEscrowReturn {
         resolve = res;
         reject = rej;
       });
+      // Prevent unhandled rejection when mutateAsync fails before
+      // anyone awaits the bridge promise (e.g. user rejects tx).
+      promise.catch(() => {});
       createInFlightRef.current = { promise, resolve, reject };
 
       try {

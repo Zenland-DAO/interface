@@ -1,6 +1,6 @@
 import { createConfig, http } from "wagmi";
 import { mainnet, sepolia } from "wagmi/chains";
-import { injected, walletConnect, baseAccount } from "wagmi/connectors";
+import { walletConnect, baseAccount } from "wagmi/connectors";
 import { nyknyc } from "@nyknyc/wagmi-connector";
 
 /**
@@ -22,7 +22,8 @@ export const appChains = [mainnet, sepolia] as const;
  * - SSR enabled for Next.js App Router
  *
  * Notes:
- * - `injected()` uses EIP-6963 discovery for all browser wallets including MetaMask
+ * - EIP-6963 discovery is enabled by default via createConfig's multiInjectedProviderDiscovery
+ *   (no explicit injected() connector needed — all browser wallets are auto-discovered)
  * - WalletConnect provides QR code connection for MetaMask mobile
  */
 export const config = createConfig({
@@ -50,9 +51,8 @@ export const config = createConfig({
       appName: "Zenland",
       appLogoUrl: "https://zen.land/branding/favicon/favicon.svg",
     }),
-    // Generic injected connector - auto-discovers all EIP-6963 wallets on desktop
-    // (MetaMask, Rabby, Brave, Trust Wallet, OKX, Ledger, etc.)
-    injected(),
+    // EIP-6963 injected wallets (MetaMask, Rabby, Brave, OKX, Ledger, etc.)
+    // are auto-discovered by createConfig — no explicit connector needed.
   ],
   transports: {
     [mainnet.id]: http(),

@@ -5,14 +5,16 @@
  *
  * Mobile-first modal for wallet connection.
  * - Full-screen slide-up on mobile
- * - Centered dialog on desktop
- * - Auto-closes on successful connection
+ * - Centered dialog on desktop (scrollable wallet list with fixed header/footer)
+ * - Auto-closes on successful wallet connection
  * - Features NYKNYC as sponsored/recommended wallet with gas-free transactions
+ * - Deduplicates EIP-6963 connectors to avoid duplicates
+ * - Caps visible wallets with "Show all" expansion
  */
 
 import { useEffect, useMemo, useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { X, Wallet, AlertCircle, Sparkles } from "lucide-react";
+import { X, Wallet, AlertCircle, Sparkles, ChevronDown } from "lucide-react";
 import { useConnect, useConnectors, type Connector } from "wagmi";
 import { mainnet, sepolia } from "wagmi/chains";
 import Link from "next/link";
@@ -27,6 +29,9 @@ import { trackWalletConnected } from "@/lib/analytics/gtag";
 function defer(fn: () => void) {
   setTimeout(fn, 0);
 }
+
+/** Maximum number of "Other Wallets" shown before "Show all" is needed. */
+const MAX_VISIBLE_WALLETS = 6;
 
 // =============================================================================
 // TYPES
@@ -68,6 +73,75 @@ const desktopModalVariants = {
 };
 
 // =============================================================================
+// HELPERS
+// =============================================================================
+
+/**
+ * Normalise a connector name into a dedup key.
+ * "MetaMask" / "metamask" / "MetaMask SDK" → "metamask"
+ */
+function dedupeKey(connector: Connector): string {
+  return connector.name
+    .toLowerCase()
+    .replace(/\s*(sdk|wallet|extension)\s*/gi, "")
+    .replace(/\s+/g, "");
+}
+
+/**
+ * Map raw connector error messages to user-friendly strings.
+ * Third-party SDK errors (WalletConnect, etc.) often surface cryptic messages
+ * that confuse users — this translates them into actionable guidance.
+ */
+function friendlyConnectError(error: Error | null): string {
+  if (!error) return "";
+  const msg = error.message;
+
+  // WalletConnect proposal expired — user didn't approve in time
+  if (msg.includes("Proposal expired") || msg.includes("Request expired")) {
+    return "Connection timed out. Please try again.";
+  }
+
+  // WalletConnect pairing reset — user closed QR modal before completing
+  if (msg.includes("Connection request reset")) {
+    return "Connection was cancelled. Please try again.";
+  }
+
+  return msg;
+}
+
+/**
+ * Deduplicate and filter connectors.
+ *
+ * Rules:
+ * 1. Skip the generic "injected" connector when specific EIP-6963 wallets exist.
+ * 2. Deduplicate by normalised name (first one wins — explicit config connectors
+ *    come before EIP-6963 discovered connectors, so they take priority).
+ */
+function deduplicateConnectors(connectors: readonly Connector[]): Connector[] {
+  const hasEip6963 = connectors.some(
+    (c) => c.type === "injected" && c.id !== "injected",
+  );
+
+  const seen = new Set<string>();
+  const result: Connector[] = [];
+
+  for (const connector of connectors) {
+    // Skip the generic "Injected" fallback when real EIP-6963 wallets exist
+    if (connector.id === "injected" && connector.type === "injected" && hasEip6963) {
+      continue;
+    }
+
+    const key = dedupeKey(connector);
+    if (seen.has(key)) continue;
+    seen.add(key);
+
+    result.push(connector);
+  }
+
+  return result;
+}
+
+// =============================================================================
 // COMPONENT
 // =============================================================================
 
@@ -87,23 +161,20 @@ export function ConnectWalletModal() {
   >({});
   const [connectingUid, setConnectingUid] = useState<string | null>(null);
 
-  const isPendingConnection =
-    connection.status === "connecting" || connection.status === "reconnecting";
-
   const isConnected = connection.status === "connected";
 
   // Determine connector availability.
-  // WalletConnect is always available (it doesn't need a pre-existing browser
-  // provider — it connects via relay), so we only gate injected-style connectors.
+  // WalletConnect / SDK-based connectors are always available (they don't need
+  // a pre-existing browser provider). Only injected-style connectors need a
+  // pre-existing provider in the browser.
   useEffect(() => {
     let isActive = true;
 
     async function run() {
       const entries = await Promise.all(
         connectors.map(async (connector) => {
-          // SDK-based connectors (WalletConnect, MetaMask SDK, Base Account, NYKNYC)
-          // have their own connection mechanism and don't require a browser extension.
-          // Only `injected` connectors need a pre-existing provider in the browser.
+          // SDK-based connectors (WalletConnect, Base Account, NYKNYC)
+          // have their own connection mechanism.
           if (connector.type !== "injected") {
             return [connector.uid, true] as const;
           }
@@ -113,7 +184,7 @@ export function ConnectWalletModal() {
           } catch {
             return [connector.uid, false] as const;
           }
-        })
+        }),
       );
 
       if (!isActive) return;
@@ -136,9 +207,11 @@ export function ConnectWalletModal() {
     }
   }, [isOpen]);
 
-  // Build wallet view models with metadata
+  // Build deduplicated wallet view models with metadata
   const walletOptions: WalletViewModel[] = useMemo(() => {
-    const toVM = (connector: Connector): WalletViewModel => {
+    const deduped = deduplicateConnectors(connectors);
+
+    return deduped.map((connector) => {
       const metadata = getWalletMetadata(connector);
       return {
         key: connector.uid,
@@ -149,12 +222,10 @@ export function ConnectWalletModal() {
         sponsored: metadata.isSponsored,
         sponsorBadge: metadata.sponsorBadge,
       };
-    };
-
-    return connectors.map(toVM);
+    });
   }, [connectors]);
 
-  // Separate NYKNYC from other wallets
+  // Separate sponsored from other wallets, filtering unavailable ones
   const { sponsoredWallets, otherWallets } = useMemo(() => {
     const sponsored: WalletViewModel[] = [];
     const others: WalletViewModel[] = [];
@@ -179,8 +250,10 @@ export function ConnectWalletModal() {
   }, [walletOptions, connectorAvailable]);
 
   const handleConnect = (connector: Connector) => {
-    if (isPendingConnection || connection.status !== "disconnected") return;
-    if (connectingUid) return;
+    // Use connect.isPending instead of connection.status to avoid
+    // permanently blocking buttons when a previous connection attempt
+    // left the connection in a non-"disconnected" state.
+    if (connect.isPending || connectingUid) return;
 
     clearChainError();
     setConnectingUid(connector.uid);
@@ -194,7 +267,7 @@ export function ConnectWalletModal() {
           trackWalletConnected(connector.name);
         },
         onError: () => setConnectingUid(null),
-      }
+      },
     );
   };
 
@@ -234,6 +307,7 @@ export function ConnectWalletModal() {
       {isOpen && (
         <motion.div
           className="fixed inset-0 z-50 flex items-end lg:items-center lg:justify-center"
+          data-lenis-prevent
           variants={overlayVariants}
           initial="hidden"
           animate="visible"
@@ -255,7 +329,7 @@ export function ConnectWalletModal() {
               sponsoredWallets={sponsoredWallets}
               otherWallets={otherWallets}
               connectingUid={connectingUid}
-              isPendingConnection={isPendingConnection}
+              isConnectPending={connect.isPending}
               isConnected={isConnected}
               chainError={chainError}
               connectError={connect.error}
@@ -264,9 +338,9 @@ export function ConnectWalletModal() {
             />
           </motion.div>
 
-          {/* Desktop: Centered dialog */}
+          {/* Desktop: Centered dialog — max-h ensures scrollability */}
           <motion.div
-            className="relative hidden lg:block w-full max-w-md bg-[var(--bg-primary)] rounded-2xl shadow-2xl overflow-hidden border border-[var(--border-secondary)]"
+            className="relative hidden lg:flex lg:flex-col w-full max-w-md max-h-[70vh] bg-[var(--bg-primary)] rounded-2xl shadow-2xl overflow-hidden border border-[var(--border-secondary)]"
             variants={desktopModalVariants}
             initial="hidden"
             animate="visible"
@@ -277,7 +351,7 @@ export function ConnectWalletModal() {
               sponsoredWallets={sponsoredWallets}
               otherWallets={otherWallets}
               connectingUid={connectingUid}
-              isPendingConnection={isPendingConnection}
+              isConnectPending={connect.isPending}
               isConnected={isConnected}
               chainError={chainError}
               connectError={connect.error}
@@ -299,7 +373,7 @@ interface ModalContentProps {
   sponsoredWallets: WalletViewModel[];
   otherWallets: WalletViewModel[];
   connectingUid: string | null;
-  isPendingConnection: boolean;
+  isConnectPending: boolean;
   isConnected: boolean;
   chainError: string | null;
   connectError: Error | null;
@@ -311,17 +385,31 @@ function ModalContent({
   sponsoredWallets,
   otherWallets,
   connectingUid,
-  isPendingConnection,
+  isConnectPending,
   isConnected,
   chainError,
   connectError,
   onConnect,
   onClose,
 }: ModalContentProps) {
+  const [showAll, setShowAll] = useState(false);
+
+  // Reset "Show all" when modal content changes (e.g., re-open)
+  useEffect(() => {
+    setShowAll(false);
+  }, [otherWallets.length]);
+
+  const visibleOtherWallets =
+    showAll || otherWallets.length <= MAX_VISIBLE_WALLETS
+      ? otherWallets
+      : otherWallets.slice(0, MAX_VISIBLE_WALLETS);
+
+  const hiddenCount = otherWallets.length - visibleOtherWallets.length;
+
   return (
     <>
-      {/* Header */}
-      <div className="flex items-center justify-between px-6 py-4 border-b border-[var(--border-secondary)]">
+      {/* Header — always visible */}
+      <div className="flex-shrink-0 flex items-center justify-between px-6 py-4 border-b border-[var(--border-secondary)]">
         <div className="flex items-center gap-3">
           <div className="w-10 h-10 rounded-full bg-primary-100 dark:bg-primary-900/30 flex items-center justify-center">
             <Wallet className="w-5 h-5 text-primary-500" />
@@ -342,8 +430,8 @@ function ModalContent({
         </button>
       </div>
 
-      {/* Content */}
-      <div className="flex-1 overflow-y-auto px-6 py-4 space-y-4">
+      {/* Content — scrollable */}
+      <div className="flex-1 min-h-0 overflow-y-auto overscroll-contain px-6 py-4 space-y-4">
         {/* Sponsored/Recommended Section */}
         {sponsoredWallets.length > 0 && (
           <div className="space-y-2">
@@ -374,7 +462,7 @@ function ModalContent({
                     }
                     sponsored={wallet.sponsored}
                     sponsorBadge={wallet.sponsorBadge}
-                    disabled={isPendingConnection || isConnecting}
+                    disabled={isConnecting || (isConnectPending && connectingUid !== wallet.connector.uid)}
                     onClick={() => onConnect(wallet.connector)}
                   />
                 </motion.div>
@@ -384,7 +472,7 @@ function ModalContent({
         )}
 
         {/* Other Wallets Section */}
-        {otherWallets.length > 0 && (
+        {visibleOtherWallets.length > 0 && (
           <div className="space-y-2">
             {sponsoredWallets.length > 0 && (
               <div className="flex items-center gap-2 px-1 pt-2">
@@ -396,7 +484,7 @@ function ModalContent({
                 </Text>
               </div>
             )}
-            {otherWallets.map((wallet, index) => {
+            {visibleOtherWallets.map((wallet, index) => {
               const isConnecting = connectingUid === wallet.connector.uid;
 
               return (
@@ -415,12 +503,24 @@ function ModalContent({
                     description={
                       isConnecting ? "Connecting…" : wallet.description
                     }
-                    disabled={isPendingConnection || isConnecting}
+                    disabled={isConnecting || (isConnectPending && connectingUid !== wallet.connector.uid)}
                     onClick={() => onConnect(wallet.connector)}
                   />
                 </motion.div>
               );
             })}
+
+            {/* "Show all" button when there are hidden wallets */}
+            {hiddenCount > 0 && (
+              <button
+                type="button"
+                onClick={() => setShowAll(true)}
+                className="w-full flex items-center justify-center gap-2 px-4 py-3 rounded-xl text-sm font-medium text-[var(--text-secondary)] hover:bg-[var(--state-hover)] transition-colors"
+              >
+                <ChevronDown className="w-4 h-4" />
+                Show {hiddenCount} more wallet{hiddenCount > 1 ? "s" : ""}
+              </button>
+            )}
           </div>
         )}
 
@@ -442,18 +542,20 @@ function ModalContent({
 
       {/* Error message */}
       {(connectError || (isConnected && chainError)) && (
-        <div className="px-6 pb-4">
+        <div className="flex-shrink-0 px-6 pb-4">
           <div className="flex items-start gap-2 p-3 rounded-lg bg-error-50 dark:bg-error-900/20 border border-error-200 dark:border-error-800">
             <AlertCircle className="w-4 h-4 text-error-500 shrink-0 mt-0.5" />
             <Text variant="small" className="text-error-600 dark:text-error-400">
-              {isConnected && chainError ? chainError : connectError?.message}
+              {isConnected && chainError
+                ? chainError
+                : friendlyConnectError(connectError)}
             </Text>
           </div>
         </div>
       )}
 
-      {/* Footer */}
-      <div className="px-6 py-4 border-t border-[var(--border-secondary)] bg-[var(--bg-secondary)]">
+      {/* Footer — always visible */}
+      <div className="flex-shrink-0 px-6 py-4 border-t border-[var(--border-secondary)] bg-[var(--bg-secondary)]">
         <Text
           variant="small"
           className="text-center text-[var(--text-tertiary)]"
