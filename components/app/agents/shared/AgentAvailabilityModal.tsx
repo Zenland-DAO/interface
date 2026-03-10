@@ -1,6 +1,7 @@
 "use client";
 
 import { useMemo } from "react";
+import { useTranslations } from "next-intl";
 
 import { ConfirmationModal } from "@/components/shared/ConfirmationModal";
 import { useAgentActions } from "@/hooks";
@@ -27,40 +28,34 @@ export function AgentAvailabilityModal({
   activeCases,
 }: AgentAvailabilityModalProps) {
   const { setAvailability, isLoading } = useAgentActions();
+  const t = useTranslations("agents.availability");
 
   const nextAvailability = !isAvailable;
 
   const ui = useMemo(() => {
     if (nextAvailability) {
       return {
-        title: "Set Available",
-        confirmText: "Set Available",
+        title: t("setAvailable.title"),
+        confirmText: t("setAvailable.confirmText"),
         variant: "info" as const,
         countdownSeconds: 0,
-        message:
-          "You will start receiving new dispute invitations again.",
+        message: t("setAvailable.message"),
       };
     }
 
     const casesLine =
       activeCases > 0
-        ? ` You currently have ${activeCases} active case${activeCases === 1 ? "" : "s"}.`
+        ? t("setUnavailable.activeCasesLine", { count: activeCases })
         : "";
 
     return {
-      title: "Set Unavailable",
-      confirmText: "Set Unavailable",
+      title: t("setUnavailable.title"),
+      confirmText: t("setUnavailable.confirmText"),
       variant: "danger" as const,
       countdownSeconds: 3,
-      message:
-        "While unavailable:\n" +
-        "• You will not receive new dispute invitations.\n" +
-        "• Any escrow that selected you as agent cannot invite you during a dispute.\n" +
-        "• Parties may be forced to negotiate a settlement (SPLIT) without your decision.\n" +
-        casesLine +
-        "\nThis may reduce trust from parties who chose you to arbitrate.",
+      message: t("setUnavailable.message", { casesLine }),
     };
-  }, [activeCases, nextAvailability]);
+  }, [activeCases, nextAvailability, t]);
 
   return (
     <ConfirmationModal

@@ -14,9 +14,9 @@ import { Copy, Check, User, UserCheck, Shield } from "lucide-react";
 import { useState, useCallback } from "react";
 import { toast } from "sonner";
 
+import { useTranslations } from "next-intl";
 import { Card, CardHeader, CardBody, Heading, Text } from "@/components/ui";
 import { useEscrowDetail } from "../EscrowDetailContext";
-import { STATE_DESCRIPTIONS } from "../constants";
 import { formatAmount } from "@/lib/utils/amount";
 
 // =============================================================================
@@ -100,16 +100,17 @@ function AddressRow({ label, address, icon, isCurrentUser }: AddressRowProps) {
 // =============================================================================
 
 export function EscrowDetails() {
+  const t = useTranslations("escrows");
   const { escrow, tokenInfo, role } = useEscrowDetail();
 
-  const stateDescription = STATE_DESCRIPTIONS[escrow.state];
+  const stateDescription = t(`stateDescriptions.${escrow.state}`);
   const formattedAmount = formatAmount(escrow.amount, tokenInfo.decimals);
 
   return (
     <Card variant="elevated">
       <CardHeader>
         <Heading level={3} className="text-lg">
-          Escrow Details
+          {t("detail.escrowDetails")}
         </Heading>
       </CardHeader>
 
@@ -121,7 +122,7 @@ export function EscrowDetails() {
               variant="muted"
               className="text-xs uppercase font-bold tracking-wider mb-1"
             >
-              Amount
+              {t("detail.amount")}
             </Text>
             <Text className="text-2xl font-bold text-primary-600 dark:text-primary-400">
               {formattedAmount} {tokenInfo.symbol}
@@ -133,7 +134,7 @@ export function EscrowDetails() {
               variant="muted"
               className="text-xs uppercase font-bold tracking-wider mb-1"
             >
-              Status
+              {t("detail.status")}
             </Text>
             <Text className="text-sm">{stateDescription}</Text>
           </div>
@@ -144,25 +145,25 @@ export function EscrowDetails() {
           <Text
             variant="muted"
             className="text-xs uppercase font-bold tracking-wider mb-2"
-          >
-            Participants
-          </Text>
+            >
+              {t("detail.participants")}
+            </Text>
 
           <div className="divide-y divide-[var(--border-secondary)]">
             <AddressRow
-              label="Buyer"
+              label={t("roles.buyer")}
               address={escrow.buyer}
               icon={<User size={14} />}
               isCurrentUser={role.isBuyer}
             />
             <AddressRow
-              label="Seller"
+              label={t("roles.seller")}
               address={escrow.seller}
               icon={<UserCheck size={14} />}
               isCurrentUser={role.isSeller}
             />
             <AddressRow
-              label="Agent"
+              label={t("roles.agent")}
               address={escrow.agent}
               icon={<Shield size={14} />}
               isCurrentUser={role.isAgent}
@@ -175,9 +176,9 @@ export function EscrowDetails() {
           <Text
             variant="muted"
             className="text-xs uppercase font-bold tracking-wider mb-3"
-          >
-            Terms Hash
-          </Text>
+            >
+              {t("detail.termsHash")}
+            </Text>
           <div className="p-3 bg-neutral-50 dark:bg-neutral-800/50 rounded-lg border border-[var(--border-secondary)] font-mono text-xs break-all text-[var(--text-secondary)]">
             {escrow.termsHash}
           </div>
@@ -190,13 +191,13 @@ export function EscrowDetails() {
               variant="muted"
               className="text-xs uppercase font-bold tracking-wider mb-3"
             >
-              Resolution
+              {t("detail.resolution")}
             </Text>
             <div className="grid grid-cols-2 gap-4">
               {escrow.buyerReceived !== null && (
                 <div>
                   <Text variant="muted" className="text-xs mb-1">
-                    Buyer Received
+                    {t("detail.buyerReceived")}
                   </Text>
                   <Text className="font-semibold">
                     {formatAmount(escrow.buyerReceived, tokenInfo.decimals)}{" "}
@@ -207,7 +208,7 @@ export function EscrowDetails() {
               {escrow.sellerReceived !== null && (
                 <div>
                   <Text variant="muted" className="text-xs mb-1">
-                    Seller Received
+                    {t("detail.sellerReceived")}
                   </Text>
                   <Text className="font-semibold">
                     {formatAmount(escrow.sellerReceived, tokenInfo.decimals)}{" "}
@@ -219,7 +220,7 @@ export function EscrowDetails() {
                 escrow.agentFeeReceived > 0n && (
                   <div>
                     <Text variant="muted" className="text-xs mb-1">
-                      Agent Fee
+                      {t("detail.agentFee")}
                     </Text>
                     <Text className="font-semibold">
                       {formatAmount(escrow.agentFeeReceived, tokenInfo.decimals)}{" "}

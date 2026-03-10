@@ -10,6 +10,7 @@
 import { useState, useCallback } from "react";
 import { Scale, Loader2, Wallet } from "lucide-react";
 
+import { useTranslations } from "next-intl";
 import { Button, Text } from "@/components/ui";
 import { useEscrowDetail } from "../EscrowDetailContext";
 import { BPS_DENOMINATOR, MIN_SPLIT_BPS, MAX_SPLIT_BPS } from "../constants";
@@ -29,6 +30,7 @@ export interface AgentActionsProps {
 // =============================================================================
 
 export function AgentActions({ onOpenModal }: AgentActionsProps) {
+  const t = useTranslations("escrows");
   const { actions, write, role, tokenInfo, escrow } = useEscrowDetail();
   const { availableActions } = actions;
   const { isPending, pendingAction } = write;
@@ -85,12 +87,11 @@ export function AgentActions({ onOpenModal }: AgentActionsProps) {
     <div className="space-y-4">
       <div className="flex items-center gap-2 mb-2">
         <Scale size={16} className="text-warning-500" />
-        <Text className="font-semibold text-sm">Resolve Dispute</Text>
+        <Text className="font-semibold text-sm">{t("detail.agent.resolveDispute")}</Text>
       </div>
 
       <Text variant="muted" className="text-xs">
-        As the agent, decide how to split the escrowed funds between buyer and
-        seller. Your decision is final and cannot be undone.
+        {t("detail.agent.resolveDescription")}
       </Text>
 
       {/* Dual Slider Section */}
@@ -98,13 +99,13 @@ export function AgentActions({ onOpenModal }: AgentActionsProps) {
         {/* Labels */}
         <div className="flex justify-between text-sm">
           <div className="space-y-1">
-            <Text variant="muted" className="text-xs">Buyer receives</Text>
+            <Text variant="muted" className="text-xs">{t("detail.agent.buyerReceives")}</Text>
             <Text className="font-bold text-primary-600 dark:text-primary-400">
               {(buyerBps / 100).toFixed(1)}%
             </Text>
           </div>
           <div className="text-right space-y-1">
-            <Text variant="muted" className="text-xs">Seller receives</Text>
+            <Text variant="muted" className="text-xs">{t("detail.agent.sellerReceives")}</Text>
             <Text className="font-bold text-success-600 dark:text-success-400">
               {(sellerBps / 100).toFixed(1)}%
             </Text>
@@ -147,7 +148,7 @@ export function AgentActions({ onOpenModal }: AgentActionsProps) {
         <div className="grid grid-cols-2 gap-4 pt-2 border-t border-[var(--border-secondary)]">
           <div>
             <Text variant="muted" className="text-[10px] uppercase tracking-wider">
-              Buyer Amount
+              {t("detail.agent.buyerAmount")}
             </Text>
             <Text className="text-sm font-semibold font-mono">
               {formatAmount(buyerAmount)} {tokenInfo.symbol}
@@ -155,7 +156,7 @@ export function AgentActions({ onOpenModal }: AgentActionsProps) {
           </div>
           <div className="text-right">
             <Text variant="muted" className="text-[10px] uppercase tracking-wider">
-              Seller Amount
+              {t("detail.agent.sellerAmount")}
             </Text>
             <Text className="text-sm font-semibold font-mono">
               {formatAmount(sellerAmount)} {tokenInfo.symbol}
@@ -174,17 +175,17 @@ export function AgentActions({ onOpenModal }: AgentActionsProps) {
         {isPending && pendingAction === "agentResolve" ? (
           <>
             <Loader2 size={16} className="animate-spin mr-2" />
-            Resolving...
+            {t("actionProgress.resolving")}
           </>
         ) : isConnected ? (
           <>
             <Scale size={16} className="mr-2" />
-            Submit Resolution
+            {t("detail.agent.submitResolution")}
           </>
         ) : (
           <>
             <Wallet size={16} className="mr-2" />
-            Connect Wallet
+            {t("actions.connectWallet")}
           </>
         )}
       </Button>

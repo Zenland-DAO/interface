@@ -1,6 +1,7 @@
 "use client";
 
 import { User, Globe } from "lucide-react";
+import { useTranslations } from "next-intl";
 import { StatCard } from "./StatCard";
 import { useDashboardStats, type DashboardViewMode } from "@/hooks/indexer/useDashboardStats";
 import { formatUsdValue } from "@/lib/utils/format";
@@ -12,12 +13,14 @@ interface ViewToggleProps {
 }
 
 function ViewToggle({ viewMode, onViewChange, isConnected }: ViewToggleProps) {
+  const t = useTranslations("dashboard.stats");
+
   if (!isConnected) {
     // Show a static badge when not connected
     return (
       <div className="flex items-center gap-2 px-3 py-1.5 text-xs font-medium bg-neutral-100 dark:bg-neutral-800 text-[var(--text-secondary)] rounded-lg">
         <Globe size={14} />
-        <span>Protocol Stats</span>
+        <span>{t("protocolStats")}</span>
       </div>
     );
   }
@@ -33,7 +36,7 @@ function ViewToggle({ viewMode, onViewChange, isConnected }: ViewToggleProps) {
         }`}
       >
         <User size={14} />
-        <span>My Stats</span>
+        <span>{t("myStats")}</span>
       </button>
       <button
         onClick={() => onViewChange("global")}
@@ -44,7 +47,7 @@ function ViewToggle({ viewMode, onViewChange, isConnected }: ViewToggleProps) {
         }`}
       >
         <Globe size={14} />
-        <span>Protocol</span>
+        <span>{t("protocol")}</span>
       </button>
     </div>
   );
@@ -56,6 +59,7 @@ function ViewToggle({ viewMode, onViewChange, isConnected }: ViewToggleProps) {
  * Connected users can toggle between personal and global views.
  */
 export function DashboardStats() {
+  const t = useTranslations("dashboard.stats");
   const {
     viewMode,
     setViewMode,
@@ -68,10 +72,10 @@ export function DashboardStats() {
   // Determine labels based on view mode
   const isPersonal = viewMode === "personal" && isConnected;
   const labels = {
-    active: isPersonal ? "Active Escrows" : "Active Escrows",
-    tvl: isPersonal ? "Your Locked Value" : "Total Value Locked",
-    completed: isPersonal ? "Completed" : "Completed",
-    disputed: isPersonal ? "In Dispute" : "In Dispute",
+    active: t("active"),
+    tvl: isPersonal ? t("tvlPersonal") : t("tvlGlobal"),
+    completed: t("completed"),
+    disputed: t("disputed"),
   };
 
   // Format values
@@ -87,7 +91,7 @@ export function DashboardStats() {
       {/* Toggle Header */}
       <div className="flex items-center justify-between">
         <h2 className="text-sm font-medium text-[var(--text-secondary)]">
-          {isPersonal ? "Your Activity" : "Protocol Overview"}
+          {isPersonal ? t("yourActivity") : t("protocolOverview")}
         </h2>
         <ViewToggle
           viewMode={viewMode}
@@ -99,7 +103,7 @@ export function DashboardStats() {
       {/* Error State */}
       {error && (
         <div className="p-4 bg-error-50 dark:bg-error-900/20 border border-error-200 dark:border-error-800 rounded-lg text-error-600 dark:text-error-400 text-center text-sm">
-          Failed to load statistics. Please try again later.
+          {t("error")}
         </div>
       )}
 

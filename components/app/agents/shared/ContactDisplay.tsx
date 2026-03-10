@@ -2,6 +2,7 @@
 
 import { Send, MessageCircle, Mail, Globe, Copy, Check, ExternalLink } from "lucide-react";
 import { useState, useCallback } from "react";
+import { useTranslations } from "next-intl";
 import { parseContactString, type ParsedContactEntry } from "@/lib/agents/contactCodec";
 import { Text, toast } from "@/components/ui";
 
@@ -10,7 +11,7 @@ const PLATFORM_CONFIG: Record<string, {
   icon: React.ElementType;
   getLink: (value: string) => string | null;
   color: string;
-  label: string;
+  labelKey: string;
 }> = {
   telegram: {
     icon: Send,
@@ -19,19 +20,19 @@ const PLATFORM_CONFIG: Record<string, {
       return `https://t.me/${username}`;
     },
     color: "text-[#0088cc]",
-    label: "Telegram",
+    labelKey: "telegram",
   },
   discord: {
     icon: MessageCircle,
     getLink: () => null, // Discord usernames can't be linked directly
     color: "text-[#5865F2]",
-    label: "Discord",
+    labelKey: "discord",
   },
   email: {
     icon: Mail,
     getLink: (value) => `mailto:${value}`,
     color: "text-[#EA4335]",
-    label: "Email",
+    labelKey: "email",
   },
 };
 
@@ -39,7 +40,7 @@ const DEFAULT_PLATFORM = {
   icon: Globe,
   getLink: () => null,
   color: "text-[var(--text-secondary)]",
-  label: "Contact",
+  labelKey: "contact",
 };
 
 interface ContactItemProps {
@@ -50,8 +51,10 @@ interface ContactItemProps {
 
 function ContactItem({ entry, isPrimary, variant }: ContactItemProps) {
   const [copied, setCopied] = useState(false);
+  const t = useTranslations("agents.shared.contact");
 
   const platform = PLATFORM_CONFIG[entry.name.toLowerCase()] || DEFAULT_PLATFORM;
+  const label = t(platform.labelKey);
   const IconComponent = platform.icon;
   const link = platform.getLink(entry.value);
 
@@ -61,12 +64,12 @@ function ContactItem({ entry, isPrimary, variant }: ContactItemProps) {
     try {
       await navigator.clipboard.writeText(entry.value);
       setCopied(true);
-      toast.success(`${platform.label} copied to clipboard`);
+      toast.success(t("copiedToClipboard", { label }));
       setTimeout(() => setCopied(false), 2000);
     } catch {
-      toast.error("Failed to copy");
+      toast.error(t("failedToCopy"));
     }
-  }, [entry.value, platform.label]);
+  }, [entry.value, label, t]);
 
   const handleClick = useCallback((e: React.MouseEvent) => {
     e.stopPropagation();
@@ -89,7 +92,7 @@ function ContactItem({ entry, isPrimary, variant }: ContactItemProps) {
             : "bg-neutral-100 dark:bg-neutral-800 hover:bg-neutral-200 dark:hover:bg-neutral-700"
           }
         `}
-        title={link ? `Open ${platform.label}` : `Copy ${platform.label}`}
+        title={link ? `Open ${label}` : `Copy ${label}`}
       >
         <IconComponent size={12} className={platform.color} />
         <span className="text-[var(--text-secondary)] truncate max-w-[100px]">
@@ -131,7 +134,7 @@ function ContactItem({ entry, isPrimary, variant }: ContactItemProps) {
       </div>
       <div className="flex-1 min-w-0">
         <Text className="text-[10px] uppercase font-black tracking-tight opacity-50 leading-none mb-1">
-          {isPrimary ? "Primary" : "Secondary"} · {platform.label}
+          {isPrimary ? t("primary") : t("secondary")} · {label}
         </Text>
         <Text className="font-semibold text-sm leading-none truncate">
           {entry.value}
@@ -171,9 +174,11 @@ export function ContactDisplay({
   variant = "compact",
   className = "" 
 }: ContactDisplayProps) {
+  const t = useTranslations("agents.shared.contact");
+
   if (!contact?.trim()) {
     return variant === "expanded" ? (
-      <Text variant="muted" className="italic">No contact information provided</Text>
+      <Text variant="muted" className="italic">{t("noContactInfo")}</Text>
     ) : null;
   }
 
@@ -181,7 +186,7 @@ export function ContactDisplay({
   
   if (entries.length === 0) {
     return variant === "expanded" ? (
-      <Text variant="muted" className="italic">No contact information provided</Text>
+      <Text variant="muted" className="italic">{t("noContactInfo")}</Text>
     ) : null;
   }
 

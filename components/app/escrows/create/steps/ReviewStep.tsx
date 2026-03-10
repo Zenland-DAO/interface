@@ -8,6 +8,7 @@
  * User can go back to edit or proceed to approval.
  */
 
+import { useTranslations } from "next-intl";
 import {
   Card,
   CardBody,
@@ -124,27 +125,28 @@ function FeesBreakdown({
   totalAmount,
   tokenSymbol,
   hasAgent,
-}: FeesBreakdownProps) {
+  t,
+}: FeesBreakdownProps & { t: (key: string) => string }) {
   return (
     <Card className="bg-neutral-50 dark:bg-neutral-900/50 border-neutral-200 dark:border-neutral-800">
       <CardBody className="p-4 space-y-3">
         <div className="flex items-center gap-2 mb-2">
           <Calculator size={16} className="text-primary-500" />
           <Heading level={5} className="text-sm">
-            Fees Breakdown
+            {t("create.review.feesBreakdown")}
           </Heading>
         </div>
 
         <div className="space-y-2 text-sm">
           <div className="flex justify-between">
-            <Text variant="muted">Escrow Amount</Text>
+            <Text variant="muted">{t("create.review.escrowAmount")}</Text>
             <Text>
               {amount} {tokenSymbol}
             </Text>
           </div>
 
           <div className="flex justify-between">
-            <Text variant="muted">Creation Fee</Text>
+            <Text variant="muted">{t("create.review.creationFee")}</Text>
             <Text>
               {creationFee} {tokenSymbol}
             </Text>
@@ -152,7 +154,7 @@ function FeesBreakdown({
 
           {hasAgent && (
             <div className="flex justify-between">
-              <Text variant="muted">Agent Assignment Fee</Text>
+              <Text variant="muted">{t("create.review.agentAssignmentFee")}</Text>
               <Text>
                 {assignmentFee} {tokenSymbol}
               </Text>
@@ -161,7 +163,7 @@ function FeesBreakdown({
 
           <div className="border-t border-neutral-200 dark:border-neutral-700 pt-2 mt-2">
             <div className="flex justify-between font-semibold">
-              <Text>Total Required</Text>
+              <Text>{t("create.review.totalRequired")}</Text>
               <Text className="text-primary-600 dark:text-primary-400">
                 {totalAmount} {tokenSymbol}
               </Text>
@@ -177,7 +179,7 @@ interface PredictedAddressCardProps {
   address: string | undefined;
 }
 
-function PredictedAddressCard({ address }: PredictedAddressCardProps) {
+function PredictedAddressCard({ address, t }: PredictedAddressCardProps & { t: (key: string) => string }) {
   const [copied, setCopied] = useState(false);
 
   const handleCopy = useCallback(() => {
@@ -194,7 +196,7 @@ function PredictedAddressCard({ address }: PredictedAddressCardProps) {
           <div className="flex items-center gap-2 text-[var(--text-tertiary)]">
             <Wallet size={16} />
             <Text variant="muted" className="text-sm">
-              Generating escrow address...
+              {t("create.review.generatingAddress")}
             </Text>
           </div>
         </CardBody>
@@ -209,7 +211,7 @@ function PredictedAddressCard({ address }: PredictedAddressCardProps) {
           <div className="flex items-center gap-2">
             <Wallet size={16} className="text-primary-500" />
             <Text className="text-sm font-medium text-primary-700 dark:text-primary-300">
-              Predicted Escrow Address
+              {t("create.review.predictedAddress")}
             </Text>
           </div>
           <div className="flex items-center gap-2">
@@ -244,6 +246,7 @@ export interface ReviewStepProps {
 }
 
 export function ReviewStep({ form }: ReviewStepProps) {
+  const t = useTranslations("escrows");
   const {
     formData,
     computed,
@@ -269,18 +272,18 @@ export function ReviewStep({ form }: ReviewStepProps) {
               <div className="flex items-center gap-2 mb-3">
                 <div className="w-1 h-5 bg-primary-500 rounded-full" />
                 <Heading level={4} className="uppercase tracking-widest text-[10px] font-bold text-primary-500">
-                  Parties
+                  {t("create.sections.parties")}
                 </Heading>
               </div>
               <SummaryRow
                 icon={<User size={16} />}
-                label="Seller"
+                label={t("create.summary.seller")}
                 value={<AddressDisplay address={formData.sellerAddress} />}
               />
               {computed.hasAgent && (
                 <SummaryRow
                   icon={<Shield size={16} />}
-                  label="Agent"
+                  label={t("create.summary.agent")}
                   value={<AddressDisplay address={formData.agentAddress} />}
                 />
               )}
@@ -291,18 +294,18 @@ export function ReviewStep({ form }: ReviewStepProps) {
               <div className="flex items-center gap-2 mb-3">
                 <div className="w-1 h-5 bg-primary-500 rounded-full" />
                 <Heading level={4} className="uppercase tracking-widest text-[10px] font-bold text-primary-500">
-                  Financial Details
+                  {t("create.sections.financialDetails")}
                 </Heading>
               </div>
               <SummaryRow
                 icon={<Coins size={16} />}
-                label="Amount"
+                label={t("create.summary.amount")}
                 value={`${display.amount} ${display.tokenSymbol}`}
                 highlight
               />
               <SummaryRow
                 icon={<Clock size={16} />}
-                label="Buyer Protection"
+                label={t("create.summary.protection")}
                 value={display.protectionTime}
               />
             </div>
@@ -312,7 +315,7 @@ export function ReviewStep({ form }: ReviewStepProps) {
               <div className="flex items-center gap-2 mb-3">
                 <div className="w-1 h-5 bg-primary-500 rounded-full" />
                 <Heading level={4} className="uppercase tracking-widest text-[10px] font-bold text-primary-500">
-                  Contract Terms
+                  {t("create.sections.contractTerms")}
                 </Heading>
               </div>
               <div className="p-4 rounded-xl bg-neutral-50 dark:bg-neutral-900/50 border border-neutral-200 dark:border-neutral-800">
@@ -322,7 +325,7 @@ export function ReviewStep({ form }: ReviewStepProps) {
                     {formData.terms ? (
                       <MarkdownRenderer content={formData.terms} />
                     ) : (
-                      <Text className="text-sm text-[var(--text-tertiary)]">No terms specified</Text>
+                      <Text className="text-sm text-[var(--text-tertiary)]">{t("create.review.noTerms")}</Text>
                     )}
                   </div>
                 </div>
@@ -334,7 +337,7 @@ export function ReviewStep({ form }: ReviewStepProps) {
               <div className="flex items-center gap-2 mb-3">
                 <div className="w-1 h-5 bg-primary-500 rounded-full" />
                 <Heading level={4} className="uppercase tracking-widest text-[10px] font-bold text-primary-500">
-                  Dispute Resolution
+                  {t("create.sections.disputeResolution")}
                 </Heading>
               </div>
               {computed.hasAgent ? (
@@ -342,10 +345,10 @@ export function ReviewStep({ form }: ReviewStepProps) {
                   <Shield size={20} className="text-success-600 dark:text-success-400" />
                   <div>
                     <Text className="font-medium text-success-800 dark:text-success-200">
-                      Agent Assigned
+                      {t("create.review.agentAssigned")}
                     </Text>
                     <Text variant="muted" className="text-xs">
-                      Disputes will be resolved by the assigned agent
+                      {t("create.review.agentAssignedDesc")}
                     </Text>
                   </div>
                 </div>
@@ -354,11 +357,10 @@ export function ReviewStep({ form }: ReviewStepProps) {
                   <AlertTriangle size={20} className="text-warning-600 dark:text-warning-400 mt-0.5" />
                   <div>
                     <Text className="font-medium text-warning-800 dark:text-warning-200">
-                      Locked Escrow (No Agent)
+                      {t("create.review.lockedEscrow")}
                     </Text>
                     <Text variant="muted" className="text-xs mt-1">
-                      This escrow has no dispute resolution. If a disagreement occurs,
-                      funds may be permanently locked.
+                      {t("create.review.lockedEscrowDesc")}
                     </Text>
                   </div>
                 </div>
@@ -374,7 +376,7 @@ export function ReviewStep({ form }: ReviewStepProps) {
               onClick={goBack}
               leftIcon={<ArrowLeft size={18} />}
             >
-              Back to Edit
+              {t("create.review.backToEdit")}
             </Button>
             <Button
               variant="primary"
@@ -384,7 +386,7 @@ export function ReviewStep({ form }: ReviewStepProps) {
               disabled={!canProceed || isRegenerating}
               rightIcon={isRegenerating ? <Loader2 size={18} className="animate-spin" /> : <ArrowRight size={18} />}
             >
-              {isRegenerating ? "Generating Agreement..." : "Proceed to Approval"}
+              {isRegenerating ? t("create.review.generatingAgreement") : t("create.review.proceedToApproval")}
             </Button>
           </CardFooter>
         </Card>
@@ -397,11 +399,10 @@ export function ReviewStep({ form }: ReviewStepProps) {
                 <Loader2 size={20} className="text-primary-600 dark:text-primary-400 mt-0.5 animate-spin" />
                 <div className="flex-1">
                   <Text className="font-medium text-primary-800 dark:text-primary-200">
-                    Generating Agreement
+                    {t("create.review.generatingAgreementInfo")}
                   </Text>
                   <Text variant="muted" className="text-xs mt-1">
-                    Your escrow agreement PDF is being generated. This document will be
-                    cryptographically linked to your smart contract.
+                    {t("create.review.generatingAgreementDesc")}
                   </Text>
                 </div>
               </div>
@@ -419,13 +420,13 @@ export function ReviewStep({ form }: ReviewStepProps) {
               <div className="flex items-center gap-2">
                 <FileText size={16} className="text-primary-500" />
                 <Heading level={5} className="text-sm">
-                  Agreement PDF
+                  {t("create.review.agreementPdf")}
                 </Heading>
               </div>
               {pdf.status === "loading" && (
                 <div className="flex items-center gap-2 text-xs text-[var(--text-tertiary)]">
                   <Loader2 size={14} className="animate-spin" />
-                  <span>Generating…</span>
+                  <span>{t("create.review.generating")}</span>
                 </div>
               )}
             </div>
@@ -433,7 +434,7 @@ export function ReviewStep({ form }: ReviewStepProps) {
             {pdf.status === "error" && (
               <div className="p-3 rounded-lg bg-error-50 dark:bg-error-900/10 border border-error-200 dark:border-error-800">
                 <Text className="text-xs text-error-700 dark:text-error-300">
-                  Failed to generate PDF: {pdf.error ?? "Unknown error"}
+                  {t("create.review.failedToGeneratePdf", { error: pdf.error ?? "Unknown error" })}
                 </Text>
               </div>
             )}
@@ -451,7 +452,7 @@ export function ReviewStep({ form }: ReviewStepProps) {
                   className="w-full"
                   leftIcon={<Download size={16} />}
                 >
-                  Download PDF
+                  {t("create.review.downloadPdf")}
                 </Button>
               </a>
             ) : (
@@ -463,7 +464,7 @@ export function ReviewStep({ form }: ReviewStepProps) {
                 onClick={() => void pdf.regenerate()}
                 disabled={pdf.status === "loading"}
               >
-                Generate PDF
+                {t("create.review.generatePdf")}
               </Button>
             )}
 
@@ -482,16 +483,16 @@ export function ReviewStep({ form }: ReviewStepProps) {
           totalAmount={display.totalAmount}
           tokenSymbol={display.tokenSymbol}
           hasAgent={computed.hasAgent}
+          t={t}
         />
 
-        <PredictedAddressCard address={display.predictedAddress} />
+        <PredictedAddressCard address={display.predictedAddress} t={t} />
 
         {/* Info Note */}
         <Card className="bg-neutral-50 dark:bg-neutral-900/50 border-neutral-200 dark:border-neutral-800">
           <CardBody className="p-4">
             <Text variant="muted" className="text-xs leading-relaxed">
-              💡 The predicted address is deterministic. As long as the parameters
-              remain unchanged, the escrow will be deployed at this address.
+              💡 {t("create.review.predictedAddressNote")}
             </Text>
           </CardBody>
         </Card>

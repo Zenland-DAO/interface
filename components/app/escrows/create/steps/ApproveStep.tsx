@@ -10,6 +10,7 @@
 
 import { useEffect, useRef } from "react";
 import { toast } from "sonner";
+import { useTranslations } from "next-intl";
 import {
   Card,
   CardBody,
@@ -35,7 +36,7 @@ interface ApprovalProgressProps {
   isApproving: boolean;
 }
 
-function ApprovalProgress({ isApproving }: ApprovalProgressProps) {
+function ApprovalProgress({ isApproving, t }: ApprovalProgressProps & { t: (key: string) => string }) {
   if (!isApproving) return null;
 
   return (
@@ -45,10 +46,10 @@ function ApprovalProgress({ isApproving }: ApprovalProgressProps) {
           <Loader2 size={20} className="text-primary-500 animate-spin" />
           <div>
             <Text className="font-medium text-primary-700 dark:text-primary-300">
-              Waiting for approval...
+              {t("create.approve.waitingForApproval")}
             </Text>
             <Text variant="muted" className="text-xs">
-              Please confirm the transaction in your wallet
+              {t("create.approve.confirmInWallet")}
             </Text>
           </div>
         </div>
@@ -66,6 +67,7 @@ export interface ApproveStepProps {
 }
 
 export function ApproveStep({ form }: ApproveStepProps) {
+  const t = useTranslations("escrows");
   const {
     display,
     goBack,
@@ -131,7 +133,7 @@ export function ApproveStep({ form }: ApproveStepProps) {
               disabled={isApproving}
               leftIcon={<ArrowLeft size={18} />}
             >
-              Back to Review
+              {t("create.approve.backToReview")}
             </Button>
           </CardFooter>
         )}
@@ -139,7 +141,7 @@ export function ApproveStep({ form }: ApproveStepProps) {
 
       {/* Progress indicator below card */}
       <div className="mt-4">
-        <ApprovalProgress isApproving={isApproving} />
+        <ApprovalProgress isApproving={isApproving} t={t} />
       </div>
     </div>
   );

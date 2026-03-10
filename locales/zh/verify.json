@@ -1,0 +1,155 @@
+{
+  "verify": {
+    "title": "验证 PDF",
+    "description": "上传 Zenland 托管协议 PDF，验证其真实性并检查是否与链上记录匹配。",
+    "infoCard": {
+      "title": "验证工具检查什么？",
+      "signatureAuth": "Zenland 数字签名真实性",
+      "contentIntegrity": "PDF 内容完整性（篡改检测）",
+      "onChainMatch": "链上 termsHash 匹配",
+      "roleGuidance": "基于角色的合约参与者指引"
+    },
+    "signatureFailed": {
+      "title": "无效的 PDF",
+      "description": "此 PDF 不是有效的 Zenland 托管协议",
+      "reason": "原因：",
+      "tryAnother": "尝试其他 PDF"
+    },
+    "dropZone": {
+      "verifying": "验证中...",
+      "dropHere": "将 PDF 拖放到这里",
+      "pleaseWait": "请稍候，正在验证您的文档",
+      "orClickToBrowse": "或点击浏览。仅支持 Zenland 托管 PDF。",
+      "pdfOnly": "仅限 PDF 文件"
+    },
+    "status": {
+      "loading": {
+        "title": "链上验证中...",
+        "description": "正在区块链上查询合约数据"
+      },
+      "hashMatch": {
+        "title": "已验证 ✓",
+        "description": "此 PDF 与链上合约记录匹配",
+        "signedBy": "由 Zenland 签名"
+      },
+      "notDeployed": {
+        "title": "合约未部署",
+        "description": "此 PDF 由 Zenland 签名，但合约在区块链上不存在。",
+        "warningTitle": "这不是一个活跃合约",
+        "warningDescription": "请勿根据此 PDF 发送任何资金或商品。合约必须先部署。"
+      },
+      "hashMismatch": {
+        "title": "🚨 哈希不匹配 - 可能是诈骗",
+        "description": "此 PDF 与链上合约记录不匹配。该文档可能已被篡改。",
+        "pdfHash": "PDF 哈希（本文档）",
+        "onChainHash": "链上哈希（预期值）",
+        "warningTitle": "⛔ 请勿信任此文档",
+        "warningDescription": "这可能是一个诈骗，或者是合约的过时/修改版本。只信任与链上哈希匹配的文档。"
+      },
+      "error": {
+        "title": "验证错误"
+      }
+    },
+    "escrowDetails": {
+      "title": "托管详情",
+      "escrowAddress": "托管地址",
+      "network": "网络",
+      "buyer": "买方",
+      "seller": "卖方",
+      "agent": "代理人",
+      "noAgent": "无代理人（锁定）",
+      "lockStatus": "锁定状态",
+      "locked": "已锁定",
+      "unlocked": "未锁定",
+      "amount": "金额",
+      "buyerProtection": "买方保护",
+      "viewEscrow": "查看托管详情",
+      "verifyAnother": "验证其他文档"
+    },
+    "walletInstructions": {
+      "roles": {
+        "buyer": "买方",
+        "seller": "卖方",
+        "agent": "代理人",
+        "viewer": "查看者"
+      },
+      "notConnected": "未连接"
+    },
+    "instructions": {
+      "contractCompleted": {
+        "title": "合约已完成",
+        "description": "此合约已完成并最终确认。"
+      },
+      "contractNotFound": {
+        "title": "合约未找到",
+        "description": "此合约尚未部署到区块链上。没有可用操作。"
+      },
+      "contractActive": {
+        "title": "合约进行中",
+        "description": "此合约正在进行中。"
+      },
+      "connectWallet": {
+        "title": "连接钱包",
+        "description": "连接你的钱包，根据你在此合约中的角色获取个性化指引。"
+      },
+      "notParticipant": {
+        "title": "非参与者",
+        "description": "你连接的钱包不是此合约的参与方。你正在以第三方身份查看。"
+      },
+      "buyer": {
+        "pending": {
+          "title": "等待卖方",
+          "description": "卖方需要审查并接受此合约。请联系对方确认参与。"
+        },
+        "active": {
+          "title": "合约已激活",
+          "description": "合约已激活。等待卖方交付，满意后释放资金。"
+        },
+        "fulfilled": {
+          "title": "交付已确认",
+          "description": "卖方已确认交付。请审查交付内容，满意后释放资金。"
+        },
+        "disputed": {
+          "title": "争议已开启",
+          "description": "你已开启争议。你可以邀请代理人来解决，或提出和解方案。"
+        },
+        "agentInvited": {
+          "title": "代理人调查中",
+          "description": "代理人已被邀请来解决此争议。请等待其裁决。"
+        }
+      },
+      "seller": {
+        "pending": {
+          "title": "需要操作",
+          "description": "此合约等待你的确认。请仔细审查条款并接受以激活托管。"
+        },
+        "active": {
+          "title": "可以安全交付",
+          "description": "合约已激活，资金已锁定。可以安全交付产品或服务。资金只能通过合约规则提取。"
+        },
+        "fulfilled": {
+          "title": "等待释放",
+          "description": "你已确认交付。正在等待买方释放资金。如果买方在保护期内未释放，你可以申领资金。"
+        },
+        "disputed": {
+          "title": "争议已开启",
+          "description": "已开启争议。你可以邀请代理人来解决、提出和解方案或发起退款。"
+        },
+        "agentInvited": {
+          "title": "代理人调查中",
+          "description": "代理人已被邀请来解决此争议。请等待其裁决。"
+        }
+      },
+      "agent": {
+        "invited": {
+          "title": "需要操作",
+          "description": "你是代理人。此合约等待你的调查和裁决。请审查证据并做出公正的决定。"
+        },
+        "assigned": {
+          "title": "已分配的代理人",
+          "description": "你是此合约的指定代理人。双方尚未邀请你解决争议。"
+        }
+      }
+    }
+  }
+}

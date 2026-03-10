@@ -5,16 +5,18 @@ import { formatAddress } from "@/lib/wagmi/formatAddress";
 import { useMemo } from "react";
 import { Copy } from "lucide-react";
 import { toast } from "@/components/ui";
+import { useTranslations } from "next-intl";
 
 export function UserProfile() {
   const { address } = useConnection();
+  const t = useTranslations("app.userProfile");
   const displayAddress = useMemo(() => formatAddress(address), [address]);
 
   const handleCopy = () => {
     if (!address) return;
     navigator.clipboard.writeText(address);
-    toast("Address Copied", {
-      description: "Wallet address copied to clipboard",
+    toast(t("addressCopied"), {
+      description: t("addressCopiedDescription"),
     });
   };
 

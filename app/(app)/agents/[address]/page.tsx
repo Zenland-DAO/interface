@@ -1,5 +1,3 @@
-import Link from "next/link";
-import { ChevronLeft } from "lucide-react";
 import { AgentProfileClient } from "./AgentProfileClient";
 
 interface AgentProfilePageProps {
@@ -23,16 +21,7 @@ export default async function AgentProfilePage({ params, searchParams }: AgentPr
 
   return (
     <div className="max-w-4xl mx-auto space-y-6">
-      {/* Back Navigation */}
-      <Link
-        href={isSelectMode ? "/agents?mode=select" : "/agents"}
-        className="inline-flex items-center gap-1 text-sm text-[var(--text-secondary)] hover:text-[var(--text-primary)] transition-colors"
-      >
-        <ChevronLeft size={16} />
-        {isSelectMode ? "Back to Agent Selection" : "Back to Agents"}
-      </Link>
-
-      {/* Agent Profile */}
+      {/* Agent Profile — back navigation is rendered inside the client component for i18n */}
       <AgentProfileClient address={address} isSelectMode={isSelectMode} />
     </div>
   );

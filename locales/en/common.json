@@ -49,6 +49,25 @@
         "learnMore": "Learn more"
       }
     },
+    "wallet": {
+      "title": "Connect Wallet",
+      "subtitle": "Choose your wallet to continue",
+      "recommended": "Recommended",
+      "otherWallets": "Other Wallets",
+      "connecting": "Connecting…",
+      "showMore": "Show {count} more wallet",
+      "showMorePlural": "Show {count} more wallets",
+      "noWalletsDetected": "No wallets detected",
+      "installWallet": "Please install a Web3 wallet to continue",
+      "sponsoredDescription": "Connect with gas-free transactions",
+      "defaultDescription": "Connect with browser extension",
+      "sponsorBadge": "Sponsored by Zenland — No gas fees",
+      "footer": "By connecting, you agree to our <terms>Terms</terms> and <privacy>Privacy Policy</privacy>",
+      "errors": {
+        "timedOut": "Connection timed out. Please try again.",
+        "cancelled": "Connection was cancelled. Please try again."
+      }
+    },
     "accessibility": {
       "openMenu": "Open menu",
       "closeMenu": "Close menu",

@@ -13,6 +13,7 @@
 
 import { useCallback, useMemo } from "react";
 import { isAddress } from "viem";
+import { useTranslations } from "next-intl";
 import {
   Card,
   CardBody,
@@ -175,7 +176,8 @@ interface LockedEscrowWarningProps {
 function LockedEscrowWarning({
   confirmations,
   onConfirmationChange,
-}: LockedEscrowWarningProps) {
+  t,
+}: LockedEscrowWarningProps & { t: (key: string) => string }) {
   return (
     <div className="space-y-4 pt-2">
       <div className="p-4 rounded-xl bg-warning-50 dark:bg-warning-900/10 border border-warning-200 dark:border-warning-800">
@@ -201,10 +203,10 @@ function LockedEscrowWarning({
               />
               <div className="flex-1 min-w-0">
                 <Text className="text-sm font-medium group-hover:text-primary-600 dark:group-hover:text-primary-400 transition-colors">
-                  {confirmation.label}
+                  {t(`create.locked.${confirmation.key}`)}
                 </Text>
                 <Text variant="muted" className="text-xs break-words">
-                  {confirmation.description}
+                  {t(`create.locked.${confirmation.key}Desc`)}
                 </Text>
               </div>
             </div>
@@ -215,7 +217,7 @@ function LockedEscrowWarning({
       {/* Recommendation */}
       <div className="flex items-center gap-2 pl-2">
         <Text variant="muted" className="text-xs italic">
-          💡 {LOCKED_ESCROW_WARNINGS.recommendation}
+          💡 {t("create.agentSelector.recommendation")}
         </Text>
       </div>
     </div>
@@ -238,7 +240,8 @@ function SelectedAgentDisplay({
   mode,
   onClear,
   onBrowse,
-}: SelectedAgentDisplayProps) {
+  t,
+}: SelectedAgentDisplayProps & { t: (key: string) => string }) {
   const shortAddress = `${address.slice(0, 6)}...${address.slice(-4)}`;
 
   return (
@@ -248,7 +251,7 @@ function SelectedAgentDisplay({
       </div>
       <div className="flex-1 min-w-0">
         <Text className="text-sm font-medium text-success-800 dark:text-success-200">
-          Agent Selected
+          {t("create.agentSelector.agentSelected")}
         </Text>
         <Text variant="muted" className="text-xs font-mono truncate">
           {shortAddress}
@@ -265,7 +268,7 @@ function SelectedAgentDisplay({
             }}
             className="text-xs"
           >
-            Change
+            {t("create.agentSelector.change")}
           </Button>
         )}
         <button
@@ -291,15 +294,15 @@ function AgentFieldError({ error }: { error?: string }) {
 // AGENT VALIDATION / INFO CARD
 // =============================================================================
 
-function getEligibilityMessage(status: AgentEligibilityStatus): {
+function getEligibilityMessage(status: AgentEligibilityStatus, t: (key: string) => string): {
   title: string;
   description?: string;
   tone: "success" | "warning" | "error" | "muted";
 } {
   if (status.status === "loading") {
     return {
-      title: "Checking agent…",
-      description: "Fetching agent information from the indexer.",
+      title: t("create.agentSelector.checkingAgent"),
+      description: t("create.agentSelector.checkingAgentDesc"),
       tone: "muted",
     };
   }
@@ -308,31 +311,31 @@ function getEligibilityMessage(status: AgentEligibilityStatus): {
     switch (status.reason) {
       case "NOT_REGISTERED":
         return {
-          title: "Agent not registered",
-          description: "This address is not registered as an agent in the protocol.",
+          title: t("create.agentSelector.agentNotRegistered"),
+          description: t("create.agentSelector.agentNotRegisteredDesc"),
           tone: "error",
         };
       case "NOT_ACTIVE":
         return {
-          title: "Agent inactive",
-          description: "This agent is registered but currently inactive.",
+          title: t("create.agentSelector.agentInactive"),
+          description: t("create.agentSelector.agentInactiveDesc"),
           tone: "error",
         };
       case "NOT_AVAILABLE":
         return {
-          title: "Agent unavailable",
-          description: "This agent is active but currently not accepting new cases.",
+          title: t("create.agentSelector.agentUnavailable"),
+          description: t("create.agentSelector.agentUnavailableDesc"),
           tone: "warning",
         };
       case "INSUFFICIENT_MAV":
         return {
-          title: "Insufficient MAV",
-          description: "This agent’s MAV is not enough for this escrow amount.",
+          title: t("create.agentSelector.insufficientMav"),
+          description: t("create.agentSelector.insufficientMavDesc"),
           tone: "error",
         };
       default:
         return {
-          title: "Agent not eligible",
+          title: t("create.agentSelector.agentNotEligible"),
           tone: "error",
         };
     }
@@ -340,8 +343,8 @@ function getEligibilityMessage(status: AgentEligibilityStatus): {
 
   if (status.status === "valid") {
     return {
-      title: "Agent verified",
-      description: "Active, available, and has sufficient MAV for this escrow.",
+      title: t("create.agentSelector.agentVerified"),
+      description: t("create.agentSelector.agentVerifiedDesc"),
       tone: "success",
     };
   }
@@ -349,8 +352,8 @@ function getEligibilityMessage(status: AgentEligibilityStatus): {
   return { title: "", tone: "muted" };
 }
 
-function AgentInfoCard({ status }: { status: AgentEligibilityStatus }) {
-  const message = getEligibilityMessage(status);
+function AgentInfoCard({ status, t }: { status: AgentEligibilityStatus; t: (key: string) => string }) {
+  const message = getEligibilityMessage(status, t);
 
   const toneClasses =
     message.tone === "success"
@@ -405,7 +408,7 @@ function AgentInfoCard({ status }: { status: AgentEligibilityStatus }) {
           <div className="grid grid-cols-2 gap-3 text-xs">
             <div className="space-y-0.5">
               <Text variant="muted" className="text-[10px] uppercase tracking-wider">
-                MAV
+                {t("create.agentSelector.mav")}
               </Text>
               <Text className="font-semibold">
                 {mav ? `$${formatUsdLikeAmount(mav, decimals)}` : "—"}
@@ -414,7 +417,7 @@ function AgentInfoCard({ status }: { status: AgentEligibilityStatus }) {
 
             <div className="space-y-0.5">
               <Text variant="muted" className="text-[10px] uppercase tracking-wider">
-                This escrow
+                {t("create.agentSelector.thisEscrow")}
               </Text>
               <Text className="font-semibold">
                 {required ? `$${formatUsdLikeAmount(required, decimals)}` : "—"}
@@ -423,14 +426,14 @@ function AgentInfoCard({ status }: { status: AgentEligibilityStatus }) {
 
             <div className="space-y-0.5">
               <Text variant="muted" className="text-[10px] uppercase tracking-wider">
-                Active cases
+                {t("create.agentSelector.activeCases")}
               </Text>
               <Text className="font-semibold">{agent.activeCases ?? 0}</Text>
             </div>
 
             <div className="space-y-0.5">
               <Text variant="muted" className="text-[10px] uppercase tracking-wider">
-                Registered
+                {t("create.agentSelector.registered")}
               </Text>
               <Text className="font-semibold">{registeredAtLabel ?? "—"}</Text>
             </div>
@@ -457,6 +460,7 @@ export function AgentSelector({
   onTouch,
   escrowAmount,
 }: AgentSelectorProps) {
+  const t = useTranslations("escrows");
   const { openAgentSelection } = useAgentSelectionOpener();
 
   // Pure action (no event) for opening the browse tab. Keep this separate from
@@ -525,13 +529,14 @@ export function AgentSelector({
         selected={mode === "none"}
         isCompleted={Object.values(lockedConfirmations).every(v => v)}
         icon={<AlertTriangle size={20} />}
-        title="No Agent (Locked Escrow)"
-        description="Proceed without dispute resolution"
+        title={t("create.agentSelector.noAgent")}
+        description={t("create.agentSelector.noAgentDesc")}
         onChange={handleModeChange}
       >
         <LockedEscrowWarning
           confirmations={lockedConfirmations}
           onConfirmationChange={onLockedConfirmationChange}
+          t={t}
         />
       </RadioOption>
 
@@ -540,8 +545,8 @@ export function AgentSelector({
         value="manual"
         selected={mode === "manual"}
         icon={<User size={20} />}
-        title="Enter Agent Address"
-        description="Input a known agent's address directly"
+        title={t("create.agentSelector.enterAddress")}
+        description={t("create.agentSelector.enterAddressDesc")}
         onChange={handleModeChange}
       >
         <div className="space-y-3" onClick={(e) => e.stopPropagation()}>
@@ -560,8 +565,9 @@ export function AgentSelector({
                 mode="manual"
                 onClear={handleClear}
                 onBrowse={browseAgents}
+                t={t}
               />
-              <AgentInfoCard status={eligibility} />
+              <AgentInfoCard status={eligibility} t={t} />
             </div>
           )}
         </div>
@@ -572,8 +578,8 @@ export function AgentSelector({
         value="browsed"
         selected={mode === "browsed"}
         icon={<Search size={20} />}
-        title="Browse Available Agents"
-        description="Select from verified agents list"
+        title={t("create.agentSelector.browseAgents")}
+        description={t("create.agentSelector.browseAgentsDesc")}
         onChange={handleModeChange}
       >
         <div className="space-y-3" onClick={(e) => e.stopPropagation()}>
@@ -584,11 +590,12 @@ export function AgentSelector({
                 mode="browsed"
                 onClear={handleClear}
                 onBrowse={browseAgents}
+                t={t}
               />
               {/* In browsed mode there is no input field to render inline errors.
                   Still show agent validation errors (e.g. agent == seller). */}
               {isTouched && <AgentFieldError error={error} />}
-              <AgentInfoCard status={eligibility} />
+              <AgentInfoCard status={eligibility} t={t} />
             </div>
           ) : (
             <Button
@@ -597,7 +604,7 @@ export function AgentSelector({
               onClick={handleBrowseClick}
             >
               <Search size={16} />
-              Browse Agents
+              {t("create.agentSelector.browseAgentsBtn")}
               <ExternalLink size={14} className="ml-1 opacity-50" />
             </Button>
           )}

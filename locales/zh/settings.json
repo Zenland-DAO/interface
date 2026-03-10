@@ -1,0 +1,31 @@
+{
+  "settings": {
+    "title": "设置",
+    "description": "管理你的账户偏好设置",
+    "wallet": {
+      "title": "钱包",
+      "connectedWallet": "已连接的钱包",
+      "disconnect": "断开连接",
+      "network": "网络",
+      "networkDescription": "在主网和测试网之间切换",
+      "noWallet": "未连接钱包",
+      "noWalletDescription": "连接钱包以访问所有功能",
+      "connectWallet": "连接钱包"
+    },
+    "appearance": {
+      "title": "外观",
+      "theme": "主题",
+      "themeDescription": "在浅色和深色模式之间切换"
+    },
+    "about": {
+      "title": "关于",
+      "version": "版本",
+      "versionDescription": "当前应用版本",
+      "documentation": "文档",
+      "github": "GitHub",
+      "termsOfService": "服务条款",
+      "privacyPolicy": "隐私政策",
+      "support": "支持"
+    }
+  }
+}

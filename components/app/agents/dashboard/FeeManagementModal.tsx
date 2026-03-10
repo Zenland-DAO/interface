@@ -19,6 +19,7 @@ import {
     CheckCircle2,
     Loader2,
 } from "lucide-react";
+import { useTranslations } from "next-intl";
 import { useAgentActions } from "@/hooks";
 import {
     MIN_FEE_BPS,
@@ -41,6 +42,7 @@ export function FeeManagementModal({
     initialAssignmentFee,
     initialDisputeFee
 }: FeeManagementModalProps) {
+    const t = useTranslations("agents.fees");
     const [activeTab, setActiveTab] = useState<"assignment" | "dispute">("assignment");
     // We keep draft values optional to avoid syncing derived state in effects.
     // If the indexer refetches and props change, the UI will update automatically.
@@ -113,8 +115,8 @@ export function FeeManagementModal({
                         <Settings2 size={24} />
                     </div>
                     <div>
-                        <Heading level={3}>Fee Configuration</Heading>
-                        <Text variant="muted">Set your assignment and dispute resolution fees</Text>
+                        <Heading level={3}>{t("title")}</Heading>
+                        <Text variant="muted">{t("description")}</Text>
                     </div>
                 </div>
             </ModalHeader>
@@ -128,7 +130,7 @@ export function FeeManagementModal({
                         }`}
                 >
                     <Percent size={14} />
-                    Assignment Fee
+                    {t("tabs.assignment")}
                 </button>
                 <button
                     onClick={() => setActiveTab("dispute")}
@@ -138,7 +140,7 @@ export function FeeManagementModal({
                         }`}
                 >
                     <Settings2 size={14} />
-                    Dispute Fee
+                    {t("tabs.dispute")}
                 </button>
             </div>
 
@@ -149,7 +151,7 @@ export function FeeManagementModal({
                             <CardBody className="p-5 space-y-5">
                                 <div className="flex items-center gap-2">
                                     <Percent size={18} className="text-success-500" />
-                                    <span className="text-sm font-bold">Assignment Fee</span>
+                                    <span className="text-sm font-bold">{t("assignmentFee")}</span>
                                 </div>
 
                                 <NumberInput
@@ -169,7 +171,7 @@ export function FeeManagementModal({
                                     isLoading={isLoading && activeAction === "assignment"}
                                     className="w-full"
                                 >
-                                    Update Assignment Fee
+                                    {t("updateAssignmentFee")}
                                 </Button>
                             </CardBody>
                         </Card>
@@ -178,7 +180,7 @@ export function FeeManagementModal({
                             <CardBody className="p-5 space-y-5">
                                 <div className="flex items-center gap-2">
                                     <Settings2 size={18} className="text-primary-500" />
-                                    <span className="text-sm font-bold">Dispute Resolution Fee</span>
+                                    <span className="text-sm font-bold">{t("disputeResolutionFee")}</span>
                                 </div>
 
                                 <NumberInput
@@ -198,7 +200,7 @@ export function FeeManagementModal({
                                     isLoading={isLoading && activeAction === "dispute"}
                                     className="w-full"
                                 >
-                                    Update Dispute Fee
+                                    {t("updateDisputeFee")}
                                 </Button>
                             </CardBody>
                         </Card>
@@ -210,9 +212,9 @@ export function FeeManagementModal({
                     <div className="p-4 rounded-xl flex items-center gap-3 bg-primary-500/5 border border-primary-500/10 text-primary-600 dark:text-primary-400">
                         <Loader2 size={20} className="animate-spin" />
                         <div className="text-sm font-medium">
-                            {isSubmitting && "Waiting for signature..."}
-                            {isConfirming && "Confirming on-chain..."}
-                            {!isSubmitting && !isConfirming && "Indexing update..."}
+                            {isSubmitting && t("status.waitingForSignature")}
+                            {isConfirming && t("status.confirmingOnChain")}
+                            {!isSubmitting && !isConfirming && t("status.indexingUpdate")}
                         </div>
                     </div>
                 )}
@@ -220,7 +222,7 @@ export function FeeManagementModal({
                 {isSuccess && (
                     <div className="p-4 rounded-xl flex items-center gap-3 bg-success-500/5 border border-success-500/10 text-success-600 dark:text-success-400">
                         <CheckCircle2 size={20} />
-                        <div className="text-sm font-medium">Fee updated successfully!</div>
+                        <div className="text-sm font-medium">{t("status.feeUpdated")}</div>
                     </div>
                 )}
 
@@ -228,7 +230,7 @@ export function FeeManagementModal({
                 <div className="p-3 bg-warning-500/5 border border-warning-500/10 rounded-lg flex gap-3">
                     <AlertCircle className="text-warning-500 shrink-0" size={16} />
                     <Text variant="muted" className="text-[10px] leading-relaxed">
-                        Individual transactions required for each update. Protocol limits: 0.1% to 10.0%.
+                        {t("protocolLimits")}
                     </Text>
                 </div>
             </ModalBody>

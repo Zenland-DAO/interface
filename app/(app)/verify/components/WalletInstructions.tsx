@@ -7,6 +7,7 @@
  */
 
 import { User, Shield, CheckCircle2, AlertCircle, Wallet, Info } from "lucide-react";
+import { useTranslations } from "next-intl";
 import { Card, CardBody, Heading, Text, Badge } from "@/components/ui";
 import type { WalletInstructions as WalletInstructionsType, EscrowRole } from "../utils";
 
@@ -74,25 +75,24 @@ function getVariantStyles(variant: WalletInstructionsType["variant"]) {
   }
 }
 
-/**
- * Get role icon and label
- */
-function getRoleDisplay(role: EscrowRole) {
-  switch (role) {
-    case "buyer":
-      return { icon: <User className="w-4 h-4" />, label: "Buyer" };
-    case "seller":
-      return { icon: <User className="w-4 h-4" />, label: "Seller" };
-    case "agent":
-      return { icon: <Shield className="w-4 h-4" />, label: "Agent" };
-    case "none":
-    default:
-      return { icon: <Wallet className="w-4 h-4" />, label: "Viewer" };
-  }
-}
-
 export function WalletInstructions({ instructions, role, isConnected }: WalletInstructionsProps) {
+  const t = useTranslations("verify.walletInstructions");
   const styles = getVariantStyles(instructions.variant);
+
+  const getRoleDisplay = (r: EscrowRole) => {
+    switch (r) {
+      case "buyer":
+        return { icon: <User className="w-4 h-4" />, label: t("roles.buyer") };
+      case "seller":
+        return { icon: <User className="w-4 h-4" />, label: t("roles.seller") };
+      case "agent":
+        return { icon: <Shield className="w-4 h-4" />, label: t("roles.agent") };
+      case "none":
+      default:
+        return { icon: <Wallet className="w-4 h-4" />, label: t("roles.viewer") };
+    }
+  };
+
   const roleDisplay = getRoleDisplay(role);
 
   return (
@@ -112,7 +112,7 @@ export function WalletInstructions({ instructions, role, isConnected }: WalletIn
             ) : (
               <Badge variant="secondary" className="flex items-center gap-1.5">
                 <Wallet className="w-4 h-4" />
-                Not Connected
+                {t("notConnected")}
               </Badge>
             )}
           </div>

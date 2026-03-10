@@ -1,0 +1,31 @@
+{
+  "settings": {
+    "title": "Configuración",
+    "description": "Gestiona las preferencias de tu cuenta",
+    "wallet": {
+      "title": "Billetera",
+      "connectedWallet": "Billetera Conectada",
+      "disconnect": "Desconectar",
+      "network": "Red",
+      "networkDescription": "Cambiar entre mainnet y testnet",
+      "noWallet": "Sin billetera conectada",
+      "noWalletDescription": "Conecta tu billetera para acceder a todas las funciones",
+      "connectWallet": "Conectar Billetera"
+    },
+    "appearance": {
+      "title": "Apariencia",
+      "theme": "Tema",
+      "themeDescription": "Cambiar entre modo claro y oscuro"
+    },
+    "about": {
+      "title": "Acerca de",
+      "version": "Versión",
+      "versionDescription": "Versión actual de la aplicación",
+      "documentation": "Documentación",
+      "github": "GitHub",
+      "termsOfService": "Términos de Servicio",
+      "privacyPolicy": "Política de Privacidad",
+      "support": "Soporte"
+    }
+  }
+}

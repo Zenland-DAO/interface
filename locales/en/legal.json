@@ -8,6 +8,7 @@
       "title": "Terms of Service",
       "lastUpdated": "Last Updated",
       "date": "February 3, 2026",
+      "notice": "Translations are provided for convenience only. In case of any inconsistency, the English version shall prevail.",
       "sections": {
         "introduction": {
           "title": "1. Introduction",
@@ -124,6 +125,7 @@
       "title": "Privacy Policy",
       "lastUpdated": "Last Updated",
       "date": "February 3, 2026",
+      "notice": "Translations are provided for convenience only. In case of any inconsistency, the English version shall prevail.",
       "sections": {
         "introduction": {
           "title": "1. Introduction",
@@ -216,6 +218,7 @@
       "title": "Agent Terms & Conditions",
       "lastUpdated": "Last Updated",
       "date": "February 3, 2026",
+      "notice": "Translations are provided for convenience only. In case of any inconsistency, the English version shall prevail.",
       "importantNotice": {
         "title": "⚠️ Important: Financial Risk Warning",
         "content": "By becoming an agent, you agree to stake collateral that may be permanently slashed if you are found to have acted improperly. Please read these terms carefully before registering as an agent."

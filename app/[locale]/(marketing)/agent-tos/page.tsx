@@ -21,7 +21,8 @@ export async function generateMetadata({ params }: { params: Promise<{ locale: s
  * 
  * Specific terms for agents participating in the Zenland DAO dispute resolution system.
  */
-export default async function AgentTosPage() {
+export default async function AgentTosPage({ params }: { params: Promise<{ locale: string }> }) {
+  const { locale } = await params;
   const t = await getTranslations("legal.agentTos");
 
   return (
@@ -35,6 +36,11 @@ export default async function AgentTosPage() {
           <Text className="text-[var(--text-secondary)]">
             {t("lastUpdated")}: {t("date")}
           </Text>
+          {locale !== "en" && (
+            <Text variant="small" className="mt-3 text-[var(--text-tertiary)]">
+              {t("notice")}
+            </Text>
+          )}
         </div>
 
         {/* Important Notice Banner */}

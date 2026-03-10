@@ -11,6 +11,7 @@
 
 import Link from "next/link";
 import { AlertCircle, ExternalLink, Copy, Clock } from "lucide-react";
+import { useTranslations } from "next-intl";
 import { Badge, Text } from "@/components/ui";
 import { toast } from "sonner";
 
@@ -18,7 +19,6 @@ import {
   type EscrowListItem as EscrowData,
   type UserEscrowRole,
   STATE_COLORS,
-  STATE_LABELS,
   getUserRole,
   getCounterparty,
   getAttentionInfo,
@@ -42,6 +42,7 @@ interface EscrowListItemProps {
 // =============================================================================
 
 function RoleBadge({ role }: { role: UserEscrowRole }) {
+  const t = useTranslations("escrows.roles");
   const roleColors: Record<UserEscrowRole, "primary" | "success" | "warning" | "neutral"> = {
     buyer: "primary",
     seller: "success",
@@ -49,16 +50,9 @@ function RoleBadge({ role }: { role: UserEscrowRole }) {
     observer: "neutral",
   };
 
-  const roleLabels: Record<UserEscrowRole, string> = {
-    buyer: "Buyer",
-    seller: "Seller",
-    agent: "Agent",
-    observer: "Observer",
-  };
-
   return (
     <Badge variant={roleColors[role]} size="sm" className="text-[10px] uppercase tracking-wider font-bold">
-      {roleLabels[role]}
+      {t(role)}
     </Badge>
   );
 }
@@ -87,6 +81,7 @@ function AttentionIndicator({ reason, priority }: { reason: string; priority: "h
 // =============================================================================
 
 function TableRow({ escrow, currentUserAddress }: Omit<EscrowListItemProps, "variant">) {
+  const t = useTranslations("escrows");
   const userRole = getUserRole(escrow, currentUserAddress);
   const counterparty = getCounterparty(escrow, userRole);
   const attentionInfo = getAttentionInfo(escrow, currentUserAddress);
@@ -96,7 +91,7 @@ function TableRow({ escrow, currentUserAddress }: Omit<EscrowListItemProps, "var
     e.preventDefault();
     e.stopPropagation();
     navigator.clipboard.writeText(text);
-    toast.success("Address copied");
+    toast.success(t("list.addressCopied"));
   };
 
   return (
@@ -140,7 +135,7 @@ function TableRow({ escrow, currentUserAddress }: Omit<EscrowListItemProps, "var
             </div>
           ) : (
             <Text variant="muted" className="text-xs italic">
-              {userRole === "agent" ? "Both parties" : "—"}
+              {userRole === "agent" ? t("list.bothParties") : "—"}
             </Text>
           )}
         </td>
@@ -153,7 +148,7 @@ function TableRow({ escrow, currentUserAddress }: Omit<EscrowListItemProps, "var
         {/* State */}
         <td className="px-4 py-3">
           <Badge variant={STATE_COLORS[escrow.state] || "neutral"} size="sm">
-            {STATE_LABELS[escrow.state] || escrow.state}
+            {t(`states.${escrow.state}`)}
           </Badge>
         </td>
 
@@ -168,8 +163,8 @@ function TableRow({ escrow, currentUserAddress }: Omit<EscrowListItemProps, "var
         {/* Action/Attention */}
         <td className="px-4 py-3">
           <div className="flex items-center justify-end gap-2">
-            {attentionInfo.needsAttention && attentionInfo.reason && (
-              <AttentionIndicator reason={attentionInfo.reason} priority={attentionInfo.priority} />
+            {attentionInfo.needsAttention && attentionInfo.reasonKey && (
+              <AttentionIndicator reason={t(`list.attention.${attentionInfo.reasonKey}`)} priority={attentionInfo.priority} />
             )}
             <ExternalLink size={14} className="text-neutral-400 opacity-0 group-hover:opacity-100 transition-opacity" />
           </div>
@@ -184,6 +179,7 @@ function TableRow({ escrow, currentUserAddress }: Omit<EscrowListItemProps, "var
 // =============================================================================
 
 function CardItem({ escrow, currentUserAddress }: Omit<EscrowListItemProps, "variant">) {
+  const t = useTranslations("escrows");
   const userRole = getUserRole(escrow, currentUserAddress);
   const counterparty = getCounterparty(escrow, userRole);
   const attentionInfo = getAttentionInfo(escrow, currentUserAddress);
@@ -204,8 +200,8 @@ function CardItem({ escrow, currentUserAddress }: Omit<EscrowListItemProps, "var
             {formatAddress(escrow.id)}
           </Text>
         </div>
-        {attentionInfo.needsAttention && attentionInfo.reason && (
-          <AttentionIndicator reason={attentionInfo.reason} priority={attentionInfo.priority} />
+        {attentionInfo.needsAttention && attentionInfo.reasonKey && (
+          <AttentionIndicator reason={t(`list.attention.${attentionInfo.reasonKey}`)} priority={attentionInfo.priority} />
         )}
       </div>
 
@@ -213,7 +209,7 @@ function CardItem({ escrow, currentUserAddress }: Omit<EscrowListItemProps, "var
       {counterparty && (
         <div className="mb-3 pb-3 border-b border-[var(--border-secondary)]">
           <Text variant="muted" className="text-[10px] uppercase tracking-wider font-bold mb-1">
-            {userRole === "buyer" ? "Seller" : userRole === "seller" ? "Buyer" : "Counterparty"}
+            {userRole === "buyer" ? t("roles.seller") : userRole === "seller" ? t("roles.buyer") : t("list.tableHeaders.counterparty")}
           </Text>
           <code className="text-xs font-mono text-[var(--text-secondary)]">
             {formatAddress(counterparty)}
@@ -225,7 +221,7 @@ function CardItem({ escrow, currentUserAddress }: Omit<EscrowListItemProps, "var
       <div className="flex items-center justify-between flex-wrap gap-2">
         <div className="flex items-center gap-2">
           <Badge variant={STATE_COLORS[escrow.state] || "neutral"} size="sm">
-            {STATE_LABELS[escrow.state] || escrow.state}
+            {t(`states.${escrow.state}`)}
           </Badge>
           <RoleBadge role={userRole} />
         </div>

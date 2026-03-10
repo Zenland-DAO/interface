@@ -11,9 +11,9 @@
 
 import { Check, Send, RefreshCw, Loader2, Wallet } from "lucide-react";
 
+import { useTranslations } from "next-intl";
 import { Button, Text } from "@/components/ui";
 import { useEscrowDetail } from "../EscrowDetailContext";
-import { ACTION_DESCRIPTIONS } from "../constants";
 import { useWalletAction } from "@/hooks/wallet/useWalletAction";
 
 // =============================================================================
@@ -30,6 +30,7 @@ export interface SellerActionsProps {
 // =============================================================================
 
 export function SellerActions({ onOpenModal }: SellerActionsProps) {
+  const t = useTranslations("escrows");
   const { actions, write, role } = useEscrowDetail();
   const { availableActions } = actions;
   const { isPending, pendingAction, confirmFulfillment } = write;
@@ -67,22 +68,22 @@ export function SellerActions({ onOpenModal }: SellerActionsProps) {
             {isPending && pendingAction === "confirmFulfillment" ? (
               <>
                 <Loader2 size={16} className="animate-spin mr-2" />
-                Confirming...
+                {t("actionProgress.confirming")}
               </>
             ) : isConnected ? (
               <>
                 <Check size={16} className="mr-2" />
-                Confirm Fulfillment
+                {t("actions.confirmFulfillment")}
               </>
             ) : (
               <>
                 <Wallet size={16} className="mr-2" />
-                Connect Wallet
+                {t("actions.connectWallet")}
               </>
             )}
           </Button>
           <Text variant="muted" className="text-xs text-center">
-            {ACTION_DESCRIPTIONS.confirmFulfillment}
+            {t("actionDescriptions.confirmFulfillment")}
           </Text>
         </div>
       )}
@@ -99,22 +100,22 @@ export function SellerActions({ onOpenModal }: SellerActionsProps) {
             {isPending && (pendingAction === "releaseAfterProtection" || pendingAction === "release") ? (
               <>
                 <Loader2 size={16} className="animate-spin mr-2" />
-                Claiming...
+                {t("actionProgress.claiming")}
               </>
             ) : isConnected ? (
               <>
                 <Send size={16} className="mr-2" />
-                Claim Funds
+                {t("actions.releaseAfterProtection")}
               </>
             ) : (
               <>
                 <Wallet size={16} className="mr-2" />
-                Connect Wallet
+                {t("actions.connectWallet")}
               </>
             )}
           </Button>
           <Text variant="muted" className="text-xs text-center">
-            {ACTION_DESCRIPTIONS.releaseAfterProtection}
+            {t("actionDescriptions.releaseAfterProtection")}
           </Text>
         </div>
       )}
@@ -131,22 +132,22 @@ export function SellerActions({ onOpenModal }: SellerActionsProps) {
             {isPending && pendingAction === "sellerRefund" ? (
               <>
                 <Loader2 size={16} className="animate-spin mr-2" />
-                Processing...
+                {t("actionProgress.processing")}
               </>
             ) : isConnected ? (
               <>
                 <RefreshCw size={16} className="mr-2" />
-                Issue Refund
+                {t("actions.sellerRefund")}
               </>
             ) : (
               <>
                 <Wallet size={16} className="mr-2" />
-                Connect Wallet
+                {t("actions.connectWallet")}
               </>
             )}
           </Button>
           <Text variant="muted" className="text-xs text-center">
-            {ACTION_DESCRIPTIONS.sellerRefund}
+            {t("actionDescriptions.sellerRefund")}
           </Text>
         </div>
       )}

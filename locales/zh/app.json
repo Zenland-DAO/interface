@@ -1,0 +1,32 @@
+{
+  "app": {
+    "nav": {
+      "dashboard": "仪表盘",
+      "escrows": "托管合约",
+      "agents": "代理人",
+      "verifyPdf": "验证 PDF"
+    },
+    "header": {
+      "settings": "设置",
+      "disconnect": "断开连接",
+      "connectWallet": "连接钱包",
+      "connect": "连接"
+    },
+    "sidebar": {
+      "banner": {
+        "badge": "Zenland 代理人",
+        "title": "通过解决争议来赚取收益。",
+        "description": "加入去中心化代理人计划，开始赚取手续费。",
+        "cta": "了解更多"
+      }
+    },
+    "userProfile": {
+      "addressCopied": "地址已复制",
+      "addressCopiedDescription": "钱包地址已复制到剪贴板"
+    },
+    "announcement": {
+      "betaMessage": "Zenland V2 正在 Beta 测试中 — 帮助我们做得更好！发现了 Bug 或有反馈意见？",
+      "telegramLink": "Telegram"
+    }
+  }
+}

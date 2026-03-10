@@ -3,6 +3,7 @@
 import { useMemo } from "react";
 import { useRouter } from "next/navigation";
 import { useConnection, useDisconnect } from "wagmi";
+import { useTranslations } from "next-intl";
 import { Wallet, Settings, LogOut, ChevronDown } from "lucide-react";
 import { BaseHeader, Dropdown, DropdownItem, DropdownDivider, ThemeToggle, Logo, Button } from "@/components/ui";
 import { formatAddress } from "@/lib/wagmi/formatAddress";
@@ -20,6 +21,7 @@ export function AppHeader() {
   const { disconnect } = useDisconnect();
   const { openModal } = useWalletModal();
   const router = useRouter();
+  const t = useTranslations("app.header");
   const displayAddress = useMemo(() => formatAddress(address), [address]);
 
   const isConnected = status === "connected";
@@ -56,9 +58,9 @@ export function AppHeader() {
                 </button>
               }
             >
-              <DropdownItem icon={<Settings size={16} />} onClick={() => router.push("/settings")}>Settings</DropdownItem>
+              <DropdownItem icon={<Settings size={16} />} onClick={() => router.push("/settings")}>{t("settings")}</DropdownItem>
               <DropdownDivider />
-              <DropdownItem icon={<LogOut size={16} />} onClick={handleLogout} variant="danger">Disconnect</DropdownItem>
+              <DropdownItem icon={<LogOut size={16} />} onClick={handleLogout} variant="danger">{t("disconnect")}</DropdownItem>
             </Dropdown>
           ) : (
             <Button
@@ -68,8 +70,8 @@ export function AppHeader() {
               className="flex items-center gap-2"
             >
               <Wallet size={16} />
-              <span className="hidden sm:inline">Connect Wallet</span>
-              <span className="sm:hidden">Connect</span>
+              <span className="hidden sm:inline">{t("connectWallet")}</span>
+              <span className="sm:hidden">{t("connect")}</span>
             </Button>
           )}
         </div>

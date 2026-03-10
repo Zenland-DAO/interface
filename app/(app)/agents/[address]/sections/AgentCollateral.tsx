@@ -12,6 +12,7 @@
  */
 
 import { Wallet, TrendingUp } from "lucide-react";
+import { useTranslations } from "next-intl";
 
 import { Card, CardHeader, CardBody, Heading, Text, Icon } from "@/components/ui";
 import { useAgentProfile } from "../AgentProfileContext";
@@ -41,6 +42,7 @@ interface CollateralItem {
 
 export function AgentCollateral() {
   const { agent } = useAgentProfile();
+  const t = useTranslations("agents.profile.collateral");
 
   const maxCoverage = formatAmount(
     BigInt(agent.stablecoinStake) * BigInt(ARBITRAGE_MULTIPLIER),
@@ -50,22 +52,22 @@ export function AgentCollateral() {
 
   const collateralItems: CollateralItem[] = [
     {
-      label: "Stablecoin Stake",
+      label: t("stablecoinStake"),
       value: formatAmount(BigInt(agent.stablecoinStake), agent.stablecoinDecimals || 6),
       unit: "USDT/C",
     },
     {
-      label: "DAO Token Stake",
+      label: t("daoTokenStake"),
       value: formatAmount(BigInt(agent.daoTokenStake), 18, 0),
       unit: "ZEN",
     },
     {
-      label: "Total Earnings",
+      label: t("totalEarnings"),
       value: formatAmount(BigInt(agent.totalEarnings), agent.stablecoinDecimals || 6),
       unit: "USD",
     },
     {
-      label: "Total Slashed",
+      label: t("totalSlashed"),
       value: formatAmount(BigInt(agent.totalSlashed || "0"), agent.stablecoinDecimals || 6, 0),
       unit: "USD",
       isNegative: true,
@@ -77,7 +79,7 @@ export function AgentCollateral() {
       <CardHeader className="border-b border-[var(--border-secondary)]">
         <div className="flex items-center gap-3">
           <Icon icon={Wallet} boxed boxColor="primary" size="sm" />
-          <Heading level={4}>Agent Collateral</Heading>
+          <Heading level={4}>{t("title")}</Heading>
         </div>
       </CardHeader>
       <CardBody className="p-6 space-y-5">
@@ -87,7 +89,7 @@ export function AgentCollateral() {
             <div className="flex items-center gap-2">
               <TrendingUp size={16} className="text-primary-500" />
               <Text variant="caption" className="text-xs font-medium uppercase tracking-wider text-[var(--text-tertiary)]">
-                Max Coverage
+                {t("maxCoverage")}
               </Text>
             </div>
             <Text className="text-xl font-bold text-primary-600 dark:text-primary-400">
@@ -95,7 +97,7 @@ export function AgentCollateral() {
             </Text>
           </div>
           <Text variant="muted" className="text-xs mt-1">
-            Based on stablecoin stake × {ARBITRAGE_MULTIPLIER}
+            {t("maxCoverageNote", { multiplier: ARBITRAGE_MULTIPLIER })}
           </Text>
         </div>
 

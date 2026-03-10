@@ -10,6 +10,7 @@
  */
 
 import { useMemo } from "react";
+import { useTranslations } from "next-intl";
 import {
   Card,
   CardBody,
@@ -77,12 +78,14 @@ interface ProtectionPresetButtonProps {
   preset: (typeof BUYER_PROTECTION_PRESETS)[number];
   isSelected: boolean;
   onClick: () => void;
+  label: string;
 }
 
 function ProtectionPresetButton({
   preset,
   isSelected,
   onClick,
+  label,
 }: ProtectionPresetButtonProps) {
   return (
     <button
@@ -97,7 +100,7 @@ function ProtectionPresetButton({
         }
       `}
     >
-      {preset.label}
+      {label}
     </button>
   );
 }
@@ -116,10 +119,11 @@ function LiveSummary({
   protectionTime,
   hasAgent,
   sellerAddress,
-}: LiveSummaryProps) {
+  t,
+}: LiveSummaryProps & { t: (key: string) => string }) {
   const shortSeller = sellerAddress
     ? `${sellerAddress.slice(0, 6)}...${sellerAddress.slice(-4)}`
-    : "Not set";
+    : t("create.summary.notSet");
 
   return (
     <Card className="sticky top-6">
@@ -127,7 +131,7 @@ function LiveSummary({
         <div className="flex items-center gap-2">
           <Info size={16} className="text-primary-500" />
           <Heading level={5} className="text-sm">
-            Quick Summary
+            {t("create.summary.title")}
           </Heading>
         </div>
       </CardHeader>
@@ -135,7 +139,7 @@ function LiveSummary({
         <div className="space-y-3">
           <div className="flex justify-between items-center">
             <Text variant="muted" className="text-sm">
-              Amount
+              {t("create.summary.amount")}
             </Text>
             <Text className="font-semibold">
               {amount || "0"} {tokenSymbol}
@@ -144,21 +148,21 @@ function LiveSummary({
 
           <div className="flex justify-between items-center">
             <Text variant="muted" className="text-sm">
-              Seller
+              {t("create.summary.seller")}
             </Text>
             <Text className="font-mono text-sm">{shortSeller}</Text>
           </div>
 
           <div className="flex justify-between items-center">
             <Text variant="muted" className="text-sm">
-              Protection
+              {t("create.summary.protection")}
             </Text>
-            <Text className="text-sm">{protectionTime || "Not set"}</Text>
+            <Text className="text-sm">{protectionTime || t("create.summary.notSet")}</Text>
           </div>
 
           <div className="flex justify-between items-center">
             <Text variant="muted" className="text-sm">
-              Agent
+              {t("create.summary.agent")}
             </Text>
             <span
               className={`
@@ -169,7 +173,7 @@ function LiveSummary({
                 }
               `}
             >
-              {hasAgent ? "Assigned" : "Locked"}
+              {hasAgent ? t("create.summary.assigned") : t("create.summary.locked")}
             </span>
           </div>
         </div>
@@ -177,7 +181,7 @@ function LiveSummary({
         {!hasAgent && (
           <div className="p-3 rounded-lg bg-warning-50 dark:bg-warning-900/10 border border-warning-200 dark:border-warning-800">
             <Text className="text-xs text-warning-700 dark:text-warning-400">
-              ⚠️ Without an agent, disputes cannot be resolved.
+              ⚠️ {t("create.summary.noAgentWarning")}
             </Text>
           </div>
         )}
@@ -195,6 +199,7 @@ export interface FormStepProps {
 }
 
 export function FormStep({ form }: FormStepProps) {
+  const t = useTranslations("escrows");
   const {
     formData,
     computed,
@@ -241,8 +246,8 @@ export function FormStep({ form }: FormStepProps) {
           <CardBody className="p-4 sm:p-8 space-y-10">
             {/* Seller Address */}
             <FormSection
-              title="Seller Address"
-              description="The wallet address that will receive payment"
+              title={t("create.sections.sellerAddress")}
+              description={t("create.sections.sellerAddressDesc")}
             >
               <div className="space-y-2">
                 <input
@@ -274,8 +279,8 @@ export function FormStep({ form }: FormStepProps) {
 
             {/* Amount & Token */}
             <FormSection
-              title="Payment Amount"
-              description="The amount to be held in escrow"
+              title={t("create.sections.paymentAmount")}
+              description={t("create.sections.paymentAmountDesc")}
             >
               <div className="flex gap-3">
                 <div className="w-32">
@@ -303,8 +308,8 @@ export function FormStep({ form }: FormStepProps) {
 
             {/* Buyer Protection Time */}
             <FormSection
-              title="Buyer Protection Period"
-              description="Time the buyer has to request a dispute or release funds"
+              title={t("create.sections.buyerProtection")}
+              description={t("create.sections.buyerProtectionDesc")}
             >
               <div className="space-y-4">
                 {/* Preset Buttons */}
@@ -315,6 +320,7 @@ export function FormStep({ form }: FormStepProps) {
                       preset={preset}
                       isSelected={formData.buyerProtectionPreset === preset.value}
                       onClick={() => handlePresetChange(preset.value)}
+                      label={t(`create.protectionPresets.${preset.value}`)}
                     />
                   ))}
                 </div>
@@ -323,13 +329,13 @@ export function FormStep({ form }: FormStepProps) {
                 {formData.buyerProtectionPreset === "custom" && (
                   <div className="animate-slide-down">
                     <NumberInput
-                      label="Custom Duration (days)"
+                      label={t("create.form.customDuration")}
                       value={formData.customProtectionDays}
                       onChange={(val) => setField("customProtectionDays", val)}
                       onBlur={() => setTouched("customProtectionDays")}
-                      placeholder="Enter number of days"
+                      placeholder={t("create.form.enterDays")}
                       suffix="days"
-                      helperText={`Maximum: ${MAX_CUSTOM_PROTECTION_DAYS} days`}
+                      helperText={t("create.form.maxDays", { max: MAX_CUSTOM_PROTECTION_DAYS })}
                       error={errors.customProtectionDays}
                       allowDecimals={false}
                     />
@@ -349,8 +355,8 @@ export function FormStep({ form }: FormStepProps) {
 
             {/* Contract Terms */}
             <FormSection
-              title="Contract Terms"
-              description="Describe the deliverables and conditions for this escrow"
+              title={t("create.sections.contractTerms")}
+              description={t("create.sections.contractTermsDesc")}
             >
               <div className="space-y-2">
                 <MarkdownEditor
@@ -358,7 +364,7 @@ export function FormStep({ form }: FormStepProps) {
                   onChange={(val) => setField("terms", val)}
                   onBlur={() => setTouched("terms")}
                   rows={4}
-                  placeholder="Describe what the seller must deliver, deadlines, quality expectations, etc."
+                  placeholder={t("create.form.termsPlaceholder")}
                   error={errors.terms}
                 />
 
@@ -374,7 +380,7 @@ export function FormStep({ form }: FormStepProps) {
                     )}
                   </div>
                   <Text variant="muted" className="text-xs">
-                    {formData.terms.length} characters
+                    {t("create.form.characters", { count: formData.terms.length })}
                   </Text>
                 </div>
               </div>
@@ -382,8 +388,8 @@ export function FormStep({ form }: FormStepProps) {
 
             {/* Agent Selection */}
             <FormSection
-              title="Dispute Resolution Agent"
-              description="Choose how disputes will be handled"
+              title={t("create.sections.disputeAgent")}
+              description={t("create.sections.disputeAgentDesc")}
             >
               <AgentSelector
                 mode={formData.agentSelectionMode}
@@ -414,7 +420,7 @@ export function FormStep({ form }: FormStepProps) {
               disabled={isConnected && !canProceed}
               rightIcon={isConnected ? <ArrowRight size={18} /> : <Wallet size={18} />}
             >
-              {isConnected ? "Continue to Review" : "Connect Wallet to Continue"}
+              {isConnected ? t("create.form.continueToReview") : t("create.form.connectToContinue")}
             </Button>
           </CardFooter>
         </Card>
@@ -428,6 +434,7 @@ export function FormStep({ form }: FormStepProps) {
           protectionTime={display.protectionTime}
           hasAgent={computed.hasAgent}
           sellerAddress={formData.sellerAddress}
+          t={t}
         />
       </div>
     </div>

@@ -2,6 +2,7 @@
 
 import Link from "next/link";
 import { FileText } from "lucide-react";
+import { useTranslations } from "next-intl";
 import { Card, CardHeader, CardBody, Button, Text, Heading } from "@/components/ui";
 import { EscrowListItem, type EscrowListItemData } from "@/components/app/escrows/list";
 import { useDashboardStats } from "@/hooks/indexer/useDashboardStats";
@@ -26,23 +27,25 @@ function LoadingSkeleton() {
  * Empty state when no escrows are available.
  */
 function EmptyState({ isPersonal }: { isPersonal: boolean }) {
+  const t = useTranslations("dashboard.recentEscrows");
+
   return (
     <div className="py-16 text-center">
       <div className="w-14 h-14 mx-auto mb-6 rounded-full bg-neutral-100 dark:bg-neutral-800 flex items-center justify-center text-[var(--text-tertiary)]">
         <FileText className="w-7 h-7" />
       </div>
       <Heading level={4}>
-        {isPersonal ? "No recent escrows" : "No escrows yet"}
+        {isPersonal ? t("emptyPersonal.title") : t("emptyGlobal.title")}
       </Heading>
       <Text variant="muted" className="mt-2 text-sm max-w-[200px] mx-auto">
         {isPersonal
-          ? "Create your first escrow contract to get started."
-          : "Be the first to create an escrow on Zenland!"}
+          ? t("emptyPersonal.description")
+          : t("emptyGlobal.description")}
       </Text>
       {isPersonal && (
         <Link href="/escrows/new" className="mt-8 inline-block">
           <Button variant="outline" size="sm">
-            Create Escrow
+            {t("emptyPersonal.cta")}
           </Button>
         </Link>
       )}
@@ -55,6 +58,7 @@ function EmptyState({ isPersonal }: { isPersonal: boolean }) {
  * Shows user's or global recent escrows based on view mode.
  */
 export function RecentEscrows() {
+  const t = useTranslations("dashboard.recentEscrows");
   const { stats, isLoading, viewMode, isConnected } = useDashboardStats();
   
   const isPersonal = viewMode === "personal" && isConnected;
@@ -65,13 +69,13 @@ export function RecentEscrows() {
       <CardHeader>
         <div className="flex items-center justify-between">
           <h2 className="text-lg font-semibold text-[var(--text-primary)]">
-            {isPersonal ? "Recent Escrows" : "Latest Escrows"}
+            {isPersonal ? t("titlePersonal") : t("titleGlobal")}
           </h2>
           <Link
             href="/escrows"
             className="text-sm text-[var(--color-primary-500)] hover:underline"
           >
-            View all
+            {t("viewAll")}
           </Link>
         </div>
       </CardHeader>

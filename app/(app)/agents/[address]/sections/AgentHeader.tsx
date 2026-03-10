@@ -14,6 +14,7 @@
 import Link from "next/link";
 import { useState } from "react";
 import { Copy, CheckCircle2, ExternalLink, Activity, Crown } from "lucide-react";
+import { useTranslations } from "next-intl";
 
 import { Button, Badge, Card, CardBody, Heading, Text, toast } from "@/components/ui";
 import { useAgentProfile } from "../AgentProfileContext";
@@ -34,12 +35,13 @@ function formatJoinDate(timestamp: string | null): string {
 
 export function AgentHeader() {
   const { agent, isOwnProfile, isSelectMode, onSelectAgent } = useAgentProfile();
+  const t = useTranslations("agents.profile.header");
   const [isCopying, setIsCopying] = useState(false);
 
   const copyAddress = () => {
     navigator.clipboard.writeText(agent.id);
     setIsCopying(true);
-    toast.success("Address copied to clipboard");
+    toast.success(t("addressCopied"));
     setTimeout(() => setIsCopying(false), 2000);
   };
 
@@ -58,7 +60,7 @@ export function AgentHeader() {
             {isOwnProfile && (
               <div className="absolute -top-2 -left-2 px-2 py-0.5 rounded-md bg-warning-100 dark:bg-warning-900/30 text-[10px] font-bold text-warning-700 dark:text-warning-400 border border-warning-200 dark:border-warning-800 flex items-center gap-1">
                 <Crown size={10} />
-                YOU
+                {t("you")}
               </div>
             )}
           </div>
@@ -71,11 +73,11 @@ export function AgentHeader() {
                 {shortAddress}
               </Heading>
               <Badge variant={agent.isActive ? "success" : "neutral"} size="sm">
-                {agent.isActive ? "Active" : "Inactive"}
+                {agent.isActive ? t("active") : t("inactive")}
               </Badge>
               {!agent.isAvailable && agent.isActive && (
                 <Badge variant="warning" size="sm">
-                  Unavailable
+                  {t("unavailable")}
                 </Badge>
               )}
             </div>
@@ -98,7 +100,7 @@ export function AgentHeader() {
             {/* Join date */}
             {joinDate && (
               <Text variant="muted" className="text-sm">
-                Joined {joinDate}
+                {t("joined", { date: joinDate })}
               </Text>
             )}
           </div>
@@ -108,7 +110,7 @@ export function AgentHeader() {
             {isOwnProfile ? (
               <Link href="/agents/dashboard" className="w-full sm:w-auto">
                 <Button variant="primary" leftIcon={<Activity size={16} />} className="w-full sm:w-auto">
-                  Go to Dashboard
+                  {t("goToDashboard")}
                 </Button>
               </Link>
             ) : (
@@ -118,12 +120,12 @@ export function AgentHeader() {
                 leftIcon={<CheckCircle2 size={16} />}
                 className="w-full sm:w-auto"
               >
-                Select Agent
+                {t("selectAgent")}
               </Button>
             )}
             {!isSelectMode && (
               <Button variant="outline" leftIcon={<ExternalLink size={16} />} className="w-full sm:w-auto">
-                View on Explorer
+                {t("viewOnExplorer")}
               </Button>
             )}
           </div>

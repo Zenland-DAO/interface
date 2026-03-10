@@ -3,8 +3,8 @@
     "nav": {
       "features": "Características",
       "howItWorks": "Cómo Funciona",
-      "stats": "Stats",
-      "community": "Community",
+      "stats": "Estadísticas",
+      "community": "Comunidad",
       "blog": "Blog"
     },
     "buttons": {
@@ -20,14 +20,14 @@
           "title": "Producto",
           "features": "Características",
           "howItWorks": "Cómo Funciona",
-          "community": "Community",
+          "community": "Comunidad",
           "faq": "Preguntas Frecuentes"
         },
         "resources": {
           "title": "Recursos",
           "documentation": "Documentación",
           "apiReference": "API",
-          "contracts": "Contracts",
+          "contracts": "Contratos",
           "blog": "Blog"
         },
         "legal": {
@@ -47,6 +47,25 @@
         "text": "Zenland es un protocolo de código disponible gobernado por su comunidad a través de Zenland DAO — no es una empresa financiera registrada. El protocolo opera 100% sin custodia: los fondos van directamente a contratos inteligentes auditados en Ethereum. Ninguna persona o entidad tiene acceso a tus fondos. Dado que nadie puede acceder o controlar los fondos depositados, no se requiere licencia de escrow.",
         "verifyCode": "Verificar el código",
         "learnMore": "Más información"
+      }
+    },
+    "wallet": {
+      "title": "Conectar Billetera",
+      "subtitle": "Elige tu billetera para continuar",
+      "recommended": "Recomendada",
+      "otherWallets": "Otras Billeteras",
+      "connecting": "Conectando…",
+      "showMore": "Mostrar {count} billetera más",
+      "showMorePlural": "Mostrar {count} billeteras más",
+      "noWalletsDetected": "No se detectaron billeteras",
+      "installWallet": "Por favor instala una billetera Web3 para continuar",
+      "sponsoredDescription": "Conectar con transacciones sin gas",
+      "defaultDescription": "Conectar con extensión del navegador",
+      "sponsorBadge": "Patrocinada por Zenland — Sin comisiones de gas",
+      "footer": "Al conectarte, aceptas nuestros <terms>Términos</terms> y <privacy>Política de Privacidad</privacy>",
+      "errors": {
+        "timedOut": "La conexión ha expirado. Por favor, inténtalo de nuevo.",
+        "cancelled": "La conexión fue cancelada. Por favor, inténtalo de nuevo."
       }
     },
     "accessibility": {

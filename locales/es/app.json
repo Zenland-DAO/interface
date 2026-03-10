@@ -1,0 +1,32 @@
+{
+  "app": {
+    "nav": {
+      "dashboard": "Panel",
+      "escrows": "Escrows",
+      "agents": "Agentes",
+      "verifyPdf": "Verificar PDF"
+    },
+    "header": {
+      "settings": "Configuración",
+      "disconnect": "Desconectar",
+      "connectWallet": "Conectar Billetera",
+      "connect": "Conectar"
+    },
+    "sidebar": {
+      "banner": {
+        "badge": "Agente Zenland",
+        "title": "Gana resolviendo disputas.",
+        "description": "Únete al programa de agentes descentralizado y comienza a ganar comisiones.",
+        "cta": "Más Información"
+      }
+    },
+    "userProfile": {
+      "addressCopied": "Dirección Copiada",
+      "addressCopiedDescription": "Dirección de la billetera copiada al portapapeles"
+    },
+    "announcement": {
+      "betaMessage": "Zenland V2 está en Beta — ¡ayúdanos a mejorarlo! ¿Encontraste un error o tienes comentarios?",
+      "telegramLink": "Telegram"
+    }
+  }
+}

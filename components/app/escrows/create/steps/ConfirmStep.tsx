@@ -8,6 +8,7 @@
  * Shows a summary and the submit button.
  */
 
+import { useTranslations } from "next-intl";
 import {
   Card,
   CardBody,
@@ -53,9 +54,10 @@ function QuickSummaryItem({ label, value, highlight }: QuickSummaryItemProps) {
 interface TransactionStatusProps {
   isPending: boolean;
   error: string | null;
+  t: (key: string) => string;
 }
 
-function TransactionStatus({ isPending, error }: TransactionStatusProps) {
+function TransactionStatus({ isPending, error, t }: TransactionStatusProps) {
   if (error) {
     return (
       <div className="p-5 rounded-2xl bg-error-50 dark:bg-error-900/10 border border-error-200 dark:border-error-800 shadow-sm animate-in fade-in slide-in-from-top-2 duration-300">
@@ -65,7 +67,7 @@ function TransactionStatus({ isPending, error }: TransactionStatusProps) {
           </div>
           <div className="flex-1 min-w-0">
             <Text className="font-semibold text-error-800 dark:text-error-200">
-              Transaction Failed
+              {t("create.confirm.transactionFailed")}
             </Text>
             <Text className="text-sm mt-1 text-error-700/80 dark:text-error-300/80 leading-relaxed">
               {error}
@@ -83,10 +85,10 @@ function TransactionStatus({ isPending, error }: TransactionStatusProps) {
           <Loader2 size={20} className="text-primary-500 animate-spin" />
           <div>
             <Text className="font-medium text-primary-700 dark:text-primary-300">
-              Creating Escrow...
+              {t("create.confirm.creatingEscrow")}
             </Text>
             <Text variant="muted" className="text-xs">
-              Please confirm the transaction in your wallet
+              {t("create.approve.confirmInWallet")}
             </Text>
           </div>
         </div>
@@ -106,6 +108,7 @@ export interface ConfirmStepProps {
 }
 
 export function ConfirmStep({ form }: ConfirmStepProps) {
+  const t = useTranslations("escrows");
   const {
     formData,
     computed,
@@ -132,14 +135,14 @@ export function ConfirmStep({ form }: ConfirmStepProps) {
           {/* Quick Summary */}
           <div className="space-y-1 pb-4 border-b border-[var(--border-secondary)]">
             <QuickSummaryItem
-              label="Amount"
+              label={t("create.confirm.amount")}
               value={`${display.amount} ${display.tokenSymbol}`}
               highlight
             />
-            <QuickSummaryItem label="Seller" value={shortSeller} />
-            <QuickSummaryItem label="Protection" value={display.protectionTime} />
+            <QuickSummaryItem label={t("create.confirm.seller")} value={shortSeller} />
+            <QuickSummaryItem label={t("create.confirm.protection")} value={display.protectionTime} />
             <QuickSummaryItem
-              label="Total Cost"
+              label={t("create.confirm.totalCost")}
               value={`${display.totalAmount} ${display.tokenSymbol}`}
               highlight
             />
@@ -151,10 +154,10 @@ export function ConfirmStep({ form }: ConfirmStepProps) {
               <Shield size={20} className="text-success-600 dark:text-success-400" />
               <div>
                 <Text className="text-sm font-medium text-success-800 dark:text-success-200">
-                  Protected Escrow
+                  {t("create.confirm.protectedEscrow")}
                 </Text>
                 <Text variant="muted" className="text-xs">
-                  Agent assigned for dispute resolution
+                  {t("create.confirm.protectedDesc")}
                 </Text>
               </div>
             </div>
@@ -163,11 +166,10 @@ export function ConfirmStep({ form }: ConfirmStepProps) {
               <AlertTriangle size={20} className="text-warning-600 dark:text-warning-400 mt-0.5" />
               <div>
                 <Text className="text-sm font-medium text-warning-800 dark:text-warning-200">
-                  Locked Escrow Warning
+                  {t("create.confirm.lockedWarning")}
                 </Text>
                 <Text variant="muted" className="text-xs mt-1">
-                  No agent assigned. Disputes cannot be resolved.
-                  Funds may be permanently locked if parties disagree.
+                  {t("create.confirm.lockedWarningDesc")}
                 </Text>
               </div>
             </div>
@@ -179,7 +181,7 @@ export function ConfirmStep({ form }: ConfirmStepProps) {
               <Wallet size={20} className="text-[var(--text-tertiary)]" />
               <div className="flex-1 min-w-0">
                 <Text variant="muted" className="text-xs">
-                  Escrow will be deployed at
+                  {t("create.confirm.deployedAt")}
                 </Text>
                 <Text className="font-mono text-xs truncate">
                   {display.predictedAddress}
@@ -189,7 +191,7 @@ export function ConfirmStep({ form }: ConfirmStepProps) {
           )}
 
           {/* Transaction Status */}
-          <TransactionStatus isPending={isPending} error={submitError} />
+          <TransactionStatus isPending={isPending} error={submitError} t={t} />
 
           {!isPending && !submitError && isBlockedByBalance && tokenApproval.balanceError && (
             <div className="p-4 rounded-xl bg-error-50 dark:bg-error-900/10 border border-error-200 dark:border-error-800">
@@ -197,7 +199,7 @@ export function ConfirmStep({ form }: ConfirmStepProps) {
                 <AlertTriangle size={20} className="text-error-500 mt-0.5" />
                 <div>
                   <Text className="font-medium text-error-700 dark:text-error-300">
-                    Insufficient Balance
+                    {t("create.confirm.insufficientBalance")}
                   </Text>
                   <Text variant="muted" className="text-xs mt-1">
                     {tokenApproval.balanceError}
@@ -211,7 +213,7 @@ export function ConfirmStep({ form }: ConfirmStepProps) {
           {!isPending && !submitError && (
             <div className="space-y-4">
               <Text variant="muted" className="text-xs font-semibold uppercase tracking-widest text-[var(--text-tertiary)]">
-                What happens next
+                {t("create.confirm.whatHappensNext")}
               </Text>
               <div className="space-y-3">
                 <div className="flex items-start gap-3">
@@ -219,7 +221,7 @@ export function ConfirmStep({ form }: ConfirmStepProps) {
                     <CheckCircle2 size={12} className="text-primary-500" />
                   </div>
                   <Text variant="small" className="text-sm">
-                    Your escrow contract will be deployed on-chain
+                    {t("create.confirm.deployedOnChain")}
                   </Text>
                 </div>
                 <div className="flex items-start gap-3">
@@ -227,7 +229,7 @@ export function ConfirmStep({ form }: ConfirmStepProps) {
                     <CheckCircle2 size={12} className="text-primary-500" />
                   </div>
                   <Text variant="small" className="text-sm">
-                    Funds will be transferred from your wallet to the escrow
+                    {t("create.confirm.fundsTransferred")}
                   </Text>
                 </div>
                 <div className="flex items-start gap-3">
@@ -235,7 +237,7 @@ export function ConfirmStep({ form }: ConfirmStepProps) {
                     <CheckCircle2 size={12} className="text-primary-500" />
                   </div>
                   <Text variant="small" className="text-sm">
-                    The seller will be notified and can start work
+                    {t("create.confirm.sellerNotified")}
                   </Text>
                 </div>
               </div>
@@ -253,7 +255,7 @@ export function ConfirmStep({ form }: ConfirmStepProps) {
             isLoading={isPending}
             leftIcon={!isPending ? <Rocket size={20} /> : undefined}
           >
-            {isPending ? "Creating Escrow..." : "Create Escrow"}
+            {isPending ? t("create.confirm.creatingEscrowBtn") : t("create.confirm.createEscrow")}
           </Button>
         </CardFooter>
       </Card>
@@ -261,9 +263,9 @@ export function ConfirmStep({ form }: ConfirmStepProps) {
       {/* Additional Info */}
       <div className="mt-4 text-center">
         <Text variant="muted" className="text-xs">
-          By creating this escrow, you agree to the{" "}
+          {t("create.confirm.termsAgreement")}{" "}
           <Link href="/terms" className="text-primary-500 hover:underline">
-            Terms of Service
+            {t("create.confirm.termsOfService")}
           </Link>
         </Text>
       </div>

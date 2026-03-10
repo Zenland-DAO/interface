@@ -4,7 +4,8 @@ export type AppNavItemId = "dashboard" | "escrows" | "agents" | "verify";
 
 export type AppNavItem = {
   id: AppNavItemId;
-  label: string;
+  /** i18n key under the "app.nav" namespace (e.g. "dashboard" → t("dashboard")) */
+  labelKey: string;
   href: string;
   icon: ReactNode;
 };
@@ -92,26 +93,26 @@ function IconShieldCheck() {
 export const APP_NAV_ITEMS: readonly AppNavItem[] = [
   {
     id: "dashboard",
-    label: "Dashboard",
+    labelKey: "dashboard",
     // In this codebase `/app` exports the dashboard page (see `app/(app)/app/page.tsx`).
     href: "/app",
     icon: <IconHome />,
   },
   {
     id: "escrows",
-    label: "Escrows",
+    labelKey: "escrows",
     href: "/escrows",
     icon: <IconDocument />,
   },
   {
     id: "agents",
-    label: "Agents",
+    labelKey: "agents",
     href: "/agents",
     icon: <IconUsers />,
   },
   {
     id: "verify",
-    label: "Verify PDF",
+    labelKey: "verifyPdf",
     href: "/verify",
     icon: <IconShieldCheck />,
   },

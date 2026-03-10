@@ -1,0 +1,155 @@
+{
+  "verify": {
+    "title": "Verificar PDF",
+    "description": "Sube un PDF de acuerdo escrow de Zenland para verificar su autenticidad y comprobar si coincide con el registro en la blockchain.",
+    "infoCard": {
+      "title": "¿Qué verifica esta herramienta?",
+      "signatureAuth": "Autenticidad de la firma digital de Zenland",
+      "contentIntegrity": "Integridad del contenido del PDF (detección de alteraciones)",
+      "onChainMatch": "Coincidencia del termsHash en la blockchain",
+      "roleGuidance": "Instrucciones según tu rol en el contrato"
+    },
+    "signatureFailed": {
+      "title": "PDF Inválido",
+      "description": "Este PDF no es un acuerdo escrow válido de Zenland",
+      "reason": "Motivo:",
+      "tryAnother": "Probar con Otro PDF"
+    },
+    "dropZone": {
+      "verifying": "Verificando...",
+      "dropHere": "Arrastra tu PDF aquí",
+      "pleaseWait": "Por favor espera mientras verificamos tu documento",
+      "orClickToBrowse": "o haz clic para buscar. Solo se admiten PDFs de escrow de Zenland.",
+      "pdfOnly": "Solo archivos PDF"
+    },
+    "status": {
+      "loading": {
+        "title": "Verificando en la blockchain...",
+        "description": "Consultando datos del contrato en la blockchain"
+      },
+      "hashMatch": {
+        "title": "Verificado ✓",
+        "description": "Este PDF coincide con el registro del contrato en la blockchain",
+        "signedBy": "Firmado por Zenland"
+      },
+      "notDeployed": {
+        "title": "Contrato No Desplegado",
+        "description": "Este PDF fue firmado por Zenland, pero el contrato no existe en la blockchain.",
+        "warningTitle": "ESTE NO ES UN CONTRATO ACTIVO",
+        "warningDescription": "No envíes fondos ni bienes basándote en este PDF. El contrato debe ser desplegado primero."
+      },
+      "hashMismatch": {
+        "title": "🚨 Hash No Coincide - Posible Estafa",
+        "description": "Este PDF no coincide con el registro del contrato en la blockchain. El documento puede haber sido alterado.",
+        "pdfHash": "Hash del PDF (este documento)",
+        "onChainHash": "Hash en la Blockchain (esperado)",
+        "warningTitle": "⛔ NO CONFÍES EN ESTE DOCUMENTO",
+        "warningDescription": "Esto podría ser una estafa o una versión desactualizada/modificada del contrato. Solo confía en documentos que coincidan con el hash en la blockchain."
+      },
+      "error": {
+        "title": "Error de Verificación"
+      }
+    },
+    "escrowDetails": {
+      "title": "Detalles del Escrow",
+      "escrowAddress": "Dirección del Escrow",
+      "network": "Red",
+      "buyer": "Comprador",
+      "seller": "Vendedor",
+      "agent": "Agente",
+      "noAgent": "Sin Agente (Bloqueado)",
+      "lockStatus": "Estado de Bloqueo",
+      "locked": "Bloqueado",
+      "unlocked": "Desbloqueado",
+      "amount": "Monto",
+      "buyerProtection": "Protección del Comprador",
+      "viewEscrow": "Ver Detalles del Escrow",
+      "verifyAnother": "Verificar Otro"
+    },
+    "walletInstructions": {
+      "roles": {
+        "buyer": "Comprador",
+        "seller": "Vendedor",
+        "agent": "Agente",
+        "viewer": "Observador"
+      },
+      "notConnected": "No Conectado"
+    },
+    "instructions": {
+      "contractCompleted": {
+        "title": "Contrato Completado",
+        "description": "Este contrato ha sido completado y finalizado."
+      },
+      "contractNotFound": {
+        "title": "Contrato No Encontrado",
+        "description": "Este contrato no ha sido desplegado en la blockchain. No hay acciones disponibles."
+      },
+      "contractActive": {
+        "title": "Contrato Activo",
+        "description": "Este contrato está en curso."
+      },
+      "connectWallet": {
+        "title": "Conectar Billetera",
+        "description": "Conecta tu billetera para recibir instrucciones personalizadas según tu rol en este contrato."
+      },
+      "notParticipant": {
+        "title": "No Eres Participante",
+        "description": "Tu billetera conectada no participa en este contrato. Estás viendo como tercero."
+      },
+      "buyer": {
+        "pending": {
+          "title": "Esperando al Vendedor",
+          "description": "El vendedor debe revisar y aceptar este contrato. Contáctalo para confirmar su participación."
+        },
+        "active": {
+          "title": "Contrato Activo",
+          "description": "El contrato está activo. Espera a que el vendedor entregue, luego libera los fondos cuando estés satisfecho."
+        },
+        "fulfilled": {
+          "title": "Entrega Confirmada",
+          "description": "El vendedor ha confirmado la entrega. Revisa la entrega y libera los fondos si estás satisfecho."
+        },
+        "disputed": {
+          "title": "Disputa Abierta",
+          "description": "Has abierto una disputa. Puedes invitar al agente para resolverla o proponer un acuerdo."
+        },
+        "agentInvited": {
+          "title": "Agente Investigando",
+          "description": "El agente ha sido invitado a resolver esta disputa. Espera su decisión."
+        }
+      },
+      "seller": {
+        "pending": {
+          "title": "Acción Requerida",
+          "description": "Este contrato espera tu confirmación. Revisa los términos cuidadosamente y acepta para activar el escrow."
+        },
+        "active": {
+          "title": "Seguro para Entregar",
+          "description": "El contrato está activo y los fondos están bloqueados. Es seguro entregar el producto o servicio. Los fondos no pueden ser retirados excepto mediante las reglas del contrato."
+        },
+        "fulfilled": {
+          "title": "Esperando Liberación",
+          "description": "Has confirmado la entrega. Esperando que el comprador libere los fondos. Si no los libera dentro del período de protección, puedes reclamarlos."
+        },
+        "disputed": {
+          "title": "Disputa Abierta",
+          "description": "Se ha abierto una disputa. Puedes invitar al agente para resolverla, proponer un acuerdo o emitir un reembolso."
+        },
+        "agentInvited": {
+          "title": "Agente Investigando",
+          "description": "El agente ha sido invitado a resolver esta disputa. Espera su decisión."
+        }
+      },
+      "agent": {
+        "invited": {
+          "title": "Acción Requerida",
+          "description": "Eres el agente. Este contrato espera tu investigación y resolución. Revisa las pruebas y toma una decisión justa."
+        },
+        "assigned": {
+          "title": "Agente Asignado",
+          "description": "Eres el agente asignado para este contrato. Las partes aún no te han invitado a resolver una disputa."
+        }
+      }
+    }
+  }
+}

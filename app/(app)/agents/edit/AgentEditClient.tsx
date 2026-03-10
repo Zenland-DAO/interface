@@ -2,6 +2,7 @@
 
 import { useAgent } from "@/hooks";
 import { useConnection } from "wagmi";
+import { useTranslations } from "next-intl";
 import { ProfileEditForm } from "@/components/app/agents/edit/ProfileEditForm";
 import { Card, CardBody, Heading, Text, Button } from "@/components/ui";
 import { AlertCircle, ChevronLeft, Shield } from "lucide-react";
@@ -26,6 +27,7 @@ function AgentEditClientContent() {
   const { data: agent, isLoading, error } = useAgent(address || "");
   const searchParams = useSearchParams();
   const mode = (searchParams.get("mode") as "profile" | "fees") || "profile";
+  const t = useTranslations("agents.edit");
 
   if (!isConnected) {
     return (
@@ -33,9 +35,9 @@ function AgentEditClientContent() {
         <div className="w-20 h-20 rounded-full bg-primary-500/10 flex items-center justify-center text-primary-500 mb-6">
           <Shield size={40} />
         </div>
-        <Heading level={2} className="mb-2">Connect Your Wallet</Heading>
+        <Heading level={2} className="mb-2">{t("connectWallet.title")}</Heading>
         <Text variant="muted" className="mb-8 max-w-md">
-          Please connect your wallet to manage your agent profile.
+          {t("connectWallet.description")}
         </Text>
       </div>
     );
@@ -59,13 +61,13 @@ function AgentEditClientContent() {
               <AlertCircle size={40} />
             </div>
             <div className="space-y-2">
-              <Heading level={3}>Not an Agent</Heading>
+              <Heading level={3}>{t("notAgent.title")}</Heading>
               <Text variant="muted">
-                You are not currently registered as an agent. You must register before you can edit your profile.
+                {t("notAgent.description")}
               </Text>
             </div>
             <Link href="/agents/register">
-              <Button variant="primary">Become an Agent</Button>
+              <Button variant="primary">{t("notAgent.becomeAgent")}</Button>
             </Link>
           </CardBody>
         </Card>
@@ -82,15 +84,15 @@ function AgentEditClientContent() {
           className="text-sm text-[var(--text-secondary)] hover:text-[var(--text-primary)] inline-flex items-center gap-1 transition-colors"
         >
           <ChevronLeft size={16} />
-          Back to Dashboard
+          {t("backToDashboard")}
         </Link>
         <h1 className="text-2xl font-bold text-[var(--text-primary)] mt-2">
-          {mode === "fees" ? "Configure Fees" : "Edit Profile"}
+          {mode === "fees" ? t("configureFees") : t("editProfile")}
         </h1>
         <p className="text-[var(--text-secondary)] mt-1">
           {mode === "fees"
-            ? "Set your assignment and dispute resolution fees"
-            : "Update your professional summary and contact information on-chain"
+            ? t("configureFeesDesc")
+            : t("editProfileDesc")
           }
         </p>
       </div>

@@ -16,6 +16,7 @@ import {
   FileCheck,
   RefreshCw,
 } from "lucide-react";
+import { useTranslations } from "next-intl";
 import {
   Card,
   CardBody,
@@ -68,6 +69,7 @@ async function copyToClipboard(text: string): Promise<boolean> {
 }
 
 export function EscrowDetails({ envelope, onReset, showActions = true }: EscrowDetailsProps) {
+  const t = useTranslations("verify.escrowDetails");
   const escrow = envelope.escrow;
   const chainName = getChainName(escrow.chainId);
   const [copiedField, setCopiedField] = useState<string | null>(null);
@@ -85,7 +87,7 @@ export function EscrowDetails({ envelope, onReset, showActions = true }: EscrowD
       <CardHeader>
         <div className="flex items-center gap-2">
           <Shield className="w-5 h-5 text-primary-500" />
-          <Heading level={4}>Escrow Details</Heading>
+          <Heading level={4}>{t("title")}</Heading>
         </div>
       </CardHeader>
       <CardBody>
@@ -93,7 +95,7 @@ export function EscrowDetails({ envelope, onReset, showActions = true }: EscrowD
           {/* Escrow Address */}
           <div className="space-y-1">
             <Text variant="small" className="text-neutral-500">
-              Escrow Address
+              {t("escrowAddress")}
             </Text>
             <div className="flex items-center gap-2">
               <code className="text-sm font-mono">
@@ -125,7 +127,7 @@ export function EscrowDetails({ envelope, onReset, showActions = true }: EscrowD
           {/* Network */}
           <div className="space-y-1">
             <Text variant="small" className="text-neutral-500">
-              Network
+              {t("network")}
             </Text>
             <Badge variant="secondary">{chainName}</Badge>
           </div>
@@ -133,7 +135,7 @@ export function EscrowDetails({ envelope, onReset, showActions = true }: EscrowD
           {/* Buyer */}
           <div className="space-y-1">
             <Text variant="small" className="text-neutral-500">
-              Buyer
+              {t("buyer")}
             </Text>
             <div className="flex items-center gap-2">
               <code className="text-sm font-mono">
@@ -156,7 +158,7 @@ export function EscrowDetails({ envelope, onReset, showActions = true }: EscrowD
           {/* Seller */}
           <div className="space-y-1">
             <Text variant="small" className="text-neutral-500">
-              Seller
+              {t("seller")}
             </Text>
             <div className="flex items-center gap-2">
               <code className="text-sm font-mono">
@@ -179,7 +181,7 @@ export function EscrowDetails({ envelope, onReset, showActions = true }: EscrowD
           {/* Agent */}
           <div className="space-y-1">
             <Text variant="small" className="text-neutral-500">
-              Agent
+              {t("agent")}
             </Text>
             {escrow.agent ? (
               <div className="flex items-center gap-2">
@@ -199,24 +201,24 @@ export function EscrowDetails({ envelope, onReset, showActions = true }: EscrowD
                 </button>
               </div>
             ) : (
-              <Badge variant="warning">No Agent (Locked)</Badge>
+              <Badge variant="warning">{t("noAgent")}</Badge>
             )}
           </div>
 
           {/* Lock Status */}
           <div className="space-y-1">
             <Text variant="small" className="text-neutral-500">
-              Lock Status
+              {t("lockStatus")}
             </Text>
             <Badge variant={escrow.isLocked ? "warning" : "success"}>
-              {escrow.isLocked ? "Locked" : "Unlocked"}
+              {escrow.isLocked ? t("locked") : t("unlocked")}
             </Badge>
           </div>
 
           {/* Amount */}
           <div className="space-y-1">
             <Text variant="small" className="text-neutral-500">
-              Amount
+              {t("amount")}
             </Text>
             <Text className="font-medium">
               {escrow.amount} {escrow.token.symbol}
@@ -226,7 +228,7 @@ export function EscrowDetails({ envelope, onReset, showActions = true }: EscrowD
           {/* Buyer Protection */}
           <div className="space-y-1">
             <Text variant="small" className="text-neutral-500">
-              Buyer Protection
+              {t("buyerProtection")}
             </Text>
             <Text>{formatDuration(escrow.timeouts.buyerProtectionTime)}</Text>
           </div>
@@ -238,12 +240,12 @@ export function EscrowDetails({ envelope, onReset, showActions = true }: EscrowD
           <Link href={`/escrows/${escrow.escrowAddress}`} className="flex-1">
             <Button variant="primary" className="w-full">
               <FileCheck className="w-4 h-4 mr-2" />
-              View Escrow Details
+              {t("viewEscrow")}
             </Button>
           </Link>
           <Button variant="outline" onClick={onReset} className="flex-1 sm:flex-none">
             <RefreshCw className="w-4 h-4 mr-2" />
-            Verify Another
+            {t("verifyAnother")}
           </Button>
         </CardFooter>
       )}

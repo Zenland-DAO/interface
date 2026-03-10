@@ -10,6 +10,7 @@
 
 import { UserCheck, Clock, AlertTriangle } from "lucide-react";
 
+import { useTranslations } from "next-intl";
 import { Card, CardBody, Text } from "@/components/ui";
 import { useEscrowDetail } from "../EscrowDetailContext";
 import { formatRemainingTime } from "../hooks/useEscrowTimers";
@@ -37,6 +38,7 @@ function formatDeadline(timestamp: number): string {
 // =============================================================================
 
 export function EscrowAgentTimer() {
+  const t = useTranslations("escrows.detail.agentTimer");
   const { escrow, timers } = useEscrowDetail();
   const { agentTimer } = timers;
 
@@ -79,9 +81,9 @@ export function EscrowAgentTimer() {
               )}
             </div>
             <div className="flex-1 min-w-0">
-              <Text className="font-semibold text-sm">Agent Response</Text>
+              <Text className="font-semibold text-sm">{t("title")}</Text>
               <Text variant="muted" className="text-xs">
-                Waiting for agent to resolve
+                {t("waiting")}
               </Text>
             </div>
           </div>
@@ -92,7 +94,7 @@ export function EscrowAgentTimer() {
               variant="muted"
               className="text-xs uppercase font-bold tracking-wider"
             >
-              {isExpired ? "Response deadline passed" : "Response deadline"}
+              {isExpired ? t("deadlinePassed") : t("deadline")}
             </Text>
             <Text className="font-semibold text-sm">
               {formatDeadline(expiryTimestamp)}
@@ -129,7 +131,7 @@ export function EscrowAgentTimer() {
                 }`}
               >
                 {isExpired
-                  ? "Agent did not respond in time"
+                  ? t("notRespondedInTime")
                   : formatRemainingTime(remainingSeconds)}
               </Text>
             </div>
@@ -142,7 +144,7 @@ export function EscrowAgentTimer() {
                 variant="muted"
                 className="text-xs text-warning-600 dark:text-warning-400"
               >
-                You can claim the agent timeout to return to disputed state.
+                {t("canClaimTimeout")}
               </Text>
             </div>
           )}
@@ -150,7 +152,7 @@ export function EscrowAgentTimer() {
           {!isExpired && (
             <div className="pt-2 border-t border-[var(--border-secondary)]">
               <Text variant="muted" className="text-xs">
-                The agent must resolve the dispute before the deadline.
+                {t("mustResolve")}
               </Text>
             </div>
           )}

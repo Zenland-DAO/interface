@@ -2,6 +2,7 @@
 
 import Link from "next/link";
 import { usePathname } from "next/navigation";
+import { useTranslations } from "next-intl";
 
 import { Logo } from "@/components/ui";
 import { ConnectedWallet } from "@/components/wallet";
@@ -24,6 +25,7 @@ function isActivePath(pathname: string, href: string) {
 
 export function AppSidebar({ onNavigate }: AppSidebarProps) {
   const pathname = usePathname();
+  const t = useTranslations("app.nav");
 
   return (
     <aside className="flex flex-col h-full w-full overflow-hidden border-r border-[var(--border-secondary)] bg-[var(--bg-secondary)]">
@@ -57,7 +59,7 @@ export function AppSidebar({ onNavigate }: AppSidebarProps) {
               }`}
             >
               <span className="flex-shrink-0">{item.icon}</span>
-              <span className="font-medium truncate">{item.label}</span>
+              <span className="font-medium truncate">{t(item.labelKey)}</span>
             </Link>
           );
         })}

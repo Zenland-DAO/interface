@@ -2,335 +2,338 @@
   "legal": {
     "terms": {
       "meta": {
-        "title": "Terms of Service - Zenland DAO",
-        "description": "Terms and conditions for using the Zenland DAO decentralized escrow protocol."
+        "title": "Términos de Servicio - Zenland DAO",
+        "description": "Términos y condiciones para usar el protocolo descentralizado de escrow de Zenland DAO."
       },
-      "title": "Terms of Service",
-      "lastUpdated": "Last Updated",
-      "date": "February 3, 2026",
+      "title": "Términos de Servicio",
+      "lastUpdated": "Última actualización",
+      "date": "3 de febrero de 2026",
+      "notice": "Las traducciones se proporcionan únicamente por conveniencia. En caso de cualquier inconsistencia, prevalecerá la versión en inglés.",
       "sections": {
         "introduction": {
-          "title": "1. Introduction",
-          "p1": "Welcome to Zenland DAO (\"Protocol,\" \"we,\" \"us,\" or \"our\"). These Terms of Service (\"Terms\") govern your access to and use of the Zenland decentralized escrow protocol, including our website, smart contracts, and any related services (collectively, the \"Services\").",
-          "p2": "Zenland DAO is a decentralized protocol with no central operator. It consists of open-source smart contracts deployed on the Ethereum blockchain that enable peer-to-peer escrow transactions. There is no company, corporation, or legal entity that operates or controls the Protocol."
+          "title": "1. Introducción",
+          "p1": "Bienvenido a Zenland DAO (\"Protocolo\", \"nosotros\", \"nos\" o \"nuestro\"). Estos Términos de Servicio (\"Términos\") rigen tu acceso y uso del protocolo descentralizado de escrow de Zenland, incluyendo nuestro sitio web, contratos inteligentes y cualquier servicio relacionado (colectivamente, los \"Servicios\").",
+          "p2": "Zenland DAO es un protocolo descentralizado sin operador central. Consiste en contratos inteligentes de código abierto desplegados en la blockchain de Ethereum que permiten transacciones de escrow entre pares. No existe ninguna empresa, corporación o entidad legal que opere o controle el Protocolo."
         },
         "acceptance": {
-          "title": "2. Acceptance of Terms",
-          "content": "By accessing or using the Services, you agree to be bound by these Terms. If you do not agree to these Terms, you must not access or use the Services. Your continued use of the Services constitutes your acceptance of any modifications to these Terms."
+          "title": "2. Aceptación de los términos",
+          "content": "Al acceder o usar los Servicios, aceptas quedar sujeto a estos Términos. Si no estás de acuerdo con estos Términos, no debes acceder ni usar los Servicios. Tu uso continuado de los Servicios constituye tu aceptación de cualquier modificación a estos Términos."
         },
         "eligibility": {
-          "title": "3. Eligibility",
-          "content": "You must be at least 18 years old to use the Services. By using the Services, you represent and warrant that you are at least 18 years of age and have the legal capacity to enter into these Terms. You also represent that you are not a person barred from using the Services under the laws of any applicable jurisdiction."
+          "title": "3. Elegibilidad",
+          "content": "Debes tener al menos 18 años para usar los Servicios. Al usar los Servicios, declaras y garantizas que tienes al menos 18 años y la capacidad legal para aceptar estos Términos. También declaras que no eres una persona a la que se le prohíba usar los Servicios según las leyes de cualquier jurisdicción aplicable."
         },
         "nature": {
-          "title": "4. Nature of the Protocol",
-          "p1": "Zenland DAO is a decentralized protocol that operates autonomously through smart contracts on the Ethereum blockchain. The Protocol does not have a central operator, administrator, or controlling entity.",
-          "p2": "The Protocol provides a non-custodial interface for users to interact with smart contracts. We do not hold, control, or have access to your funds at any time. All transactions are executed directly on the blockchain by the users themselves.",
-          "p3": "We do not operate any backend servers, databases, or centralized infrastructure. We do not collect, store, or process any personal data. The Protocol is purely a frontend interface to interact with decentralized smart contracts."
+          "title": "4. Naturaleza del Protocolo",
+          "p1": "Zenland DAO es un protocolo descentralizado que opera de forma autónoma mediante contratos inteligentes en la blockchain de Ethereum. El Protocolo no tiene un operador, administrador ni entidad controladora central.",
+          "p2": "El Protocolo proporciona una interfaz sin custodia para que los usuarios interactúen con los contratos inteligentes. No retenemos, controlamos ni tenemos acceso a tus fondos en ningún momento. Todas las transacciones se ejecutan directamente en la blockchain por los propios usuarios.",
+          "p3": "No operamos servidores backend, bases de datos ni infraestructura centralizada. No recopilamos, almacenamos ni procesamos datos personales. El Protocolo es únicamente una interfaz frontend para interactuar con contratos inteligentes descentralizados."
         },
         "smartContracts": {
-          "title": "5. Smart Contracts",
-          "p1": "The escrow functionality is provided by immutable smart contracts deployed on the Ethereum blockchain. Once deployed, these contracts cannot be modified, paused, or controlled by anyone, including the Protocol developers or DAO participants.",
-          "p2": "You acknowledge that smart contracts may contain bugs, vulnerabilities, or unexpected behaviors. You use the smart contracts entirely at your own risk. The Protocol provides no warranty that the smart contracts will function as intended or be free from errors."
+          "title": "5. Contratos inteligentes",
+          "p1": "La funcionalidad de escrow es proporcionada por contratos inteligentes inmutables desplegados en la blockchain de Ethereum. Una vez desplegados, estos contratos no pueden ser modificados, pausados ni controlados por nadie, incluyendo a los desarrolladores del Protocolo o a los participantes del DAO.",
+          "p2": "Reconoces que los contratos inteligentes pueden contener errores, vulnerabilidades o comportamientos inesperados. Usas los contratos inteligentes completamente bajo tu propio riesgo. El Protocolo no ofrece garantía alguna de que los contratos inteligentes funcionen según lo previsto o estén libres de errores."
         },
         "userResponsibilities": {
-          "title": "6. User Responsibilities",
-          "intro": "When using the Services, you are solely responsible for:",
+          "title": "6. Responsabilidades del usuario",
+          "intro": "Al usar los Servicios, eres el único responsable de:",
           "items": {
-            "wallet": "Managing and securing your cryptocurrency wallet and private keys",
-            "keys": "Any loss of funds due to lost, stolen, or compromised private keys",
-            "taxes": "Determining and fulfilling any tax obligations arising from your use of the Services",
-            "laws": "Compliance with all applicable laws and regulations in your jurisdiction",
-            "counterparty": "Evaluating the trustworthiness of counterparties in escrow transactions"
+            "wallet": "Gestionar y proteger tu billetera de criptomonedas y tus claves privadas",
+            "keys": "Cualquier pérdida de fondos debido a claves privadas perdidas, robadas o comprometidas",
+            "taxes": "Determinar y cumplir cualquier obligación fiscal derivada de tu uso de los Servicios",
+            "laws": "Cumplir con todas las leyes y regulaciones aplicables en tu jurisdicción",
+            "counterparty": "Evaluar la confiabilidad de las contrapartes en transacciones de escrow"
           }
         },
         "prohibitedUses": {
-          "title": "7. Prohibited Uses",
-          "intro": "You agree not to use the Services for:",
+          "title": "7. Usos prohibidos",
+          "intro": "Aceptas no usar los Servicios para:",
           "items": {
-            "illegal": "Any illegal activities or in furtherance of illegal activities",
-            "fraud": "Fraud, scams, or any form of deceptive practices",
-            "launder": "Money laundering or terrorist financing",
-            "terrorism": "Financing terrorism or any sanctioned activities",
-            "sanctions": "Transactions involving sanctioned persons, entities, or jurisdictions",
-            "minors": "Any transactions involving persons under 18 years of age",
-            "exploit": "Attempting to exploit, hack, or disrupt the smart contracts or Protocol"
+            "illegal": "Cualquier actividad ilegal o para promover actividades ilegales",
+            "fraud": "Fraude, estafas o cualquier forma de prácticas engañosas",
+            "launder": "Lavado de dinero o financiamiento del terrorismo",
+            "terrorism": "Financiar terrorismo o cualquier actividad sancionada",
+            "sanctions": "Transacciones que involucren personas, entidades o jurisdicciones sancionadas",
+            "minors": "Cualquier transacción que involucre personas menores de 18 años",
+            "exploit": "Intentar explotar, hackear o interrumpir los contratos inteligentes o el Protocolo"
           }
         },
         "disputes": {
-          "title": "8. Dispute Resolution",
-          "p1": "Disputes between escrow parties are resolved exclusively by agents selected at the time of escrow creation. Agents are independent third parties who stake collateral and earn fees for resolving disputes. The Protocol and DAO do not participate in individual dispute resolution.",
-          "p2": "Agent decisions are final and binding. The Protocol has no ability to reverse, modify, or override agent decisions. By using an escrow with an agent, you agree to accept the agent's decision.",
-          "p3": "If you believe an agent has acted improperly (e.g., accepted bribes, acted in bad faith), you may submit a complaint to DAOForum.org with supporting evidence. The DAO may vote to slash the agent's stake, but this does not reverse the escrow outcome or provide you with any compensation."
+          "title": "8. Resolución de disputas",
+          "p1": "Las disputas entre las partes de un escrow se resuelven exclusivamente por los agentes seleccionados al momento de crear el escrow. Los agentes son terceros independientes que ponen colateral en stake y ganan comisiones por resolver disputas. El Protocolo y el DAO no participan en la resolución de disputas individuales.",
+          "p2": "Las decisiones de los agentes son finales y vinculantes. El Protocolo no tiene capacidad de revertir, modificar ni anular decisiones de los agentes. Al usar un escrow con un agente, aceptas acatar la decisión del agente.",
+          "p3": "Si crees que un agente actuó de manera indebida (p. ej., aceptó sobornos o actuó de mala fe), puedes presentar una queja en DAOForum.org con evidencia de respaldo. El DAO puede votar para penalizar (\"slashear\") el stake del agente, pero esto no revierte el resultado del escrow ni te proporciona compensación alguna."
         },
         "lockedEscrows": {
-          "title": "9. Locked Escrows (No Agent)",
-          "p1": "You may create escrows without an agent (\"locked escrows\"). In locked escrows, funds can only be released or refunded if both parties agree. If parties disagree, funds remain locked in the smart contract permanently.",
-          "warning": "⚠️ WARNING: Locked escrows can result in permanent loss of funds if parties cannot reach agreement. There is no mechanism to recover funds from a disputed locked escrow. Use locked escrows only with parties you trust or when the stakes justify the risk."
+          "title": "9. Escrows bloqueados (sin agente)",
+          "p1": "Puedes crear escrows sin un agente (\"escrows bloqueados\"). En los escrows bloqueados, los fondos solo pueden liberarse o reembolsarse si ambas partes están de acuerdo. Si las partes no están de acuerdo, los fondos permanecen bloqueados en el contrato inteligente de forma permanente.",
+          "warning": "⚠️ ADVERTENCIA: Los escrows bloqueados pueden resultar en pérdida permanente de fondos si las partes no llegan a un acuerdo. No existe un mecanismo para recuperar fondos de un escrow bloqueado en disputa. Usa escrows bloqueados solo con partes en las que confíes o cuando los riesgos justifiquen el uso."
         },
         "fees": {
-          "title": "10. Fees",
-          "p1": "The Protocol charges a creation fee when escrows are created. Fees are collected by the DAO Treasury and may be changed through DAO governance for future escrows. Fee changes do not affect existing escrows.",
-          "p2": "Agents may charge additional fees for dispute resolution. Agent fees are displayed at the time of escrow creation and are deducted from the escrow amount when a dispute is resolved."
+          "title": "10. Comisiones",
+          "p1": "El Protocolo cobra una comisión de creación cuando se crean escrows. Las comisiones se recaudan en la Tesorería del DAO y pueden cambiarse mediante la gobernanza del DAO para escrows futuros. Los cambios de comisiones no afectan a escrows existentes.",
+          "p2": "Los agentes pueden cobrar comisiones adicionales por la resolución de disputas. Las comisiones del agente se muestran al momento de crear el escrow y se deducen del monto del escrow cuando se resuelve una disputa."
         },
         "risks": {
-          "title": "11. Risks",
-          "intro": "Using the Services involves significant risks, including but not limited to:",
+          "title": "11. Riesgos",
+          "intro": "Usar los Servicios implica riesgos significativos, incluidos, entre otros:",
           "items": {
-            "volatility": "Cryptocurrency price volatility",
-            "bugs": "Smart contract bugs, vulnerabilities, or exploits",
-            "loss": "Permanent loss of funds due to user error, lost keys, or protocol issues",
-            "regulatory": "Regulatory changes that may affect the legality of the Services",
-            "network": "Blockchain network congestion, failures, or reorganizations"
+            "volatility": "Volatilidad del precio de las criptomonedas",
+            "bugs": "Errores, vulnerabilidades o exploits en contratos inteligentes",
+            "loss": "Pérdida permanente de fondos por error del usuario, pérdida de claves o problemas del protocolo",
+            "regulatory": "Cambios regulatorios que pueden afectar la legalidad de los Servicios",
+            "network": "Congestión de la red blockchain, fallas o reorganizaciones"
           }
         },
         "disclaimer": {
-          "title": "12. Disclaimer of Warranties",
-          "p1": "THE SERVICES ARE PROVIDED \"AS IS\" AND \"AS AVAILABLE\" WITHOUT WARRANTIES OF ANY KIND, EITHER EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO IMPLIED WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE, TITLE, AND NON-INFRINGEMENT.",
-          "p2": "We do not warrant that the Services will be uninterrupted, error-free, or secure, or that any defects will be corrected. We make no representations about the accuracy, reliability, completeness, or timeliness of any information provided through the Services."
+          "title": "12. Exención de garantías",
+          "p1": "LOS SERVICIOS SE PROPORCIONAN \"TAL CUAL\" Y \"SEGÚN DISPONIBILIDAD\" SIN GARANTÍAS DE NINGÚN TIPO, YA SEAN EXPRESAS O IMPLÍCITAS, INCLUYENDO, ENTRE OTRAS, GARANTÍAS IMPLÍCITAS DE COMERCIALIZACIÓN, IDONEIDAD PARA UN PROPÓSITO PARTICULAR, TITULARIDAD Y NO INFRACCIÓN.",
+          "p2": "No garantizamos que los Servicios sean ininterrumpidos, libres de errores o seguros, ni que cualquier defecto sea corregido. No hacemos declaraciones sobre la exactitud, confiabilidad, integridad o actualidad de la información proporcionada a través de los Servicios."
         },
         "liability": {
-          "title": "13. Limitation of Liability",
-          "content": "TO THE MAXIMUM EXTENT PERMITTED BY LAW, IN NO EVENT SHALL ZENLAND DAO, ITS CONTRIBUTORS, DEVELOPERS, DAO PARTICIPANTS, OR AFFILIATES BE LIABLE FOR ANY INDIRECT, INCIDENTAL, SPECIAL, CONSEQUENTIAL, OR PUNITIVE DAMAGES, OR ANY LOSS OF PROFITS, REVENUE, DATA, OR USE, ARISING OUT OF OR IN CONNECTION WITH YOUR USE OF THE SERVICES, WHETHER BASED ON WARRANTY, CONTRACT, TORT (INCLUDING NEGLIGENCE), STRICT LIABILITY, OR ANY OTHER LEGAL THEORY, EVEN IF WE HAVE BEEN ADVISED OF THE POSSIBILITY OF SUCH DAMAGES. OUR TOTAL LIABILITY SHALL NOT EXCEED THE AMOUNT OF FEES YOU PAID TO THE PROTOCOL IN THE 12 MONTHS PRECEDING THE CLAIM."
+          "title": "13. Limitación de responsabilidad",
+          "content": "EN LA MÁXIMA MEDIDA PERMITIDA POR LA LEY, EN NINGÚN CASO ZENLAND DAO, SUS CONTRIBUIDORES, DESARROLLADORES, PARTICIPANTES DEL DAO O AFILIADOS SERÁN RESPONSABLES POR DAÑOS INDIRECTOS, INCIDENTALES, ESPECIALES, CONSECUENTES O PUNITIVOS, O POR CUALQUIER PÉRDIDA DE BENEFICIOS, INGRESOS, DATOS O USO, QUE SURJA DE O EN CONEXIÓN CON TU USO DE LOS SERVICIOS, YA SEA POR GARANTÍA, CONTRATO, AGRAVIO (INCLUIDA LA NEGLIGENCIA), RESPONSABILIDAD ESTRICTA O CUALQUIER OTRA TEORÍA LEGAL, INCLUSO SI HEMOS SIDO ADVERTIDOS DE LA POSIBILIDAD DE TALES DAÑOS. NUESTRA RESPONSABILIDAD TOTAL NO EXCEDERÁ EL MONTO DE LAS COMISIONES QUE HAYAS PAGADO AL PROTOCOLO EN LOS 12 MESES PREVIOS A LA RECLAMACIÓN."
         },
         "indemnification": {
-          "title": "14. Indemnification",
-          "content": "You agree to indemnify, defend, and hold harmless Zenland DAO, its contributors, developers, DAO participants, and affiliates from and against any and all claims, damages, losses, liabilities, costs, and expenses (including reasonable attorneys' fees) arising out of or in connection with: (a) your use of the Services; (b) your violation of these Terms; (c) your violation of any rights of any third party; or (d) your violation of any applicable laws or regulations."
+          "title": "14. Indemnización",
+          "content": "Aceptas indemnizar, defender y mantener indemne a Zenland DAO, sus contribuyentes, desarrolladores, participantes del DAO y afiliados frente a cualquier reclamo, daño, pérdida, responsabilidad, costo y gasto (incluidos honorarios razonables de abogados) que surja de o en relación con: (a) tu uso de los Servicios; (b) tu violación de estos Términos; (c) tu violación de los derechos de terceros; o (d) tu violación de leyes o regulaciones aplicables."
         },
         "modifications": {
-          "title": "15. Modifications to Terms",
-          "content": "We may modify these Terms at any time by posting the revised Terms on our website. Your continued use of the Services after any such changes constitutes your acceptance of the new Terms. We encourage you to review these Terms periodically."
+          "title": "15. Modificaciones de los términos",
+          "content": "Podemos modificar estos Términos en cualquier momento publicando los Términos revisados en nuestro sitio web. Tu uso continuado de los Servicios después de dichos cambios constituye tu aceptación de los nuevos Términos. Te recomendamos revisar estos Términos periódicamente."
         },
         "governingLaw": {
-          "title": "16. Governing Law",
-          "content": "These Terms shall be governed by and construed in accordance with principles of law common to decentralized protocols. To the extent any traditional jurisdiction applies, any disputes shall be resolved through binding arbitration in accordance with applicable arbitration rules. You waive any right to participate in class action lawsuits or class-wide arbitration."
+          "title": "16. Ley aplicable",
+          "content": "Estos Términos se regirán e interpretarán de acuerdo con principios de derecho comunes a protocolos descentralizados. En la medida en que aplique alguna jurisdicción tradicional, cualquier disputa se resolverá mediante arbitraje vinculante conforme a las reglas de arbitraje aplicables. Renuncias a cualquier derecho a participar en demandas colectivas o arbitrajes colectivos."
         },
         "contact": {
-          "title": "17. Contact",
-          "content": "As a decentralized protocol, Zenland DAO does not have traditional customer support channels. For community support and discussions, please visit DAOForum.org or our community Telegram channel."
+          "title": "17. Contacto",
+          "content": "Como protocolo descentralizado, Zenland DAO no cuenta con canales tradicionales de atención al cliente. Para soporte comunitario y discusiones, visita DAOForum.org o nuestro canal comunitario de Telegram."
         }
       },
       "relatedLinks": {
-        "title": "Related Documents:",
-        "privacy": "Privacy Policy",
-        "agentTos": "Agent Terms & Conditions"
+        "title": "Documentos relacionados:",
+        "privacy": "Política de Privacidad",
+        "agentTos": "Términos y Condiciones del Agente"
       }
     },
     "privacy": {
       "meta": {
-        "title": "Privacy Policy - Zenland DAO",
-        "description": "Privacy policy for the Zenland DAO decentralized escrow protocol - We don't collect your data."
+        "title": "Política de Privacidad - Zenland DAO",
+        "description": "Política de privacidad del protocolo descentralizado de escrow de Zenland DAO — no recopilamos tus datos."
       },
-      "title": "Privacy Policy",
-      "lastUpdated": "Last Updated",
-      "date": "February 3, 2026",
+      "title": "Política de Privacidad",
+      "lastUpdated": "Última actualización",
+      "date": "3 de febrero de 2026",
+      "notice": "Las traducciones se proporcionan únicamente por conveniencia. En caso de cualquier inconsistencia, prevalecerá la versión en inglés.",
       "sections": {
         "introduction": {
-          "title": "1. Introduction",
-          "p1": "This Privacy Policy describes how Zenland DAO (\"Protocol,\" \"we,\" \"us,\" or \"our\") handles information when you use our decentralized escrow protocol and related services.",
-          "p2": "Zenland DAO is fundamentally different from traditional web services. We are a decentralized protocol that prioritizes user privacy by design. This policy explains our approach to privacy and what limited information interactions may involve."
+          "title": "1. Introducción",
+          "p1": "Esta Política de Privacidad describe cómo Zenland DAO (\"Protocolo\", \"nosotros\", \"nos\" o \"nuestro\") maneja la información cuando usas nuestro protocolo descentralizado de escrow y los servicios relacionados.",
+          "p2": "Zenland DAO es fundamentalmente diferente de los servicios web tradicionales. Somos un protocolo descentralizado que prioriza la privacidad del usuario por diseño. Esta política explica nuestro enfoque de privacidad y qué interacciones pueden involucrar información limitada."
         },
         "noCollection": {
-          "title": "🛡️ We Don't Collect Your Data",
-          "p1": "Zenland DAO is designed with privacy as a core principle. Unlike traditional services, we do not collect, store, or process personal information. Specifically:",
+          "title": "🛡️ No recopilamos tus datos",
+          "p1": "Zenland DAO está diseñado con la privacidad como principio fundamental. A diferencia de los servicios tradicionales, no recopilamos, almacenamos ni procesamos información personal. En particular:",
           "items": {
-            "noBackend": "No backend servers - The Protocol is a frontend interface only",
-            "noDatabase": "No databases - We have nowhere to store your data",
-            "noAnalytics": "No analytics - We don't use Google Analytics or any tracking services",
-            "noCookies": "No tracking cookies - We don't track your browsing behavior",
-            "noTracking": "No user tracking - We don't create user profiles or track sessions",
-            "noAccounts": "No user accounts - You connect with your own wallet, no registration required"
+            "noBackend": "Sin servidores backend — el Protocolo es solo una interfaz frontend",
+            "noDatabase": "Sin bases de datos — no tenemos dónde almacenar tus datos",
+            "noAnalytics": "Sin analíticas — no usamos Google Analytics ni servicios de seguimiento",
+            "noCookies": "Sin cookies de seguimiento — no rastreamos tu comportamiento de navegación",
+            "noTracking": "Sin seguimiento de usuarios — no creamos perfiles ni rastreamos sesiones",
+            "noAccounts": "Sin cuentas de usuario — te conectas con tu propia billetera, no se requiere registro"
           }
         },
         "blockchainData": {
-          "title": "2. Blockchain Data",
-          "p1": "When you use the Protocol to create or interact with escrows, your transactions are recorded on the Ethereum blockchain. This is a fundamental characteristic of blockchain technology, not a choice by the Protocol.",
-          "p2": "Blockchain data that becomes publicly visible includes:",
+          "title": "2. Datos de blockchain",
+          "p1": "Cuando usas el Protocolo para crear o interactuar con escrows, tus transacciones quedan registradas en la blockchain de Ethereum. Esto es una característica fundamental de la tecnología blockchain, no una elección del Protocolo.",
+          "p2": "Los datos de blockchain que se vuelven públicamente visibles incluyen:",
           "items": {
-            "address": "Your wallet address",
-            "transactions": "Transaction history and amounts",
-            "escrowDetails": "Escrow creation, release, and dispute resolution records",
-            "termsHash": "Hash of escrow terms (not the terms themselves)"
+            "address": "La dirección de tu billetera",
+            "transactions": "Historial de transacciones y montos",
+            "escrowDetails": "Registros de creación, liberación y resolución de disputas de escrows",
+            "termsHash": "Hash de los términos del escrow (no los términos en sí)"
           },
-          "p3": "This blockchain data is permanent, publicly accessible, and cannot be deleted by anyone. This is inherent to blockchain technology and is outside our control."
+          "p3": "Estos datos en blockchain son permanentes, de acceso público y no pueden ser eliminados por nadie. Esto es inherente a la tecnología blockchain y está fuera de nuestro control."
         },
         "wallet": {
-          "title": "3. Wallet Connection",
-          "p1": "When you connect your wallet to use the Protocol, the connection is handled directly by your wallet provider (e.g., MetaMask, WalletConnect). We do not receive or store your wallet credentials, seed phrases, or private keys.",
-          "p2": "Your wallet address is visible to the Protocol only during your active session and is not stored or logged on any server."
+          "title": "3. Conexión de billetera",
+          "p1": "Cuando conectas tu billetera para usar el Protocolo, la conexión se maneja directamente por tu proveedor de billetera (p. ej., MetaMask, WalletConnect). No recibimos ni almacenamos tus credenciales de billetera, frases semilla ni claves privadas.",
+          "p2": "La dirección de tu billetera es visible para el Protocolo solo durante tu sesión activa y no se almacena ni se registra en ningún servidor."
         },
         "localStorage": {
-          "title": "4. Browser Local Storage",
-          "p1": "The Protocol may use your browser's local storage to save:",
+          "title": "4. Almacenamiento local del navegador",
+          "p1": "El Protocolo puede usar el almacenamiento local de tu navegador para guardar:",
           "items": {
-            "preferences": "Your UI preferences",
-            "theme": "Theme settings (dark/light mode)",
-            "language": "Language preferences"
+            "preferences": "Tus preferencias de interfaz",
+            "theme": "Configuración de tema (modo oscuro/claro)",
+            "language": "Preferencias de idioma"
           },
-          "p2": "This data is stored only on your device and is never transmitted to us or any third party. You can clear this data at any time through your browser settings."
+          "p2": "Estos datos se almacenan solo en tu dispositivo y nunca se transmiten a nosotros ni a terceros. Puedes borrar estos datos en cualquier momento desde la configuración de tu navegador."
         },
         "thirdParty": {
-          "title": "5. Third-Party Services",
-          "p1": "The Protocol may interact with third-party services to function:",
+          "title": "5. Servicios de terceros",
+          "p1": "El Protocolo puede interactuar con servicios de terceros para funcionar:",
           "items": {
-            "rpc": "Blockchain RPC providers (to read blockchain data and submit transactions)",
-            "wallets": "Wallet providers (to enable wallet connections)",
-            "indexer": "Blockchain indexers (to query historical data)"
+            "rpc": "Proveedores RPC de blockchain (para leer datos on-chain y enviar transacciones)",
+            "wallets": "Proveedores de billetera (para habilitar conexiones de billetera)",
+            "indexer": "Indexadores de blockchain (para consultar datos históricos)"
           },
-          "p2": "These third-party services have their own privacy policies. We encourage you to review their policies. We have no control over and assume no responsibility for their privacy practices."
+          "p2": "Estos servicios de terceros tienen sus propias políticas de privacidad. Te recomendamos revisarlas. No tenemos control ni asumimos responsabilidad por sus prácticas de privacidad."
         },
         "pdf": {
-          "title": "6. PDF Documents",
-          "p1": "When you create an escrow, a PDF document containing the terms may be generated in your browser. This PDF is generated entirely client-side and is not uploaded to or stored on any server.",
-          "p2": "You are responsible for storing and managing your escrow PDF documents. We do not have copies of these documents."
+          "title": "6. Documentos PDF",
+          "p1": "Cuando creas un escrow, se puede generar en tu navegador un documento PDF que contiene los términos. Este PDF se genera completamente del lado del cliente y no se sube ni se almacena en ningún servidor.",
+          "p2": "Eres responsable de almacenar y gestionar tus documentos PDF de escrow. No conservamos copias de estos documentos."
         },
         "rights": {
-          "title": "7. Your Rights",
-          "p1": "Since we don't collect personal data, traditional data protection rights (access, correction, deletion) do not apply in the conventional sense.",
-          "p2": "For blockchain data: Due to the immutable nature of blockchain technology, on-chain data cannot be modified or deleted. This is a fundamental characteristic of public blockchains."
+          "title": "7. Tus derechos",
+          "p1": "Como no recopilamos datos personales, los derechos tradicionales de protección de datos (acceso, corrección, eliminación) no aplican en el sentido convencional.",
+          "p2": "Para datos de blockchain: debido a la naturaleza inmutable de la tecnología blockchain, los datos on-chain no pueden modificarse ni eliminarse. Esto es una característica fundamental de las blockchains públicas."
         },
         "children": {
-          "title": "8. Children's Privacy",
-          "content": "The Services are not intended for individuals under 18 years of age. We do not knowingly provide services to minors. If you are under 18, please do not use the Services."
+          "title": "8. Privacidad de menores",
+          "content": "Los Servicios no están destinados a personas menores de 18 años. No proporcionamos servicios a menores a sabiendas. Si tienes menos de 18 años, por favor no uses los Servicios."
         },
         "changes": {
-          "title": "9. Changes to This Policy",
-          "content": "We may update this Privacy Policy from time to time. We will notify you of any changes by posting the new Privacy Policy on this page with an updated \"Last Updated\" date."
+          "title": "9. Cambios en esta política",
+          "content": "Podemos actualizar esta Política de Privacidad ocasionalmente. Te notificaremos cualquier cambio publicando la nueva Política de Privacidad en esta página con una fecha de \"Última actualización\" revisada."
         },
         "contact": {
-          "title": "10. Contact",
-          "content": "If you have questions about this Privacy Policy, please reach out through our community channels at DAOForum.org or our Telegram community."
+          "title": "10. Contacto",
+          "content": "Si tienes preguntas sobre esta Política de Privacidad, contáctanos a través de nuestros canales comunitarios en DAOForum.org o nuestro Telegram comunitario."
         }
       },
       "relatedLinks": {
-        "title": "Related Documents:",
-        "terms": "Terms of Service",
-        "agentTos": "Agent Terms & Conditions"
+        "title": "Documentos relacionados:",
+        "terms": "Términos de Servicio",
+        "agentTos": "Términos y Condiciones del Agente"
       }
     },
     "agentTos": {
       "meta": {
-        "title": "Agent Terms & Conditions - Zenland DAO",
-        "description": "Terms and conditions for agents participating in the Zenland DAO dispute resolution system."
+        "title": "Términos y Condiciones del Agente - Zenland DAO",
+        "description": "Términos y condiciones para agentes que participan en el sistema de resolución de disputas de Zenland DAO."
       },
-      "title": "Agent Terms & Conditions",
-      "lastUpdated": "Last Updated",
-      "date": "February 3, 2026",
+      "title": "Términos y Condiciones del Agente",
+      "lastUpdated": "Última actualización",
+      "date": "3 de febrero de 2026",
+      "notice": "Las traducciones se proporcionan únicamente por conveniencia. En caso de cualquier inconsistencia, prevalecerá la versión en inglés.",
       "importantNotice": {
-        "title": "⚠️ Important: Financial Risk Warning",
-        "content": "By becoming an agent, you agree to stake collateral that may be permanently slashed if you are found to have acted improperly. Please read these terms carefully before registering as an agent."
+        "title": "⚠️ Importante: Advertencia de riesgo financiero",
+        "content": "Al convertirte en agente, aceptas hacer stake de colateral que puede ser penalizado permanentemente si se determina que actuaste de forma indebida. Por favor lee estos términos con atención antes de registrarte como agente."
       },
       "sections": {
         "introduction": {
-          "title": "1. Introduction",
-          "p1": "These Agent Terms & Conditions (\"Agent Terms\") govern your participation as a dispute resolution agent in the Zenland DAO protocol. These terms are in addition to the general Terms of Service, which also apply to you.",
-          "p2": "By registering as an agent, you acknowledge that you have read, understood, and agree to be bound by these Agent Terms and accept all associated risks, including the risk of losing your staked collateral."
+          "title": "1. Introducción",
+          "p1": "Estos Términos y Condiciones del Agente (\"Términos del Agente\") rigen tu participación como agente de resolución de disputas en el protocolo Zenland DAO. Estos términos se suman a los Términos de Servicio generales, que también aplican para ti.",
+          "p2": "Al registrarte como agente, reconoces que has leído, entendido y aceptas quedar sujeto a estos Términos del Agente y aceptas todos los riesgos asociados, incluido el riesgo de perder tu colateral en stake."
         },
         "role": {
-          "title": "Role of an Agent",
-          "p1": "Agents are independent third-party dispute resolvers who help settle disagreements between escrow parties (buyers and sellers). As an agent, you are expected to:",
+          "title": "Rol de un agente",
+          "p1": "Los agentes son terceros independientes que resuelven disputas y ayudan a resolver desacuerdos entre las partes de un escrow (compradores y vendedores). Como agente, se espera que:",
           "items": {
-            "neutral": "Act as a neutral, impartial arbitrator in all disputes",
-            "review": "Carefully review evidence and communications from both parties",
-            "decide": "Make fair and reasonable decisions based on the escrow terms and evidence",
-            "timely": "Respond to dispute invitations within the required timeframe"
+            "neutral": "Actúes como un árbitro neutral e imparcial en todas las disputas",
+            "review": "Revises cuidadosamente la evidencia y las comunicaciones de ambas partes",
+            "decide": "Tomes decisiones justas y razonables basadas en los términos del escrow y la evidencia",
+            "timely": "Respondas a invitaciones de disputa dentro del plazo requerido"
           }
         },
         "staking": {
-          "title": "Staking Requirements",
-          "p1": "To register as an agent, you must stake collateral in two forms: stablecoins (e.g., USDC, USDT) and DAO governance tokens. Your stake determines your Maximum Arbitratable Value (MAV) - the maximum escrow value you can handle.",
-          "p2": "Your staking requirements include:",
+          "title": "Requisitos de staking",
+          "p1": "Para registrarte como agente, debes hacer stake de colateral en dos formas: stablecoins (p. ej., USDC, USDT) y tokens de gobernanza del DAO. Tu stake determina tu Valor Máximo Arbitrable (MAV) — el valor máximo de escrow que puedes manejar.",
+          "p2": "Tus requisitos de staking incluyen:",
           "items": {
-            "stablecoin": "Minimum stablecoin stake as set by DAO governance",
-            "daoToken": "Minimum DAO token stake as set by DAO governance",
-            "mav": "MAV is calculated as: Stablecoin Stake × MAV Multiplier (set by DAO)",
-            "cooldown": "Unstaking requires a cooldown period and no active cases"
+            "stablecoin": "Stake mínimo de stablecoin según la gobernanza del DAO",
+            "daoToken": "Stake mínimo de token DAO según la gobernanza del DAO",
+            "mav": "El MAV se calcula como: Stake de stablecoin × Multiplicador de MAV (definido por el DAO)",
+            "cooldown": "Retirar el stake requiere un período de enfriamiento y no tener casos activos"
           }
         },
         "responseTime": {
-          "title": "Response Time Requirements",
-          "p1": "When invited to resolve a dispute, you must respond within the agent response time (default: 7 days, configurable by DAO). If you fail to respond, either party can claim a timeout, which releases you from the case and may impact your reputation.",
-          "p2": "Consistent timeouts may result in reduced trust from escrow parties and potential DAO action. You should only register as an agent if you can commit to timely responses."
+          "title": "Requisitos de tiempo de respuesta",
+          "p1": "Cuando te invitan a resolver una disputa, debes responder dentro del tiempo de respuesta del agente (por defecto: 7 días; configurable por el DAO). Si no respondes, cualquiera de las partes puede reclamar un tiempo agotado, lo que te libera del caso y puede afectar tu reputación.",
+          "p2": "Los tiempos agotados de forma constante pueden reducir la confianza de las partes de un escrow y provocar acciones del DAO. Solo regístrate como agente si puedes comprometerte a responder a tiempo."
         },
         "slashing": {
-          "title": "Slashing and Penalties",
-          "warning": "YOUR ENTIRE STAKE (BOTH STABLECOIN AND DAO TOKENS) CAN BE SLASHED BY DAO GOVERNANCE.",
-          "p1": "If you are accused of misconduct (e.g., accepting bribes, colluding with a party, or making clearly biased decisions), escrow parties or community members may file a complaint against you.",
-          "p2": "The Zenland DAO governance has the authority to slash your stake if they determine, based on evidence, that you have acted improperly. This is a community governance decision, not an automated process.",
+          "title": "Slashing y penalizaciones",
+          "warning": "TU STAKE COMPLETO (TANTO STABLECOIN COMO TOKENS DEL DAO) PUEDE SER PENALIZADO POR LA GOBERNANZA DEL DAO.",
+          "p1": "Si se te acusa de mala conducta (p. ej., aceptar sobornos, coludir con una parte o tomar decisiones claramente sesgadas), las partes del escrow o miembros de la comunidad pueden presentar una queja en tu contra.",
+          "p2": "La gobernanza de Zenland DAO tiene autoridad para penalizar (\"slashear\") tu stake si determina, con base en evidencia, que actuaste de forma indebida. Esta es una decisión de gobernanza comunitaria, no un proceso automatizado.",
           "process": {
-            "title": "Slashing Process:",
-            "step1": "A party creates a complaint thread on DAOForum.org with evidence",
-            "step2": "The community reviews and discusses the evidence",
-            "step3": "If there is sufficient evidence of misconduct, a DAO governance proposal is created",
-            "step4": "DAO token holders vote on whether to slash the agent's stake",
-            "step5": "If the proposal passes, your stake is slashed and you become inactive"
+            "title": "Proceso de slashing:",
+            "step1": "Una parte crea un hilo de queja en DAOForum.org con evidencia",
+            "step2": "La comunidad revisa y discute la evidencia",
+            "step3": "Si hay evidencia suficiente de mala conducta, se crea una propuesta de gobernanza del DAO",
+            "step4": "Los holders del token DAO votan si se debe penalizar el stake del agente",
+            "step5": "Si la propuesta se aprueba, tu stake es penalizado y pasas a estar inactivo"
           },
-          "consequences": "Slashing results in: (1) Partial or complete loss of your staked collateral, (2) Removal from the active agent registry, (3) Permanent record of the slashing on-chain. Slashed funds go to the DAO Treasury."
+          "consequences": "El slashing resulta en: (1) Pérdida parcial o total de tu colateral en stake, (2) Eliminación del registro de agentes activos, (3) Registro permanente del slashing on-chain. Los fondos penalizados van a la Tesorería del DAO."
         },
         "prohibited": {
-          "title": "Prohibited Conduct",
-          "intro": "As an agent, you must not engage in:",
+          "title": "Conducta prohibida",
+          "intro": "Como agente, no debes participar en:",
           "items": {
-            "bribery": "Accepting bribes or payments from escrow parties outside of your stated fees",
-            "collusion": "Colluding with buyers, sellers, or other agents",
-            "conflict": "Handling disputes where you have a conflict of interest",
-            "bias": "Making decisions based on factors other than the escrow terms and evidence",
-            "negligence": "Gross negligence or failure to review case materials",
-            "manipulation": "Attempting to manipulate or exploit the protocol"
+            "bribery": "Aceptar sobornos o pagos de las partes del escrow fuera de tus comisiones declaradas",
+            "collusion": "Coludir con compradores, vendedores u otros agentes",
+            "conflict": "Gestionar disputas en las que tengas un conflicto de interés",
+            "bias": "Tomar decisiones basadas en factores distintos a los términos del escrow y la evidencia",
+            "negligence": "Negligencia grave o no revisar los materiales del caso",
+            "manipulation": "Intentar manipular o explotar el protocolo"
           }
         },
         "fees": {
-          "title": "Agent Fees",
-          "p1": "You may set your own dispute resolution fee (within DAO-defined limits) when registering. This fee is deducted from the escrow amount when you resolve a dispute. You only earn fees when you actively resolve disputes.",
-          "p2": "Fee limits are set by DAO governance to prevent excessive fees. Currently, agent fees are capped at 10% of the escrow amount."
+          "title": "Comisiones del agente",
+          "p1": "Puedes establecer tu propia comisión de resolución de disputas (dentro de los límites definidos por el DAO) al registrarte. Esta comisión se deduce del monto del escrow cuando resuelves una disputa. Solo ganas comisiones cuando resuelves disputas activamente.",
+          "p2": "Los límites de comisiones se establecen mediante la gobernanza del DAO para evitar comisiones excesivas. Actualmente, las comisiones del agente están limitadas al 10% del monto del escrow."
         },
         "daoGovernance": {
-          "title": "DAO Governance",
-          "p1": "The Zenland DAO has authority over protocol parameters that affect agents, including minimum stake requirements, MAV multipliers, fee limits, and slashing decisions.",
-          "p2": "By registering as an agent, you accept that:",
+          "title": "Gobernanza del DAO",
+          "p1": "Zenland DAO tiene autoridad sobre los parámetros del protocolo que afectan a los agentes, incluidos los requisitos mínimos de stake, multiplicadores de MAV, límites de comisiones y decisiones de slashing.",
+          "p2": "Al registrarte como agente, aceptas que:",
           "items": {
-            "parameters": "DAO may change agent-related parameters at any time",
-            "slash": "DAO may vote to slash your stake for misconduct",
-            "stake": "Minimum stake requirements may be increased (existing agents are grandfathered)",
-            "fees": "Fee limits may be adjusted through governance"
+            "parameters": "El DAO puede cambiar parámetros relacionados con agentes en cualquier momento",
+            "slash": "El DAO puede votar para penalizar tu stake por mala conducta",
+            "stake": "Los requisitos mínimos de stake pueden aumentar (los agentes existentes mantienen su condición)",
+            "fees": "Los límites de comisiones pueden ajustarse mediante gobernanza"
           }
         },
         "independent": {
-          "title": "Independent Contractor Status",
-          "p1": "Agents are independent third parties, not employees, contractors, or affiliates of Zenland DAO. There is no employment, partnership, or agency relationship between you and the Protocol or DAO.",
-          "p2": "You are solely responsible for your own taxes, compliance with local regulations, and any professional licensing requirements that may apply to dispute resolution services in your jurisdiction."
+          "title": "Condición de contratista independiente",
+          "p1": "Los agentes son terceros independientes, no empleados, contratistas ni afiliados de Zenland DAO. No existe relación laboral, sociedad ni agencia entre tú y el Protocolo o el DAO.",
+          "p2": "Eres el único responsable de tus impuestos, del cumplimiento de regulaciones locales y de cualquier licencia profesional que pueda aplicarse a servicios de resolución de disputas en tu jurisdicción."
         },
         "disclaimer": {
-          "title": "Disclaimer",
-          "content": "THE PROTOCOL PROVIDES NO GUARANTEE OF DISPUTE VOLUME, EARNINGS, OR INCOME. YOUR PARTICIPATION AS AN AGENT IS ENTIRELY AT YOUR OWN RISK. THE PROTOCOL AND DAO SHALL NOT BE LIABLE FOR ANY LOSSES YOU INCUR AS AN AGENT, INCLUDING LOSSES FROM SLASHING, MARKET CONDITIONS, OR LACK OF DISPUTES."
+          "title": "Exención de responsabilidad",
+          "content": "EL PROTOCOLO NO GARANTIZA VOLUMEN DE DISPUTAS, GANANCIAS NI INGRESOS. TU PARTICIPACIÓN COMO AGENTE ES COMPLETAMENTE BAJO TU PROPIO RIESGO. EL PROTOCOLO Y EL DAO NO SERÁN RESPONSABLES POR NINGUNA PÉRDIDA QUE INCURRAS COMO AGENTE, INCLUIDAS PÉRDIDAS POR SLASHING, CONDICIONES DE MERCADO O FALTA DE DISPUTAS."
         },
         "liability": {
-          "title": "Limitation of Liability",
-          "content": "TO THE MAXIMUM EXTENT PERMITTED BY LAW, ZENLAND DAO, ITS CONTRIBUTORS, DEVELOPERS, AND DAO PARTICIPANTS SHALL NOT BE LIABLE FOR ANY DAMAGES ARISING FROM YOUR PARTICIPATION AS AN AGENT, INCLUDING BUT NOT LIMITED TO SLASHED STAKES, LOST EARNINGS, REPUTATIONAL HARM, OR ANY INDIRECT, CONSEQUENTIAL, OR PUNITIVE DAMAGES."
+          "title": "Limitación de responsabilidad",
+          "content": "EN LA MÁXIMA MEDIDA PERMITIDA POR LA LEY, ZENLAND DAO, SUS CONTRIBUIDORES, DESARROLLADORES Y PARTICIPANTES DEL DAO NO SERÁN RESPONSABLES POR NINGÚN DAÑO QUE SURJA DE TU PARTICIPACIÓN COMO AGENTE, INCLUYENDO, ENTRE OTROS, STAKES PENALIZADOS, GANANCIAS PERDIDAS, DAÑO REPUTACIONAL, O DAÑOS INDIRECTOS, CONSECUENTES O PUNITIVOS."
         },
         "indemnification": {
-          "title": "Indemnification",
-          "content": "You agree to indemnify, defend, and hold harmless Zenland DAO, its contributors, developers, and DAO participants from any claims, damages, or expenses arising from: (a) your dispute resolution decisions; (b) your violation of these Agent Terms; (c) any claims by escrow parties related to your conduct as an agent; or (d) your violation of any applicable laws."
+          "title": "Indemnización",
+          "content": "Aceptas indemnizar, defender y mantener indemne a Zenland DAO, sus contribuyentes, desarrolladores y participantes del DAO frente a cualquier reclamo, daño o gasto que surja de: (a) tus decisiones de resolución de disputas; (b) tu violación de estos Términos del Agente; (c) cualquier reclamo de las partes del escrow relacionado con tu conducta como agente; o (d) tu violación de leyes aplicables."
         },
         "termination": {
-          "title": "Termination",
-          "p1": "You may cease acting as an agent at any time by setting yourself as unavailable and unstaking your collateral after the cooldown period and once you have no active cases.",
-          "p2": "The DAO may deactivate your agent status through a governance vote if you are found to have violated these terms or engaged in misconduct."
+          "title": "Terminación",
+          "p1": "Puedes dejar de actuar como agente en cualquier momento estableciéndote como no disponible y retirando tu colateral después del período de enfriamiento y una vez que no tengas casos activos.",
+          "p2": "El DAO puede desactivar tu estatus de agente mediante un voto de gobernanza si se determina que violaste estos términos o participaste en mala conducta."
         },
         "modifications": {
-          "title": "Modifications",
-          "content": "These Agent Terms may be modified through DAO governance. Continued participation as an agent after modifications constitutes acceptance of the new terms. Material changes will be announced through official DAO communication channels."
+          "title": "Modificaciones",
+          "content": "Estos Términos del Agente pueden modificarse mediante la gobernanza del DAO. La participación continua como agente después de las modificaciones constituye aceptación de los nuevos términos. Los cambios materiales se anunciarán a través de canales oficiales de comunicación del DAO."
         },
         "agreement": {
-          "title": "Entire Agreement",
-          "content": "These Agent Terms, together with the general Terms of Service and Privacy Policy, constitute the entire agreement between you and the Protocol regarding your participation as an agent. These terms supersede any prior agreements or understandings."
+          "title": "Acuerdo completo",
+          "content": "Estos Términos del Agente, junto con los Términos de Servicio generales y la Política de Privacidad, constituyen el acuerdo completo entre tú y el Protocolo respecto a tu participación como agente. Estos términos reemplazan cualquier acuerdo o entendimiento previo."
         }
       },
       "relatedLinks": {
-        "title": "Related Documents:",
-        "terms": "General Terms of Service",
-        "privacy": "Privacy Policy",
-        "daoForum": "DAOForum.org (Dispute Reports)"
+        "title": "Documentos relacionados:",
+        "terms": "Términos de Servicio generales",
+        "privacy": "Política de Privacidad",
+        "daoForum": "DAOForum.org (Reportes de disputas)"
       }
     }
   }

@@ -27,7 +27,7 @@
           "title": "资源",
           "documentation": "文档",
           "apiReference": "API",
-          "contracts": "Contracts",
+          "contracts": "合约",
           "blog": "博客"
         },
         "legal": {
@@ -47,6 +47,25 @@
         "text": "Zenland 是一个源代码可用的协议，由 Zenland DAO 社区治理——而非注册金融公司。该协议 100% 非托管运行：资金直接进入以太坊上经过审计的智能合约。任何人或实体都无法持有您的资金。由于没有人可以访问或控制存入的资金，因此不需要托管许可证。",
         "verifyCode": "验证代码",
         "learnMore": "了解更多"
+      }
+    },
+    "wallet": {
+      "title": "连接钱包",
+      "subtitle": "选择你的钱包以继续",
+      "recommended": "推荐",
+      "otherWallets": "其他钱包",
+      "connecting": "连接中…",
+      "showMore": "显示更多 {count} 个钱包",
+      "showMorePlural": "显示更多 {count} 个钱包",
+      "noWalletsDetected": "未检测到钱包",
+      "installWallet": "请安装 Web3 钱包以继续",
+      "sponsoredDescription": "使用免 Gas 交易连接",
+      "defaultDescription": "使用浏览器扩展连接",
+      "sponsorBadge": "Zenland 赞助 — 免 Gas 费",
+      "footer": "连接即表示你同意我们的<terms>服务条款</terms>和<privacy>隐私政策</privacy>",
+      "errors": {
+        "timedOut": "连接超时。请重试。",
+        "cancelled": "连接已取消。请重试。"
       }
     },
     "accessibility": {

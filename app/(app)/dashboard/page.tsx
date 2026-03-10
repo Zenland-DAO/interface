@@ -1,6 +1,7 @@
 "use client";
 
 import Link from "next/link";
+import { useTranslations } from "next-intl";
 import { Button, Card, CardBody } from "@/components/ui";
 import { PageHeader } from "@/components/shared";
 import { DashboardStats, RecentEscrows } from "@/components/app/dashboard";
@@ -18,14 +19,16 @@ import { DashboardStats, RecentEscrows } from "@/components/app/dashboard";
  * - When wallet connected: Shows personal stats by default, can toggle to global
  */
 export default function DashboardPage() {
+  const t = useTranslations("dashboard");
+
   return (
     <div className="space-y-8">
       <PageHeader
-        title="Dashboard"
-        description="Welcome back! Here's an overview of escrow activity."
+        title={t("title")}
+        description={t("description")}
         actions={
           <Link href="/escrows/new">
-            <Button>Create Escrow</Button>
+            <Button>{t("createEscrow")}</Button>
           </Link>
         }
       />
@@ -41,14 +44,14 @@ export default function DashboardPage() {
         <Card variant="outlined">
           <CardBody className="p-6">
             <h3 className="text-lg font-semibold text-[var(--text-primary)] mb-2">
-              Become an Agent
+              {t("quickActions.becomeAgent.title")}
             </h3>
             <p className="text-[var(--text-secondary)] text-sm mb-4">
-              Help resolve disputes and earn fees by becoming a registered agent.
+              {t("quickActions.becomeAgent.description")}
             </p>
             <Link href="/agents/register">
               <Button variant="outline" size="sm">
-                Learn More
+                {t("quickActions.becomeAgent.cta")}
               </Button>
             </Link>
           </CardBody>
@@ -56,14 +59,14 @@ export default function DashboardPage() {
         <Card variant="outlined">
           <CardBody className="p-6">
             <h3 className="text-lg font-semibold text-[var(--text-primary)] mb-2">
-              Need Help?
+              {t("quickActions.needHelp.title")}
             </h3>
             <p className="text-[var(--text-secondary)] text-sm mb-4">
-              Check out our documentation to learn how Zenland escrow works.
+              {t("quickActions.needHelp.description")}
             </p>
             <Link href="https://docs.zen.land" target="_blank" rel="noopener noreferrer">
               <Button variant="outline" size="sm">
-                View Docs
+                {t("quickActions.needHelp.cta")}
               </Button>
             </Link>
 

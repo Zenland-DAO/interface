@@ -13,6 +13,7 @@
  */
 
 import { Suspense } from "react";
+import { useTranslations } from "next-intl";
 import { ErrorBoundary, SkeletonEscrowWizard } from "@/components/ui";
 import { PageHeader } from "@/components/shared";
 import { CreateEscrowWizard } from "@/components/app/escrows/create";
@@ -22,12 +23,13 @@ import { CreateEscrowWizard } from "@/components/app/escrows/create";
 // =============================================================================
 
 export default function NewEscrowPage() {
+  const t = useTranslations("escrows.create");
   return (
     <div className="max-w-6xl mx-auto py-4 space-y-8">
       <PageHeader
-        backLink={{ href: "/escrows", label: "Back to Escrows" }}
-        title="Create New Escrow"
-        description="Set up a secure escrow contract for your transaction"
+        backLink={{ href: "/escrows", label: t("backToEscrows") }}
+        title={t("title")}
+        description={t("description")}
       />
 
       <ErrorBoundary

@@ -12,11 +12,11 @@
 import { useState, useCallback } from "react";
 import { Zap, CheckCircle, AlertTriangle } from "lucide-react";
 
+import { useTranslations } from "next-intl";
 import { Card, CardHeader, CardBody, Heading, Text } from "@/components/ui";
 import { useEscrowDetail } from "../EscrowDetailContext";
 import { useEscrowChainGuard, type SupportedChainId } from "../hooks";
 import { isTerminalState } from "../types";
-import { STATE_LABELS, STATE_DESCRIPTIONS } from "../constants";
 import { formatAmount } from "@/lib/utils/amount";
 
 import { ConfirmationModal } from "./ConfirmationModal";
@@ -52,6 +52,7 @@ interface ModalData {
 // =============================================================================
 
 export function ActionsCard() {
+  const t = useTranslations("escrows");
   const { escrow, tokenInfo, write, actions, role } = useEscrowDetail();
   const { hasAnyAction } = actions;
   const { isPending } = write;
@@ -142,7 +143,7 @@ export function ActionsCard() {
           <div className="flex items-center gap-2">
             <Zap size={18} className="text-primary-500" />
             <Heading level={3} className="text-lg">
-              Actions
+              {t("detail.actionsTitle")}
             </Heading>
           </div>
         </CardHeader>
@@ -156,10 +157,10 @@ export function ActionsCard() {
               </div>
               <div>
                 <Text className="font-semibold">
-                  {STATE_LABELS[escrow.state]}
+                  {t(`states.${escrow.state}`)}
                 </Text>
                 <Text variant="muted" className="text-sm mt-1">
-                  {STATE_DESCRIPTIONS[escrow.state]}
+                  {t(`stateDescriptions.${escrow.state}`)}
                 </Text>
               </div>
             </div>
@@ -173,10 +174,10 @@ export function ActionsCard() {
               </div>
               <div>
                 <Text className="font-semibold text-warning-700 dark:text-warning-300">
-                  Wrong Network
+                  {t("detail.wrongNetwork")}
                 </Text>
                 <Text variant="muted" className="text-sm mt-1">
-                  Switch to {escrowChainName} to perform actions on this escrow.
+                  {t("detail.switchToNetwork", { chain: escrowChainName })}
                 </Text>
               </div>
             </div>
@@ -186,7 +187,7 @@ export function ActionsCard() {
           {!isTerminal && !isChainMismatch && !hasAnyAction && role.role === "viewer" && (
             <div className="text-center py-4">
               <Text variant="muted" className="text-sm">
-                Connect your wallet to interact with this escrow.
+                {t("detail.connectToInteract")}
               </Text>
             </div>
           )}
@@ -194,7 +195,7 @@ export function ActionsCard() {
           {!isTerminal && !isChainMismatch && !hasAnyAction && role.role !== "viewer" && (
             <div className="text-center py-4">
               <Text variant="muted" className="text-sm">
-                No actions available at this time.
+                {t("detail.noActionsAvailable")}
               </Text>
             </div>
           )}

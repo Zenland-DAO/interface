@@ -11,6 +11,7 @@
 
 import Link from "next/link";
 import { FileText, CheckCircle, AlertTriangle, Search } from "lucide-react";
+import { useTranslations } from "next-intl";
 import { Card, CardBody, Button, Text, Heading } from "@/components/ui";
 
 import { EscrowListItem } from "./EscrowListItem";
@@ -96,7 +97,11 @@ interface EmptyStateProps {
 }
 
 function EmptyState({ role, stateTab }: EmptyStateProps) {
+  const t = useTranslations("escrows.list");
   const config = getEmptyStateConfig(role, stateTab);
+
+  // Resolve the role label for interpolated descriptions (e.g., "...as a buyer")
+  const roleLabel = role !== "all" ? t(`emptyStates.roleLabels.${role}`) : "";
 
   // Choose icon based on context
   const IconComponent = stateTab === "needs_attention" ? CheckCircle : 
@@ -113,14 +118,14 @@ function EmptyState({ role, stateTab }: EmptyStateProps) {
         <div className={`w-16 h-16 mx-auto mb-6 rounded-full flex items-center justify-center ${iconColorClass}`}>
           <IconComponent size={32} />
         </div>
-        <Heading level={3}>{config.title}</Heading>
+        <Heading level={3}>{t(config.titleKey)}</Heading>
         <Text variant="muted" className="mt-2 max-w-sm mx-auto">
-          {config.description}
+          {t(config.descriptionKey, { role: roleLabel })}
         </Text>
 
         {config.showCreateButton && (
           <Link href="/escrows/new" className="mt-8 inline-block">
-            <Button variant="outline">Create Your First Escrow</Button>
+            <Button variant="outline">{t("createFirstEscrow")}</Button>
           </Link>
         )}
       </CardBody>
@@ -133,29 +138,30 @@ function EmptyState({ role, stateTab }: EmptyStateProps) {
 // =============================================================================
 
 function TableHeader() {
+  const t = useTranslations("escrows.list.tableHeaders");
   return (
     <thead>
       <tr className="border-b border-[var(--border-secondary)] bg-neutral-50 dark:bg-neutral-900/50">
         <th className="px-4 py-3 text-left text-[10px] uppercase tracking-wider font-bold text-[var(--text-tertiary)]">
-          ID
+          {t("id")}
         </th>
         <th className="px-4 py-3 text-left text-[10px] uppercase tracking-wider font-bold text-[var(--text-tertiary)]">
-          Amount
+          {t("amount")}
         </th>
         <th className="px-4 py-3 text-left text-[10px] uppercase tracking-wider font-bold text-[var(--text-tertiary)]">
-          Counterparty
+          {t("counterparty")}
         </th>
         <th className="px-4 py-3 text-left text-[10px] uppercase tracking-wider font-bold text-[var(--text-tertiary)]">
-          Role
+          {t("role")}
         </th>
         <th className="px-4 py-3 text-left text-[10px] uppercase tracking-wider font-bold text-[var(--text-tertiary)]">
-          Status
+          {t("status")}
         </th>
         <th className="px-4 py-3 text-left text-[10px] uppercase tracking-wider font-bold text-[var(--text-tertiary)]">
-          Date
+          {t("date")}
         </th>
         <th className="px-4 py-3 text-right text-[10px] uppercase tracking-wider font-bold text-[var(--text-tertiary)]">
-          Action
+          {t("action")}
         </th>
       </tr>
     </thead>
@@ -173,6 +179,8 @@ export function EscrowList({
   role,
   stateTab,
 }: EscrowListProps) {
+  const t = useTranslations("escrows.list");
+
   // Loading state
   if (isLoading) {
     return <LoadingSkeleton />;
@@ -224,7 +232,9 @@ export function EscrowList({
       {/* Results count */}
       <div className="mt-4 text-center">
         <Text variant="muted" className="text-xs">
-          Showing {displayedEscrows.length} escrow{displayedEscrows.length !== 1 ? "s" : ""}
+          {displayedEscrows.length === 1
+            ? t("showing", { count: displayedEscrows.length })
+            : t("showingPlural", { count: displayedEscrows.length })}
         </Text>
       </div>
     </div>

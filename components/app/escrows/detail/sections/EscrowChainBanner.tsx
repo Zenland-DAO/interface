@@ -16,6 +16,7 @@
  */
 
 import { AlertTriangle, Info, ArrowRight, XCircle } from "lucide-react";
+import { useTranslations } from "next-intl";
 import { Button } from "@/components/ui";
 import { useEscrowChainGuard, type UseEscrowChainGuardReturn, type SupportedChainId } from "../hooks";
 
@@ -42,6 +43,7 @@ interface BannerContentProps {
  * Wrong Chain Banner - Shows when wallet is connected to different chain than escrow
  */
 function WrongChainBanner({ chainGuard }: BannerContentProps) {
+  const t = useTranslations("escrows.detail.chain");
   const { escrowChainName, walletChainName, switchToEscrowChain, isSwitching } = chainGuard;
 
   return (
@@ -50,11 +52,10 @@ function WrongChainBanner({ chainGuard }: BannerContentProps) {
         <XCircle className="w-5 h-5 text-red-500 shrink-0 mt-0.5" />
         <div>
           <p className="text-sm font-medium text-red-600 dark:text-red-400">
-            Wrong Network
+            {t("wrongNetwork")}
           </p>
           <p className="text-sm text-red-600/80 dark:text-red-400/80 mt-0.5">
-            This escrow is deployed on <strong>{escrowChainName}</strong>, but your wallet is connected to{" "}
-            <strong>{walletChainName}</strong>. Switch networks to interact with this escrow.
+            {t("wrongNetworkDesc", { escrowChain: escrowChainName, walletChain: walletChainName })}
           </p>
         </div>
       </div>
@@ -65,7 +66,7 @@ function WrongChainBanner({ chainGuard }: BannerContentProps) {
         isLoading={isSwitching}
         className="w-full sm:w-auto shrink-0 border-red-500/30 text-red-600 dark:text-red-400 hover:bg-red-500/10"
       >
-        Switch to {escrowChainName}
+        {t("switchTo", { chain: escrowChainName })}
         <ArrowRight className="w-4 h-4 ml-1" />
       </Button>
     </div>
@@ -76,6 +77,7 @@ function WrongChainBanner({ chainGuard }: BannerContentProps) {
  * Unsupported Chain Banner - Shows when wallet is on an unsupported network
  */
 function UnsupportedChainBanner({ chainGuard }: BannerContentProps) {
+  const t = useTranslations("escrows.detail.chain");
   const { walletChainName, escrowChainName, switchToEscrowChain, isSwitching } = chainGuard;
 
   return (
@@ -84,11 +86,10 @@ function UnsupportedChainBanner({ chainGuard }: BannerContentProps) {
         <AlertTriangle className="w-5 h-5 text-red-500 shrink-0 mt-0.5" />
         <div>
           <p className="text-sm font-medium text-red-600 dark:text-red-400">
-            Unsupported Network
+            {t("unsupportedNetwork")}
           </p>
           <p className="text-sm text-red-600/80 dark:text-red-400/80 mt-0.5">
-            You are connected to <strong>{walletChainName}</strong> which is not supported.
-            This escrow is on <strong>{escrowChainName}</strong>.
+            {t("unsupportedNetworkDesc", { walletChain: walletChainName, escrowChain: escrowChainName })}
           </p>
         </div>
       </div>
@@ -99,7 +100,7 @@ function UnsupportedChainBanner({ chainGuard }: BannerContentProps) {
         isLoading={isSwitching}
         className="w-full sm:w-auto shrink-0 border-red-500/30 text-red-600 dark:text-red-400 hover:bg-red-500/10"
       >
-        Switch to {escrowChainName}
+        {t("switchTo", { chain: escrowChainName })}
         <ArrowRight className="w-4 h-4 ml-1" />
       </Button>
     </div>
@@ -110,6 +111,7 @@ function UnsupportedChainBanner({ chainGuard }: BannerContentProps) {
  * Testnet Banner - Shows when escrow is on testnet (informational)
  */
 function TestnetBanner({ chainGuard }: BannerContentProps) {
+  const t = useTranslations("escrows.detail.chain");
   const { escrowChainName } = chainGuard;
 
   return (
@@ -118,10 +120,10 @@ function TestnetBanner({ chainGuard }: BannerContentProps) {
         <Info className="w-5 h-5 text-warning-600 dark:text-warning-400 shrink-0 mt-0.5" />
         <div>
           <p className="text-sm font-medium text-warning-700 dark:text-warning-300">
-            Testnet Escrow
+            {t("testnetEscrow")}
           </p>
           <p className="text-sm text-warning-600/80 dark:text-warning-400/80 mt-0.5">
-            This escrow is on <strong>{escrowChainName}</strong> testnet. Transactions use test tokens only.
+            {t("testnetDesc", { chain: escrowChainName })}
           </p>
         </div>
       </div>

@@ -13,6 +13,7 @@ import {
 } from "@/components/ui";
 import { useAgentActions } from "@/hooks";
 import { useRouter } from "next/navigation";
+import { useTranslations } from "next-intl";
 import {
   MAX_DESCRIPTION_LENGTH,
   MIN_FEE_BPS,
@@ -54,6 +55,8 @@ export function ProfileEditForm({
   mode = "profile"
 }: ProfileEditFormProps) {
   const router = useRouter();
+  const t = useTranslations("agents.edit.profile");
+  const tFees = useTranslations("agents.edit.fees");
   const [description, setDescription] = useState(initialDescription);
 
   const contactStateFromContactString = (contact: string): ContactFieldsState => {
@@ -112,7 +115,7 @@ export function ProfileEditForm({
   // Redirect on success (Only for profile mode)
   useEffect(() => {
     if (isSuccess && isProfileMode) {
-      toast.success("Profile updated successfully!");
+      toast.success(t("profileUpdated"));
       const timer = setTimeout(() => {
         router.push("/agents/dashboard");
       }, 2000);
@@ -130,7 +133,7 @@ export function ProfileEditForm({
     if (profileChanged) {
       const descriptionBytes = byteLengthUtf8(description.trim());
       if (descriptionBytes > MAX_DESCRIPTION_LENGTH) {
-        toast.error(`Description exceeds ${MAX_DESCRIPTION_LENGTH} bytes (${descriptionBytes}/${MAX_DESCRIPTION_LENGTH})`);
+        toast.error(t("descriptionExceedsBytes", { max: MAX_DESCRIPTION_LENGTH, current: descriptionBytes }));
         return;
       }
 
@@ -143,7 +146,7 @@ export function ProfileEditForm({
       setActiveAction("profile");
       await updateProfile(description, currentContact);
     } else {
-      toast.info("No profile changes detected");
+      toast.info(t("noChanges"));
     }
   };
 
@@ -163,7 +166,7 @@ export function ProfileEditForm({
   const handleUpdateAssignmentFee = async () => {
     if (assignmentFeeError) return;
     if (assignmentFeeBps === initialAssignmentFee) {
-      toast.info("No changes to assignment fee");
+      toast.info(tFees("noAssignmentChanges"));
       return;
     }
     setActiveAction("assignment");
@@ -173,7 +176,7 @@ export function ProfileEditForm({
   const handleUpdateDisputeFee = async () => {
     if (disputeFeeError) return;
     if (disputeFeeBps === initialDisputeFee) {
-      toast.info("No changes to dispute resolution fee");
+      toast.info(tFees("noDisputeChanges"));
       return;
     }
     setActiveAction("dispute");
@@ -192,26 +195,26 @@ export function ProfileEditForm({
                   <Save size={20} />
                 </div>
                 <div>
-                  <Heading level={3}>Profile Details</Heading>
-                  <Text variant="muted">Update your public description and contact info</Text>
+                  <Heading level={3}>{t("title")}</Heading>
+                  <Text variant="muted">{t("description")}</Text>
                 </div>
               </div>
 
               {/* Description */}
               <div className="space-y-2">
                 <label className="text-sm font-bold uppercase tracking-wider text-[var(--text-tertiary)] ml-1">
-                  Professional Summary
+                  {t("professionalSummary")}
                 </label>
                 <textarea
                   value={description}
                   onChange={(e) => setDescription(e.target.value)}
-                  placeholder="Tell users why they should select you as their agent..."
+                  placeholder={t("summaryPlaceholder")}
                   disabled={isLoading}
                   className="w-full h-32 px-4 py-3 rounded-xl bg-neutral-50 dark:bg-neutral-900/50 border border-[var(--border-secondary)] focus:border-primary-500 outline-none transition-all resize-none text-sm leading-relaxed"
                 />
                 <div className="flex justify-between items-center px-1">
                   <Text variant="muted" className="text-[10px]">
-                    Visible to everyone in the agent list.
+                    {t("visibilityNote")}
                   </Text>
                   <span className={`text-[10px] font-mono ${descriptionBytes > MAX_DESCRIPTION_LENGTH ? "text-error-500" : "text-[var(--text-tertiary)]"}`}>
                     {descriptionBytes}/{MAX_DESCRIPTION_LENGTH} bytes
@@ -235,8 +238,8 @@ export function ProfileEditForm({
               }`}>
                 {isSuccess ? <CheckCircle2 size={20} /> : <Loader2 size={20} className="animate-spin" />}
                 <div className="text-sm font-medium">
-                  {isLoading && activeAction === "profile" && "Updating on-chain..."}
-                  {isSuccess && "Update successful! Redirecting..."}
+                  {isLoading && activeAction === "profile" && t("updatingOnChain")}
+                  {isSuccess && t("updateSuccessful")}
                 </div>
               </div>
             )}
@@ -249,7 +252,7 @@ export function ProfileEditForm({
               onClick={() => router.back()}
               disabled={isLoading}
             >
-              Cancel
+              {t("cancel")}
             </Button>
             <Button
               type="submit"
@@ -257,7 +260,7 @@ export function ProfileEditForm({
               isLoading={isLoading && activeAction === "profile"}
               className="px-8 shadow-lg shadow-primary-500/20"
             >
-              Save Changes
+              {t("saveChanges")}
             </Button>
           </CardFooter>
         </form>
@@ -278,13 +281,13 @@ export function ProfileEditForm({
                 <Percent size={20} />
               </div>
               <div>
-                <Heading level={4} className="text-lg">Assignment Fee</Heading>
-                <Text variant="muted" className="text-xs">Charged when assigned to a case</Text>
+                <Heading level={4} className="text-lg">{tFees("assignmentFee")}</Heading>
+                <Text variant="muted" className="text-xs">{tFees("assignmentFeeDesc")}</Text>
               </div>
             </div>
 
             <NumberInput
-              label="Fee Percentage (%)"
+              label={tFees("feePercentage")}
               value={assignmentFee}
               onChange={setAssignmentFee}
               placeholder="0.00"
@@ -299,7 +302,7 @@ export function ProfileEditForm({
               isLoading={isLoading && activeAction === "assignment"}
               className="w-full"
             >
-              Update Assignment Fee
+              {tFees("updateAssignmentFee")}
             </Button>
 
             {/* Inline Status for Assignment Fee */}
@@ -311,9 +314,9 @@ export function ProfileEditForm({
               }`}>
                 {isSuccess ? <CheckCircle2 size={16} /> : <Loader2 size={16} className="animate-spin" />}
                 <div>
-                  {isSubmitting && "Waiting for signature..."}
-                  {isConfirming && "Confirming on-chain..."}
-                  {isSuccess && "Updated successfully!"}
+                  {isSubmitting && tFees("waitingForSignature")}
+                  {isConfirming && tFees("confirmingOnChain")}
+                  {isSuccess && tFees("updatedSuccessfully")}
                 </div>
               </div>
             )}
@@ -328,13 +331,13 @@ export function ProfileEditForm({
                 <Settings2 size={20} />
               </div>
               <div>
-                <Heading level={4} className="text-lg">Dispute Fee</Heading>
-                <Text variant="muted" className="text-xs">Charged upon successful resolution</Text>
+                <Heading level={4} className="text-lg">{tFees("disputeFee")}</Heading>
+                <Text variant="muted" className="text-xs">{tFees("disputeFeeDesc")}</Text>
               </div>
             </div>
 
             <NumberInput
-              label="Fee Percentage (%)"
+              label={tFees("feePercentage")}
               value={disputeFee}
               onChange={setDisputeFee}
               placeholder="0.00"
@@ -349,7 +352,7 @@ export function ProfileEditForm({
               isLoading={isLoading && activeAction === "dispute"}
               className="w-full"
             >
-              Update Dispute Fee
+              {tFees("updateDisputeFee")}
             </Button>
 
             {/* Inline Status for Dispute Fee */}
@@ -361,9 +364,9 @@ export function ProfileEditForm({
               }`}>
                 {isSuccess ? <CheckCircle2 size={16} /> : <Loader2 size={16} className="animate-spin" />}
                 <div>
-                  {isSubmitting && "Waiting for signature..."}
-                  {isConfirming && "Confirming on-chain..."}
-                  {isSuccess && "Updated successfully!"}
+                  {isSubmitting && tFees("waitingForSignature")}
+                  {isConfirming && tFees("confirmingOnChain")}
+                  {isSuccess && tFees("updatedSuccessfully")}
                 </div>
               </div>
             )}
@@ -376,7 +379,7 @@ export function ProfileEditForm({
         <CardBody className="p-4 flex gap-3">
           <AlertCircle className="text-warning-500 shrink-0" size={18} />
           <Text variant="muted" className="text-xs">
-            Individual transactions required for each update. Protocol limits: 0.1% to 10.0%.
+            {tFees("protocolLimits")}
           </Text>
         </CardBody>
       </Card>
@@ -384,7 +387,7 @@ export function ProfileEditForm({
       {/* Navigation Footer */}
       <div className="flex justify-center pt-4">
         <Button variant="ghost" onClick={() => router.back()} disabled={isLoading}>
-          Back to Dashboard
+          {tFees("backToDashboard")}
         </Button>
       </div>
     </div>

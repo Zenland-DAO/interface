@@ -1,0 +1,368 @@
+{
+  "agents": {
+    "list": {
+      "title": "代理人",
+      "selectTitle": "选择代理人",
+      "description": "浏览已验证的争议解决代理人",
+      "selectDescription": "为你的托管选择一位代理人",
+      "searchLabel": "搜索代理人",
+      "searchPlaceholder": "按名称、地址或描述搜索...",
+      "sortBy": "排序方式",
+      "sortOptions": {
+        "reputation": "声誉",
+        "stake": "质押金额",
+        "fees": "最低费用",
+        "cases": "最活跃"
+      },
+      "selectModeBanner": {
+        "title": "正在为创建托管选择代理人",
+        "description": "点击代理人卡片上的「选择」或查看其个人资料了解更多详情"
+      },
+      "card": {
+        "you": "你",
+        "active": "活跃",
+        "inactive": "未活跃",
+        "busy": "忙碌",
+        "stablecoin": "稳定币",
+        "daoToken": "DAO 代币",
+        "maxCoverage": "最大覆盖额",
+        "disputeFee": "争议费用",
+        "assignFee": "分配费用",
+        "noDescription": "该代理人尚未提供专业简介。",
+        "selectAgent": "选择代理人",
+        "viewDetails": "查看详情",
+        "joined": "注册于 {date}",
+        "view": "查看"
+      },
+      "error": {
+        "title": "注册表错误",
+        "description": "无法从注册表获取代理人信息。请检查你的网络连接。",
+        "retry": "重试连接"
+      },
+      "empty": {
+        "title": "未找到代理人",
+        "searchEmpty": "请尝试调整搜索词或筛选条件。",
+        "noAgents": "注册表中暂无活跃的代理人。"
+      }
+    },
+    "headerActions": {
+      "dashboard": "代理人面板",
+      "becomeAgent": "成为代理人"
+    },
+    "register": {
+      "backToAgents": "返回代理人列表",
+      "title": "成为代理人",
+      "description": "注册为争议解决代理人，帮助社区",
+      "connectWallet": {
+        "title": "连接你的钱包",
+        "description": "加入专业争议解决者网络，凭借你的专业知识赚取费用。"
+      },
+      "formTitle": "代理人注册",
+      "formDescription": "配置你的专业档案和安全保证金",
+      "requirements": {
+        "title": "代理人要求",
+        "stablecoinStake": "稳定币质押决定你的最大可仲裁价值（MAV = 20× 质押）",
+        "daoTokenStake": "需要 DAO 代币质押以与协议保持一致（不当行为可被罚没）",
+        "responseDeadline": "在截止日期内响应分配的争议（默认 7 天）",
+        "fairResolution": "需要公平公正地解决争议"
+      },
+      "sections": {
+        "collateral": "抵押品配置",
+        "serviceFees": "服务费用",
+        "publicProfile": "公开档案",
+        "securityApprovals": "安全授权"
+      },
+      "stablecoinStake": "稳定币质押",
+      "available": "可用：",
+      "minStake": "最低质押：${amount}",
+      "minStakeToken": "最低质押：{amount} {symbol}",
+      "zenGovernanceStake": "ZEN 治理质押",
+      "assignmentFee": "分配费用",
+      "disputeFee": "争议费用",
+      "assignmentFeeHelper": "案件分配时自动收取。<earn>在 $10k 托管中赚取 ${amount}。</earn>",
+      "disputeFeeHelper": "仅在成功解决案件后获得。<earn>在 $10k 托管中赚取 ${amount}。</earn>",
+      "feeRange": "费率范围：{min}% - {max}%",
+      "professionalBio": "专业简介",
+      "bioPlaceholder": "DeFi、NFT 版税和跨链桥专家...",
+      "bytesTip": "提示：某些字符（如「→」、表情符号等）占用超过 1 个字节，可能会超出链上限制。",
+      "securityApprovalsTitle": "安全授权",
+      "securityApprovalsDesc": "授权将抵押品代币锁定在注册表中",
+      "termsAcknowledgement": "我确认我的质押作为保证金，如果违反协议规则可能会被罚没，具体条款请参阅<link>代理人条款与条件</link>。",
+      "cancel": "取消",
+      "agreeToTerms": "同意条款",
+      "registerAsAgent": "注册为代理人",
+      "approvingToken": "正在授权 {symbol}...",
+      "registering": "注册中...",
+      "registered": "注册成功！",
+      "enterAmountToApprove": "输入金额以启用授权",
+      "copyDetails": "复制详情",
+      "copied": "已复制",
+      "success": {
+        "title": "注册成功！",
+        "description": "你已注册为代理人。可以开始接受争议案件了。",
+        "transaction": "交易：",
+        "goToDashboard": "前往面板"
+      },
+      "alreadyRegistered": {
+        "title": "已注册",
+        "description": "你的钱包已注册为代理人。",
+        "goToDashboard": "前往面板"
+      },
+      "faq": {
+        "title": "常见问题",
+        "mavQuestion": "什么是 MAV（最大可仲裁价值）？",
+        "mavAnswer": "MAV 决定了你可以被分配解决的最大托管价值。计算方式为 20× 你的稳定币质押。例如，$100 的质押对应 $2,000 的 MAV。",
+        "feesQuestion": "两种费用分别是什么？",
+        "feesAnswer": "<bold>分配费用：</bold>当你被分配到一个托管时收取（即使没有争议）。<bold>争议费用：</bold>仅在你解决争议时收取。两者均为托管金额的百分比。",
+        "slashQuestion": "什么情况下我的质押会被罚没？",
+        "slashAnswer": "如果你未在截止日期内响应争议，或者通过治理提案认定存在不当行为，你的 DAO 代币质押可能会被 DAO 治理罚没。",
+        "withdrawQuestion": "我可以提取质押吗？",
+        "withdrawAnswer": "可以，当你没有活跃案件时可以提取质押。首先将自己设为不可用，然后等待 30 天（参与冷却期），之后即可执行提取操作来取回两种质押。",
+        "gaslessQuestion": "什么是「免 Gas」授权？",
+        "gaslessAnswer": "支持 EIP-2612 permit 的代币允许你签署授权消息而不是发送单独的交易。这可以节省 Gas 费用。USDC 和 DAO 代币支持此功能；USDT 不支持。"
+      }
+    },
+    "dashboard": {
+      "connectWallet": {
+        "title": "连接你的钱包",
+        "description": "请连接你的钱包以查看代理人面板并管理你的案件。"
+      },
+      "notRegistered": {
+        "title": "未注册为代理人",
+        "description": "你目前在此网络上未注册为代理人。立即注册以开始解决争议并赚取费用。",
+        "becomeAgent": "成为代理人"
+      },
+      "backToAgents": "返回代理人列表",
+      "title": "代理人面板",
+      "description": "监控你的表现并管理分配的争议案件",
+      "joined": "注册于 {date}",
+      "online": "在线",
+      "offline": "离线",
+      "setUnavailable": "设为不可用",
+      "setAvailable": "设为可用",
+      "editProfile": "编辑档案",
+      "defaultDescription": "专业争议解决者，维护 Zenland 生态系统的完整性。",
+      "stats": {
+        "activeCases": "活跃案件",
+        "totalResolved": "已解决总数",
+        "totalEarnings": "总收入",
+        "totalSlashed": "被罚没总额"
+      },
+      "cases": {
+        "title": "最近争议案件",
+        "assigned": "已分配 {count} 个",
+        "viewAll": "查看全部 →",
+        "empty": "暂无分配的案件。当有争议需要你审查时会通知你。",
+        "dispute": "争议 #{id}",
+        "resolved": "已解决",
+        "active": "进行中",
+        "escrowInfo": "托管 #{id} • {amount} USDC",
+        "loading": "加载中...",
+        "view": "查看",
+        "review": "审查"
+      },
+      "feeConfig": {
+        "title": "费用配置",
+        "assignmentFee": "分配费用",
+        "disputeResolution": "争议解决",
+        "updateFees": "更新费用"
+      },
+      "stakeCapacity": {
+        "title": "质押与容量",
+        "stablecoinStake": "稳定币质押（MAV）",
+        "daoTokenStake": "DAO 代币质押",
+        "mavCoverage": "提供 <bold>${amount}</bold> MAV 覆盖额。",
+        "governanceNote": "用于治理和协议安全。",
+        "increaseStake": "增加质押",
+        "withdrawStake": "提取质押"
+      }
+    },
+    "edit": {
+      "connectWallet": {
+        "title": "连接你的钱包",
+        "description": "请连接你的钱包以管理你的代理人档案。"
+      },
+      "notAgent": {
+        "title": "非代理人",
+        "description": "你目前未注册为代理人。必须先注册才能编辑档案。",
+        "becomeAgent": "成为代理人"
+      },
+      "backToDashboard": "返回面板",
+      "editProfile": "编辑档案",
+      "configureFees": "配置费用",
+      "editProfileDesc": "在链上更新你的专业简介和联系方式",
+      "configureFeesDesc": "设置你的分配费用和争议解决费用",
+      "profile": {
+        "title": "档案详情",
+        "description": "更新你的公开描述和联系方式",
+        "professionalSummary": "专业简介",
+        "summaryPlaceholder": "告诉用户为什么应该选择你作为代理人...",
+        "visibilityNote": "对代理人列表中的所有人可见。",
+        "saveChanges": "保存更改",
+        "cancel": "取消",
+        "updatingOnChain": "链上更新中...",
+        "updateSuccessful": "更新成功！正在跳转...",
+        "profileUpdated": "档案更新成功！",
+        "noChanges": "未检测到档案更改",
+        "descriptionExceedsBytes": "描述超过 {max} 字节（{current}/{max}）"
+      },
+      "fees": {
+        "assignmentFee": "分配费用",
+        "assignmentFeeDesc": "分配到案件时收取",
+        "disputeFee": "争议费用",
+        "disputeFeeDesc": "成功解决时收取",
+        "feePercentage": "费率百分比（%）",
+        "updateAssignmentFee": "更新分配费用",
+        "updateDisputeFee": "更新争议费用",
+        "waitingForSignature": "等待签名...",
+        "confirmingOnChain": "链上确认中...",
+        "updatedSuccessfully": "更新成功！",
+        "protocolLimits": "每次更新需要单独的交易。协议限制：0.1% 至 10.0%。",
+        "backToDashboard": "返回面板",
+        "noAssignmentChanges": "分配费用无更改",
+        "noDisputeChanges": "争议解决费用无更改"
+      }
+    },
+    "profile": {
+      "backToAgents": "返回代理人列表",
+      "backToSelection": "返回代理人选择",
+      "error": {
+        "title": "未找到代理人",
+        "description": "无法找到请求的代理人。",
+        "tryAgain": "重试"
+      },
+      "selectModeBanner": {
+        "title": "正在为创建托管选择代理人",
+        "description": "查看此代理人的档案，点击「选择代理人」将其分配到你的托管"
+      },
+      "header": {
+        "you": "你",
+        "active": "活跃",
+        "inactive": "未活跃",
+        "unavailable": "不可用",
+        "addressCopied": "地址已复制到剪贴板",
+        "joined": "注册于 {date}",
+        "goToDashboard": "前往面板",
+        "selectAgent": "选择代理人",
+        "viewOnExplorer": "在浏览器中查看"
+      },
+      "stats": {
+        "casesResolved": "已解决案件",
+        "totalEscrows": "托管总数",
+        "disputeFee": "争议费用",
+        "assignFee": "分配费用"
+      },
+      "contact": {
+        "title": "专业简介与联系方式",
+        "bioLabel": "简介 / 描述",
+        "noDescription": "该代理人尚未提供专业简介。",
+        "contactChannels": "联系渠道"
+      },
+      "collateral": {
+        "title": "代理人抵押品",
+        "maxCoverage": "最大覆盖额",
+        "maxCoverageNote": "基于稳定币质押 × {multiplier}",
+        "stablecoinStake": "稳定币质押",
+        "daoTokenStake": "DAO 代币质押",
+        "totalEarnings": "总收入",
+        "totalSlashed": "被罚没总额"
+      }
+    },
+    "fees": {
+      "title": "费用配置",
+      "description": "设置你的分配费用和争议解决费用",
+      "tabs": {
+        "assignment": "分配费用",
+        "dispute": "争议费用"
+      },
+      "assignmentFee": "分配费用",
+      "disputeResolutionFee": "争议解决费用",
+      "updateAssignmentFee": "更新分配费用",
+      "updateDisputeFee": "更新争议费用",
+      "status": {
+        "waitingForSignature": "等待签名...",
+        "confirmingOnChain": "链上确认中...",
+        "indexingUpdate": "正在索引更新...",
+        "feeUpdated": "费用更新成功！"
+      },
+      "protocolLimits": "每次更新需要单独的交易。协议限制：0.1% 至 10.0%。"
+    },
+    "stake": {
+      "increase": {
+        "title": "增加质押",
+        "description": "添加抵押品以增加你的最大可仲裁价值（MAV）",
+        "amountOf": "{symbol} 数量",
+        "balance": "余额：",
+        "insufficientBalance": "余额不足",
+        "mavNote": "增加质押可提高你的最大可仲裁价值（MAV）。",
+        "signPermit": "为 {symbol} 签署 Permit",
+        "approveToken": "授权 {symbol}",
+        "stakeToken": "质押 {symbol}",
+        "permitSigned": "Permit 已签署 — 再次点击以质押",
+        "stakeUpdated": "质押更新成功！"
+      },
+      "withdraw": {
+        "title": "提取质押",
+        "description": "管理你的退出并提取可用抵押品",
+        "statusActive": "状态：活跃",
+        "statusRetiring": "状态：退出中",
+        "activeDescription": "你目前正在接受新的争议。要提取质押，必须先禁用可用状态。",
+        "retiringDescription": "可用状态已禁用。你将不再被分配新案件。",
+        "prerequisiteCases": "所有活跃案件已解决（{count} 个待处理）",
+        "prerequisiteAvailability": "可用状态已设为禁用",
+        "prerequisiteCooldown": "安全冷却期已过",
+        "cooldownEnds": "结束时间：{date}",
+        "withdrawAll": "提取全部质押",
+        "cooldownExplanation": "安全冷却期确保在退出协议前没有恶意行为。当所有条件都满足后，上方按钮将启用。"
+      },
+      "tabs": {
+        "increase": "增加质押",
+        "withdraw": "提取质押"
+      }
+    },
+    "availability": {
+      "setAvailable": {
+        "title": "设为可用",
+        "confirmText": "设为可用",
+        "message": "你将重新开始接收新的争议邀请。"
+      },
+      "setUnavailable": {
+        "title": "设为不可用",
+        "confirmText": "设为不可用",
+        "message": "设为不可用期间：\n• 你将不会收到新的争议邀请。\n• 选择你作为代理人的托管在争议时无法邀请你。\n• 各方可能被迫在没有你裁决的情况下协商和解（SPLIT）。\n{casesLine}\n这可能会降低选择你进行仲裁的各方对你的信任。",
+        "activeCasesLine": " 你目前有 {count} 个活跃案件。"
+      }
+    },
+    "shared": {
+      "contact": {
+        "telegram": "Telegram",
+        "discord": "Discord",
+        "email": "邮箱",
+        "contact": "联系方式",
+        "copiedToClipboard": "{label} 已复制到剪贴板",
+        "failedToCopy": "复制失败",
+        "noContactInfo": "未提供联系方式",
+        "primary": "主要",
+        "secondary": "次要"
+      },
+      "contactFields": {
+        "telegram": "Telegram",
+        "discord": "Discord",
+        "email": "邮箱",
+        "custom": "自定义",
+        "none": "无",
+        "primaryContact": "主要联系方式",
+        "secondaryContact": "次要联系方式",
+        "usernamePlaceholder": "@用户名",
+        "emailPlaceholder": "name@example.com",
+        "valuePlaceholder": "值",
+        "namePlaceholder": "名称",
+        "primaryRequired": "主要联系方式为必填项",
+        "optional": "可选",
+        "formatHint": "{kind} 格式将以 name:value 形式存储在链上",
+        "storedOnChain": "链上存储格式：<name>:<value>[;<name>:<value>]",
+        "totalExceedsMax": "联系信息总长度超过 {max} 个字符"
+      }
+    }
+  }
+}

@@ -1,0 +1,31 @@
+{
+  "settings": {
+    "title": "Settings",
+    "description": "Manage your account preferences",
+    "wallet": {
+      "title": "Wallet",
+      "connectedWallet": "Connected Wallet",
+      "disconnect": "Disconnect",
+      "network": "Network",
+      "networkDescription": "Switch between mainnet and testnet",
+      "noWallet": "No wallet connected",
+      "noWalletDescription": "Connect your wallet to access all features",
+      "connectWallet": "Connect Wallet"
+    },
+    "appearance": {
+      "title": "Appearance",
+      "theme": "Theme",
+      "themeDescription": "Switch between light and dark mode"
+    },
+    "about": {
+      "title": "About",
+      "version": "Version",
+      "versionDescription": "Current application version",
+      "documentation": "Documentation",
+      "github": "GitHub",
+      "termsOfService": "Terms of Service",
+      "privacyPolicy": "Privacy Policy",
+      "support": "Support"
+    }
+  }
+}

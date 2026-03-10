@@ -1,0 +1,46 @@
+{
+  "dashboard": {
+    "title": "Dashboard",
+    "description": "Welcome back! Here's an overview of escrow activity.",
+    "createEscrow": "Create Escrow",
+    "quickActions": {
+      "becomeAgent": {
+        "title": "Become an Agent",
+        "description": "Help resolve disputes and earn fees by becoming a registered agent.",
+        "cta": "Learn More"
+      },
+      "needHelp": {
+        "title": "Need Help?",
+        "description": "Check out our documentation to learn how Zenland escrow works.",
+        "cta": "View Docs"
+      }
+    },
+    "stats": {
+      "protocolStats": "Protocol Stats",
+      "myStats": "My Stats",
+      "protocol": "Protocol",
+      "yourActivity": "Your Activity",
+      "protocolOverview": "Protocol Overview",
+      "active": "Active Escrows",
+      "tvlPersonal": "Your Locked Value",
+      "tvlGlobal": "Total Value Locked",
+      "completed": "Completed",
+      "disputed": "In Dispute",
+      "error": "Failed to load statistics. Please try again later."
+    },
+    "recentEscrows": {
+      "titlePersonal": "Recent Escrows",
+      "titleGlobal": "Latest Escrows",
+      "viewAll": "View all",
+      "emptyPersonal": {
+        "title": "No recent escrows",
+        "description": "Create your first escrow contract to get started.",
+        "cta": "Create Escrow"
+      },
+      "emptyGlobal": {
+        "title": "No escrows yet",
+        "description": "Be the first to create an escrow on Zenland!"
+      }
+    }
+  }
+}

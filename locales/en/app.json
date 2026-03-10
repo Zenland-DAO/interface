@@ -1,0 +1,32 @@
+{
+  "app": {
+    "nav": {
+      "dashboard": "Dashboard",
+      "escrows": "Escrows",
+      "agents": "Agents",
+      "verifyPdf": "Verify PDF"
+    },
+    "header": {
+      "settings": "Settings",
+      "disconnect": "Disconnect",
+      "connectWallet": "Connect Wallet",
+      "connect": "Connect"
+    },
+    "sidebar": {
+      "banner": {
+        "badge": "Zenland Agent",
+        "title": "Earn by resolving disputes.",
+        "description": "Join the decentralized agent program and start earning fees.",
+        "cta": "Learn More"
+      }
+    },
+    "userProfile": {
+      "addressCopied": "Address Copied",
+      "addressCopiedDescription": "Wallet address copied to clipboard"
+    },
+    "announcement": {
+      "betaMessage": "Zenland V2 is in Beta - help us make it better! Found a bug or have feedback?",
+      "telegramLink": "Telegram"
+    }
+  }
+}

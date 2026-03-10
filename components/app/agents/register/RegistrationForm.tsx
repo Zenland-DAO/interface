@@ -13,6 +13,7 @@ import { useAgentRegistration, useNetworkGuard, type RegistrationFormData } from
 import { getStablecoins, type StablecoinType } from "@/lib/contracts";
 import { buildContactString, parseContactString, parsedEntryToInput } from "@/lib/agents/contactCodec";
 import { byteLengthUtf8 } from "@/lib/agents/contactCodec";
+import { useTranslations } from "next-intl";
 import {
   AlertTriangle,
   AlertCircle,
@@ -78,6 +79,7 @@ function ConnectWalletPrompt() {
  * Main registration form component.
  */
 export function RegistrationForm() {
+  const t = useTranslations("agents.register");
   const chainId = useChainId();
   const { address, isConnected } = useConnection();
 
@@ -414,10 +416,10 @@ export function RegistrationForm() {
             </svg>
           </div>
           <h2 className="text-xl font-bold text-[var(--text-primary)] mb-2">
-            Registration Successful!
+            {t("success.title")}
           </h2>
           <p className="text-[var(--text-secondary)] mb-4">
-            You are now registered as an agent. You can start accepting disputes.
+            {t("success.description")}
           </p>
           {txHash && (
             <p className="text-xs font-mono text-[var(--text-tertiary)] mb-4">
@@ -428,7 +430,7 @@ export function RegistrationForm() {
             variant="primary"
             onClick={() => (window.location.href = "/agents/dashboard")}
           >
-            Go to Dashboard
+            {t("success.goToDashboard")}
           </Button>
         </CardBody>
       </Card>
@@ -456,16 +458,16 @@ export function RegistrationForm() {
             </svg>
           </div>
           <h2 className="text-xl font-bold text-[var(--text-primary)] mb-2">
-            Already Registered
+            {t("alreadyRegistered.title")}
           </h2>
           <p className="text-[var(--text-secondary)] mb-4">
-            Your wallet is already registered as an agent.
+            {t("alreadyRegistered.description")}
           </p>
           <Button
             variant="primary"
             onClick={() => (window.location.href = "/agents/dashboard")}
           >
-            Go to Dashboard
+            {t("success.goToDashboard")}
           </Button>
         </CardBody>
       </Card>
@@ -480,8 +482,8 @@ export function RegistrationForm() {
           <ShieldCheck size={24} />
         </div>
         <div>
-          <Heading level={2} className="text-xl">Agent Registration</Heading>
-          <Text variant="muted" className="text-sm">Configure your professional profile and security deposit</Text>
+          <Heading level={2} className="text-xl">{t("formTitle")}</Heading>
+          <Text variant="muted" className="text-sm">{t("formDescription")}</Text>
         </div>
       </div>
 
@@ -507,14 +509,14 @@ export function RegistrationForm() {
               <section className="space-y-6 pt-6 border-t border-[var(--border-secondary)]">
                 <div className="flex items-center gap-2">
                   <div className="w-1 h-5 bg-primary-500 rounded-full" />
-                  <Heading level={4} className="uppercase tracking-widest text-[10px] font-bold text-primary-500">Collateral Configuration</Heading>
+                  <Heading level={4} className="uppercase tracking-widest text-[10px] font-bold text-primary-500">{t("sections.collateral")}</Heading>
                 </div>
 
                 <div className="grid grid-cols-1 gap-8">
                   {/* Stablecoin Stake */}
                   <div className="relative z-20">
                     <div className="flex justify-between items-center mb-2 px-1">
-                      <label className="text-xs font-bold uppercase tracking-wider text-[var(--text-tertiary)] ml-1">Stablecoin Stake</label>
+                      <label className="text-xs font-bold uppercase tracking-wider text-[var(--text-tertiary)] ml-1">{t("stablecoinStake")}</label>
                       <span className="text-[10px] text-[var(--text-tertiary)]">
                         Available: <span className="font-mono text-[var(--text-primary)]">{formatBalance(stablecoinBalance, stablecoinConfig?.decimals || 18)}</span> {stablecoinConfig?.symbol}
                       </span>
@@ -523,7 +525,7 @@ export function RegistrationForm() {
                     <div className="flex gap-3">
                       <div className="w-32">
                         <Select
-                          options={stablecoins.map(t => ({ label: t.symbol, value: t.symbol }))}
+                          options={stablecoins.map(sc => ({ label: sc.symbol, value: sc.symbol }))}
                           value={formData.stablecoinType}
                           onChange={(val) => updateField("stablecoinType", val as StablecoinType)}
                           hideLabel
@@ -546,7 +548,7 @@ export function RegistrationForm() {
                   {/* DAO token Stake */}
                   <div className="relative z-10">
                     <div className="flex justify-between items-center mb-2 px-1">
-                      <label className="text-xs font-bold uppercase tracking-wider text-[var(--text-tertiary)] ml-1">ZEN Governance Stake</label>
+                      <label className="text-xs font-bold uppercase tracking-wider text-[var(--text-tertiary)] ml-1">{t("zenGovernanceStake")}</label>
                       <span className="text-[10px] text-[var(--text-tertiary)]">
                         Available: <span className="font-mono text-[var(--text-primary)]">{formatBalance(daoTokenBalance, daoTokenConfig?.decimals || 18)}</span> {daoTokenConfig?.symbol}
                       </span>
@@ -568,12 +570,12 @@ export function RegistrationForm() {
               <section className="space-y-6 pt-6 border-t border-[var(--border-secondary)]">
                 <div className="flex items-center gap-2">
                   <div className="w-1 h-5 bg-primary-500 rounded-full" />
-                  <Heading level={4} className="uppercase tracking-widest text-[10px] font-bold text-primary-500">Service Fees</Heading>
+                  <Heading level={4} className="uppercase tracking-widest text-[10px] font-bold text-primary-500">{t("sections.serviceFees")}</Heading>
                 </div>
 
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-8 p-4 sm:p-6 rounded-2xl bg-primary-50/10 border border-primary-500/5">
                   <NumberInput
-                    label="Assignment Fee"
+                    label={t("assignmentFee")}
                     value={formData.assignmentFeeBps}
                     onChange={(val) => updateField("assignmentFeeBps", val)}
                     onBlur={() => markTouched("assignmentFeeBps")}
@@ -592,7 +594,7 @@ export function RegistrationForm() {
                   />
 
                   <NumberInput
-                    label="Dispute Fee"
+                    label={t("disputeFee")}
                     value={formData.disputeFeeBps}
                     onChange={(val) => updateField("disputeFeeBps", val)}
                     onBlur={() => markTouched("disputeFeeBps")}
@@ -622,13 +624,13 @@ export function RegistrationForm() {
               <section className="space-y-6 pt-6 border-t border-[var(--border-secondary)]">
                 <div className="flex items-center gap-2">
                   <div className="w-1 h-5 bg-primary-500 rounded-full" />
-                  <Heading level={4} className="uppercase tracking-widest text-[10px] font-bold text-primary-500">Public Profile</Heading>
+                  <Heading level={4} className="uppercase tracking-widest text-[10px] font-bold text-primary-500">{t("sections.publicProfile")}</Heading>
                 </div>
 
                 <div className="space-y-6">
                   <div className="space-y-2">
                     <label className="block text-xs font-bold uppercase tracking-wider text-[var(--text-tertiary)] ml-1">
-                      Professional Bio
+                      {t("professionalBio")}
                     </label>
                     <textarea
                       value={formData.description}
@@ -691,8 +693,8 @@ export function RegistrationForm() {
               <section className="space-y-6 pt-6 border-t border-[var(--border-secondary)]">
                 <div className="flex flex-col lg:flex-row lg:items-center justify-between gap-6 p-4 sm:p-6 rounded-2xl border border-[var(--border-secondary)] bg-neutral-50/50 dark:bg-neutral-800/20">
                   <div className="space-y-1 shrink-0">
-                    <Heading level={4} className="text-sm">Security Approvals</Heading>
-                    <Text variant="muted" className="text-xs">Grant permission to lock collateral tokens in the registry</Text>
+                    <Heading level={4} className="text-sm">{t("securityApprovalsTitle")}</Heading>
+                    <Text variant="muted" className="text-xs">{t("securityApprovalsDesc")}</Text>
                   </div>
                   <div className="flex flex-col divide-y divide-[var(--border-secondary)] w-full lg:max-w-xs">
                     <TokenApprovalAction
@@ -726,9 +728,13 @@ export function RegistrationForm() {
                     />
                   </div>
                   <span className="text-sm leading-relaxed text-[var(--text-secondary)]">
-                    I acknowledge that my stake serves as bond and can be slashed for protocol misconduct as defined in the  <Link href="/agent-tos"  target="_blank" rel="noopener noreferrer" className="text-primary-500 font-bold hover:underline">
-                      Agent Terms & Conditions
-                    </Link>.
+                    {t.rich("termsAcknowledgement", {
+                      link: (chunks) => (
+                        <Link href="/agent-tos" target="_blank" rel="noopener noreferrer" className="text-primary-500 font-bold hover:underline">
+                          {chunks}
+                        </Link>
+                      ),
+                    })}
                   </span>
                 </div>
               </section>
@@ -744,7 +750,7 @@ export function RegistrationForm() {
               className="w-full sm:w-auto px-8"
               onClick={() => (window.location.href = "/agents")}
             >
-              Cancel
+              {t("cancel")}
             </Button>
             <Button
               variant="primary"

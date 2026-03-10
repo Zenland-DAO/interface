@@ -16,6 +16,7 @@ import { useState, useCallback } from "react";
 import { keccak256, type Address, type Hex } from "viem";
 import { useAccount } from "wagmi";
 import { CheckCircle2, Shield } from "lucide-react";
+import { useTranslations } from "next-intl";
 
 import { Card, Heading, Text, Button } from "@/components/ui";
 import { PageHeader } from "@/components/shared";
@@ -76,6 +77,7 @@ type VerificationState =
 export function VerifyClient() {
   const [state, setState] = useState<VerificationState>({ status: "idle" });
   const { address: connectedAddress, isConnected } = useAccount();
+  const t = useTranslations("verify");
 
   /**
    * Verify the uploaded PDF
@@ -169,8 +171,8 @@ export function VerifyClient() {
   return (
     <div className="max-w-2xl mx-auto space-y-6">
       <PageHeader
-        title="Verify PDF"
-        description="Upload a Zenland escrow agreement PDF to verify its authenticity and check if it matches the on-chain record."
+        title={t("title")}
+        description={t("description")}
       />
 
       {/* Idle State - Drop Zone */}
@@ -226,6 +228,7 @@ export function VerifyClient() {
  * Info card shown on idle state
  */
 function InfoCard() {
+  const t = useTranslations("verify.infoCard");
   return (
     <Card variant="outlined" padding="md">
       <div className="flex items-start gap-4">
@@ -233,23 +236,23 @@ function InfoCard() {
           <Shield className="w-5 h-5 text-primary-500" />
         </div>
         <div className="space-y-2">
-          <Heading level={5}>What does verification check?</Heading>
+          <Heading level={5}>{t("title")}</Heading>
           <ul className="space-y-1 text-sm text-neutral-600 dark:text-neutral-400">
             <li className="flex items-center gap-2">
               <CheckCircle2 className="w-4 h-4 text-success-500" />
-              Zenland digital signature authenticity
+              {t("signatureAuth")}
             </li>
             <li className="flex items-center gap-2">
               <CheckCircle2 className="w-4 h-4 text-success-500" />
-              PDF content integrity (tamper detection)
+              {t("contentIntegrity")}
             </li>
             <li className="flex items-center gap-2">
               <CheckCircle2 className="w-4 h-4 text-success-500" />
-              On-chain termsHash match
+              {t("onChainMatch")}
             </li>
             <li className="flex items-center gap-2">
               <CheckCircle2 className="w-4 h-4 text-success-500" />
-              Role-based guidance for contract participants
+              {t("roleGuidance")}
             </li>
           </ul>
         </div>
@@ -268,6 +271,7 @@ function SignatureFailedDisplay({
   reason: string;
   onReset: () => void;
 }) {
+  const t = useTranslations("verify.signatureFailed");
   return (
     <Card variant="elevated" className="overflow-hidden">
       <div className="bg-error-100 dark:bg-error-900/20 px-6 py-4 flex items-center gap-4">
@@ -276,10 +280,10 @@ function SignatureFailedDisplay({
         </div>
         <div>
           <Heading level={3} className="text-error-700 dark:text-error-400">
-            Invalid PDF
+            {t("title")}
           </Heading>
           <Text variant="small" className="text-error-600 dark:text-error-500">
-            This PDF is not a valid Zenland escrow agreement
+            {t("description")}
           </Text>
         </div>
       </div>
@@ -287,12 +291,12 @@ function SignatureFailedDisplay({
       <div className="p-6 space-y-4">
         <div className="p-4 bg-error-50 dark:bg-error-900/10 rounded-lg">
           <Text variant="small" className="text-error-600 dark:text-error-400">
-            <strong>Reason:</strong> {reason}
+            <strong>{t("reason")}</strong> {reason}
           </Text>
         </div>
 
         <Button variant="outline" onClick={onReset} className="w-full">
-          Try Another PDF
+          {t("tryAnother")}
         </Button>
       </div>
     </Card>

@@ -9,6 +9,7 @@
 
 import { useMemo } from "react";
 import { Check } from "lucide-react";
+import { useTranslations } from "next-intl";
 import { type WizardStep } from "./types";
 
 // =============================================================================
@@ -26,8 +27,8 @@ export interface WizardProgressProps {
 
 interface StepConfig {
   key: WizardStep;
-  label: string;
-  shortLabel: string;
+  labelKey: string;
+  shortLabelKey: string;
 }
 
 // =============================================================================
@@ -35,11 +36,11 @@ interface StepConfig {
 // =============================================================================
 
 const STEPS: StepConfig[] = [
-  { key: "form", label: "Fill Details", shortLabel: "Details" },
-  { key: "review", label: "Review", shortLabel: "Review" },
-  { key: "approve", label: "Approve", shortLabel: "Approve" },
-  { key: "confirm", label: "Confirm", shortLabel: "Confirm" },
-  { key: "success", label: "Complete", shortLabel: "Done" },
+  { key: "form", labelKey: "form", shortLabelKey: "formShort" },
+  { key: "review", labelKey: "review", shortLabelKey: "reviewShort" },
+  { key: "approve", labelKey: "approve", shortLabelKey: "approveShort" },
+  { key: "confirm", labelKey: "confirm", shortLabelKey: "confirmShort" },
+  { key: "success", labelKey: "success", shortLabelKey: "successShort" },
 ];
 
 const STEP_ORDER: WizardStep[] = ["form", "review", "approve", "confirm", "success"];
@@ -75,6 +76,7 @@ export function WizardProgress({
   onStepClick,
   disabled = false,
 }: WizardProgressProps) {
+  const t = useTranslations("escrows.create.steps");
   const currentIndex = useMemo(() => getStepIndex(currentStep), [currentStep]);
 
   return (
@@ -139,7 +141,7 @@ export function WizardProgress({
                     ${isClickable ? "group-hover:text-primary-500" : ""}
                   `}
                 >
-                  {step.label}
+                  {t(step.labelKey)}
                 </span>
               </button>
 
@@ -192,10 +194,10 @@ export function WizardProgress({
         {/* Current Step Label */}
         <div className="flex items-center justify-between">
           <span className="text-sm font-medium text-[var(--text-primary)]">
-            Step {currentIndex + 1} of {STEPS.length}
+            {t("stepOf", { current: currentIndex + 1, total: STEPS.length })}
           </span>
           <span className="text-sm text-[var(--text-secondary)]">
-            {STEPS[currentIndex]?.label}
+            {STEPS[currentIndex] ? t(STEPS[currentIndex].labelKey) : ""}
           </span>
         </div>
       </div>

@@ -18,6 +18,7 @@ import {
   Unlock,
   Clock,
 } from "lucide-react";
+import { useTranslations } from "next-intl";
 import {
   useAgentActions,
   useTokenApproval,
@@ -65,6 +66,7 @@ export function StakeManagementModal({
   mode
 }: StakeManagementModalProps) {
   const chainId = useChainId();
+  const t = useTranslations("agents.stake");
   // If mode is locked, we respect that, otherwise fall back to internal state or defaultTab
   const [internalTab, setInternalTab] = useState<"increase" | "withdraw">(defaultTab);
 
@@ -74,15 +76,15 @@ export function StakeManagementModal({
   const headerContent = useMemo(() => {
     if (activeTab === "increase") {
       return {
-        title: "Increase Stake",
-        description: "Add collateral to increase your Maximum Arbitratable Value (MAV)"
+        title: t("increase.title"),
+        description: t("increase.description")
       };
     }
     return {
-      title: "Withdraw Stake",
-      description: "Manage your retirement and withdraw available collateral"
+      title: t("withdraw.title"),
+      description: t("withdraw.description")
     };
-  }, [activeTab]);
+  }, [activeTab, t]);
 
   return (
     <Modal isOpen={isOpen} onClose={onClose} size="lg">
@@ -109,7 +111,7 @@ export function StakeManagementModal({
                 : "border-transparent text-[var(--text-tertiary)] hover:text-[var(--text-secondary)]"
             }`}
           >
-            Increase Stake
+            {t("tabs.increase")}
           </button>
           <button
             onClick={() => setInternalTab("withdraw")}
@@ -119,7 +121,7 @@ export function StakeManagementModal({
                 : "border-transparent text-[var(--text-tertiary)] hover:text-[var(--text-secondary)]"
             }`}
           >
-            Withdraw Stake
+            {t("tabs.withdraw")}
           </button>
         </div>
       )}
@@ -142,6 +144,7 @@ function IncreaseStakeTab({
   agentData: AgentData;
   chainId: number;
 }) {
+  const t = useTranslations("agents.stake.increase");
   const { address: userAddress } = useConnection();
   const [tokenType, setTokenType] = useState<"stable" | "dao">("stable");
   const [amount, setAmount] = useState("");
@@ -292,7 +295,7 @@ function IncreaseStakeTab({
 
       <div className="space-y-2">
         <NumberInput
-          label={`Amount of ${selectedTokenConfig?.symbol}`}
+          label={t("amountOf", { symbol: selectedTokenConfig?.symbol ?? "" })}
           value={amount}
           onChange={setAmount}
           placeholder="0.00"
@@ -301,7 +304,7 @@ function IncreaseStakeTab({
         {selectedTokenConfig && userAddress && (
           <div className="flex items-center justify-between px-1">
             <Text variant="muted" className="text-xs">
-              Balance: {tokenBalance === undefined && isBalanceLoading
+              {t("balance")} {tokenBalance === undefined && isBalanceLoading
                 ? "Loading…"
                 : tokenBalance === undefined
                   ? "—"
@@ -311,11 +314,11 @@ function IncreaseStakeTab({
         )}
         {!hasSufficientBalance && (
           <Text className="text-xs px-1 text-error-600 dark:text-error-400">
-            Insufficient balance
+            {t("insufficientBalance")}
           </Text>
         )}
         <Text variant="muted" className="text-xs px-1">
-          Increasing your stake increases your Maximum Arbitratable Value (MAV).
+          {t("mavNote")}
         </Text>
       </div>
 
@@ -328,14 +331,14 @@ function IncreaseStakeTab({
       >
         {!isApproved
           ? selectedTokenConfig?.supportsPermit
-            ? `Sign Permit for ${selectedTokenConfig?.symbol}`
-            : `Approve ${selectedTokenConfig?.symbol}`
-          : `Stake ${selectedTokenConfig?.symbol}`}
+            ? t("signPermit", { symbol: selectedTokenConfig?.symbol ?? "" })
+            : t("approveToken", { symbol: selectedTokenConfig?.symbol ?? "" })
+          : t("stakeToken", { symbol: selectedTokenConfig?.symbol ?? "" })}
       </Button>
 
       {permitSigned && !isPending && (
         <Text variant="muted" className="text-xs px-1">
-          Permit signed — click again to stake
+          {t("permitSigned")}
         </Text>
       )}
 
@@ -343,7 +346,7 @@ function IncreaseStakeTab({
         <Card variant="outlined" className="bg-success-500/10 border-success-500/20">
           <CardBody className="py-3 px-4 flex items-center gap-3 text-success-600 dark:text-success-400">
             <ShieldCheck size={18} />
-            <Text className="text-sm font-medium">Stake updated successfully!</Text>
+            <Text className="text-sm font-medium">{t("stakeUpdated")}</Text>
           </CardBody>
         </Card>
       )}
@@ -358,6 +361,7 @@ function WithdrawStakeTab({
   agentData: AgentData;
   onClose: () => void;
 }) {
+  const t = useTranslations("agents.stake.withdraw");
   const {
     executeUnstake,
     isSubmitting,
@@ -403,11 +407,11 @@ function WithdrawStakeTab({
               {isAvailable ? <Unlock size={20} /> : <Lock size={20} />}
             </div>
             <div className="space-y-1">
-              <Heading level={4}>{isAvailable ? "Status: Active" : "Status: Retiring"}</Heading>
+              <Heading level={4}>{isAvailable ? t("statusActive") : t("statusRetiring")}</Heading>
               <Text variant="muted" className="text-xs">
                 {isAvailable
-                  ? "You are currently accepting new disputes. To withdraw your stake, you must first disable availability."
-                  : "Availability disabled. You are no longer assigned to new cases."}
+                  ? t("activeDescription")
+                  : t("retiringDescription")}
               </Text>
             </div>
           </CardBody>
@@ -419,14 +423,14 @@ function WithdrawStakeTab({
             <div className={`w-6 h-6 rounded-full flex items-center justify-center text-[10px] font-bold ${activeCases === 0 ? "bg-success-500/10 text-success-500" : "bg-neutral-100 dark:bg-neutral-800 text-[var(--text-tertiary)]"}`}>
               {activeCases === 0 ? "✓" : "1"}
             </div>
-            <Text className="text-sm font-medium">All active cases resolved ({activeCases} pending)</Text>
+            <Text className="text-sm font-medium">{t("prerequisiteCases", { count: activeCases })}</Text>
           </div>
 
           <div className="flex items-center gap-3">
             <div className={`w-6 h-6 rounded-full flex items-center justify-center text-[10px] font-bold ${!isAvailable ? "bg-success-500/10 text-success-500" : "bg-neutral-100 dark:bg-neutral-800 text-[var(--text-tertiary)]"}`}>
               {!isAvailable ? "✓" : "2"}
             </div>
-            <Text className="text-sm font-medium">Availability set to Disabled</Text>
+            <Text className="text-sm font-medium">{t("prerequisiteAvailability")}</Text>
           </div>
 
           <div className="flex items-center gap-3">
@@ -434,10 +438,10 @@ function WithdrawStakeTab({
               {nowSec > cooldownEnd ? "✓" : "3"}
             </div>
             <div className="flex-1">
-              <Text className="text-sm font-medium">Security cooldown passed</Text>
+              <Text className="text-sm font-medium">{t("prerequisiteCooldown")}</Text>
               {lastEngagement > 0 && nowSec < cooldownEnd && (
                 <Text variant="muted" className="text-[10px]">
-                  Ends: {new Date(cooldownEnd * 1000).toLocaleDateString()}
+                  {t("cooldownEnds", { date: new Date(cooldownEnd * 1000).toLocaleDateString() })}
                 </Text>
               )}
             </div>
@@ -453,7 +457,7 @@ function WithdrawStakeTab({
           onClick={handleUnstake}
           isLoading={isPending}
         >
-          Withdraw All Stake
+          {t("withdrawAll")}
         </Button>
       </div>
 
@@ -461,8 +465,7 @@ function WithdrawStakeTab({
         <div className="p-3 bg-neutral-100 dark:bg-neutral-900 rounded-lg flex gap-3">
           <Clock className="text-[var(--text-tertiary)] shrink-0" size={16} />
           <Text className="text-[10px] italic leading-relaxed">
-            The security cooldown ensures that no malicious actions were taken before exiting the protocol.
-            Once all conditions are met, the button above will enable.
+            {t("cooldownExplanation")}
           </Text>
         </div>
       )}

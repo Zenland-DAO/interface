@@ -1,0 +1,368 @@
+{
+  "agents": {
+    "list": {
+      "title": "Agents",
+      "selectTitle": "Select an Agent",
+      "description": "Browse verified dispute resolution agents",
+      "selectDescription": "Choose an agent for your escrow",
+      "searchLabel": "Search Agents",
+      "searchPlaceholder": "Search by name, address or description...",
+      "sortBy": "Sort By",
+      "sortOptions": {
+        "reputation": "Reputation",
+        "stake": "Stake Amount",
+        "fees": "Lowest Fees",
+        "cases": "Most Active"
+      },
+      "selectModeBanner": {
+        "title": "Selecting agent for escrow creation",
+        "description": "Click \"Select\" on an agent card or view their profile for more details"
+      },
+      "card": {
+        "you": "YOU",
+        "active": "Active",
+        "inactive": "Inactive",
+        "busy": "Busy",
+        "stablecoin": "Stablecoin",
+        "daoToken": "DAO Token",
+        "maxCoverage": "Max Coverage",
+        "disputeFee": "Dispute Fee",
+        "assignFee": "Assign Fee",
+        "noDescription": "No professional summary provided by this agent.",
+        "selectAgent": "Select Agent",
+        "viewDetails": "View Details",
+        "joined": "Joined {date}",
+        "view": "View"
+      },
+      "error": {
+        "title": "Registry Error",
+        "description": "Unable to fetch agents from the registry. Please check your connection.",
+        "retry": "Retry Connection"
+      },
+      "empty": {
+        "title": "No Agents Found",
+        "searchEmpty": "Try adjusting your search terms or filters.",
+        "noAgents": "There are no active agents in the registry yet."
+      }
+    },
+    "headerActions": {
+      "dashboard": "Agent Dashboard",
+      "becomeAgent": "Become an Agent"
+    },
+    "register": {
+      "backToAgents": "Back to Agents",
+      "title": "Become an Agent",
+      "description": "Register as a dispute resolution agent and help the community",
+      "connectWallet": {
+        "title": "Connect Your Wallet",
+        "description": "Join the network of professional dispute resolvers and earn fees for your expertise."
+      },
+      "formTitle": "Agent Registration",
+      "formDescription": "Configure your professional profile and security deposit",
+      "requirements": {
+        "title": "Agent Requirements",
+        "stablecoinStake": "Stablecoin stake determines your Maximum Arbitratable Value (MAV = 20× stake)",
+        "daoTokenStake": "DAO token stake required for protocol alignment (can be slashed for misconduct)",
+        "responseDeadline": "Respond to assigned disputes within the deadline (7 days by default)",
+        "fairResolution": "Fair and impartial dispute resolution expected"
+      },
+      "sections": {
+        "collateral": "Collateral Configuration",
+        "serviceFees": "Service Fees",
+        "publicProfile": "Public Profile",
+        "securityApprovals": "Security Approvals"
+      },
+      "stablecoinStake": "Stablecoin Stake",
+      "available": "Available:",
+      "minStake": "Min. Stake: ${amount}",
+      "minStakeToken": "Min. Stake: {amount} {symbol}",
+      "zenGovernanceStake": "ZEN Governance Stake",
+      "assignmentFee": "Assignment Fee",
+      "disputeFee": "Dispute Fee",
+      "assignmentFeeHelper": "Charged automatically upon case assignment. <earn>Earn ${amount} on a $10k escrow.</earn>",
+      "disputeFeeHelper": "Earned only upon successful case resolution. <earn>Earn ${amount} on a $10k escrow.</earn>",
+      "feeRange": "Fee range: {min}% - {max}%",
+      "professionalBio": "Professional Bio",
+      "bioPlaceholder": "Expert in DeFi, NFT Royalties, and Cross-chain bridges...",
+      "bytesTip": "Tip: some characters (like \"→\", emojis, etc.) take more than 1 byte and may exceed the on-chain limit.",
+      "securityApprovalsTitle": "Security Approvals",
+      "securityApprovalsDesc": "Grant permission to lock collateral tokens in the registry",
+      "termsAcknowledgement": "I acknowledge that my stake serves as bond and can be slashed for protocol misconduct as defined in the <link>Agent Terms & Conditions</link>.",
+      "cancel": "Cancel",
+      "agreeToTerms": "Agree to Terms",
+      "registerAsAgent": "Register as Agent",
+      "approvingToken": "Approving {symbol}...",
+      "registering": "Registering...",
+      "registered": "Registered!",
+      "enterAmountToApprove": "Enter an amount to enable approval",
+      "copyDetails": "Copy details",
+      "copied": "Copied",
+      "success": {
+        "title": "Registration Successful!",
+        "description": "You are now registered as an agent. You can start accepting disputes.",
+        "transaction": "Transaction:",
+        "goToDashboard": "Go to Dashboard"
+      },
+      "alreadyRegistered": {
+        "title": "Already Registered",
+        "description": "Your wallet is already registered as an agent.",
+        "goToDashboard": "Go to Dashboard"
+      },
+      "faq": {
+        "title": "Frequently Asked Questions",
+        "mavQuestion": "What is MAV (Maximum Arbitratable Value)?",
+        "mavAnswer": "MAV determines the maximum escrow value you can be assigned to resolve. It's calculated as 20× your stablecoin stake. For example, a $100 stake gives you a $2,000 MAV.",
+        "feesQuestion": "What are the two fees for?",
+        "feesAnswer": "<bold>Assignment Fee:</bold> Charged when you're assigned to an escrow (even without disputes). <bold>Dispute Fee:</bold> Charged only when you resolve a dispute. Both are percentages of the escrow amount.",
+        "slashQuestion": "When can my stake be slashed?",
+        "slashAnswer": "Your DAO token stake can be slashed by DAO governance if you fail to respond to disputes within the deadline or if misconduct is determined through a governance proposal.",
+        "withdrawQuestion": "Can I withdraw my stake?",
+        "withdrawAnswer": "Yes, you can unstake when you have no active cases. First, set yourself as unavailable, then wait 30 days (engagement cooldown), after which you can execute the unstake to withdraw both stakes.",
+        "gaslessQuestion": "What is \"Gasless\" approval?",
+        "gaslessAnswer": "Tokens that support EIP-2612 permit allow you to sign an approval message instead of sending a separate transaction. This saves gas costs. USDC and the DAO token support this feature; USDT does not."
+      }
+    },
+    "dashboard": {
+      "connectWallet": {
+        "title": "Connect Your Wallet",
+        "description": "Please connect your wallet to view your agent dashboard and manage your cases."
+      },
+      "notRegistered": {
+        "title": "Not Registered as Agent",
+        "description": "You are not currently registered as an agent on this network. Register now to start resolving disputes and earning fees.",
+        "becomeAgent": "Become an Agent"
+      },
+      "backToAgents": "Back to Agents",
+      "title": "Agent Dashboard",
+      "description": "Monitor your performance and manage assigned dispute cases",
+      "joined": "Joined {date}",
+      "online": "Online",
+      "offline": "Offline",
+      "setUnavailable": "Set Unavailable",
+      "setAvailable": "Set Available",
+      "editProfile": "Edit Profile",
+      "defaultDescription": "Expert dispute resolver maintaining the integrity of the Zenland ecosystem.",
+      "stats": {
+        "activeCases": "Active Cases",
+        "totalResolved": "Total Resolved",
+        "totalEarnings": "Total Earnings",
+        "totalSlashed": "Total Slashed"
+      },
+      "cases": {
+        "title": "Recent Dispute Cases",
+        "assigned": "{count} assigned",
+        "viewAll": "View All →",
+        "empty": "No cases assigned yet. You'll be notified when a dispute requires your review.",
+        "dispute": "Dispute #{id}",
+        "resolved": "Resolved",
+        "active": "Active",
+        "escrowInfo": "Escrow #{id} • {amount} USDC",
+        "loading": "Loading...",
+        "view": "View",
+        "review": "Review"
+      },
+      "feeConfig": {
+        "title": "Fee Configuration",
+        "assignmentFee": "Assignment Fee",
+        "disputeResolution": "Dispute Resolution",
+        "updateFees": "Update Fees"
+      },
+      "stakeCapacity": {
+        "title": "Stake & Capacity",
+        "stablecoinStake": "Stablecoin Stake (MAV)",
+        "daoTokenStake": "DAO Token Stake",
+        "mavCoverage": "Provides <bold>${amount}</bold> MAV coverage.",
+        "governanceNote": "Required for governance and protocol security.",
+        "increaseStake": "Increase Stake",
+        "withdrawStake": "Withdraw Stake"
+      }
+    },
+    "edit": {
+      "connectWallet": {
+        "title": "Connect Your Wallet",
+        "description": "Please connect your wallet to manage your agent profile."
+      },
+      "notAgent": {
+        "title": "Not an Agent",
+        "description": "You are not currently registered as an agent. You must register before you can edit your profile.",
+        "becomeAgent": "Become an Agent"
+      },
+      "backToDashboard": "Back to Dashboard",
+      "editProfile": "Edit Profile",
+      "configureFees": "Configure Fees",
+      "editProfileDesc": "Update your professional summary and contact information on-chain",
+      "configureFeesDesc": "Set your assignment and dispute resolution fees",
+      "profile": {
+        "title": "Profile Details",
+        "description": "Update your public description and contact info",
+        "professionalSummary": "Professional Summary",
+        "summaryPlaceholder": "Tell users why they should select you as their agent...",
+        "visibilityNote": "Visible to everyone in the agent list.",
+        "saveChanges": "Save Changes",
+        "cancel": "Cancel",
+        "updatingOnChain": "Updating on-chain...",
+        "updateSuccessful": "Update successful! Redirecting...",
+        "profileUpdated": "Profile updated successfully!",
+        "noChanges": "No profile changes detected",
+        "descriptionExceedsBytes": "Description exceeds {max} bytes ({current}/{max})"
+      },
+      "fees": {
+        "assignmentFee": "Assignment Fee",
+        "assignmentFeeDesc": "Charged when assigned to a case",
+        "disputeFee": "Dispute Fee",
+        "disputeFeeDesc": "Charged upon successful resolution",
+        "feePercentage": "Fee Percentage (%)",
+        "updateAssignmentFee": "Update Assignment Fee",
+        "updateDisputeFee": "Update Dispute Fee",
+        "waitingForSignature": "Waiting for signature...",
+        "confirmingOnChain": "Confirming on-chain...",
+        "updatedSuccessfully": "Updated successfully!",
+        "protocolLimits": "Individual transactions required for each update. Protocol limits: 0.1% to 10.0%.",
+        "backToDashboard": "Back to Dashboard",
+        "noAssignmentChanges": "No changes to assignment fee",
+        "noDisputeChanges": "No changes to dispute resolution fee"
+      }
+    },
+    "profile": {
+      "backToAgents": "Back to Agents",
+      "backToSelection": "Back to Agent Selection",
+      "error": {
+        "title": "Agent Not Found",
+        "description": "The requested agent could not be located.",
+        "tryAgain": "Try Again"
+      },
+      "selectModeBanner": {
+        "title": "Selecting agent for escrow creation",
+        "description": "Review this agent's profile and click \"Select Agent\" to assign them to your escrow"
+      },
+      "header": {
+        "you": "YOU",
+        "active": "Active",
+        "inactive": "Inactive",
+        "unavailable": "Unavailable",
+        "addressCopied": "Address copied to clipboard",
+        "joined": "Joined {date}",
+        "goToDashboard": "Go to Dashboard",
+        "selectAgent": "Select Agent",
+        "viewOnExplorer": "View on Explorer"
+      },
+      "stats": {
+        "casesResolved": "Cases Resolved",
+        "totalEscrows": "Total Escrows",
+        "disputeFee": "Dispute Fee",
+        "assignFee": "Assign Fee"
+      },
+      "contact": {
+        "title": "Professional Summary & Contact",
+        "bioLabel": "Bio / Description",
+        "noDescription": "No professional summary provided by this agent.",
+        "contactChannels": "Contact Channels"
+      },
+      "collateral": {
+        "title": "Agent Collateral",
+        "maxCoverage": "Max Coverage",
+        "maxCoverageNote": "Based on stablecoin stake × {multiplier}",
+        "stablecoinStake": "Stablecoin Stake",
+        "daoTokenStake": "DAO Token Stake",
+        "totalEarnings": "Total Earnings",
+        "totalSlashed": "Total Slashed"
+      }
+    },
+    "fees": {
+      "title": "Fee Configuration",
+      "description": "Set your assignment and dispute resolution fees",
+      "tabs": {
+        "assignment": "Assignment Fee",
+        "dispute": "Dispute Fee"
+      },
+      "assignmentFee": "Assignment Fee",
+      "disputeResolutionFee": "Dispute Resolution Fee",
+      "updateAssignmentFee": "Update Assignment Fee",
+      "updateDisputeFee": "Update Dispute Fee",
+      "status": {
+        "waitingForSignature": "Waiting for signature...",
+        "confirmingOnChain": "Confirming on-chain...",
+        "indexingUpdate": "Indexing update...",
+        "feeUpdated": "Fee updated successfully!"
+      },
+      "protocolLimits": "Individual transactions required for each update. Protocol limits: 0.1% to 10.0%."
+    },
+    "stake": {
+      "increase": {
+        "title": "Increase Stake",
+        "description": "Add collateral to increase your Maximum Arbitratable Value (MAV)",
+        "amountOf": "Amount of {symbol}",
+        "balance": "Balance:",
+        "insufficientBalance": "Insufficient balance",
+        "mavNote": "Increasing your stake increases your Maximum Arbitratable Value (MAV).",
+        "signPermit": "Sign Permit for {symbol}",
+        "approveToken": "Approve {symbol}",
+        "stakeToken": "Stake {symbol}",
+        "permitSigned": "Permit signed — click again to stake",
+        "stakeUpdated": "Stake updated successfully!"
+      },
+      "withdraw": {
+        "title": "Withdraw Stake",
+        "description": "Manage your retirement and withdraw available collateral",
+        "statusActive": "Status: Active",
+        "statusRetiring": "Status: Retiring",
+        "activeDescription": "You are currently accepting new disputes. To withdraw your stake, you must first disable availability.",
+        "retiringDescription": "Availability disabled. You are no longer assigned to new cases.",
+        "prerequisiteCases": "All active cases resolved ({count} pending)",
+        "prerequisiteAvailability": "Availability set to Disabled",
+        "prerequisiteCooldown": "Security cooldown passed",
+        "cooldownEnds": "Ends: {date}",
+        "withdrawAll": "Withdraw All Stake",
+        "cooldownExplanation": "The security cooldown ensures that no malicious actions were taken before exiting the protocol. Once all conditions are met, the button above will enable."
+      },
+      "tabs": {
+        "increase": "Increase Stake",
+        "withdraw": "Withdraw Stake"
+      }
+    },
+    "availability": {
+      "setAvailable": {
+        "title": "Set Available",
+        "confirmText": "Set Available",
+        "message": "You will start receiving new dispute invitations again."
+      },
+      "setUnavailable": {
+        "title": "Set Unavailable",
+        "confirmText": "Set Unavailable",
+        "message": "While unavailable:\n• You will not receive new dispute invitations.\n• Any escrow that selected you as agent cannot invite you during a dispute.\n• Parties may be forced to negotiate a settlement (SPLIT) without your decision.\n{casesLine}\nThis may reduce trust from parties who chose you to arbitrate.",
+        "activeCasesLine": " You currently have {count} active case(s)."
+      }
+    },
+    "shared": {
+      "contact": {
+        "telegram": "Telegram",
+        "discord": "Discord",
+        "email": "Email",
+        "contact": "Contact",
+        "copiedToClipboard": "{label} copied to clipboard",
+        "failedToCopy": "Failed to copy",
+        "noContactInfo": "No contact information provided",
+        "primary": "Primary",
+        "secondary": "Secondary"
+      },
+      "contactFields": {
+        "telegram": "Telegram",
+        "discord": "Discord",
+        "email": "Email",
+        "custom": "Custom",
+        "none": "None",
+        "primaryContact": "Primary Contact",
+        "secondaryContact": "Secondary Contact",
+        "usernamePlaceholder": "@username",
+        "emailPlaceholder": "name@example.com",
+        "valuePlaceholder": "value",
+        "namePlaceholder": "name",
+        "primaryRequired": "Primary contact is required",
+        "optional": "Optional",
+        "formatHint": "{kind} format will be stored on-chain as name:value",
+        "storedOnChain": "Stored on-chain as: <name>:<value>[;<name>:<value>]",
+        "totalExceedsMax": "Total contact info exceeds {max} characters"
+      }
+    }
+  }
+}

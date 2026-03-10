@@ -9,11 +9,13 @@
  */
 
 import { Check, X, AlertOctagon, Wallet } from "lucide-react";
+import { useTranslations } from "next-intl";
 import { Button } from "@/components/ui";
 import { useEscrowDetail } from "../EscrowDetailContext";
 import { useWalletAction } from "@/hooks/wallet/useWalletAction";
 
 export function PendingActions() {
+    const t = useTranslations("escrows.actions");
     const { actions, write, isLoading } = useEscrowDetail();
     const { availableActions } = actions;
     const { requireWallet, isConnected } = useWalletAction();
@@ -42,12 +44,12 @@ export function PendingActions() {
                             {isConnected ? (
                                 <>
                                     <Check size={18} className="mr-2" />
-                                    Accept
+                                    {t("accept").replace(" Escrow", "")}
                                 </>
                             ) : (
                                 <>
                                     <Wallet size={18} className="mr-2" />
-                                    Connect Wallet
+                                    {t("connectWallet")}
                                 </>
                             )}
                         </Button>
@@ -63,12 +65,12 @@ export function PendingActions() {
                             {isConnected ? (
                                 <>
                                     <X size={18} className="mr-2" />
-                                    Decline
+                                    {t("decline").replace(" Escrow", "")}
                                 </>
                             ) : (
                                 <>
                                     <Wallet size={18} className="mr-2" />
-                                    Connect Wallet
+                                    {t("connectWallet")}
                                 </>
                             )}
                         </Button>
@@ -87,12 +89,12 @@ export function PendingActions() {
                     {isConnected ? (
                         <>
                             <AlertOctagon size={18} className="mr-2" />
-                            Cancel & Refund
+                            {t("cancelExpired")}
                         </>
                     ) : (
                         <>
                             <Wallet size={18} className="mr-2" />
-                            Connect Wallet
+                            {t("connectWallet")}
                         </>
                     )}
                 </Button>

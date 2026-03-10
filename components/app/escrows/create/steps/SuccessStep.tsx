@@ -10,6 +10,7 @@
 import { useState, useCallback, useEffect, useRef } from "react";
 import Link from "next/link";
 import { toast } from "sonner";
+import { useTranslations } from "next-intl";
 import {
   Card,
   CardBody,
@@ -52,7 +53,7 @@ function CopyableAddress({ label, address, explorerUrl }: CopyableAddressProps) 
     if (!address) return;
     navigator.clipboard.writeText(address);
     setCopied(true);
-    toast("Address copied to clipboard");
+    toast(label);
     setTimeout(() => setCopied(false), 2000);
   }, [address]);
 
@@ -103,18 +104,19 @@ function CopyableAddress({ label, address, explorerUrl }: CopyableAddressProps) 
 interface TransactionHashProps {
   txHash: string | undefined;
   explorerUrl?: string;
+  label: string;
 }
 
-function TransactionHash({ txHash, explorerUrl }: TransactionHashProps) {
+function TransactionHash({ txHash, explorerUrl, label }: TransactionHashProps) {
   const [copied, setCopied] = useState(false);
 
   const handleCopy = useCallback(() => {
     if (!txHash) return;
     navigator.clipboard.writeText(txHash);
     setCopied(true);
-    toast("Transaction hash copied to clipboard");
+    toast(label);
     setTimeout(() => setCopied(false), 2000);
-  }, [txHash]);
+  }, [txHash, label]);
 
   if (!txHash) return null;
 
@@ -126,7 +128,7 @@ function TransactionHash({ txHash, explorerUrl }: TransactionHashProps) {
         <FileText size={18} className="text-[var(--text-tertiary)]" />
         <div>
           <Text variant="muted" className="text-xs">
-            Transaction Hash
+            {label}
           </Text>
           <Text className="font-mono text-sm">{shortHash}</Text>
         </div>
@@ -169,6 +171,7 @@ export interface SuccessStepProps {
 }
 
 export function SuccessStep({ form }: SuccessStepProps) {
+  const t = useTranslations("escrows");
   const { escrowCreation, display, reset, pdf } = form;
 
   const escrowAddress = escrowCreation.escrowAddress;
@@ -210,28 +213,28 @@ export function SuccessStep({ form }: SuccessStepProps) {
             
             {/* Success Message */}
             <Heading level={1} className="text-2xl sm:text-3xl mb-2">
-              Contract Created Successfully
+              {t("create.success.title")}
             </Heading>
             <Text variant="muted" className="text-sm sm:text-base">
-              Your escrow contract has been securely deployed on-chain.
+              {t("create.success.description")}
             </Text>
           </div>
 
           {/* Transaction Details */}
           <div className="space-y-4 mb-10">
             <CopyableAddress
-              label="Escrow Address"
+              label={t("create.success.escrowAddress")}
               address={escrowAddress}
               explorerUrl={escrowExplorerUrl}
             />
-            <TransactionHash txHash={txHash} explorerUrl={txExplorerUrl} />
+            <TransactionHash txHash={txHash} explorerUrl={txExplorerUrl} label={t("create.success.transactionHash")} />
           </div>
 
           {/* Summary */}
           <div className="p-6 rounded-2xl bg-primary-50 dark:bg-primary-900/10 border border-primary-200 dark:border-primary-800 mb-10 space-y-4">
             <div className="flex justify-between items-center">
               <Text variant="muted" className="text-sm">
-                Amount in Escrow
+                {t("create.success.amountInEscrow")}
               </Text>
               <Text className="font-bold text-xl text-primary-600 dark:text-primary-400">
                 {display.amount} {display.tokenSymbol}
@@ -239,7 +242,7 @@ export function SuccessStep({ form }: SuccessStepProps) {
             </div>
             <div className="flex justify-between items-center pt-4 border-t border-primary-200/50 dark:border-primary-800/50">
               <Text variant="muted" className="text-sm">
-                Buyer Protection
+                {t("create.success.buyerProtection")}
               </Text>
               <Text className="font-semibold">
                 {display.protectionTime}
@@ -257,7 +260,7 @@ export function SuccessStep({ form }: SuccessStepProps) {
                   className="w-full h-14 text-lg shadow-lg shadow-primary-500/20"
                   rightIcon={<ArrowRight size={18} />}
                 >
-                  View Escrow Dashboard
+                  {t("create.success.viewDashboard")}
                 </Button>
               </Link>
             )}
@@ -274,7 +277,7 @@ export function SuccessStep({ form }: SuccessStepProps) {
                   className="w-full h-12"
                   leftIcon={<Download size={18} />}
                 >
-                  Download PDF
+                  {t("create.success.downloadPdf")}
                 </Button>
               </a>
             ) : (
@@ -286,7 +289,7 @@ export function SuccessStep({ form }: SuccessStepProps) {
                 onClick={() => void pdf.regenerate()}
                 disabled={pdf.status === "loading"}
               >
-                {pdf.status === "loading" ? "Generating..." : "Generate PDF"}
+                {pdf.status === "loading" ? t("create.success.generatingPdf") : t("create.success.generatePdf")}
               </Button>
             )}
 
@@ -297,7 +300,7 @@ export function SuccessStep({ form }: SuccessStepProps) {
               onClick={reset}
               leftIcon={<Plus size={18} />}
             >
-              Create Another
+              {t("create.success.createAnother")}
             </Button>
           </div>
         </CardBody>
@@ -309,10 +312,10 @@ export function SuccessStep({ form }: SuccessStepProps) {
           <AlertCircle size={20} className="text-amber-600 dark:text-amber-500 flex-shrink-0 mt-0.5" />
           <div>
             <Heading level={5} className="text-sm mb-1 text-amber-800 dark:text-amber-400">
-              Save Your Contract PDF
+              {t("create.success.savePdfTitle")}
             </Heading>
             <Text className="text-xs text-amber-700 dark:text-amber-300/80">
-              Download and keep your PDF contract safe. It serves as proof of agreement you can share with the seller, and an agent may require this document if a dispute arises.
+              {t("create.success.savePdfDesc")}
             </Text>
           </div>
         </div>
@@ -321,7 +324,7 @@ export function SuccessStep({ form }: SuccessStepProps) {
       {/* What's Next Steps */}
       <div className="mt-4 p-5 rounded-xl bg-neutral-50 dark:bg-neutral-900/50 border border-neutral-200 dark:border-neutral-800">
         <Heading level={5} className="text-sm mb-4">
-          What&apos;s Next?
+          {t("create.success.whatsNext")}
         </Heading>
         <div className="space-y-4">
           {/* Step 1: Inform Seller */}
@@ -330,9 +333,9 @@ export function SuccessStep({ form }: SuccessStepProps) {
               <Send size={16} className="text-primary-600 dark:text-primary-400" />
             </div>
             <div>
-              <Text className="text-sm font-medium">Inform the Seller</Text>
+              <Text className="text-sm font-medium">{t("create.success.informSeller")}</Text>
               <Text variant="muted" className="text-xs">
-                Share the escrow address or contract PDF with the seller so they can review and accept the terms.
+                {t("create.success.informSellerDesc")}
               </Text>
             </div>
           </div>
@@ -343,9 +346,9 @@ export function SuccessStep({ form }: SuccessStepProps) {
               <Clock size={16} className="text-neutral-500" />
             </div>
             <div>
-              <Text className="text-sm font-medium">Wait for Delivery</Text>
+              <Text className="text-sm font-medium">{t("create.success.waitForDelivery")}</Text>
               <Text variant="muted" className="text-xs">
-                Once the seller accepts, they will deliver the goods or services as agreed.
+                {t("create.success.waitForDeliveryDesc")}
               </Text>
             </div>
           </div>
@@ -356,9 +359,9 @@ export function SuccessStep({ form }: SuccessStepProps) {
               <BadgeCheck size={16} className="text-neutral-500" />
             </div>
             <div>
-              <Text className="text-sm font-medium">Release Funds</Text>
+              <Text className="text-sm font-medium">{t("create.success.releaseFunds")}</Text>
               <Text variant="muted" className="text-xs">
-                When you&apos;re satisfied with the delivery, release the funds to complete the transaction.
+                {t("create.success.releaseFundsDesc")}
               </Text>
             </div>
           </div>

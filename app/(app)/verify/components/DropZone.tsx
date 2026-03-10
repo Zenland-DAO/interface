@@ -8,6 +8,7 @@
 
 import { useState, useCallback, useRef } from "react";
 import { Upload, FileText, Loader2 } from "lucide-react";
+import { useTranslations } from "next-intl";
 import { Heading, Text, Badge } from "@/components/ui";
 
 interface DropZoneProps {
@@ -16,6 +17,7 @@ interface DropZoneProps {
 }
 
 export function DropZone({ onFileSelect, isLoading }: DropZoneProps) {
+  const t = useTranslations("verify.dropZone");
   const [isDragging, setIsDragging] = useState(false);
   const inputRef = useRef<HTMLInputElement>(null);
 
@@ -93,19 +95,19 @@ export function DropZone({ onFileSelect, isLoading }: DropZoneProps) {
 
         <div className="space-y-2">
           <Heading level={4}>
-            {isLoading ? "Verifying..." : "Drop your PDF here"}
+            {isLoading ? t("verifying") : t("dropHere")}
           </Heading>
           <Text variant="muted">
             {isLoading
-              ? "Please wait while we verify your document"
-              : "or click to browse. Only Zenland escrow PDFs are supported."}
+              ? t("pleaseWait")
+              : t("orClickToBrowse")}
           </Text>
         </div>
 
         {!isLoading && (
           <Badge variant="secondary" className="mt-2">
             <FileText className="w-3 h-3 mr-1" />
-            PDF files only
+            {t("pdfOnly")}
           </Badge>
         )}
       </div>

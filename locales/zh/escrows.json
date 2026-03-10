@@ -1,0 +1,532 @@
+{
+  "escrows": {
+    "list": {
+      "title": "我的托管",
+      "description": "查看和管理你的所有托管合约",
+      "createEscrow": "创建托管",
+      "createFirstEscrow": "创建你的第一个托管",
+      "error": "加载托管失败。请稍后重试。",
+      "showing": "显示 {count} 个托管",
+      "showingPlural": "显示 {count} 个托管",
+      "addressCopied": "地址已复制",
+      "roles": {
+        "all": "所有角色",
+        "buyer": "作为买方",
+        "seller": "作为卖方",
+        "agent": "作为代理人"
+      },
+      "tabs": {
+        "all": "全部",
+        "needs_attention": "需要关注",
+        "ACTIVE": "进行中",
+        "IN_DISPUTE": "争议中",
+        "COMPLETED": "已完成"
+      },
+      "tableHeaders": {
+        "id": "ID",
+        "amount": "金额",
+        "counterparty": "对方",
+        "role": "角色",
+        "status": "状态",
+        "date": "日期",
+        "action": "操作"
+      },
+      "bothParties": "双方",
+      "emptyStates": {
+        "noEscrows": {
+          "title": "未找到托管",
+          "description": "你还没有创建或参与过任何托管合约。"
+        },
+        "allCaughtUp": {
+          "title": "一切就绪！",
+          "description": "目前没有托管需要你的关注。"
+        },
+        "noActive": {
+          "title": "没有进行中的托管",
+          "descriptionAgent": "你未被分配为任何活跃托管的代理人。",
+          "description": "你{role}没有任何进行中的托管。"
+        },
+        "noDisputes": {
+          "title": "没有争议",
+          "descriptionAgent": "没有需要解决的争议",
+          "descriptionAgentFull": "目前没有分配给你解决的争议。",
+          "description": "你{role}没有任何处于争议中的托管。"
+        },
+        "noCompleted": {
+          "title": "没有已完成的托管",
+          "description": "你{role}没有任何已完成的托管。"
+        },
+        "generic": {
+          "title": "未找到托管",
+          "description": "你{role}未找到任何{state}状态的托管。"
+        },
+        "roleLabels": {
+          "buyer": "作为买方",
+          "seller": "作为卖方",
+          "agent": "作为代理人"
+        }
+      },
+      "attention": {
+        "acceptOrDecline": "接受或拒绝托管",
+        "canCancelExpired": "可以取消过期的托管",
+        "claimFunds": "领取你的资金",
+        "resolutionNeeded": "需要解决",
+        "reviewSplit": "审查分割提议"
+      },
+      "card": {
+        "escrowInteraction": "托管交互",
+        "protected": "{days}天保护",
+        "buyer": "买方",
+        "seller": "卖方",
+        "role": "角色：{role}"
+      }
+    },
+    "states": {
+      "PENDING": "待接受",
+      "ACTIVE": "进行中",
+      "FULFILLED": "已履行",
+      "RELEASED": "已释放",
+      "DISPUTED": "争议中",
+      "AGENT_INVITED": "已邀请代理人",
+      "AGENT_RESOLVED": "代理人已裁决",
+      "REFUNDED": "已退款",
+      "SPLIT": "已分割"
+    },
+    "stateDescriptions": {
+      "PENDING": "托管已注资，正在等待卖方接受条款。",
+      "ACTIVE": "托管已激活，正在等待卖方确认交付。",
+      "FULFILLED": "卖方已确认履行。买方可以释放资金或等待保护期到期。",
+      "RELEASED": "资金已释放给卖方。此托管已完成。",
+      "DISPUTED": "已开启争议。双方可以邀请代理人或协商分割。",
+      "AGENT_INVITED": "已邀请代理人来解决争议。",
+      "AGENT_RESOLVED": "代理人已解决争议。此托管已完成。",
+      "REFUNDED": "资金已退还给买方。此托管已完成。",
+      "SPLIT": "资金已在买方和卖方之间分割。此托管已完成。"
+    },
+    "roles": {
+      "buyer": "买方",
+      "seller": "卖方",
+      "agent": "代理人",
+      "observer": "观察者",
+      "viewer": "查看者"
+    },
+    "actions": {
+      "accept": "接受托管",
+      "decline": "拒绝托管",
+      "cancelExpired": "取消并退款",
+      "confirmFulfillment": "确认履行",
+      "release": "释放资金",
+      "releaseAfterProtection": "领取资金",
+      "sellerRefund": "发起退款",
+      "openDispute": "开启争议",
+      "inviteAgent": "邀请代理人",
+      "agentResolve": "解决争议",
+      "claimAgentTimeout": "申领代理人超时",
+      "proposeSplit": "提议分割",
+      "approveSplit": "批准分割",
+      "cancelSplit": "取消分割提议",
+      "connectWallet": "连接钱包"
+    },
+    "actionDescriptions": {
+      "accept": "接受托管条款并开始合作。",
+      "decline": "拒绝托管并立即退款给买方。",
+      "cancelExpired": "卖方未在规定时间内接受。取消托管并获得退款。",
+      "confirmFulfillment": "标记工作/交付为已完成，并开始买方保护期。",
+      "release": "立即将托管资金释放给卖方。",
+      "releaseAfterProtection": "保护期已到期。作为卖方领取资金。",
+      "sellerRefund": "将所有资金退还给买方。此操作不可撤销。",
+      "openDispute": "开启争议以暂停托管并寻求解决方案。",
+      "inviteAgent": "邀请指定代理人来帮助解决此争议。",
+      "agentResolve": "作为代理人，决定如何在各方之间分配资金。",
+      "claimAgentTimeout": "代理人未及时响应。返回争议状态。",
+      "proposeSplit": "提议在买方和卖方之间分割资金。",
+      "approveSplit": "批准提议的分割方案。如果双方都批准，资金将自动分配。",
+      "cancelSplit": "取消你的分割提议。"
+    },
+    "actionProgress": {
+      "releasing": "释放中...",
+      "opening": "开启中...",
+      "confirming": "确认中...",
+      "claiming": "领取中...",
+      "processing": "处理中...",
+      "inviting": "邀请中...",
+      "resolving": "解决中...",
+      "proposing": "提议中...",
+      "approving": "批准中..."
+    },
+    "events": {
+      "EscrowPending": "托管已创建",
+      "SellerAccepted": "卖方已接受",
+      "SellerDeclined": "卖方已拒绝",
+      "EscrowCancelledExpired": "已取消（过期）",
+      "EscrowFunded": "托管已注资",
+      "FulfillmentConfirmed": "履行已确认",
+      "FundsReleased": "资金已释放",
+      "DisputeOpened": "争议已开启",
+      "AgentInvited": "代理人已邀请",
+      "AgentResolved": "争议已解决",
+      "AgentTimedOut": "代理人已超时",
+      "Refunded": "已退款",
+      "SplitProposed": "分割已提议",
+      "SplitApproved": "分割已批准",
+      "SplitProposalCancelled": "分割已取消",
+      "SplitExecuted": "分割已执行"
+    },
+    "modals": {
+      "cancel": "取消",
+      "processing": "处理中...",
+      "splitPreview": "分割预览",
+      "buyerReceives": "买方获得",
+      "sellerReceives": "卖方获得",
+      "buyer": "买方",
+      "seller": "卖方",
+      "accept": {
+        "title": "接受托管",
+        "description": "你即将接受托管条款。这将激活托管。",
+        "confirm": "接受托管"
+      },
+      "decline": {
+        "title": "拒绝托管",
+        "description": "你即将拒绝此托管。资金将退还给买方。",
+        "confirm": "拒绝托管"
+      },
+      "cancelExpired": {
+        "title": "取消并退款",
+        "description": "卖方接受窗口已过期。你可以取消托管并获得全额退款。",
+        "confirm": "取消并退款"
+      },
+      "release": {
+        "title": "释放资金",
+        "description": "你即将将托管资金释放给卖方。此操作不可撤销。",
+        "confirm": "释放资金"
+      },
+      "refund": {
+        "title": "发起退款",
+        "description": "你即将将所有托管资金退还给买方。此操作不可撤销。",
+        "confirm": "发起退款"
+      },
+      "dispute": {
+        "title": "开启争议",
+        "description": "开启争议将暂停托管并允许你寻求解决方案。你可以邀请代理人或与卖方协商分割。",
+        "confirm": "开启争议"
+      },
+      "inviteAgent": {
+        "title": "邀请代理人",
+        "description": "指定代理人将被邀请审查和解决此争议。代理人将有权决定资金如何分配。",
+        "confirm": "邀请代理人"
+      },
+      "agentResolve": {
+        "title": "解决争议",
+        "description": "作为代理人，你将决定托管资金在买方和卖方之间如何分配。你的决定是最终的。",
+        "confirm": "提交裁决"
+      },
+      "claimTimeout": {
+        "title": "申领代理人超时",
+        "description": "代理人未在规定时间内响应。这将使托管返回无代理人分配的争议状态。",
+        "confirm": "申领超时"
+      },
+      "proposeSplit": {
+        "title": "提议分割",
+        "description": "你正在提议分割托管资金。如果对方批准，资金将自动分配。",
+        "confirm": "提议分割"
+      },
+      "approveSplit": {
+        "title": "批准分割",
+        "description": "你正在批准提议的分割方案。确认后，资金将按照商定的比例分配。",
+        "confirm": "批准并执行"
+      }
+    },
+    "detail": {
+      "backToEscrows": "返回托管列表",
+      "escrow": "托管",
+      "createdOn": "创建于 {date}",
+      "escrowDetails": "托管详情",
+      "amount": "金额",
+      "status": "状态",
+      "participants": "参与方",
+      "you": "你",
+      "notAssigned": "未分配",
+      "termsHash": "条款哈希",
+      "resolution": "解决方案",
+      "buyerReceived": "买方收到",
+      "sellerReceived": "卖方收到",
+      "agentFee": "代理人费用",
+      "actionsTitle": "操作",
+      "wrongNetwork": "网络错误",
+      "switchToNetwork": "切换到 {chain} 以对此托管执行操作。",
+      "connectToInteract": "连接你的钱包以与此托管交互。",
+      "noActionsAvailable": "当前没有可用的操作。",
+      "contract": "合约",
+      "contractAddress": "合约地址",
+      "contractVersion": "合约版本",
+      "viewOnExplorer": "在浏览器中查看",
+      "timeline": {
+        "title": "活动时间线",
+        "failedToLoad": "加载活动失败",
+        "noActivity": "暂无活动"
+      },
+      "protection": {
+        "buyerProtection": "买方保护",
+        "duration": "持续时间：{duration}",
+        "expiredOn": "过期于",
+        "endsOn": "结束于",
+        "protectionEnded": "保护期已结束",
+        "sellerCanClaim": "卖方现在可以领取资金。",
+        "sellerCanClaimAfter": "如果买方未释放资金，卖方可以在此期限到期后领取资金。",
+        "noProtection": "无保护"
+      },
+      "acceptance": {
+        "title": "卖方接受窗口",
+        "expired": "接受窗口已过期",
+        "waiting": "等待卖方接受托管",
+        "deadlinePassed": "截止日期已过",
+        "acceptBy": "接受截止",
+        "timeLimitReached": "时间限制已到",
+        "buyerCanCancel": "卖方未在规定时间内接受。你可以取消并获得全额退款。",
+        "sellerReview": "请在截止日期前审查并接受托管条款。"
+      },
+      "agentTimer": {
+        "title": "代理人响应",
+        "waiting": "等待代理人解决",
+        "deadlinePassed": "响应截止日期已过",
+        "deadline": "响应截止日期",
+        "timedOut": "代理人未及时响应",
+        "notRespondedInTime": "代理人未及时响应",
+        "canClaimTimeout": "你可以申领代理人超时以返回争议状态。",
+        "mustResolve": "代理人必须在截止日期前解决争议。"
+      },
+      "chain": {
+        "wrongNetwork": "网络错误",
+        "wrongNetworkDesc": "此托管部署在 {escrowChain}，但你的钱包连接到 {walletChain}。请切换网络以与此托管交互。",
+        "switchTo": "切换到 {chain}",
+        "unsupportedNetwork": "不支持的网络",
+        "unsupportedNetworkDesc": "你连接到了不受支持的 {walletChain}。此托管在 {escrowChain} 上。",
+        "testnetEscrow": "测试网托管",
+        "testnetDesc": "此托管在 {chain} 测试网上。交易仅使用测试代币。"
+      },
+      "split": {
+        "title": "分割协商",
+        "active": "进行中",
+        "currentProposal": "当前提议",
+        "by": "由 {address}",
+        "buyer": "买方",
+        "seller": "卖方",
+        "buyerApproved": "买方已批准",
+        "buyerPending": "买方待定",
+        "sellerApproved": "卖方已批准",
+        "sellerPending": "卖方待定",
+        "approveSplit": "批准分割",
+        "cancel": "取消",
+        "proposeDescription": "提议分割托管资金。如果双方都批准，资金将自动分配。",
+        "proposeSplit": "提议分割",
+        "waitingForOther": "等待对方回应提议。"
+      },
+      "agent": {
+        "resolveDispute": "解决争议",
+        "resolveDescription": "作为代理人，决定如何在买方和卖方之间分配托管资金。你的决定是最终的，不可撤销。",
+        "buyerReceives": "买方获得",
+        "sellerReceives": "卖方获得",
+        "buyerAmount": "买方金额",
+        "sellerAmount": "卖方金额",
+        "submitResolution": "提交裁决"
+      }
+    },
+    "create": {
+      "title": "创建新托管",
+      "description": "为你的交易设置安全的托管合约",
+      "backToEscrows": "返回托管列表",
+      "steps": {
+        "form": "填写详情",
+        "formShort": "详情",
+        "review": "审查",
+        "reviewShort": "审查",
+        "approve": "批准",
+        "approveShort": "批准",
+        "confirm": "确认",
+        "confirmShort": "确认",
+        "success": "完成",
+        "successShort": "完成",
+        "stepOf": "第 {current} 步，共 {total} 步"
+      },
+      "sections": {
+        "sellerAddress": "卖方地址",
+        "sellerAddressDesc": "将接收付款的钱包地址",
+        "paymentAmount": "付款金额",
+        "paymentAmountDesc": "将在托管中持有的金额",
+        "buyerProtection": "买方保护期",
+        "buyerProtectionDesc": "买方可以申请争议或释放资金的时间",
+        "contractTerms": "合约条款",
+        "contractTermsDesc": "描述此托管的可交付成果和条件",
+        "disputeAgent": "争议解决代理人",
+        "disputeAgentDesc": "选择如何处理争议",
+        "parties": "参与方",
+        "financialDetails": "财务详情",
+        "disputeResolution": "争议解决"
+      },
+      "form": {
+        "termsPlaceholder": "描述卖方必须交付的内容、截止日期、质量期望等。",
+        "characters": "{count} 个字符",
+        "customDuration": "自定义期限（天）",
+        "enterDays": "输入天数",
+        "maxDays": "最多：{max} 天",
+        "continueToReview": "继续审查",
+        "connectToContinue": "连接钱包以继续"
+      },
+      "summary": {
+        "title": "快速摘要",
+        "amount": "金额",
+        "seller": "卖方",
+        "protection": "保护",
+        "agent": "代理人",
+        "assigned": "已分配",
+        "locked": "已锁定",
+        "notSet": "未设置",
+        "noAgentWarning": "没有代理人，争议将无法解决。"
+      },
+      "agentSelector": {
+        "noAgent": "无代理人（锁定托管）",
+        "noAgentDesc": "不使用争议解决继续",
+        "enterAddress": "输入代理人地址",
+        "enterAddressDesc": "直接输入已知代理人的地址",
+        "browseAgents": "浏览可用代理人",
+        "browseAgentsDesc": "从验证代理人列表中选择",
+        "browseAgentsBtn": "浏览代理人",
+        "agentSelected": "已选择代理人",
+        "change": "更改",
+        "recommendation": "我们强烈建议分配一个代理人来解决争议。",
+        "agentVerified": "代理人已验证",
+        "agentVerifiedDesc": "活跃、可用，且有足够的 MAV 用于此托管。",
+        "agentNotRegistered": "代理人未注册",
+        "agentNotRegisteredDesc": "此地址未在协议中注册为代理人。",
+        "agentInactive": "代理人不活跃",
+        "agentInactiveDesc": "此代理人已注册但目前不活跃。",
+        "agentUnavailable": "代理人不可用",
+        "agentUnavailableDesc": "此代理人是活跃的但目前不接受新案件。",
+        "insufficientMav": "MAV 不足",
+        "insufficientMavDesc": "此代理人的 MAV 不足以覆盖此托管金额。",
+        "agentNotEligible": "代理人不符合条件",
+        "checkingAgent": "正在检查代理人…",
+        "checkingAgentDesc": "正在从索引器获取代理人信息。",
+        "mav": "MAV",
+        "thisEscrow": "此托管",
+        "activeCases": "活跃案件",
+        "registered": "已注册"
+      },
+      "locked": {
+        "title": "创建锁定托管",
+        "subtitle": "你正在创建一个没有代理人的托管",
+        "understandNoDispute": "我理解没有代理人将无法解决争议",
+        "understandNoDisputeDesc": "如果发生分歧，将没有第三方进行调解。",
+        "understandFundsLocked": "我理解资金可能被永久锁定",
+        "understandFundsLockedDesc": "如果买方和卖方无法达成一致，资金可能会被永久锁定。",
+        "acceptRisk": "我接受与锁定托管相关的所有风险",
+        "acceptRiskDesc": "我已阅读并理解创建无代理人托管的影响。"
+      },
+      "review": {
+        "backToEdit": "返回编辑",
+        "proceedToApproval": "继续审批",
+        "generatingAgreement": "生成协议中...",
+        "noTerms": "未指定条款",
+        "agentAssigned": "已分配代理人",
+        "agentAssignedDesc": "争议将由指定代理人解决",
+        "lockedEscrow": "锁定托管（无代理人）",
+        "lockedEscrowDesc": "此托管没有争议解决机制。如果发生分歧，资金可能被永久锁定。",
+        "feesBreakdown": "费用明细",
+        "escrowAmount": "托管金额",
+        "creationFee": "创建费用",
+        "agentAssignmentFee": "代理人分配费用",
+        "totalRequired": "所需总计",
+        "agreementPdf": "协议 PDF",
+        "generating": "生成中…",
+        "failedToGeneratePdf": "PDF 生成失败：{error}",
+        "downloadPdf": "下载 PDF",
+        "generatePdf": "生成 PDF",
+        "predictedAddress": "预测托管地址",
+        "generatingAddress": "正在生成托管地址...",
+        "predictedAddressNote": "预测地址是确定性的。只要参数不变，托管将部署在此地址。",
+        "generatingAgreementInfo": "生成协议",
+        "generatingAgreementDesc": "你的托管协议 PDF 正在生成中。此文档将与你的智能合约进行加密绑定。"
+      },
+      "approve": {
+        "backToReview": "返回审查",
+        "waitingForApproval": "等待批准...",
+        "confirmInWallet": "请在钱包中确认交易"
+      },
+      "confirm": {
+        "amount": "金额",
+        "seller": "卖方",
+        "protection": "保护",
+        "totalCost": "总费用",
+        "protectedEscrow": "受保护的托管",
+        "protectedDesc": "已分配代理人用于争议解决",
+        "lockedWarning": "锁定托管警告",
+        "lockedWarningDesc": "未分配代理人。争议无法解决。如果双方不同意，资金可能被永久锁定。",
+        "deployedAt": "托管将部署在",
+        "transactionFailed": "交易失败",
+        "creatingEscrow": "创建托管中...",
+        "insufficientBalance": "余额不足",
+        "whatHappensNext": "接下来会发生什么",
+        "deployedOnChain": "你的托管合约将部署到链上",
+        "fundsTransferred": "资金将从你的钱包转入托管",
+        "sellerNotified": "卖方将收到通知并可以开始工作",
+        "createEscrow": "创建托管",
+        "creatingEscrowBtn": "创建托管中...",
+        "termsAgreement": "创建此托管即表示你同意",
+        "termsOfService": "服务条款"
+      },
+      "success": {
+        "title": "合约创建成功",
+        "description": "你的托管合约已安全部署到链上。",
+        "escrowAddress": "托管地址",
+        "transactionHash": "交易哈希",
+        "amountInEscrow": "托管中的金额",
+        "buyerProtection": "买方保护",
+        "viewDashboard": "查看托管面板",
+        "downloadPdf": "下载 PDF",
+        "generatePdf": "生成 PDF",
+        "generatingPdf": "生成中...",
+        "createAnother": "创建另一个",
+        "savePdfTitle": "保存你的合约 PDF",
+        "savePdfDesc": "下载并妥善保管你的 PDF 合约。它作为协议证明，你可以与卖方分享，如果发生争议，代理人可能需要此文档。",
+        "whatsNext": "接下来怎么办？",
+        "informSeller": "通知卖方",
+        "informSellerDesc": "与卖方分享托管地址或合约 PDF，以便他们审查并接受条款。",
+        "waitForDelivery": "等待交付",
+        "waitForDeliveryDesc": "一旦卖方接受，他们将按照约定交付商品或服务。",
+        "releaseFunds": "释放资金",
+        "releaseFundsDesc": "当你对交付满意时，释放资金以完成交易。"
+      },
+      "errors": {
+        "sellerAddressRequired": "卖方地址为必填项",
+        "sellerAddressInvalid": "请输入有效的以太坊地址",
+        "sellerAddressSameAsBuyer": "卖方地址不能与你的地址相同",
+        "amountRequired": "金额为必填项",
+        "amountInvalid": "请输入有效金额",
+        "amountTooSmall": "金额必须大于 0",
+        "amountExceedsBalance": "金额超过你的余额",
+        "protectionTimeRequired": "保护时间为必填项",
+        "protectionTimeTooShort": "保护时间至少为 {min} 天",
+        "protectionTimeTooLong": "保护时间不能超过 {max} 天",
+        "protectionTimeInvalid": "请输入有效的天数",
+        "termsRequired": "合约条款为必填项",
+        "agentAddressInvalid": "请输入有效的代理人地址",
+        "agentAddressSameAsBuyer": "代理人不能与买方相同",
+        "agentAddressSameAsSeller": "代理人不能与卖方相同",
+        "agentNotRegistered": "此地址不是已注册的代理人",
+        "lockedConfirmationsRequired": "你必须确认所有风险才能创建锁定托管",
+        "walletNotConnected": "请连接你的钱包",
+        "insufficientAllowance": "代币授权额度不足"
+      },
+      "protectionPresets": {
+        "7d": "7 天",
+        "14d": "14 天",
+        "30d": "30 天",
+        "custom": "自定义",
+        "7dDesc": "适用于快速交易的标准保护",
+        "14dDesc": "推荐用于大多数交易",
+        "30dDesc": "适用于复杂交付的延长保护",
+        "customDesc": "设置自定义保护期"
+      }
+    }
+  }
+}

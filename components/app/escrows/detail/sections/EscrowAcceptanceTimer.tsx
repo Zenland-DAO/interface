@@ -10,6 +10,7 @@
 
 import { Clock, AlertTriangle } from "lucide-react";
 
+import { useTranslations } from "next-intl";
 import { Card, CardBody, Text } from "@/components/ui";
 import { useEscrowDetail } from "../EscrowDetailContext";
 import { formatRemainingTime } from "../hooks/useEscrowTimers";
@@ -37,6 +38,7 @@ function formatDeadline(timestamp: number): string {
 // =============================================================================
 
 export function EscrowAcceptanceTimer() {
+    const t = useTranslations("escrows.detail.acceptance");
     const { escrow, timers, role } = useEscrowDetail();
     const { acceptanceTimer } = timers;
 
@@ -82,12 +84,12 @@ export function EscrowAcceptanceTimer() {
                         </div>
                         <div className="flex-1 min-w-0">
                             <Text className="font-semibold text-sm">
-                                Seller Acceptance Window
+                                {t("title")}
                             </Text>
                             <Text variant="muted" className="text-xs">
                                 {isExpired
-                                    ? "Acceptance window has expired"
-                                    : "Waiting for seller to accept the escrow"}
+                                    ? t("expired")
+                                    : t("waiting")}
                             </Text>
                         </div>
                     </div>
@@ -98,7 +100,7 @@ export function EscrowAcceptanceTimer() {
                             variant="muted"
                             className="text-xs uppercase font-bold tracking-wider"
                         >
-                            {isExpired ? "Deadline passed" : "Accept by"}
+                            {isExpired ? t("deadlinePassed") : t("acceptBy")}
                         </Text>
                         <Text className="font-semibold text-sm">
                             {formatDeadline(expiryTimestamp)}
@@ -134,7 +136,7 @@ export function EscrowAcceptanceTimer() {
                                     }`}
                             >
                                 {isExpired
-                                    ? "Time limit reached"
+                                    ? t("timeLimitReached")
                                     : formatRemainingTime(remainingSeconds)}
                             </Text>
                         </div>
@@ -147,8 +149,7 @@ export function EscrowAcceptanceTimer() {
                                 variant="muted"
                                 className="text-xs text-warning-600 dark:text-warning-400"
                             >
-                                Seller did not accept in time. You can cancel and get a full
-                                refund.
+                                {t("buyerCanCancel")}
                             </Text>
                         </div>
                     )}
@@ -156,7 +157,7 @@ export function EscrowAcceptanceTimer() {
                     {isSeller && !isExpired && (
                         <div className="pt-2 border-t border-[var(--border-secondary)]">
                             <Text variant="muted" className="text-xs">
-                                Please review and accept the escrow terms before the deadline.
+                                {t("sellerReview")}
                             </Text>
                         </div>
                     )}

@@ -19,6 +19,7 @@ import {
   Loader2,
 } from "lucide-react";
 
+import { useTranslations } from "next-intl";
 import {
   Modal,
   ModalHeader,
@@ -82,14 +83,29 @@ export function ConfirmationModal({
   isLoading = false,
   data,
 }: ConfirmationModalProps) {
+  const t = useTranslations("escrows.modals");
+
   // Don't render if no type
   if (!type) return null;
 
   const config: ModalConfig = MODAL_CONFIG[type];
   const Icon = ICON_MAP[config.icon];
 
+  // Map modal types to translation keys
+  const MODAL_TYPE_TO_KEY: Record<string, string> = {
+    release: "release",
+    refund: "refund",
+    dispute: "dispute",
+    inviteAgent: "inviteAgent",
+    agentResolve: "agentResolve",
+    claimTimeout: "claimTimeout",
+    proposeSplit: "proposeSplit",
+    approveSplit: "approveSplit",
+  };
+  const tKey = MODAL_TYPE_TO_KEY[type] || type;
+
   // Build description with dynamic data
-  let description = config.description;
+  let description = t.has(`${tKey}.description`) ? t(`${tKey}.description`) : config.description;
 
   // For split modals, add percentage info
   if (data?.buyerBps !== undefined && data?.sellerBps !== undefined) {
@@ -132,7 +148,7 @@ export function ConfirmationModal({
             <Icon size={20} />
           </div>
           <Heading level={3} className="text-lg font-semibold">
-            {config.title}
+            {t.has(`${tKey}.title`) ? t(`${tKey}.title`) : config.title}
           </Heading>
         </div>
       </ModalHeader>
@@ -151,11 +167,11 @@ export function ConfirmationModal({
                 variant="muted"
                 className="text-xs uppercase font-bold tracking-wider"
               >
-                Split Preview
+                {t("splitPreview")}
               </Text>
               <div className="flex justify-between items-center">
                 <Text variant="muted" className="text-sm">
-                  Buyer receives
+                  {t("buyerReceives")}
                 </Text>
                 <Text className="font-semibold">
                   {(data.buyerBps / 100).toFixed(1)}%
@@ -163,7 +179,7 @@ export function ConfirmationModal({
               </div>
               <div className="flex justify-between items-center">
                 <Text variant="muted" className="text-sm">
-                  Seller receives
+                  {t("sellerReceives")}
                 </Text>
                 <Text className="font-semibold">
                   {(data.sellerBps / 100).toFixed(1)}%
@@ -182,8 +198,8 @@ export function ConfirmationModal({
                 />
               </div>
               <div className="flex justify-between text-[10px] text-[var(--text-tertiary)]">
-                <span>Buyer</span>
-                <span>Seller</span>
+                <span>{t("buyer")}</span>
+                <span>{t("seller")}</span>
               </div>
             </div>
           )}
@@ -196,7 +212,7 @@ export function ConfirmationModal({
           disabled={isLoading}
           className="flex-1"
         >
-          Cancel
+          {t("cancel")}
         </Button>
         <Button
           variant={config.confirmVariant === "danger" ? "danger" : "primary"}
@@ -207,10 +223,10 @@ export function ConfirmationModal({
           {isLoading ? (
             <>
               <Loader2 size={16} className="animate-spin mr-2" />
-              Processing...
+              {t("processing")}
             </>
           ) : (
-            config.confirmLabel
+            t.has(`${tKey}.confirm`) ? t(`${tKey}.confirm`) : config.confirmLabel
           )}
         </Button>
       </ModalFooter>

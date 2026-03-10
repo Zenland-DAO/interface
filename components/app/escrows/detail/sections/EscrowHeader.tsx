@@ -14,9 +14,10 @@
 import Link from "next/link";
 import { ArrowLeft } from "lucide-react";
 
+import { useTranslations } from "next-intl";
 import { Badge, Heading, Text } from "@/components/ui";
 import { useEscrowDetail } from "../EscrowDetailContext";
-import { STATE_COLORS, STATE_LABELS, ROLE_LABELS, ROLE_COLORS } from "../constants";
+import { STATE_COLORS, ROLE_COLORS } from "../constants";
 
 // =============================================================================
 // HELPERS
@@ -47,12 +48,11 @@ function formatDate(timestamp: bigint): string {
 // =============================================================================
 
 export function EscrowHeader() {
+  const t = useTranslations("escrows");
   const { escrow, role } = useEscrowDetail();
 
   const stateColor = STATE_COLORS[escrow.state];
-  const stateLabel = STATE_LABELS[escrow.state];
   const roleColor = ROLE_COLORS[role.role] as "primary" | "success" | "warning" | "neutral";
-  const roleLabel = ROLE_LABELS[role.role];
 
   const createdDate = formatDate(escrow.createdAt);
   const truncatedId = truncateAddress(escrow.id);
@@ -68,20 +68,20 @@ export function EscrowHeader() {
           size={14}
           className="transition-transform group-hover:-translate-x-1"
         />
-        Back to Escrows
+        {t("detail.backToEscrows")}
       </Link>
 
       {/* Title Row */}
       <div className="flex flex-wrap items-start justify-between gap-4">
         <div className="space-y-1">
           <Heading level={1} className="text-2xl font-bold">
-            Escrow{" "}
+            {t("detail.escrow")}{" "}
             <span className="text-[var(--text-secondary)] font-mono text-xl">
               {truncatedId}
             </span>
           </Heading>
           <Text variant="muted" className="text-sm">
-            Created on {createdDate}
+            {t("detail.createdOn", { date: createdDate })}
           </Text>
         </div>
 
@@ -90,13 +90,13 @@ export function EscrowHeader() {
           {/* Role Badge */}
           {role.role !== "viewer" && (
             <Badge variant={roleColor} size="sm">
-              {roleLabel}
+              {t(`roles.${role.role}`)}
             </Badge>
           )}
 
           {/* State Badge */}
           <Badge variant={stateColor} size="md">
-            {stateLabel}
+            {t(`states.${escrow.state}`)}
           </Badge>
         </div>
       </div>

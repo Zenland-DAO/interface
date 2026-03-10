@@ -10,9 +10,9 @@
 
 import { Send, AlertTriangle, Loader2, Wallet } from "lucide-react";
 
+import { useTranslations } from "next-intl";
 import { Button, Text } from "@/components/ui";
 import { useEscrowDetail } from "../EscrowDetailContext";
-import { ACTION_DESCRIPTIONS } from "../constants";
 import { useWalletAction } from "@/hooks/wallet/useWalletAction";
 
 // =============================================================================
@@ -29,6 +29,7 @@ export interface BuyerActionsProps {
 // =============================================================================
 
 export function BuyerActions({ onOpenModal }: BuyerActionsProps) {
+  const t = useTranslations("escrows");
   const { actions, write, role } = useEscrowDetail();
   const { availableActions } = actions;
   const { isPending, pendingAction } = write;
@@ -61,22 +62,22 @@ export function BuyerActions({ onOpenModal }: BuyerActionsProps) {
             {isPending && pendingAction === "release" ? (
               <>
                 <Loader2 size={16} className="animate-spin mr-2" />
-                Releasing...
+                {t("actionProgress.releasing")}
               </>
             ) : isConnected ? (
               <>
                 <Send size={16} className="mr-2" />
-                Release Funds
+                {t("actions.release")}
               </>
             ) : (
               <>
                 <Wallet size={16} className="mr-2" />
-                Connect Wallet
+                {t("actions.connectWallet")}
               </>
             )}
           </Button>
           <Text variant="muted" className="text-xs text-center">
-            {ACTION_DESCRIPTIONS.release}
+            {t("actionDescriptions.release")}
           </Text>
         </div>
       )}
@@ -93,22 +94,22 @@ export function BuyerActions({ onOpenModal }: BuyerActionsProps) {
             {isPending && pendingAction === "openDispute" ? (
               <>
                 <Loader2 size={16} className="animate-spin mr-2" />
-                Opening...
+                {t("actionProgress.opening")}
               </>
             ) : isConnected ? (
               <>
                 <AlertTriangle size={16} className="mr-2" />
-                Open Dispute
+                {t("actions.openDispute")}
               </>
             ) : (
               <>
                 <Wallet size={16} className="mr-2" />
-                Connect Wallet
+                {t("actions.connectWallet")}
               </>
             )}
           </Button>
           <Text variant="muted" className="text-xs text-center">
-            {ACTION_DESCRIPTIONS.openDispute}
+            {t("actionDescriptions.openDispute")}
           </Text>
         </div>
       )}

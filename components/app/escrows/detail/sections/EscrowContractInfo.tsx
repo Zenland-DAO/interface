@@ -14,6 +14,7 @@ import { Copy, Check, ExternalLink, FileCode } from "lucide-react";
 import { useChainId } from "wagmi";
 import { toast } from "sonner";
 
+import { useTranslations } from "next-intl";
 import { Card, CardBody, Text } from "@/components/ui";
 import { useEscrowDetail } from "../EscrowDetailContext";
 import { getAddressExplorerUrl } from "../constants";
@@ -23,6 +24,7 @@ import { getAddressExplorerUrl } from "../constants";
 // =============================================================================
 
 export function EscrowContractInfo() {
+  const t = useTranslations("escrows.detail");
   const { escrow } = useEscrowDetail();
   const chainId = useChainId();
 
@@ -47,7 +49,7 @@ export function EscrowContractInfo() {
         {/* Header */}
         <div className="flex items-center gap-2">
           <FileCode size={16} className="text-[var(--text-tertiary)]" />
-          <Text className="font-semibold text-sm">Contract</Text>
+          <Text className="font-semibold text-sm">{t("contract")}</Text>
         </div>
 
         {/* Address */}
@@ -56,7 +58,7 @@ export function EscrowContractInfo() {
             variant="muted"
             className="text-xs uppercase font-bold tracking-wider"
           >
-            Contract Address
+            {t("contractAddress")}
           </Text>
           <div className="flex items-center gap-2 p-2 bg-neutral-50 dark:bg-neutral-800/50 rounded border border-[var(--border-secondary)]">
             <code className="text-[10px] text-[var(--text-primary)] truncate flex-1 font-mono">
@@ -79,7 +81,7 @@ export function EscrowContractInfo() {
         {/* Version */}
         <div className="flex items-center justify-between">
           <Text variant="muted" className="text-xs">
-            Contract Version
+            {t("contractVersion")}
           </Text>
           <Text className="text-xs font-mono font-semibold">
             v{escrow.version}
@@ -93,7 +95,7 @@ export function EscrowContractInfo() {
           rel="noopener noreferrer"
           className="flex items-center gap-1.5 text-xs text-primary-500 hover:text-primary-600 font-semibold transition-colors"
         >
-          View on Explorer
+          {t("viewOnExplorer")}
           <ExternalLink size={10} />
         </a>
       </CardBody>

@@ -1,6 +1,6 @@
 {
   "name": "interface",
-  "version": "1.1.7",
+  "version": "1.1.8",
   "license": "BUSL-1.1",
   "private": true,
   "scripts": {

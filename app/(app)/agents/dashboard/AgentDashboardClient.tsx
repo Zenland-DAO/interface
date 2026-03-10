@@ -21,6 +21,7 @@ import {
   LogIn,
   Pencil
 } from "lucide-react";
+import { useTranslations } from "next-intl";
 import {
   Button,
   Card,
@@ -87,6 +88,7 @@ function toBigInt(value: string | bigint | number | null | undefined, fallback =
 }
 
 export function AgentDashboardClient() {
+  const t = useTranslations("agents.dashboard");
   const [isStakeModalOpen, setIsStakeModalOpen] = useState(false);
   const [isFeeModalOpen, setIsFeeModalOpen] = useState(false);
   const [isAvailabilityModalOpen, setIsAvailabilityModalOpen] = useState(false);
@@ -121,9 +123,9 @@ export function AgentDashboardClient() {
         <div className="w-20 h-20 rounded-full bg-primary-500/10 flex items-center justify-center text-primary-500 mb-6">
           <Shield size={40} />
         </div>
-        <Heading level={2} className="mb-2">Connect Your Wallet</Heading>
+        <Heading level={2} className="mb-2">{t("connectWallet.title")}</Heading>
         <Text variant="muted" className="mb-8 max-w-md">
-          Please connect your wallet to view your agent dashboard and manage your cases.
+          {t("connectWallet.description")}
         </Text>
       </div>
     );
@@ -155,14 +157,13 @@ export function AgentDashboardClient() {
             <AlertCircle size={40} />
           </div>
           <div className="space-y-2">
-            <Heading level={3}>Not Registered as Agent</Heading>
+            <Heading level={3}>{t("notRegistered.title")}</Heading>
             <Text variant="muted" className="max-w-md mx-auto">
-              You are not currently registered as an agent on this network.
-              Register now to start resolving disputes and earning fees.
+              {t("notRegistered.description")}
             </Text>
           </div>
           <Link href="/agents/register">
-            <Button variant="primary" size="lg">Become an Agent</Button>
+            <Button variant="primary" size="lg">{t("notRegistered.becomeAgent")}</Button>
           </Link>
         </CardBody>
       </Card>
@@ -180,17 +181,17 @@ export function AgentDashboardClient() {
       {/* Back Navigation */}
       <Link href="/agents" className="inline-flex items-center gap-2 text-sm font-bold text-[var(--text-tertiary)] hover:text-primary-500 transition-colors group">
         <ArrowLeft size={16} className="transition-transform group-hover:-translate-x-1" />
-        Back to Agents
+        {t("backToAgents")}
       </Link>
 
       {/* Page Header */}
       <div className="flex flex-col sm:flex-row sm:items-end justify-between gap-4">
         <div>
           <h1 className="text-2xl font-bold text-[var(--text-primary)]">
-            Agent Dashboard
+            {t("title")}
           </h1>
           <p className="text-[var(--text-secondary)] mt-1">
-            Monitor your performance and manage assigned dispute cases
+            {t("description")}
           </p>
         </div>
       </div>
@@ -217,7 +218,7 @@ export function AgentDashboardClient() {
                     {formattedJoinedDate && (
                       <span className="inline-flex items-center gap-1.5 px-2 py-0.5 text-[10px] font-bold uppercase tracking-wider rounded bg-neutral-100 dark:bg-neutral-800 text-[var(--text-tertiary)] border border-[var(--border-secondary)]">
                         <Clock size={10} />
-                        Joined {formattedJoinedDate}
+                        {t("joined", { date: formattedJoinedDate })}
                       </span>
                     )}
                   </div>
@@ -234,7 +235,7 @@ export function AgentDashboardClient() {
                   <div className={`flex items-center gap-2 px-3 py-1.5 rounded-lg border transition-all ${agent.isAvailable ? "bg-success-500/10 text-success-500 border-success-500/20" : "bg-neutral-500/10 text-neutral-500 border-neutral-500/20"}`}>
                     <div className={`w-2 h-2 rounded-full ${agent.isAvailable ? "bg-success-500 animate-pulse" : "bg-neutral-500"}`} />
                     <span className="text-[10px] font-black uppercase tracking-widest leading-none">
-                      {agent.isAvailable ? "Online" : "Offline"}
+                      {agent.isAvailable ? t("online") : t("offline")}
                     </span>
                   </div>
                   <Button
@@ -244,7 +245,7 @@ export function AgentDashboardClient() {
                     onClick={() => setIsAvailabilityModalOpen(true)}
                     leftIcon={agent.isAvailable ? <LogOut size={14} /> : <LogIn size={14} />}
                   >
-                    {agent.isAvailable ? "Set Unavailable" : "Set Available"}
+                    {agent.isAvailable ? t("setUnavailable") : t("setAvailable")}
                   </Button>
                 </div>
 
@@ -256,14 +257,14 @@ export function AgentDashboardClient() {
                     className="w-full sm:w-auto font-bold uppercase tracking-widest text-[10px] h-9 px-5 border-primary-500/30 text-primary-500 hover:bg-primary-500/5 hover:border-primary-500"
                     leftIcon={<Pencil size={14} />}
                   >
-                    Edit Profile
+                    {t("editProfile")}
                   </Button>
                 </Link>
               </div>
             </div>
 
             <p className="text-[var(--text-secondary)] text-sm line-clamp-3 italic max-w-2xl leading-relaxed mx-auto lg:mx-0">
-              {agent.description || "Expert dispute resolver maintaining the integrity of the Zenland ecosystem."}
+              {agent.description || t("defaultDescription")}
             </p>
           </div>
         </CardBody>
@@ -273,10 +274,10 @@ export function AgentDashboardClient() {
       {/* Stats Grid */}
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
         {[
-          { label: "Active Cases", value: activeCount, icon: Activity, color: "primary" as const },
-          { label: "Total Resolved", value: agent.totalResolved, icon: CheckCircle2, color: "success" as const },
-          { label: "Total Earnings", value: `$${formatAmount(toBigInt(agent.totalEarnings), agent.stablecoinDecimals || 18)}`, icon: CircleDollarSign, color: "warning" as const },
-          { label: "Total Slashed", value: `$${formatAmount(toBigInt(agent.totalSlashed), agent.stablecoinDecimals || 18)}`, icon: Slash, color: "error" as const },
+          { label: t("stats.activeCases"), value: activeCount, icon: Activity, color: "primary" as const },
+          { label: t("stats.totalResolved"), value: agent.totalResolved, icon: CheckCircle2, color: "success" as const },
+          { label: t("stats.totalEarnings"), value: `$${formatAmount(toBigInt(agent.totalEarnings), agent.stablecoinDecimals || 18)}`, icon: CircleDollarSign, color: "warning" as const },
+          { label: t("stats.totalSlashed"), value: `$${formatAmount(toBigInt(agent.totalSlashed), agent.stablecoinDecimals || 18)}`, icon: Slash, color: "error" as const },
         ].map((stat, i) => (
           <Card key={i} variant="elevated" className="border-none shadow-lg shadow-neutral-500/5 group">
             <CardBody className="p-6 flex items-center gap-4">
@@ -295,14 +296,14 @@ export function AgentDashboardClient() {
         <div className="lg:col-span-2">
           <Card variant="elevated" className="border-none shadow-xl shadow-neutral-500/5">
             <CardHeader className="flex flex-row items-center justify-between border-b border-[var(--border-secondary)] px-8 py-6">
-              <Heading level={4} className="text-lg">Recent Dispute Cases</Heading>
+              <Heading level={4} className="text-lg">{t("cases.title")}</Heading>
               <div className="flex items-center gap-3">
                 <span className="px-2 py-0.5 text-[10px] font-bold rounded bg-neutral-100 dark:bg-neutral-800 text-neutral-500 uppercase tracking-tighter">
-                  {cases.length} assigned
+                  {t("cases.assigned", { count: cases.length })}
                 </span>
                 {cases.length > 0 && (
                   <Link href="/agents/cases" className="text-[10px] font-bold uppercase tracking-widest text-primary-500 hover:text-primary-400 transition-colors">
-                    View All →
+                    {t("cases.viewAll")}
                   </Link>
                 )}
               </div>
@@ -310,7 +311,7 @@ export function AgentDashboardClient() {
             <CardBody className="p-0">
               {cases.length === 0 ? (
                 <div className="p-12 text-center">
-                  <Text variant="muted" className="italic">No cases assigned yet. You&apos;ll be notified when a dispute requires your review.</Text>
+                  <Text variant="muted" className="italic">{t("cases.empty")}</Text>
                 </div>
               ) : (
                 <div className="divide-y divide-[var(--border-secondary)] max-h-[400px] overflow-y-auto">
@@ -319,9 +320,9 @@ export function AgentDashboardClient() {
                       <div className="flex items-center justify-between gap-4">
                         <div className="space-y-1 flex-1">
                           <div className="flex items-center gap-2">
-                            <span className="text-sm font-black group-hover:text-primary-500 transition-colors">Dispute #{c.id.slice(0, 8)}</span>
+                            <span className="text-sm font-black group-hover:text-primary-500 transition-colors">{t("cases.dispute", { id: c.id.slice(0, 8) })}</span>
                             <span className={`px-2 py-0.5 text-[10px] font-bold rounded-full uppercase border ${c.resolvedAt ? "bg-success-500/10 text-success-600 border-success-500/10" : "bg-warning-500/10 text-warning-600 border-warning-500/10"}`}>
-                              {c.resolvedAt ? "Resolved" : "Active"}
+                              {c.resolvedAt ? t("cases.resolved") : t("cases.active")}
                             </span>
                           </div>
                           <Text variant="muted" className="text-xs">
@@ -330,7 +331,7 @@ export function AgentDashboardClient() {
                         </div>
                         <Link href={`/disputes/${c.id}`}>
                           <Button variant="outline" size="sm" className="h-9 px-4 group-hover:border-primary-500 group-hover:text-primary-500">
-                            {c.resolvedAt ? "View" : "Review"}
+                            {c.resolvedAt ? t("cases.view") : t("cases.review")}
                           </Button>
                         </Link>
                       </div>
@@ -348,15 +349,15 @@ export function AgentDashboardClient() {
             <CardBody className="p-6 space-y-4">
               <div className="flex items-center gap-2 text-primary-500">
                 <TrendingUp size={18} />
-                <span className="text-sm font-black uppercase tracking-widest">Fee Configuration</span>
+                <span className="text-sm font-black uppercase tracking-widest">{t("feeConfig.title")}</span>
               </div>
               <div className="space-y-3">
                 <div className="flex justify-between items-center text-xs">
-                  <span className="text-[var(--text-tertiary)]">Assignment Fee</span>
+                  <span className="text-[var(--text-tertiary)]">{t("feeConfig.assignmentFee")}</span>
                   <span className="font-mono font-bold">{agent.assignmentFeeBps / 100}%</span>
                 </div>
                 <div className="flex justify-between items-center text-xs">
-                  <span className="text-[var(--text-tertiary)]">Dispute Resolution</span>
+                  <span className="text-[var(--text-tertiary)]">{t("feeConfig.disputeResolution")}</span>
                   <span className="font-mono font-bold">{agent.disputeFeeBps / 100}%</span>
                 </div>
               </div>
@@ -367,7 +368,7 @@ export function AgentDashboardClient() {
                 rightIcon={<ChevronRight size={14} />}
                 onClick={() => setIsFeeModalOpen(true)}
               >
-                Update Fees
+                {t("feeConfig.updateFees")}
               </Button>
             </CardBody>
           </Card>
@@ -377,13 +378,13 @@ export function AgentDashboardClient() {
             <CardBody className="p-6 space-y-5">
               <div className="flex items-center gap-3">
                 <Icon icon={ShieldCheck} boxed boxColor="primary" size="sm" />
-                <Heading level={4} className="text-sm font-black uppercase tracking-widest">Stake & Capacity</Heading>
+                <Heading level={4} className="text-sm font-black uppercase tracking-widest">{t("stakeCapacity.title")}</Heading>
               </div>
 
               {/* Stablecoin Stake */}
               <div className="space-y-2">
                 <div className="flex justify-between items-end">
-                  <Text variant="muted" className="text-[10px] font-bold uppercase tracking-widest">Stablecoin Stake (MAV)</Text>
+                  <Text variant="muted" className="text-[10px] font-bold uppercase tracking-widest">{t("stakeCapacity.stablecoinStake")}</Text>
                   <span className="text-xs font-black">${formatAmount(toBigInt(agent.stablecoinStake), agent.stablecoinDecimals || 18)} <span className="text-[10px] text-neutral-400 font-normal">USDC</span></span>
                 </div>
                 <div className="h-1.5 bg-neutral-100 dark:bg-neutral-800 rounded-full overflow-hidden">
@@ -397,7 +398,7 @@ export function AgentDashboardClient() {
               {/* DAO Token Stake */}
               <div className="space-y-2">
                 <div className="flex justify-between items-end">
-                  <Text variant="muted" className="text-[10px] font-bold uppercase tracking-widest">DAO Token Stake</Text>
+                  <Text variant="muted" className="text-[10px] font-bold uppercase tracking-widest">{t("stakeCapacity.daoTokenStake")}</Text>
                   <span className="text-xs font-black">{formatAmount(toBigInt(agent.daoTokenStake), 18)} <span className="text-[10px] text-neutral-400 font-normal">ZEN</span></span>
                 </div>
                 <div className="h-1.5 bg-neutral-100 dark:bg-neutral-800 rounded-full overflow-hidden">
@@ -420,7 +421,7 @@ export function AgentDashboardClient() {
                     setIsStakeModalOpen(true);
                   }}
                 >
-                  Increase Stake
+                  {t("stakeCapacity.increaseStake")}
                 </Button>
                 <Button
                   variant="outline"
@@ -432,7 +433,7 @@ export function AgentDashboardClient() {
                     setIsStakeModalOpen(true);
                   }}
                 >
-                  Withdraw Stake
+                  {t("stakeCapacity.withdrawStake")}
                 </Button>
               </div>
             </CardBody>

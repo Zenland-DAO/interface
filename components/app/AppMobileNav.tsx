@@ -2,6 +2,7 @@
 
 import Link from "next/link";
 import { usePathname } from "next/navigation";
+import { useTranslations } from "next-intl";
 
 import { APP_NAV_ITEMS } from "./navItems";
 
@@ -13,6 +14,7 @@ function isActivePath(pathname: string, href: string) {
 
 export function AppMobileNav() {
   const pathname = usePathname();
+  const t = useTranslations("app.nav");
 
   const items = APP_NAV_ITEMS.filter((i) =>
     (MOBILE_NAV_IDS as readonly string[]).includes(i.id)
@@ -35,7 +37,7 @@ export function AppMobileNav() {
               }`}
             >
               {item.icon}
-              <span className="font-medium">{item.label}</span>
+              <span className="font-medium">{t(item.labelKey)}</span>
             </Link>
           );
         })}

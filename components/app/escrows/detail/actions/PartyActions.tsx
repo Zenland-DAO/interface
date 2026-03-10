@@ -10,9 +10,9 @@
 
 import { UserPlus, Clock, Loader2, Wallet } from "lucide-react";
 
+import { useTranslations } from "next-intl";
 import { Button, Text } from "@/components/ui";
 import { useEscrowDetail } from "../EscrowDetailContext";
-import { ACTION_DESCRIPTIONS } from "../constants";
 import { useWalletAction } from "@/hooks/wallet/useWalletAction";
 
 // =============================================================================
@@ -29,6 +29,7 @@ export interface PartyActionsProps {
 // =============================================================================
 
 export function PartyActions({ onOpenModal }: PartyActionsProps) {
+  const t = useTranslations("escrows");
   const { actions, write, role } = useEscrowDetail();
   const { availableActions } = actions;
   const { isPending, pendingAction } = write;
@@ -61,22 +62,22 @@ export function PartyActions({ onOpenModal }: PartyActionsProps) {
             {isPending && pendingAction === "inviteAgent" ? (
               <>
                 <Loader2 size={16} className="animate-spin mr-2" />
-                Inviting...
+                {t("actionProgress.inviting")}
               </>
             ) : isConnected ? (
               <>
                 <UserPlus size={16} className="mr-2" />
-                Invite Agent
+                {t("actions.inviteAgent")}
               </>
             ) : (
               <>
                 <Wallet size={16} className="mr-2" />
-                Connect Wallet
+                {t("actions.connectWallet")}
               </>
             )}
           </Button>
           <Text variant="muted" className="text-xs text-center">
-            {ACTION_DESCRIPTIONS.inviteAgent}
+            {t("actionDescriptions.inviteAgent")}
           </Text>
         </div>
       )}
@@ -93,22 +94,22 @@ export function PartyActions({ onOpenModal }: PartyActionsProps) {
             {isPending && pendingAction === "claimAgentTimeout" ? (
               <>
                 <Loader2 size={16} className="animate-spin mr-2" />
-                Claiming...
+                {t("actionProgress.claiming")}
               </>
             ) : isConnected ? (
               <>
                 <Clock size={16} className="mr-2" />
-                Claim Agent Timeout
+                {t("actions.claimAgentTimeout")}
               </>
             ) : (
               <>
                 <Wallet size={16} className="mr-2" />
-                Connect Wallet
+                {t("actions.connectWallet")}
               </>
             )}
           </Button>
           <Text variant="muted" className="text-xs text-center">
-            {ACTION_DESCRIPTIONS.claimAgentTimeout}
+            {t("actionDescriptions.claimAgentTimeout")}
           </Text>
         </div>
       )}

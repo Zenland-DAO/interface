@@ -180,11 +180,6 @@ export function Header() {
                     </Button>
                   </NextLink>
                 </div>
-                
-                {/* Language Switcher in Mobile Menu */}
-                <div className="mt-6 pt-6 border-t border-[var(--border-secondary)]">
-                  <LanguageSwitcher variant="mobile" />
-                </div>
               </div>
             </motion.div>
           </div>

@@ -10,6 +10,7 @@
 
 import { Shield, Clock, CheckCircle } from "lucide-react";
 
+import { useTranslations } from "next-intl";
 import { Card, CardBody, Text } from "@/components/ui";
 import { useEscrowDetail } from "../EscrowDetailContext";
 import { formatRemainingTime } from "../hooks/useEscrowTimers";
@@ -51,6 +52,7 @@ function formatDuration(seconds: number): string {
 // =============================================================================
 
 export function EscrowProtection() {
+  const t = useTranslations("escrows.detail.protection");
   const { escrow, timers } = useEscrowDetail();
   // `useEscrowTimers` exposes `protectionTimer`; keep a local alias for readability.
   const { protectionTimer: protection } = timers;
@@ -84,9 +86,9 @@ export function EscrowProtection() {
               {isExpired ? <CheckCircle size={18} /> : <Shield size={18} />}
             </div>
             <div className="flex-1 min-w-0">
-              <Text className="font-semibold text-sm">Buyer Protection</Text>
+              <Text className="font-semibold text-sm">{t("buyerProtection")}</Text>
               <Text variant="muted" className="text-xs">
-                Duration: {formatDuration(totalSeconds)}
+                {t("duration", { duration: formatDuration(totalSeconds) })}
               </Text>
             </div>
           </div>
@@ -97,7 +99,7 @@ export function EscrowProtection() {
               variant="muted"
               className="text-xs uppercase font-bold tracking-wider"
             >
-              {isExpired ? "Expired on" : "Ends on"}
+              {isExpired ? t("expiredOn") : t("endsOn")}
             </Text>
             <Text className="font-semibold text-sm">
               {formatExpiryDate(expiryTimestamp)}
@@ -131,7 +133,7 @@ export function EscrowProtection() {
                   }`}
               >
                 {isExpired
-                  ? "Protection period has ended"
+                  ? t("protectionEnded")
                   : formatRemainingTime(remainingSeconds)}
               </Text>
             </div>
@@ -141,8 +143,7 @@ export function EscrowProtection() {
           {escrow.state === "FULFILLED" && !isExpired && (
             <div className="pt-2 border-t border-[var(--border-secondary)]">
               <Text variant="muted" className="text-xs">
-                The seller can claim funds after this period expires if the buyer
-                doesn&apos;t release them.
+                {t("sellerCanClaimAfter")}
               </Text>
             </div>
           )}
@@ -153,7 +154,7 @@ export function EscrowProtection() {
                 variant="muted"
                 className="text-xs text-success-600 dark:text-success-400"
               >
-                The seller can now claim the funds.
+                {t("sellerCanClaim")}
               </Text>
             </div>
           )}

@@ -1,5 +1,7 @@
 "use client";
 
+import { useTranslations } from "next-intl";
+
 /**
  * AgentProfileClient
  *
@@ -8,7 +10,8 @@
  * Follows the same pattern as EscrowDetailClient for consistency.
  */
 
-import { Shield } from "lucide-react";
+import Link from "next/link";
+import { Shield, ChevronLeft } from "lucide-react";
 import { type Address } from "viem";
 
 import { Button, Card, CardBody, Heading, Text, SkeletonCard } from "@/components/ui";
@@ -62,6 +65,7 @@ function LoadingSkeleton() {
 // =============================================================================
 
 function ErrorState({ message }: { message?: string }) {
+  const t = useTranslations("agents.profile");
   return (
     <Card variant="outlined" className="border-error-200 dark:border-error-900/30">
       <CardBody className="p-12 text-center flex flex-col items-center gap-4">
@@ -69,13 +73,13 @@ function ErrorState({ message }: { message?: string }) {
           <Shield size={32} />
         </div>
         <div className="space-y-1">
-          <Heading level={3}>Agent Not Found</Heading>
+          <Heading level={3}>{t("error.title")}</Heading>
           <Text variant="muted">
-            {message || "The requested agent could not be located."}
+            {message || t("error.description")}
           </Text>
         </div>
         <Button variant="outline" onClick={() => window.location.reload()}>
-          Try Again
+          {t("error.tryAgain")}
         </Button>
       </CardBody>
     </Card>
@@ -113,18 +117,40 @@ function AgentProfileLayout() {
 // =============================================================================
 
 export function AgentProfileClient({ address, isSelectMode = false }: AgentProfileClientProps) {
+  const t = useTranslations("agents.profile");
   const { data: agentData, isLoading, error } = useAgent(address);
   const { address: userAddress } = useConnection();
   const { sendSelection } = useAgentSelectionSender();
 
+  // Back navigation link (translated)
+  const backLink = (
+    <Link
+      href={isSelectMode ? "/agents?mode=select" : "/agents"}
+      className="inline-flex items-center gap-1 text-sm text-[var(--text-secondary)] hover:text-[var(--text-primary)] transition-colors"
+    >
+      <ChevronLeft size={16} />
+      {isSelectMode ? t("backToSelection") : t("backToAgents")}
+    </Link>
+  );
+
   // Loading state
   if (isLoading) {
-    return <LoadingSkeleton />;
+    return (
+      <>
+        {backLink}
+        <LoadingSkeleton />
+      </>
+    );
   }
 
   // Error state
   if (error || !agentData) {
-    return <ErrorState message={error?.message} />;
+    return (
+      <>
+        {backLink}
+        <ErrorState message={error?.message} />
+      </>
+    );
   }
 
   // Check if user is viewing their own profile
@@ -159,19 +185,24 @@ export function AgentProfileClient({ address, isSelectMode = false }: AgentProfi
   };
 
   return (
-    <AgentProfileProvider
-      agent={agent}
-      isOwnProfile={isOwnProfile}
-      isSelectMode={isSelectMode}
-      onSelectAgent={handleSelectAgent}
-    >
-      <div className="space-y-6 animate-fade-in">
-        {/* Select Mode Banner */}
-        {isSelectMode && <SelectModeBanner />}
+    <>
+      {/* Back Navigation */}
+      {backLink}
 
-        {/* Main Layout */}
-        <AgentProfileLayout />
-      </div>
-    </AgentProfileProvider>
+      <AgentProfileProvider
+        agent={agent}
+        isOwnProfile={isOwnProfile}
+        isSelectMode={isSelectMode}
+        onSelectAgent={handleSelectAgent}
+      >
+        <div className="space-y-6 animate-fade-in">
+          {/* Select Mode Banner */}
+          {isSelectMode && <SelectModeBanner />}
+
+          {/* Main Layout */}
+          <AgentProfileLayout />
+        </div>
+      </AgentProfileProvider>
+    </>
   );
 }

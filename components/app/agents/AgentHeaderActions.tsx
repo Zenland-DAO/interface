@@ -4,9 +4,11 @@ import Link from "next/link";
 import { Button } from "@/components/ui";
 import { useConnection } from "wagmi";
 import { useAgent } from "@/hooks";
+import { useTranslations } from "next-intl";
 import { AgentCheckLoader } from "@/components/ui/loaders/AgentCheckLoader";
 
 export function AgentHeaderActions() {
+  const t = useTranslations("agents.headerActions");
   const { address, isConnected } = useConnection();
 
   // Only query if we have an address
@@ -27,7 +29,7 @@ export function AgentHeaderActions() {
     return (
       <Link href="/agents/dashboard">
         <Button variant="primary" size="lg" className="shadow-sm hover:shadow-md bg-primary-600 hover:bg-primary-700 text-white border-none">
-          Agent Dashboard
+          {t("dashboard")}
         </Button>
       </Link>
     );
@@ -41,7 +43,7 @@ export function AgentHeaderActions() {
   return (
     <Link href="/agents/register">
       <Button variant="outline" size="lg" className="shadow-sm hover:shadow-md">
-        Become an Agent
+        {t("becomeAgent")}
       </Button>
     </Link>
   );

@@ -12,6 +12,7 @@
  */
 
 import { CheckCircle2, XCircle, AlertTriangle, Loader2, ShieldAlert } from "lucide-react";
+import { useTranslations } from "next-intl";
 import { Card, CardBody, Heading, Text } from "@/components/ui";
 import type { OnChainStatus } from "../utils";
 
@@ -31,6 +32,7 @@ function formatAddress(address: string): string {
  * Success banner - hash matches on-chain
  */
 function SuccessBanner({ signerAddress }: { signerAddress?: string }) {
+  const t = useTranslations("verify.status.hashMatch");
   return (
     <Card variant="elevated" className="overflow-hidden">
       <div className="bg-success-100 dark:bg-success-900/20 px-6 py-4 flex items-center gap-4">
@@ -39,10 +41,10 @@ function SuccessBanner({ signerAddress }: { signerAddress?: string }) {
         </div>
         <div>
           <Heading level={3} className="text-success-700 dark:text-success-400">
-            Verified ✓
+            {t("title")}
           </Heading>
           <Text variant="small" className="text-success-600 dark:text-success-500">
-            This PDF matches the on-chain contract record
+            {t("description")}
           </Text>
         </div>
       </div>
@@ -50,7 +52,7 @@ function SuccessBanner({ signerAddress }: { signerAddress?: string }) {
         <CardBody className="py-3">
           <div className="flex items-center justify-between">
             <Text variant="small" className="text-neutral-500">
-              Signed by Zenland
+              {t("signedBy")}
             </Text>
             <code className="text-sm font-mono">{formatAddress(signerAddress)}</code>
           </div>
@@ -65,6 +67,7 @@ function SuccessBanner({ signerAddress }: { signerAddress?: string }) {
  * Uses alarming yellow/red design
  */
 function NotDeployedBanner() {
+  const t = useTranslations("verify.status.notDeployed");
   return (
     <Card variant="elevated" className="overflow-hidden border-2 border-warning-500">
       <div className="bg-warning-100 dark:bg-warning-900/30 px-6 py-5">
@@ -74,10 +77,10 @@ function NotDeployedBanner() {
           </div>
           <div className="space-y-2">
             <Heading level={3} className="text-warning-700 dark:text-warning-400">
-              Contract Not Deployed
+              {t("title")}
             </Heading>
             <Text className="text-warning-600 dark:text-warning-500">
-              This PDF was signed by Zenland, but the contract does not exist on the blockchain.
+              {t("description")}
             </Text>
           </div>
         </div>
@@ -89,10 +92,10 @@ function NotDeployedBanner() {
           <ShieldAlert className="w-6 h-6 text-error-600 dark:text-error-400 shrink-0" />
           <div>
             <Text className="font-bold text-error-700 dark:text-error-300 text-lg">
-              THIS IS NOT AN ACTIVE CONTRACT
+              {t("warningTitle")}
             </Text>
             <Text variant="small" className="text-error-600 dark:text-error-400 mt-1">
-              Do not send any funds or goods based on this PDF. The contract must be deployed first.
+              {t("warningDescription")}
             </Text>
           </div>
         </div>
@@ -106,6 +109,7 @@ function NotDeployedBanner() {
  * Uses alarming red design
  */
 function HashMismatchBanner({ pdfHash, onChainHash }: { pdfHash: string; onChainHash: string }) {
+  const t = useTranslations("verify.status.hashMismatch");
   return (
     <Card variant="elevated" className="overflow-hidden border-2 border-error-500">
       <div className="bg-error-100 dark:bg-error-900/30 px-6 py-5">
@@ -115,10 +119,10 @@ function HashMismatchBanner({ pdfHash, onChainHash }: { pdfHash: string; onChain
           </div>
           <div className="space-y-2">
             <Heading level={3} className="text-error-700 dark:text-error-400">
-              🚨 Hash Mismatch - Potential Scam
+              {t("title")}
             </Heading>
             <Text className="text-error-600 dark:text-error-500">
-              This PDF does not match the on-chain contract record. The document may have been tampered with.
+              {t("description")}
             </Text>
           </div>
         </div>
@@ -127,13 +131,13 @@ function HashMismatchBanner({ pdfHash, onChainHash }: { pdfHash: string; onChain
       {/* Hash comparison */}
       <CardBody className="space-y-3">
         <div className="space-y-1">
-          <Text variant="small" className="text-neutral-500">PDF Hash (this document)</Text>
+          <Text variant="small" className="text-neutral-500">{t("pdfHash")}</Text>
           <code className="text-xs font-mono bg-neutral-100 dark:bg-neutral-800 px-3 py-2 rounded block overflow-x-auto">
             {pdfHash}
           </code>
         </div>
         <div className="space-y-1">
-          <Text variant="small" className="text-neutral-500">On-chain Hash (expected)</Text>
+          <Text variant="small" className="text-neutral-500">{t("onChainHash")}</Text>
           <code className="text-xs font-mono bg-neutral-100 dark:bg-neutral-800 px-3 py-2 rounded block overflow-x-auto">
             {onChainHash}
           </code>
@@ -146,11 +150,10 @@ function HashMismatchBanner({ pdfHash, onChainHash }: { pdfHash: string; onChain
           <XCircle className="w-8 h-8 text-error-600 dark:text-error-400 shrink-0" />
           <div>
             <Text className="font-bold text-error-700 dark:text-error-300 text-lg">
-              ⛔ DO NOT TRUST THIS DOCUMENT
+              {t("warningTitle")}
             </Text>
             <Text variant="small" className="text-error-600 dark:text-error-400 mt-1">
-              This could be a scam or an outdated/modified version of the contract.
-              Only trust documents that match the on-chain hash.
+              {t("warningDescription")}
             </Text>
           </div>
         </div>
@@ -163,6 +166,7 @@ function HashMismatchBanner({ pdfHash, onChainHash }: { pdfHash: string; onChain
  * Error banner - generic error
  */
 function ErrorBanner({ message }: { message: string }) {
+  const t = useTranslations("verify.status.error");
   return (
     <Card variant="elevated" className="overflow-hidden">
       <div className="bg-error-100 dark:bg-error-900/20 px-6 py-4 flex items-center gap-4">
@@ -171,7 +175,7 @@ function ErrorBanner({ message }: { message: string }) {
         </div>
         <div>
           <Heading level={3} className="text-error-700 dark:text-error-400">
-            Verification Error
+            {t("title")}
           </Heading>
           <Text variant="small" className="text-error-600 dark:text-error-500">
             {message}
@@ -186,14 +190,15 @@ function ErrorBanner({ message }: { message: string }) {
  * Loading banner
  */
 function LoadingBanner() {
+  const t = useTranslations("verify.status.loading");
   return (
     <Card variant="elevated" className="overflow-hidden">
       <div className="bg-neutral-100 dark:bg-neutral-800 px-6 py-4 flex items-center gap-4">
         <Loader2 className="w-8 h-8 text-primary-500 animate-spin" />
         <div>
-          <Heading level={4}>Verifying on-chain...</Heading>
+          <Heading level={4}>{t("title")}</Heading>
           <Text variant="small" className="text-neutral-500">
-            Checking contract data on the blockchain
+            {t("description")}
           </Text>
         </div>
       </div>

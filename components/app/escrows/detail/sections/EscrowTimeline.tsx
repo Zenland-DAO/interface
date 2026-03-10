@@ -18,10 +18,10 @@ import {
   ExternalLink,
 } from "lucide-react";
 
+import { useTranslations } from "next-intl";
 import { Card, CardHeader, CardBody, Heading, Text, Skeleton } from "@/components/ui";
 import { useEscrowDetail } from "../EscrowDetailContext";
 import {
-  EVENT_LABELS,
   EVENT_ICONS,
   EVENT_COLORS,
   getTxExplorerUrl,
@@ -134,7 +134,8 @@ function TimelineItem({
   isLast,
   chainId,
 }: TimelineItemProps) {
-  const label = EVENT_LABELS[eventName] || eventName;
+  const t = useTranslations("escrows.events");
+  const label = t.has(eventName) ? t(eventName) : eventName;
   const iconKey = (EVENT_ICONS[eventName] || "check") as IconKey;
   const colorKey = (EVENT_COLORS[eventName] || "neutral") as ColorKey;
 
@@ -212,6 +213,7 @@ function TimelineSkeleton() {
 // =============================================================================
 
 export function EscrowTimeline() {
+  const t = useTranslations("escrows.detail.timeline");
   const { transactions } = useEscrowDetail();
   const chainId = useChainId();
 
@@ -223,7 +225,7 @@ export function EscrowTimeline() {
     <Card variant="elevated">
       <CardHeader>
         <Heading level={3} className="text-lg">
-          Activity Timeline
+          {t("title")}
         </Heading>
       </CardHeader>
 
@@ -237,7 +239,7 @@ export function EscrowTimeline() {
               className="mx-auto text-error-500 mb-2"
             />
             <Text variant="muted" className="text-sm">
-              Failed to load activity
+              {t("failedToLoad")}
             </Text>
           </div>
         ) : logs.length === 0 ? (
@@ -247,7 +249,7 @@ export function EscrowTimeline() {
               className="mx-auto text-[var(--text-tertiary)] mb-2"
             />
             <Text variant="muted" className="text-sm">
-              No activity yet
+              {t("noActivity")}
             </Text>
           </div>
         ) : (

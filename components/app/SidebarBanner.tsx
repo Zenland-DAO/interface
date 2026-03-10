@@ -3,8 +3,11 @@
 import { motion } from "framer-motion";
 import { Sparkles, ArrowRight } from "lucide-react";
 import Link from "next/link";
+import { useTranslations } from "next-intl";
 
 export function SidebarBanner() {
+  const t = useTranslations("app.sidebar.banner");
+
   return (
     <div className="px-4 py-2">
       <motion.div
@@ -22,22 +25,22 @@ export function SidebarBanner() {
               <Sparkles className="w-3.5 h-3.5 text-white" />
             </div>
             <span className="text-[10px] font-bold uppercase tracking-widest text-white/80">
-              Zenland Agent
+              {t("badge")}
             </span>
           </div>
 
           <h4 className="text-sm font-bold mb-1 leading-tight">
-            Earn by resolving <br /> disputes.
+            {t("title")}
           </h4>
           <p className="text-[10px] text-white/70 mb-3 leading-relaxed">
-            Join the decentralized agent program and start earning fees.
+            {t("description")}
           </p>
 
           <Link
             href="/agents"
             className="inline-flex items-center gap-1.5 text-[10px] font-bold py-1.5 px-3 rounded-lg bg-white text-primary-700 hover:bg-primary-50 transition-colors shadow-sm"
           >
-            Learn More
+            {t("cta")}
             <ArrowRight className="w-3 h-3" />
           </Link>
         </div>

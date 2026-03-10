@@ -8,8 +8,7 @@ import { config } from "@/lib/wagmi/config";
 import { AppProviders, WalletModalProvider } from "@/components/providers";
 import { ConnectWalletModal } from "@/components/wallet";
 
-import { AppHeader, AppMobileNav, AppSidebar } from "@/components/app";
-import { AnnouncementBanner } from "@/components/shared";
+import { AppHeader, AppMobileNav, AppSidebar, AppAnnouncementBanner } from "@/components/app";
 
 interface AppLayoutProps {
   children: ReactNode;
@@ -27,29 +26,15 @@ export default async function AppLayout({ children }: AppLayoutProps) {
   const initialState = cookieToInitialState(config, cookieHeader);
 
   // App routes are unlocalized in the URL, so we load messages based on the
-  // stored preference (cookie). For now we reuse `common.json`.
-  const messages = await requireCommonMessages(locale);
+  // stored preference (cookie). Load common + app-specific namespaces.
+  const messages = await requireAppMessages(locale);
 
   return (
     <AppProviders initialState={initialState}>
       <WalletModalProvider>
         <NextIntlProvider locale={locale} messages={messages}>
           {/* Beta Announcement Banner */}
-          <AnnouncementBanner
-            id="v2-beta-launch"
-            badge="BETA"
-            badgeVariant="primary"
-            icon="🛠️"
-            link={{
-              href: "https://t.me/zenlandofficial",
-              text: "Telegram",
-              external: true,
-            }}
-            reappearAfterHours={24}
-          >
-            Zenland V2 is in Beta - help us make it better! Found a bug or have
-            feedback?
-          </AnnouncementBanner>
+          <AppAnnouncementBanner />
 
           <div className="min-h-screen bg-[var(--bg-primary)]">
             {/* Desktop Sidebar - Fixed position */}
@@ -78,16 +63,42 @@ export default async function AppLayout({ children }: AppLayoutProps) {
   );
 }
 
-async function requireCommonMessages(locale: string): Promise<Record<string, unknown>> {
-  // Use explicit imports so bundlers can statically include the JSON files.
+/**
+ * Load all message namespaces needed by the app interface.
+ *
+ * Uses explicit static imports so the bundler can include the JSON files.
+ * Each namespace is spread into a flat object that next-intl consumes.
+ */
+async function requireAppMessages(locale: string): Promise<Record<string, unknown>> {
+  const load = async (loc: string) => {
+    const [common, app, dashboard, settings, escrows, agents, verify] = await Promise.all([
+      import(`../../locales/${loc}/common.json`),
+      import(`../../locales/${loc}/app.json`),
+      import(`../../locales/${loc}/dashboard.json`),
+      import(`../../locales/${loc}/settings.json`),
+      import(`../../locales/${loc}/escrows.json`),
+      import(`../../locales/${loc}/agents.json`),
+      import(`../../locales/${loc}/verify.json`),
+    ]);
+    return {
+      ...common.default,
+      ...app.default,
+      ...dashboard.default,
+      ...settings.default,
+      ...escrows.default,
+      ...agents.default,
+      ...verify.default,
+    };
+  };
+
   switch (locale) {
     case "zh":
-      return (await import("../../locales/zh/common.json")).default;
+      return load("zh");
     case "es":
-      return (await import("../../locales/es/common.json")).default;
+      return load("es");
     case "en":
     default:
-      return (await import("../../locales/en/common.json")).default;
+      return load("en");
   }
 }
 

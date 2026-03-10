@@ -14,6 +14,7 @@
 import { useState, useMemo } from "react";
 import Link from "next/link";
 import { Bell } from "lucide-react";
+import { useTranslations } from "next-intl";
 import { Button } from "@/components/ui";
 import { PageHeader } from "@/components/shared";
 import { useEscrows, type EscrowRole } from "@/hooks";
@@ -100,6 +101,7 @@ function StateTabButton({ label, active, onClick, isAttention, badge }: StateTab
 // =============================================================================
 
 export default function EscrowsPage() {
+  const t = useTranslations("escrows.list");
   const { address } = useConnection();
   const [role, setRole] = useState<EscrowRole>("all");
   const [stateTab, setStateTab] = useState<EscrowStateTab>("all");
@@ -124,11 +126,11 @@ export default function EscrowsPage() {
   return (
     <div className="space-y-6">
       <PageHeader
-        title="My Escrows"
-        description="View and manage all your escrow contracts"
+        title={t("title")}
+        description={t("description")}
         actions={
           <Link href="/escrows/new">
-            <Button>Create Escrow</Button>
+            <Button>{t("createEscrow")}</Button>
           </Link>
         }
       />
@@ -143,7 +145,7 @@ export default function EscrowsPage() {
               active={role === filter.value}
               onClick={() => setRole(filter.value)}
             >
-              {filter.label}
+              {t(`roles.${filter.value}`)}
             </FilterButton>
           ))}
         </div>
@@ -153,7 +155,7 @@ export default function EscrowsPage() {
           {STATE_TABS.map((tab) => (
             <StateTabButton
               key={tab.value}
-              label={tab.label}
+              label={t(`tabs.${tab.value}`)}
               active={stateTab === tab.value}
               onClick={() => setStateTab(tab.value)}
               isAttention={tab.value === "needs_attention"}
@@ -166,7 +168,7 @@ export default function EscrowsPage() {
       {/* Error State */}
       {error && (
         <div className="p-4 bg-error-50 dark:bg-error-900/20 border border-error-200 dark:border-error-800 rounded-lg text-error-600 dark:text-error-400 text-center">
-          Failed to load escrows. Please try again later.
+          {t("error")}
         </div>
       )}
 

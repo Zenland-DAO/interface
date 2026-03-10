@@ -1,0 +1,46 @@
+{
+  "dashboard": {
+    "title": "仪表盘",
+    "description": "欢迎回来！以下是托管活动概览。",
+    "createEscrow": "创建托管",
+    "quickActions": {
+      "becomeAgent": {
+        "title": "成为代理人",
+        "description": "通过成为注册代理人来帮助解决争议并赚取费用。",
+        "cta": "了解更多"
+      },
+      "needHelp": {
+        "title": "需要帮助？",
+        "description": "查看我们的文档，了解 Zenland 托管的工作原理。",
+        "cta": "查看文档"
+      }
+    },
+    "stats": {
+      "protocolStats": "协议统计",
+      "myStats": "我的统计",
+      "protocol": "协议",
+      "yourActivity": "你的活动",
+      "protocolOverview": "协议概览",
+      "active": "活跃托管",
+      "tvlPersonal": "你的锁定价值",
+      "tvlGlobal": "总锁定价值",
+      "completed": "已完成",
+      "disputed": "争议中",
+      "error": "加载统计数据失败。请稍后重试。"
+    },
+    "recentEscrows": {
+      "titlePersonal": "最近的托管",
+      "titleGlobal": "最新托管",
+      "viewAll": "查看全部",
+      "emptyPersonal": {
+        "title": "暂无最近的托管",
+        "description": "创建你的第一个托管合约以开始使用。",
+        "cta": "创建托管"
+      },
+      "emptyGlobal": {
+        "title": "暂无托管",
+        "description": "成为第一个在 Zenland 上创建托管的人！"
+      }
+    }
+  }
+}

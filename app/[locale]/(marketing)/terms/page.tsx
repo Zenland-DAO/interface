@@ -20,7 +20,8 @@ export async function generateMetadata({ params }: { params: Promise<{ locale: s
  * 
  * General terms and conditions for using the Zenland DAO protocol.
  */
-export default async function TermsPage() {
+export default async function TermsPage({ params }: { params: Promise<{ locale: string }> }) {
+  const { locale } = await params;
   const t = await getTranslations("legal.terms");
 
   return (
@@ -34,6 +35,11 @@ export default async function TermsPage() {
           <Text className="text-[var(--text-secondary)]">
             {t("lastUpdated")}: {t("date")}
           </Text>
+          {locale !== "en" && (
+            <Text variant="small" className="mt-3 text-[var(--text-tertiary)]">
+              {t("notice")}
+            </Text>
+          )}
         </div>
 
         {/* Content */}

@@ -10,6 +10,7 @@
  * - Features NYKNYC as sponsored/recommended wallet with gas-free transactions
  * - Deduplicates EIP-6963 connectors to avoid duplicates
  * - Caps visible wallets with "Show all" expansion
+ * - Fully i18n-translated via `common.wallet` namespace
  */
 
 import { useEffect, useMemo, useState } from "react";
@@ -18,6 +19,7 @@ import { X, Wallet, AlertCircle, Sparkles, ChevronDown } from "lucide-react";
 import { useConnect, useConnectors, type Connector } from "wagmi";
 import { mainnet, sepolia } from "wagmi/chains";
 import Link from "next/link";
+import { useTranslations } from "next-intl";
 
 import { Heading, Text, WalletOption } from "@/components/ui";
 import { useWalletModal } from "@/components/providers/WalletModalContext";
@@ -40,10 +42,8 @@ const MAX_VISIBLE_WALLETS = 6;
 type WalletViewModel = {
   key: string;
   name: string;
-  description: string;
   icon: string;
   sponsored?: boolean;
-  sponsorBadge?: string;
   connector: Connector;
 };
 
@@ -88,25 +88,28 @@ function dedupeKey(connector: Connector): string {
 }
 
 /**
- * Map raw connector error messages to user-friendly strings.
+ * Map raw connector error messages to translation keys.
  * Third-party SDK errors (WalletConnect, etc.) often surface cryptic messages
  * that confuse users — this translates them into actionable guidance.
+ *
+ * Returns a key under `common.wallet.errors.*`, or `null` to fall back to the
+ * raw error message.
  */
-function friendlyConnectError(error: Error | null): string {
-  if (!error) return "";
+function friendlyConnectErrorKey(error: Error | null): string | null {
+  if (!error) return null;
   const msg = error.message;
 
   // WalletConnect proposal expired — user didn't approve in time
   if (msg.includes("Proposal expired") || msg.includes("Request expired")) {
-    return "Connection timed out. Please try again.";
+    return "errors.timedOut";
   }
 
   // WalletConnect pairing reset — user closed QR modal before completing
   if (msg.includes("Connection request reset")) {
-    return "Connection was cancelled. Please try again.";
+    return "errors.cancelled";
   }
 
-  return msg;
+  return null;
 }
 
 /**
@@ -217,10 +220,8 @@ export function ConnectWalletModal() {
         key: connector.uid,
         connector,
         name: connector.name,
-        description: metadata.description,
         icon: metadata.icon,
         sponsored: metadata.isSponsored,
-        sponsorBadge: metadata.sponsorBadge,
       };
     });
   }, [connectors]);
@@ -392,6 +393,7 @@ function ModalContent({
   onConnect,
   onClose,
 }: ModalContentProps) {
+  const t = useTranslations("common.wallet");
   const [showAll, setShowAll] = useState(false);
 
   // Reset "Show all" when modal content changes (e.g., re-open)
@@ -406,6 +408,14 @@ function ModalContent({
 
   const hiddenCount = otherWallets.length - visibleOtherWallets.length;
 
+  // Resolve friendly error message via translation keys
+  const errorMessage = (() => {
+    if (isConnected && chainError) return chainError;
+    if (!connectError) return null;
+    const key = friendlyConnectErrorKey(connectError);
+    return key ? t(key) : connectError.message;
+  })();
+
   return (
     <>
       {/* Header — always visible */}
@@ -415,9 +425,9 @@ function ModalContent({
             <Wallet className="w-5 h-5 text-primary-500" />
           </div>
           <div>
-            <Heading level={4}>Connect Wallet</Heading>
+            <Heading level={4}>{t("title")}</Heading>
             <Text variant="small" className="text-[var(--text-tertiary)]">
-              Choose your wallet to continue
+              {t("subtitle")}
             </Text>
           </div>
         </div>
@@ -441,7 +451,7 @@ function ModalContent({
                 variant="caption"
                 className="text-primary-600 dark:text-primary-400 uppercase tracking-wider"
               >
-                Recommended
+                {t("recommended")}
               </Text>
             </div>
             {sponsoredWallets.map((wallet, index) => {
@@ -458,10 +468,10 @@ function ModalContent({
                     imageSrc={wallet.icon}
                     name={wallet.name}
                     description={
-                      isConnecting ? "Connecting…" : wallet.description
+                      isConnecting ? t("connecting") : t("sponsoredDescription")
                     }
                     sponsored={wallet.sponsored}
-                    sponsorBadge={wallet.sponsorBadge}
+                    sponsorBadge={t("sponsorBadge")}
                     disabled={isConnecting || (isConnectPending && connectingUid !== wallet.connector.uid)}
                     onClick={() => onConnect(wallet.connector)}
                   />
@@ -480,7 +490,7 @@ function ModalContent({
                   variant="caption"
                   className="text-[var(--text-tertiary)] uppercase tracking-wider"
                 >
-                  Other Wallets
+                  {t("otherWallets")}
                 </Text>
               </div>
             )}
@@ -501,7 +511,7 @@ function ModalContent({
                     imageSrc={wallet.icon}
                     name={wallet.name}
                     description={
-                      isConnecting ? "Connecting…" : wallet.description
+                      isConnecting ? t("connecting") : t("defaultDescription")
                     }
                     disabled={isConnecting || (isConnectPending && connectingUid !== wallet.connector.uid)}
                     onClick={() => onConnect(wallet.connector)}
@@ -518,7 +528,9 @@ function ModalContent({
                 className="w-full flex items-center justify-center gap-2 px-4 py-3 rounded-xl text-sm font-medium text-[var(--text-secondary)] hover:bg-[var(--state-hover)] transition-colors"
               >
                 <ChevronDown className="w-4 h-4" />
-                Show {hiddenCount} more wallet{hiddenCount > 1 ? "s" : ""}
+                {hiddenCount === 1
+                  ? t("showMore", { count: hiddenCount })
+                  : t("showMorePlural", { count: hiddenCount })}
               </button>
             )}
           </div>
@@ -531,24 +543,22 @@ function ModalContent({
               <Wallet className="w-6 h-6 text-[var(--text-tertiary)]" />
             </div>
             <Text className="text-[var(--text-secondary)]">
-              No wallets detected
+              {t("noWalletsDetected")}
             </Text>
             <Text variant="small" className="mt-1 text-[var(--text-tertiary)]">
-              Please install a Web3 wallet to continue
+              {t("installWallet")}
             </Text>
           </div>
         )}
       </div>
 
       {/* Error message */}
-      {(connectError || (isConnected && chainError)) && (
+      {errorMessage && (
         <div className="flex-shrink-0 px-6 pb-4">
           <div className="flex items-start gap-2 p-3 rounded-lg bg-error-50 dark:bg-error-900/20 border border-error-200 dark:border-error-800">
             <AlertCircle className="w-4 h-4 text-error-500 shrink-0 mt-0.5" />
             <Text variant="small" className="text-error-600 dark:text-error-400">
-              {isConnected && chainError
-                ? chainError
-                : friendlyConnectError(connectError)}
+              {errorMessage}
             </Text>
           </div>
         </div>
@@ -560,24 +570,28 @@ function ModalContent({
           variant="small"
           className="text-center text-[var(--text-tertiary)]"
         >
-          By connecting, you agree to our{" "}
-          <Link
-            href="/terms"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="text-primary-500 hover:underline"
-          >
-            Terms
-          </Link>{" "}
-          and{" "}
-          <Link
-            href="/privacy"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="text-primary-500 hover:underline"
-          >
-            Privacy Policy
-          </Link>
+          {t.rich("footer", {
+            terms: (chunks) => (
+              <Link
+                href="/terms"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="text-primary-500 hover:underline"
+              >
+                {chunks}
+              </Link>
+            ),
+            privacy: (chunks) => (
+              <Link
+                href="/privacy"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="text-primary-500 hover:underline"
+              >
+                {chunks}
+              </Link>
+            ),
+          })}
         </Text>
       </div>
     </>

@@ -1,0 +1,155 @@
+{
+  "verify": {
+    "title": "Verify PDF",
+    "description": "Upload a Zenland escrow agreement PDF to verify its authenticity and check if it matches the on-chain record.",
+    "infoCard": {
+      "title": "What does verification check?",
+      "signatureAuth": "Zenland digital signature authenticity",
+      "contentIntegrity": "PDF content integrity (tamper detection)",
+      "onChainMatch": "On-chain termsHash match",
+      "roleGuidance": "Role-based guidance for contract participants"
+    },
+    "signatureFailed": {
+      "title": "Invalid PDF",
+      "description": "This PDF is not a valid Zenland escrow agreement",
+      "reason": "Reason:",
+      "tryAnother": "Try Another PDF"
+    },
+    "dropZone": {
+      "verifying": "Verifying...",
+      "dropHere": "Drop your PDF here",
+      "pleaseWait": "Please wait while we verify your document",
+      "orClickToBrowse": "or click to browse. Only Zenland escrow PDFs are supported.",
+      "pdfOnly": "PDF files only"
+    },
+    "status": {
+      "loading": {
+        "title": "Verifying on-chain...",
+        "description": "Checking contract data on the blockchain"
+      },
+      "hashMatch": {
+        "title": "Verified ✓",
+        "description": "This PDF matches the on-chain contract record",
+        "signedBy": "Signed by Zenland"
+      },
+      "notDeployed": {
+        "title": "Contract Not Deployed",
+        "description": "This PDF was signed by Zenland, but the contract does not exist on the blockchain.",
+        "warningTitle": "THIS IS NOT AN ACTIVE CONTRACT",
+        "warningDescription": "Do not send any funds or goods based on this PDF. The contract must be deployed first."
+      },
+      "hashMismatch": {
+        "title": "🚨 Hash Mismatch - Potential Scam",
+        "description": "This PDF does not match the on-chain contract record. The document may have been tampered with.",
+        "pdfHash": "PDF Hash (this document)",
+        "onChainHash": "On-chain Hash (expected)",
+        "warningTitle": "⛔ DO NOT TRUST THIS DOCUMENT",
+        "warningDescription": "This could be a scam or an outdated/modified version of the contract. Only trust documents that match the on-chain hash."
+      },
+      "error": {
+        "title": "Verification Error"
+      }
+    },
+    "escrowDetails": {
+      "title": "Escrow Details",
+      "escrowAddress": "Escrow Address",
+      "network": "Network",
+      "buyer": "Buyer",
+      "seller": "Seller",
+      "agent": "Agent",
+      "noAgent": "No Agent (Locked)",
+      "lockStatus": "Lock Status",
+      "locked": "Locked",
+      "unlocked": "Unlocked",
+      "amount": "Amount",
+      "buyerProtection": "Buyer Protection",
+      "viewEscrow": "View Escrow Details",
+      "verifyAnother": "Verify Another"
+    },
+    "walletInstructions": {
+      "roles": {
+        "buyer": "Buyer",
+        "seller": "Seller",
+        "agent": "Agent",
+        "viewer": "Viewer"
+      },
+      "notConnected": "Not Connected"
+    },
+    "instructions": {
+      "contractCompleted": {
+        "title": "Contract Completed",
+        "description": "This contract has been completed and finalized."
+      },
+      "contractNotFound": {
+        "title": "Contract Not Found",
+        "description": "This contract has not been deployed on-chain. No actions are available."
+      },
+      "contractActive": {
+        "title": "Contract Active",
+        "description": "This contract is in progress."
+      },
+      "connectWallet": {
+        "title": "Connect Wallet",
+        "description": "Connect your wallet to receive personalized instructions based on your role in this contract."
+      },
+      "notParticipant": {
+        "title": "Not a Participant",
+        "description": "Your connected wallet is not a participant in this contract. You are viewing as a third party."
+      },
+      "buyer": {
+        "pending": {
+          "title": "Waiting for Seller",
+          "description": "The seller needs to review and accept this contract. Contact them to confirm participation."
+        },
+        "active": {
+          "title": "Contract Active",
+          "description": "The contract is active. Wait for the seller to deliver, then release funds when satisfied."
+        },
+        "fulfilled": {
+          "title": "Delivery Confirmed",
+          "description": "The seller has confirmed fulfillment. Review the delivery and release funds if satisfied."
+        },
+        "disputed": {
+          "title": "Dispute Open",
+          "description": "You have opened a dispute. You can invite the agent to resolve it or propose a settlement."
+        },
+        "agentInvited": {
+          "title": "Agent Investigating",
+          "description": "The agent has been invited to resolve this dispute. Await their decision."
+        }
+      },
+      "seller": {
+        "pending": {
+          "title": "Action Required",
+          "description": "This contract awaits your confirmation. Review the terms carefully and accept to activate the escrow."
+        },
+        "active": {
+          "title": "Safe to Deliver",
+          "description": "The contract is active and funds are locked. It's safe to deliver the product or service. The funds cannot be withdrawn except through the contract rules."
+        },
+        "fulfilled": {
+          "title": "Awaiting Release",
+          "description": "You've confirmed fulfillment. Waiting for the buyer to release funds. If they don't release within the protection period, you can claim the funds."
+        },
+        "disputed": {
+          "title": "Dispute Open",
+          "description": "A dispute has been opened. You can invite the agent to resolve it, propose a settlement, or issue a refund."
+        },
+        "agentInvited": {
+          "title": "Agent Investigating",
+          "description": "The agent has been invited to resolve this dispute. Await their decision."
+        }
+      },
+      "agent": {
+        "invited": {
+          "title": "Action Required",
+          "description": "You are the agent. This contract awaits your investigation and resolution. Review the evidence and make a fair decision."
+        },
+        "assigned": {
+          "title": "Assigned Agent",
+          "description": "You are the assigned agent for this contract. Parties have not invited you to resolve a dispute yet."
+        }
+      }
+    }
+  }
+}

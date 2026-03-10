@@ -12,7 +12,6 @@ export {
   type AttentionInfo,
   // Constants
   STATE_COLORS,
-  STATE_LABELS,
   STATE_TABS,
   ROLE_FILTERS,
   // Utilities
