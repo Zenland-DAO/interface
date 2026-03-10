@@ -55,7 +55,7 @@ export const config = createConfig({
     // are auto-discovered by createConfig — no explicit connector needed.
   ],
   transports: {
-    [mainnet.id]: http(),
-    [sepolia.id]: http(),
+    [mainnet.id]: http("https://lb.drpc.live/ethereum/AjFvmgJ_7Uw7qTxlyHKwHFxIalWDHGIR8Z89tuZZzRRv"),
+    [sepolia.id]: http("https://lb.drpc.live/sepolia/AjFvmgJ_7Uw7qTxlyHKwHFxIalWDHGIR8Z89tuZZzRRv"),
   },
 });

@@ -4,6 +4,7 @@ import { useLocale } from "next-intl";
 import { useTranslations } from "next-intl";
 import { usePathname, useRouter as useIntlRouter } from "@/i18n/navigation";
 import { locales, localeNames, localeFlags, type Locale, unlocalized } from "@/i18n/config";
+import { LOCALE_COOKIE_NAME } from "@/i18n/cookie";
 import { Globe, Check } from "lucide-react";
 import { useRouter as useNextRouter } from "next/navigation";
 import { useState, useRef, useEffect } from "react";
@@ -65,11 +66,12 @@ export function LanguageSwitcher() {
       return;
     }
 
-    // App routes (hybrid): keep URL unprefixed.
-    // We navigate to /:locale + current path which lets next-intl middleware
-    // set the locale cookie, and then our proxy middleware redirects back to
-    // the unprefixed app route.
-    nextRouter.replace(`/${newLocale}${pathname}`);
+    // App routes (hybrid): set the locale cookie directly on the client and
+    // refresh. This avoids the middleware redirect round-trip and, crucially,
+    // invalidates Next.js's Router Cache so the server-side layout re-renders
+    // with the new locale's messages — no full page reload needed.
+    document.cookie = `${LOCALE_COOKIE_NAME}=${newLocale};path=/;max-age=31536000;SameSite=Lax`;
+    nextRouter.refresh();
     setIsOpen(false);
   };
 
