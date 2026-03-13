@@ -1,0 +1,532 @@
+{
+  "escrows": {
+    "list": {
+      "title": "Ký quỹ của tôi",
+      "description": "Xem và quản lý tất cả hợp đồng ký quỹ của quý vị",
+      "createEscrow": "Tạo ký quỹ",
+      "createFirstEscrow": "Tạo ký quỹ đầu tiên",
+      "error": "Không thể tải danh sách ký quỹ. Vui lòng thử lại sau.",
+      "showing": "Đang hiển thị {count} ký quỹ",
+      "showingPlural": "Đang hiển thị {count} ký quỹ",
+      "addressCopied": "Đã sao chép địa chỉ",
+      "roles": {
+        "all": "Tất cả vai trò",
+        "buyer": "Với tư cách người mua",
+        "seller": "Với tư cách người bán",
+        "agent": "Với tư cách đại lý"
+      },
+      "tabs": {
+        "all": "Tất cả",
+        "needs_attention": "Cần chú ý",
+        "ACTIVE": "Đang hoạt động",
+        "IN_DISPUTE": "Đang tranh chấp",
+        "COMPLETED": "Đã hoàn tất"
+      },
+      "tableHeaders": {
+        "id": "ID",
+        "amount": "Số tiền",
+        "counterparty": "Đối tác",
+        "role": "Vai trò",
+        "status": "Trạng thái",
+        "date": "Ngày",
+        "action": "Hành động"
+      },
+      "bothParties": "Cả hai bên",
+      "emptyStates": {
+        "noEscrows": {
+          "title": "Không tìm thấy ký quỹ",
+          "description": "Quý vị chưa tạo hoặc tham gia bất kỳ hợp đồng ký quỹ nào."
+        },
+        "allCaughtUp": {
+          "title": "Không còn việc cần xử lý!",
+          "description": "Hiện tại không có ký quỹ nào cần quý vị chú ý."
+        },
+        "noActive": {
+          "title": "Không có ký quỹ đang hoạt động",
+          "descriptionAgent": "Quý vị chưa được chỉ định làm đại lý cho bất kỳ ký quỹ đang hoạt động nào.",
+          "description": "Quý vị không có ký quỹ đang hoạt động{role}."
+        },
+        "noDisputes": {
+          "title": "Không có tranh chấp",
+          "descriptionAgent": "Không có tranh chấp cần giải quyết",
+          "descriptionAgentFull": "Hiện tại không có tranh chấp nào được giao cho quý vị để xử lý.",
+          "description": "Quý vị không có ký quỹ đang tranh chấp{role}."
+        },
+        "noCompleted": {
+          "title": "Không có ký quỹ đã hoàn tất",
+          "description": "Không tìm thấy ký quỹ đã hoàn tất{role}."
+        },
+        "generic": {
+          "title": "Không tìm thấy ký quỹ",
+          "description": "Không tìm thấy ký quỹ {state}{role}."
+        },
+        "roleLabels": {
+          "buyer": " với tư cách người mua",
+          "seller": " với tư cách người bán",
+          "agent": " với tư cách đại lý"
+        }
+      },
+      "attention": {
+        "acceptOrDecline": "Chấp nhận hoặc từ chối ký quỹ",
+        "canCancelExpired": "Có thể hủy ký quỹ đã hết hạn",
+        "claimFunds": "Nhận tiền của quý vị",
+        "resolutionNeeded": "Cần giải quyết",
+        "reviewSplit": "Xem xét đề xuất chia"
+      },
+      "card": {
+        "escrowInteraction": "Tương tác ký quỹ",
+        "protected": "Được bảo vệ {days} ngày",
+        "buyer": "Người mua",
+        "seller": "Người bán",
+        "role": "Vai trò: {role}"
+      }
+    },
+    "states": {
+      "PENDING": "Chờ chấp nhận",
+      "ACTIVE": "Đang hoạt động",
+      "FULFILLED": "Đã xác nhận hoàn thành",
+      "RELEASED": "Đã giải ngân",
+      "DISPUTED": "Đang tranh chấp",
+      "AGENT_INVITED": "Đã mời đại lý",
+      "AGENT_RESOLVED": "Đại lý đã giải quyết",
+      "REFUNDED": "Đã hoàn tiền",
+      "SPLIT": "Chia"
+    },
+    "stateDescriptions": {
+      "PENDING": "Ký quỹ đã được nạp tiền và đang chờ người bán chấp nhận điều khoản.",
+      "ACTIVE": "Ký quỹ đang hoạt động và chờ người bán xác nhận việc giao hàng/dịch vụ.",
+      "FULFILLED": "Người bán đã xác nhận hoàn thành. Người mua có thể giải ngân hoặc chờ hết thời hạn bảo vệ.",
+      "RELEASED": "Tiền đã được giải ngân cho người bán. Ký quỹ đã hoàn tất.",
+      "DISPUTED": "Một tranh chấp đã được mở. Các bên có thể mời đại lý hoặc thương lượng phương án chia.",
+      "AGENT_INVITED": "Đại lý đã được mời để giải quyết tranh chấp.",
+      "AGENT_RESOLVED": "Đại lý đã giải quyết tranh chấp. Ký quỹ đã hoàn tất.",
+      "REFUNDED": "Tiền đã được hoàn lại cho người mua. Ký quỹ đã hoàn tất.",
+      "SPLIT": "Tiền đã được chia giữa người mua và người bán. Ký quỹ đã hoàn tất."
+    },
+    "roles": {
+      "buyer": "Người mua",
+      "seller": "Người bán",
+      "agent": "Đại lý",
+      "observer": "Người quan sát",
+      "viewer": "Người xem"
+    },
+    "actions": {
+      "accept": "Chấp nhận ký quỹ",
+      "decline": "Từ chối ký quỹ",
+      "cancelExpired": "Hủy & hoàn tiền",
+      "confirmFulfillment": "Xác nhận hoàn thành",
+      "release": "Giải ngân",
+      "releaseAfterProtection": "Nhận tiền",
+      "sellerRefund": "Hoàn tiền",
+      "openDispute": "Mở tranh chấp",
+      "inviteAgent": "Mời đại lý",
+      "agentResolve": "Giải quyết tranh chấp",
+      "claimAgentTimeout": "Yêu cầu hết thời hạn của đại lý",
+      "proposeSplit": "Đề xuất chia",
+      "approveSplit": "Chấp thuận chia",
+      "cancelSplit": "Hủy đề xuất chia",
+      "connectWallet": "Kết nối ví"
+    },
+    "actionDescriptions": {
+      "accept": "Chấp nhận điều khoản ký quỹ và bắt đầu giao dịch.",
+      "decline": "Từ chối ký quỹ và hoàn tiền cho người mua ngay lập tức.",
+      "cancelExpired": "Người bán không chấp nhận kịp thời. Hủy ký quỹ và nhận hoàn tiền.",
+      "confirmFulfillment": "Đánh dấu việc giao hàng/dịch vụ đã hoàn tất và bắt đầu thời hạn bảo vệ người mua.",
+      "release": "Giải ngân số tiền ký quỹ cho người bán ngay lập tức.",
+      "releaseAfterProtection": "Thời hạn bảo vệ đã hết. Nhận tiền với tư cách người bán.",
+      "sellerRefund": "Hoàn lại toàn bộ tiền cho người mua. Thao tác này không thể hoàn tác.",
+      "openDispute": "Mở tranh chấp để tạm dừng ký quỹ và tìm phương án giải quyết.",
+      "inviteAgent": "Mời đại lý được chỉ định hỗ trợ giải quyết tranh chấp.",
+      "agentResolve": "Với tư cách đại lý, quyết định cách chia tiền giữa các bên.",
+      "claimAgentTimeout": "Đại lý không phản hồi kịp thời. Quay lại trạng thái tranh chấp.",
+      "proposeSplit": "Đề xuất phương án chia tiền giữa người mua và người bán.",
+      "approveSplit": "Chấp thuận đề xuất chia. Nếu cả hai bên chấp thuận, tiền sẽ được phân phối.",
+      "cancelSplit": "Hủy đề xuất chia của quý vị."
+    },
+    "actionProgress": {
+      "releasing": "Đang giải ngân...",
+      "opening": "Đang mở...",
+      "confirming": "Đang xác nhận...",
+      "claiming": "Đang nhận...",
+      "processing": "Đang xử lý...",
+      "inviting": "Đang mời...",
+      "resolving": "Đang giải quyết...",
+      "proposing": "Đang đề xuất...",
+      "approving": "Đang chấp thuận..."
+    },
+    "events": {
+      "EscrowPending": "Đã tạo ký quỹ",
+      "SellerAccepted": "Người bán đã chấp nhận",
+      "SellerDeclined": "Người bán đã từ chối",
+      "EscrowCancelledExpired": "Đã hủy (hết hạn)",
+      "EscrowFunded": "Ký quỹ đã được nạp tiền",
+      "FulfillmentConfirmed": "Đã xác nhận hoàn thành",
+      "FundsReleased": "Đã giải ngân",
+      "DisputeOpened": "Đã mở tranh chấp",
+      "AgentInvited": "Đã mời đại lý",
+      "AgentResolved": "Tranh chấp đã được giải quyết",
+      "AgentTimedOut": "Đại lý quá hạn",
+      "Refunded": "Đã hoàn tiền",
+      "SplitProposed": "Đã đề xuất chia",
+      "SplitApproved": "Đã chấp thuận chia",
+      "SplitProposalCancelled": "Đã hủy đề xuất chia",
+      "SplitExecuted": "Đã thực hiện chia"
+    },
+    "modals": {
+      "cancel": "Hủy",
+      "processing": "Đang xử lý...",
+      "splitPreview": "Xem trước phương án chia",
+      "buyerReceives": "Người mua nhận",
+      "sellerReceives": "Người bán nhận",
+      "buyer": "Người mua",
+      "seller": "Người bán",
+      "accept": {
+        "title": "Chấp nhận ký quỹ",
+        "description": "Quý vị sắp chấp nhận điều khoản ký quỹ. Thao tác này sẽ kích hoạt ký quỹ.",
+        "confirm": "Chấp nhận ký quỹ"
+      },
+      "decline": {
+        "title": "Từ chối ký quỹ",
+        "description": "Quý vị sắp từ chối ký quỹ này. Tiền sẽ được hoàn lại cho người mua.",
+        "confirm": "Từ chối ký quỹ"
+      },
+      "cancelExpired": {
+        "title": "Hủy & hoàn tiền",
+        "description": "Thời hạn người bán chấp nhận đã hết. Quý vị có thể hủy ký quỹ và nhận hoàn tiền đầy đủ.",
+        "confirm": "Hủy & hoàn tiền"
+      },
+      "release": {
+        "title": "Giải ngân",
+        "description": "Quý vị sắp giải ngân số tiền ký quỹ cho người bán. Thao tác này không thể hoàn tác.",
+        "confirm": "Giải ngân"
+      },
+      "refund": {
+        "title": "Hoàn tiền",
+        "description": "Quý vị sắp hoàn lại toàn bộ tiền ký quỹ cho người mua. Thao tác này không thể hoàn tác.",
+        "confirm": "Hoàn tiền"
+      },
+      "dispute": {
+        "title": "Mở tranh chấp",
+        "description": "Mở tranh chấp sẽ tạm dừng ký quỹ và cho phép quý vị tìm phương án giải quyết. Quý vị có thể mời đại lý hoặc thương lượng phương án chia với người bán.",
+        "confirm": "Mở tranh chấp"
+      },
+      "inviteAgent": {
+        "title": "Mời đại lý",
+        "description": "Đại lý được chỉ định sẽ được mời xem xét và giải quyết tranh chấp này. Đại lý có thẩm quyền quyết định cách phân phối tiền.",
+        "confirm": "Mời đại lý"
+      },
+      "agentResolve": {
+        "title": "Giải quyết tranh chấp",
+        "description": "Với tư cách đại lý, quý vị sẽ quyết định cách chia tiền ký quỹ giữa người mua và người bán. Quyết định của quý vị là cuối cùng.",
+        "confirm": "Gửi quyết định"
+      },
+      "claimTimeout": {
+        "title": "Yêu cầu hết thời hạn của đại lý",
+        "description": "Đại lý không phản hồi trong thời hạn yêu cầu. Thao tác này sẽ đưa ký quỹ trở lại trạng thái tranh chấp và không còn đại lý được chỉ định.",
+        "confirm": "Yêu cầu hết thời hạn"
+      },
+      "proposeSplit": {
+        "title": "Đề xuất chia",
+        "description": "Quý vị đang đề xuất chia số tiền ký quỹ. Nếu bên còn lại chấp thuận, tiền sẽ được phân phối tự động.",
+        "confirm": "Đề xuất chia"
+      },
+      "approveSplit": {
+        "title": "Chấp thuận chia",
+        "description": "Quý vị sắp chấp thuận đề xuất chia. Sau khi xác nhận, tiền sẽ được phân phối theo tỷ lệ đã thỏa thuận.",
+        "confirm": "Chấp thuận & thực hiện"
+      }
+    },
+    "detail": {
+      "backToEscrows": "Quay lại danh sách ký quỹ",
+      "escrow": "Ký quỹ",
+      "createdOn": "Tạo ngày {date}",
+      "escrowDetails": "Chi tiết ký quỹ",
+      "amount": "Số tiền",
+      "status": "Trạng thái",
+      "participants": "Các bên tham gia",
+      "you": "Quý vị",
+      "notAssigned": "Chưa được chỉ định",
+      "termsHash": "Hash điều khoản",
+      "resolution": "Phương án giải quyết",
+      "buyerReceived": "Người mua nhận",
+      "sellerReceived": "Người bán nhận",
+      "agentFee": "Phí đại lý",
+      "actionsTitle": "Hành động",
+      "wrongNetwork": "Sai mạng",
+      "switchToNetwork": "Chuyển sang {chain} để thực hiện hành động trên ký quỹ này.",
+      "connectToInteract": "Kết nối ví để tương tác với ký quỹ này.",
+      "noActionsAvailable": "Hiện tại không có hành động nào khả dụng.",
+      "contract": "Hợp đồng",
+      "contractAddress": "Địa chỉ hợp đồng",
+      "contractVersion": "Phiên bản hợp đồng",
+      "viewOnExplorer": "Xem trên Explorer",
+      "timeline": {
+        "title": "Dòng thời gian hoạt động",
+        "failedToLoad": "Không thể tải hoạt động",
+        "noActivity": "Chưa có hoạt động"
+      },
+      "protection": {
+        "buyerProtection": "Bảo vệ người mua",
+        "duration": "Thời hạn: {duration}",
+        "expiredOn": "Hết hạn vào",
+        "endsOn": "Kết thúc vào",
+        "protectionEnded": "Thời hạn bảo vệ đã kết thúc",
+        "sellerCanClaim": "Người bán hiện có thể nhận tiền.",
+        "sellerCanClaimAfter": "Người bán có thể nhận tiền sau khi thời hạn này kết thúc nếu người mua không giải ngân.",
+        "noProtection": "Không có bảo vệ"
+      },
+      "acceptance": {
+        "title": "Thời hạn người bán chấp nhận",
+        "expired": "Thời hạn chấp nhận đã hết",
+        "waiting": "Đang chờ người bán chấp nhận ký quỹ",
+        "deadlinePassed": "Đã quá hạn",
+        "acceptBy": "Chấp nhận trước",
+        "timeLimitReached": "Đã đến giới hạn thời gian",
+        "buyerCanCancel": "Người bán không chấp nhận kịp thời. Quý vị có thể hủy và nhận hoàn tiền đầy đủ.",
+        "sellerReview": "Vui lòng xem xét và chấp nhận điều khoản ký quỹ trước thời hạn."
+      },
+      "agentTimer": {
+        "title": "Phản hồi của đại lý",
+        "waiting": "Đang chờ đại lý giải quyết",
+        "deadlinePassed": "Đã quá hạn phản hồi",
+        "deadline": "Hạn phản hồi",
+        "timedOut": "Đại lý không phản hồi kịp thời",
+        "notRespondedInTime": "Đại lý không phản hồi kịp thời",
+        "canClaimTimeout": "Quý vị có thể yêu cầu hết thời hạn của đại lý để quay lại trạng thái tranh chấp.",
+        "mustResolve": "Đại lý phải giải quyết tranh chấp trước thời hạn."
+      },
+      "chain": {
+        "wrongNetwork": "Sai mạng",
+        "wrongNetworkDesc": "Ký quỹ này được triển khai trên {escrowChain}, nhưng ví của quý vị đang kết nối {walletChain}. Vui lòng chuyển mạng để tương tác với ký quỹ này.",
+        "switchTo": "Chuyển sang {chain}",
+        "unsupportedNetwork": "Mạng không được hỗ trợ",
+        "unsupportedNetworkDesc": "Quý vị đang kết nối {walletChain} không được hỗ trợ. Ký quỹ này thuộc {escrowChain}.",
+        "testnetEscrow": "Ký quỹ Testnet",
+        "testnetDesc": "Ký quỹ này nằm trên testnet {chain}. Giao dịch chỉ sử dụng token thử nghiệm."
+      },
+      "split": {
+        "title": "Thương lượng chia",
+        "active": "Đang hoạt động",
+        "currentProposal": "Đề xuất hiện tại",
+        "by": "bởi {address}",
+        "buyer": "Người mua",
+        "seller": "Người bán",
+        "buyerApproved": "Người mua đã chấp thuận",
+        "buyerPending": "Người mua đang chờ",
+        "sellerApproved": "Người bán đã chấp thuận",
+        "sellerPending": "Người bán đang chờ",
+        "approveSplit": "Chấp thuận chia",
+        "cancel": "Hủy",
+        "proposeDescription": "Đề xuất chia số tiền ký quỹ. Nếu cả hai bên chấp thuận, tiền sẽ được phân phối tự động.",
+        "proposeSplit": "Đề xuất chia",
+        "waitingForOther": "Đang chờ bên còn lại phản hồi đề xuất."
+      },
+      "agent": {
+        "resolveDispute": "Giải quyết tranh chấp",
+        "resolveDescription": "Với tư cách đại lý, quyết định cách chia tiền ký quỹ giữa người mua và người bán. Quyết định là cuối cùng và không thể hoàn tác.",
+        "buyerReceives": "Người mua nhận",
+        "sellerReceives": "Người bán nhận",
+        "buyerAmount": "Số tiền người mua",
+        "sellerAmount": "Số tiền người bán",
+        "submitResolution": "Gửi quyết định"
+      }
+    },
+    "create": {
+      "title": "Tạo ký quỹ mới",
+      "description": "Thiết lập hợp đồng ký quỹ an toàn cho giao dịch của quý vị",
+      "backToEscrows": "Quay lại danh sách ký quỹ",
+      "steps": {
+        "form": "Nhập thông tin",
+        "formShort": "Thông tin",
+        "review": "Xem lại",
+        "reviewShort": "Xem lại",
+        "approve": "Phê duyệt",
+        "approveShort": "Phê duyệt",
+        "confirm": "Xác nhận",
+        "confirmShort": "Xác nhận",
+        "success": "Hoàn tất",
+        "successShort": "Xong",
+        "stepOf": "Bước {current} trong {total}"
+      },
+      "sections": {
+        "sellerAddress": "Địa chỉ người bán",
+        "sellerAddressDesc": "Địa chỉ ví sẽ nhận thanh toán",
+        "paymentAmount": "Số tiền thanh toán",
+        "paymentAmountDesc": "Số tiền sẽ được giữ trong ký quỹ",
+        "buyerProtection": "Thời hạn bảo vệ người mua",
+        "buyerProtectionDesc": "Khoảng thời gian người mua có thể mở tranh chấp hoặc giải ngân",
+        "contractTerms": "Điều khoản hợp đồng",
+        "contractTermsDesc": "Mô tả sản phẩm/dịch vụ và điều kiện của ký quỹ",
+        "disputeAgent": "Đại lý giải quyết tranh chấp",
+        "disputeAgentDesc": "Chọn cách xử lý tranh chấp",
+        "parties": "Các bên",
+        "financialDetails": "Thông tin tài chính",
+        "disputeResolution": "Giải quyết tranh chấp"
+      },
+      "form": {
+        "termsPlaceholder": "Mô tả những gì người bán phải cung cấp, thời hạn, yêu cầu chất lượng, v.v.",
+        "characters": "{count} ký tự",
+        "customDuration": "Thời hạn tùy chỉnh (ngày)",
+        "enterDays": "Nhập số ngày",
+        "maxDays": "Tối đa: {max} ngày",
+        "continueToReview": "Tiếp tục để xem lại",
+        "connectToContinue": "Kết nối ví để tiếp tục"
+      },
+      "summary": {
+        "title": "Tóm tắt nhanh",
+        "amount": "Số tiền",
+        "seller": "Người bán",
+        "protection": "Bảo vệ",
+        "agent": "Đại lý",
+        "assigned": "Đã chỉ định",
+        "locked": "Đã khóa",
+        "notSet": "Chưa đặt",
+        "noAgentWarning": "Không có đại lý, tranh chấp không thể được giải quyết."
+      },
+      "agentSelector": {
+        "noAgent": "Không có đại lý (Ký quỹ khóa)",
+        "noAgentDesc": "Tiếp tục mà không có giải quyết tranh chấp",
+        "enterAddress": "Nhập địa chỉ đại lý",
+        "enterAddressDesc": "Nhập trực tiếp địa chỉ đại lý đã biết",
+        "browseAgents": "Duyệt đại lý sẵn sàng",
+        "browseAgentsDesc": "Chọn từ danh sách đại lý đã xác minh",
+        "browseAgentsBtn": "Duyệt đại lý",
+        "agentSelected": "Đã chọn đại lý",
+        "change": "Thay đổi",
+        "recommendation": "Chúng tôi khuyến nghị mạnh mẽ nên chỉ định đại lý để giải quyết tranh chấp.",
+        "agentVerified": "Đại lý đã được xác minh",
+        "agentVerifiedDesc": "Đang hoạt động, sẵn sàng và có MAV phù hợp với ký quỹ này.",
+        "agentNotRegistered": "Đại lý chưa đăng ký",
+        "agentNotRegisteredDesc": "Địa chỉ này chưa được đăng ký làm đại lý trong giao thức.",
+        "agentInactive": "Đại lý không hoạt động",
+        "agentInactiveDesc": "Đại lý này đã đăng ký nhưng hiện đang không hoạt động.",
+        "agentUnavailable": "Đại lý không sẵn sàng",
+        "agentUnavailableDesc": "Đại lý đang hoạt động nhưng hiện không nhận vụ việc mới.",
+        "insufficientMav": "MAV không đủ",
+        "insufficientMavDesc": "MAV của đại lý này không đủ cho số tiền ký quỹ.",
+        "agentNotEligible": "Đại lý không đủ điều kiện",
+        "checkingAgent": "Đang kiểm tra đại lý…",
+        "checkingAgentDesc": "Đang lấy thông tin đại lý từ indexer.",
+        "mav": "MAV",
+        "thisEscrow": "Ký quỹ này",
+        "activeCases": "Vụ việc đang xử lý",
+        "registered": "Đã đăng ký"
+      },
+      "locked": {
+        "title": "Tạo ký quỹ khóa",
+        "subtitle": "Quý vị đang tạo ký quỹ không có đại lý",
+        "understandNoDispute": "Tôi hiểu rằng tranh chấp không thể được giải quyết nếu không có đại lý",
+        "understandNoDisputeDesc": "Nếu có bất đồng, sẽ không có bên thứ ba để hòa giải.",
+        "understandFundsLocked": "Tôi hiểu rằng tiền có thể bị khóa vĩnh viễn",
+        "understandFundsLockedDesc": "Nếu người mua và người bán không đạt được thỏa thuận, tiền có thể bị khóa mãi mãi.",
+        "acceptRisk": "Tôi chấp nhận mọi rủi ro liên quan đến ký quỹ khóa",
+        "acceptRiskDesc": "Tôi đã đọc và hiểu hậu quả của việc tạo ký quỹ không có đại lý."
+      },
+      "review": {
+        "backToEdit": "Quay lại để chỉnh sửa",
+        "proceedToApproval": "Tiếp tục để phê duyệt",
+        "generatingAgreement": "Đang tạo thỏa thuận...",
+        "noTerms": "Chưa có điều khoản",
+        "agentAssigned": "Đã chỉ định đại lý",
+        "agentAssignedDesc": "Tranh chấp sẽ do đại lý được chỉ định giải quyết",
+        "lockedEscrow": "Ký quỹ khóa (không có đại lý)",
+        "lockedEscrowDesc": "Ký quỹ này không có giải quyết tranh chấp. Nếu xảy ra bất đồng, tiền có thể bị khóa vĩnh viễn.",
+        "feesBreakdown": "Chi tiết phí",
+        "escrowAmount": "Số tiền ký quỹ",
+        "creationFee": "Phí tạo",
+        "agentAssignmentFee": "Phí chỉ định đại lý",
+        "totalRequired": "Tổng cần thiết",
+        "agreementPdf": "PDF thỏa thuận",
+        "generating": "Đang tạo…",
+        "failedToGeneratePdf": "Không thể tạo PDF: {error}",
+        "downloadPdf": "Tải PDF",
+        "generatePdf": "Tạo PDF",
+        "predictedAddress": "Địa chỉ ký quỹ dự kiến",
+        "generatingAddress": "Đang tạo địa chỉ ký quỹ...",
+        "predictedAddressNote": "Địa chỉ dự kiến là xác định (deterministic). Nếu các tham số không đổi, ký quỹ sẽ được triển khai tại địa chỉ này.",
+        "generatingAgreementInfo": "Đang tạo thỏa thuận",
+        "generatingAgreementDesc": "PDF thỏa thuận ký quỹ của quý vị đang được tạo. Tài liệu này sẽ được liên kết mật mã với hợp đồng thông minh của quý vị."
+      },
+      "approve": {
+        "backToReview": "Quay lại",
+        "waitingForApproval": "Đang chờ phê duyệt...",
+        "confirmInWallet": "Vui lòng xác nhận giao dịch trong ví của quý vị"
+      },
+      "confirm": {
+        "amount": "Số tiền",
+        "seller": "Người bán",
+        "protection": "Bảo vệ",
+        "totalCost": "Tổng chi phí",
+        "protectedEscrow": "Ký quỹ có đại lý",
+        "protectedDesc": "Đã chỉ định đại lý để giải quyết tranh chấp",
+        "lockedWarning": "Cảnh báo ký quỹ khóa",
+        "lockedWarningDesc": "Không có đại lý. Tranh chấp không thể giải quyết. Tiền có thể bị khóa vĩnh viễn nếu các bên không thống nhất.",
+        "deployedAt": "Ký quỹ sẽ được triển khai tại",
+        "transactionFailed": "Giao dịch thất bại",
+        "creatingEscrow": "Đang tạo ký quỹ...",
+        "insufficientBalance": "Số dư không đủ",
+        "whatHappensNext": "Điều gì sẽ xảy ra tiếp theo",
+        "deployedOnChain": "Hợp đồng ký quỹ của quý vị sẽ được triển khai on-chain",
+        "fundsTransferred": "Tiền sẽ được chuyển từ ví của quý vị vào ký quỹ",
+        "sellerNotified": "Người bán sẽ được thông báo và có thể bắt đầu thực hiện",
+        "createEscrow": "Tạo ký quỹ",
+        "creatingEscrowBtn": "Đang tạo ký quỹ...",
+        "termsAgreement": "Bằng việc tạo ký quỹ này, quý vị đồng ý với",
+        "termsOfService": "Điều khoản dịch vụ"
+      },
+      "success": {
+        "title": "Tạo hợp đồng thành công",
+        "description": "Hợp đồng ký quỹ của quý vị đã được triển khai an toàn on-chain.",
+        "escrowAddress": "Địa chỉ ký quỹ",
+        "transactionHash": "Hash giao dịch",
+        "amountInEscrow": "Số tiền trong ký quỹ",
+        "buyerProtection": "Bảo vệ người mua",
+        "viewDashboard": "Xem bảng điều khiển ký quỹ",
+        "downloadPdf": "Tải PDF",
+        "generatePdf": "Tạo PDF",
+        "generatingPdf": "Đang tạo...",
+        "createAnother": "Tạo thêm",
+        "savePdfTitle": "Lưu PDF hợp đồng của quý vị",
+        "savePdfDesc": "Tải và lưu an toàn PDF hợp đồng. Đây là bằng chứng thỏa thuận để chia sẻ với người bán, và đại lý có thể yêu cầu tài liệu này khi có tranh chấp.",
+        "whatsNext": "Tiếp theo",
+        "informSeller": "Thông báo cho người bán",
+        "informSellerDesc": "Chia sẻ địa chỉ ký quỹ hoặc PDF hợp đồng để người bán xem xét và chấp nhận điều khoản.",
+        "waitForDelivery": "Chờ giao hàng/dịch vụ",
+        "waitForDeliveryDesc": "Sau khi người bán chấp nhận, họ sẽ giao hàng hoặc cung cấp dịch vụ theo thỏa thuận.",
+        "releaseFunds": "Giải ngân",
+        "releaseFundsDesc": "Khi quý vị hài lòng, hãy giải ngân để hoàn tất giao dịch."
+      },
+      "errors": {
+        "sellerAddressRequired": "Cần có địa chỉ người bán",
+        "sellerAddressInvalid": "Vui lòng nhập địa chỉ Ethereum hợp lệ",
+        "sellerAddressSameAsBuyer": "Địa chỉ người bán không được trùng với địa chỉ của quý vị",
+        "amountRequired": "Cần nhập số tiền",
+        "amountInvalid": "Vui lòng nhập số tiền hợp lệ",
+        "amountTooSmall": "Số tiền phải lớn hơn 0",
+        "amountExceedsBalance": "Số tiền vượt quá số dư của quý vị",
+        "protectionTimeRequired": "Cần nhập thời hạn bảo vệ",
+        "protectionTimeTooShort": "Thời hạn bảo vệ tối thiểu {min} ngày",
+        "protectionTimeTooLong": "Thời hạn bảo vệ không được vượt quá {max} ngày",
+        "protectionTimeInvalid": "Vui lòng nhập số ngày hợp lệ",
+        "termsRequired": "Cần nhập điều khoản hợp đồng",
+        "agentAddressInvalid": "Vui lòng nhập địa chỉ đại lý hợp lệ",
+        "agentAddressSameAsBuyer": "Đại lý không được trùng với người mua",
+        "agentAddressSameAsSeller": "Đại lý không được trùng với người bán",
+        "agentNotRegistered": "Địa chỉ này chưa đăng ký làm đại lý",
+        "lockedConfirmationsRequired": "Quý vị phải xác nhận tất cả rủi ro để tạo ký quỹ khóa",
+        "walletNotConnected": "Vui lòng kết nối ví",
+        "insufficientAllowance": "Allowance token không đủ"
+      },
+      "protectionPresets": {
+        "7d": "7 ngày",
+        "14d": "14 ngày",
+        "30d": "30 ngày",
+        "custom": "Tùy chỉnh",
+        "7dDesc": "Bảo vệ tiêu chuẩn cho giao dịch nhanh",
+        "14dDesc": "Khuyến nghị cho hầu hết giao dịch",
+        "30dDesc": "Bảo vệ kéo dài cho deliverable phức tạp",
+        "customDesc": "Đặt thời hạn bảo vệ tùy chỉnh"
+      }
+    }
+  }
+}

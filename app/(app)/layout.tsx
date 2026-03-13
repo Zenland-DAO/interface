@@ -70,6 +70,12 @@ export default async function AppLayout({ children }: AppLayoutProps) {
  * Each namespace is spread into a flat object that next-intl consumes.
  */
 async function requireAppMessages(locale: string): Promise<Record<string, unknown>> {
+  // Safety: ensure we always resolve a supported locale.
+  // (normalizeLocale already does this, but keep it defensive.)
+  const normalizedLocale = ["en", "es", "zh", "pt", "ru", "id", "vi"].includes(locale)
+    ? locale
+    : "en";
+
   const load = async (loc: string) => {
     const [common, app, dashboard, settings, escrows, agents, verify] = await Promise.all([
       import(`../../locales/${loc}/common.json`),
@@ -91,11 +97,19 @@ async function requireAppMessages(locale: string): Promise<Record<string, unknow
     };
   };
 
-  switch (locale) {
+  switch (normalizedLocale) {
     case "zh":
       return load("zh");
     case "es":
       return load("es");
+    case "pt":
+      return load("pt");
+    case "ru":
+      return load("ru");
+    case "id":
+      return load("id");
+    case "vi":
+      return load("vi");
     case "en":
     default:
       return load("en");

@@ -1,0 +1,328 @@
+{
+  "marketing": {
+    "meta": {
+      "title": "Zenland - Plataforma de Escrow Web3",
+      "description": "Escrow seguro e sem confiança para transações em blockchain. Sem intermediários, apenas contratos inteligentes."
+    },
+    "hero": {
+      "badge": "Nativo Web3",
+      "title": {
+        "line1": "Plataforma",
+        "highlight": "Escrow",
+        "line2": "Web3."
+      },
+      "description": "Proteja suas transações com escrow on-chain. Sem intermediários, sem necessidade de confiança. Apenas contratos inteligentes protegendo as duas partes.",
+      "stats": {
+        "fee": {
+          "value": "1%",
+          "label": "Taxa (mín. $0,50, máx. $50)"
+        },
+        "onchain": {
+          "value": "100%",
+          "label": "On-chain"
+        },
+        "available": {
+          "value": "24/7",
+          "label": "Disponível"
+        }
+      }
+    },
+    "protocolStats": {
+      "badge": "Dados On-chain em tempo real",
+      "title": "Estatísticas do Protocolo",
+      "subtitle": "Dados em tempo real da blockchain Ethereum. Cada transação é verificável.",
+      "header": {
+        "title": "Protocolo Zenland",
+        "subtitle": "Sistema de Escrow Descentralizado"
+      },
+      "stats": {
+        "tvl": {
+          "label": "Valor Total Bloqueado",
+          "subValue": "Protegido em contratos inteligentes"
+        },
+        "volume": {
+          "label": "Volume Total",
+          "subValue": "Volume de transações (desde sempre)"
+        },
+        "security": {
+          "label": "Status de Segurança",
+          "subValue": "100% transparente e verificável",
+          "value": "On-chain"
+        }
+      },
+      "metrics": {
+        "title": "Métricas do Protocolo",
+        "escrowsCreated": "Escrows criados",
+        "activeNow": "Ativos agora",
+        "registeredAgents": "Agentes registrados",
+        "availableAgents": "Agentes disponíveis"
+      },
+      "activity": {
+        "title": "Atividade recente",
+        "live": "Ao vivo",
+        "escrowed": "em escrow",
+        "noActivity": "Sem atividade recente",
+        "timeAgo": {
+          "justNow": "agora mesmo",
+          "minutes": "há {count} min",
+          "hours": "há {count} h",
+          "days": "há {count} d"
+        }
+      },
+      "trustBadges": {
+        "onChain": "Verificado on-chain",
+        "openSource": "Código aberto",
+        "nonCustodial": "Sem custódia",
+        "gasOptimized": "Otimizado para gas"
+      },
+      "footer": {
+        "updateInterval": "Dados atualizados a cada 30 segundos",
+        "poweredBy": "Powered by Zenland Indexer"
+      }
+    },
+    "features": {
+      "title": "Por que Zenland?",
+      "subtitle": "Construído para o futuro descentralizado. Cada recurso foi pensado para segurança e transparência.",
+      "items": {
+        "onchain": {
+          "title": "Totalmente on-chain",
+          "description": "Toda a lógica de escrow vive na blockchain. Transparente, imutável e verificável por qualquer pessoa."
+        },
+        "disputes": {
+          "title": "Resolução de disputas",
+          "description": "Agentes profissionais disponíveis para resolver disputas de forma justa e eficiente quando necessário."
+        },
+        "instant": {
+          "title": "Liquidação instantânea",
+          "description": "Libere fundos instantaneamente quando as condições forem atendidas. Sem esperar por bancos ou intermediários."
+        }
+      }
+    },
+    "bento": {
+      "title": "Projetado para a",
+      "titleHighlight": "economia moderna.",
+      "subtitle": "A Zenland remove a complexidade do escrow tradicional. Sem porteiros, sem taxas ocultas — apenas código.",
+      "fees": {
+        "badge": "Preços",
+        "value": "1%",
+        "title": "Taxas muito baixas.",
+        "description": "Sem custos ocultos. Sem assinaturas mensais.",
+        "highlight": "$50 máx",
+        "descriptionSuffix": "Apenas 1% de taxa — limitada a",
+        "footnote": "* Uma das menores taxas do mercado de escrow"
+      },
+      "noCoding": {
+        "title": "Sem código.",
+        "description": "Construtor visual de contratos. Arraste, solte e faça deploy de acordos de escrow em minutos."
+      },
+      "instant": {
+        "title": "Liquidação instantânea",
+        "description": "Fundos liberados instantaneamente on-chain.",
+        "highlight": "Sem espera."
+      }
+    },
+    "wallets": {
+      "title": "Conecte sua carteira",
+      "subtitle": "A Zenland é compatível com as principais carteiras Web3. Para a melhor experiência, use a NYKNYC — nossa smart wallet recomendada com zero taxas de gas.",
+      "nyknyc": {
+        "badge": "Recomendada",
+        "title": "Carteira NYKNYC",
+        "description": "A smart wallet feita para a Zenland. Impulsionada por account abstraction ERC-4337, a NYKNYC permite usar a Zenland sem se preocupar com taxas de gas.",
+        "benefits": {
+          "gasless": "Zero taxas de gas — a Zenland patrocina todas as transações",
+          "agentFree": "Registro de Agente grátis e todas as ações de agente",
+          "escrowFree": "Criação de escrow grátis",
+          "smartAccount": "Tecnologia de Smart Account ERC-4337"
+        },
+        "cta": "Obter NYKNYC"
+      },
+      "otherWallets": "Também compatível com as principais carteiras"
+    },
+    "networks": {
+      "title": "Ecossistema",
+      "subtitle": "A Zenland está implantada no Ethereum — a blockchain mais segura e descentralizada.",
+      "ethereum": "Ethereum",
+      "mainnet": "Mainnet",
+      "tagline": "Segurança testada desde 2015"
+    },
+    "howItWorks": {
+      "title": "Como funciona",
+      "subtitle": "Três passos simples para proteger sua transação. Sem código.",
+      "steps": {
+        "create": {
+          "step": "01",
+          "title": "Criar escrow",
+          "description": "Defina os termos, estabeleça condições e deposite fundos no contrato inteligente."
+        },
+        "work": {
+          "step": "02",
+          "title": "Trabalhar juntos",
+          "description": "Conclua o trabalho ou entregue o produto. Todas as partes podem acompanhar o progresso."
+        },
+        "release": {
+          "step": "03",
+          "title": "Liberar fundos",
+          "description": "Quando as condições forem atendidas, libere os fundos instantaneamente para a outra parte."
+        }
+      }
+    },
+    "community": {
+      "title": "Junte-se à nossa comunidade",
+      "subtitle": "Conecte-se com outros usuários, receba suporte, participe da governança e ajude a moldar o futuro da Zenland.",
+      "telegram": {
+        "title": "Telegram",
+        "description": "Entre no nosso grupo do Telegram para discussões em tempo real, anúncios e suporte rápido da comunidade.",
+        "cta": "Entrar no chat"
+      },
+      "twitter": {
+        "title": "X (Twitter)",
+        "description": "Siga a Zenland no X para atualizações, anúncios e insights do time.",
+        "cta": "Seguir"
+      },
+      "daoForum": {
+        "badge": "Hub de governança",
+        "title": "Fórum Zenland",
+        "description": "O fórum oficial da Zenland — seu portal para governança da DAO, resolução de disputas e suporte da comunidade.",
+        "features": {
+          "escalate": {
+            "title": "Reportar má conduta de agentes",
+            "description": "Reporte agentes mal-intencionados para a DAO. A comunidade pode votar para penalizar (slash) seus stakes."
+          },
+          "proposals": {
+            "title": "Discutir propostas",
+            "description": "Participe das discussões de governança sobre melhorias e mudanças no protocolo."
+          },
+          "developer": {
+            "title": "Suporte para desenvolvedores",
+            "description": "Receba ajuda técnica para integrar com os contratos inteligentes e APIs da Zenland."
+          },
+          "onboarding": {
+            "title": "Onboarding de agentes",
+            "description": "Novos agentes podem aprender boas práticas e receber ajuda para iniciar seu negócio de escrow."
+          }
+        },
+        "cta": "Visitar DAOForum"
+      }
+    },
+    "openBook": {
+      "title": "Governança e gestão da DAO",
+      "subtitle": "A Zenland é governada por uma DAO. Use o OpenBook para participar da governança e o CreateDAO para lançar a sua própria.",
+      "openBook": {
+        "title": "📖 OpenBook",
+        "subtitle": "Plataforma de gestão de DAO",
+        "description": "O dashboard completo para governança de DAOs. Crie propostas, vote em decisões importantes e acompanhe a saúde financeira da sua DAO — tudo em um só lugar.",
+        "features": {
+          "vote": {
+            "title": "Criar e votar em propostas",
+            "description": "Envie propostas de governança e vote nas decisões importantes."
+          },
+          "monitor": {
+            "title": "Monitorar despesas e receitas",
+            "description": "Acompanhe a tesouraria da DAO em tempo real com relatórios financeiros detalhados."
+          },
+          "transparency": {
+            "title": "Transparência total",
+            "description": "Cada transação, voto e decisão é registrada e visível para todos os detentores de token."
+          }
+        },
+        "cta": "Abrir dashboard"
+      },
+      "createDAO": {
+        "subtitle": "Faça deploy da sua DAO",
+        "description": "Lance uma DAO completa e pronta para produção em uma única transação. Sem código — basta configurar e fazer deploy.",
+        "highlight": {
+          "title": "Deploy em 1 transação",
+          "features": {
+            "governor": "Contrato Governor para gerenciamento de propostas",
+            "token": "Token de governança ERC-20",
+            "timelock": "Timelock para execução segura"
+          }
+        },
+        "integration": "foi construído especificamente para DAOs criadas com o CreateDAO — integração perfeita desde o início.",
+        "cta": "Criar sua DAO"
+      }
+    },
+    "faq": {
+      "title": "Perguntas frequentes",
+      "subtitle": "Tudo o que você precisa saber sobre crypto escrow e como a Zenland protege suas transações.",
+      "moreQuestions": "Tem mais perguntas?",
+      "viewDocs": "Ver nossa documentação",
+      "items": {
+        "whatIsCryptoEscrow": {
+          "question": "O que é crypto escrow e como a Zenland funciona?",
+          "answer": "Crypto escrow é uma forma segura de proteger transações em criptomoedas entre partes que não confiam totalmente uma na outra. A Zenland usa contratos inteligentes no Ethereum para bloquear fundos até que condições pré-definidas sejam atendidas, eliminando a necessidade de intermediários tradicionais."
+        },
+        "howToCreate": {
+          "question": "Como criar um escrow na Zenland?",
+          "answer": "Criar um escrow é simples: conecte sua carteira, defina termos e condições, informe o valor do pagamento e deposite fundos no contrato inteligente. Sem código — nossa interface visual guia você pelo processo em minutos."
+        },
+        "fundsProtection": {
+          "question": "Como os fundos são protegidos em um escrow na blockchain?",
+          "answer": "Toda a lógica de escrow vive no Ethereum. Os fundos ficam bloqueados em contratos inteligentes auditados, transparentes, imutáveis e verificáveis por qualquer pessoa. A Zenland é sem custódia — nunca temos acesso aos seus fundos."
+        },
+        "disputeResolution": {
+          "question": "O que acontece se houver uma disputa?",
+          "answer": "Agentes profissionais podem resolver disputas de forma justa e eficiente. Se um agente não responder, qualquer parte pode reivindicar o timeout e negociar um acordo por consenso. A DAO supervisiona a qualidade dos agentes e pode penalizar (slash) stakes de agentes mal-intencionados."
+        },
+        "fees": {
+          "question": "Quais são as taxas da Zenland para escrow?",
+          "answer": "A Zenland cobra apenas 1% de taxa de plataforma, com mínimo de $0,50 e máximo de $50 por transação — uma das menores do mercado de crypto escrow. Sem custos ocultos e sem assinaturas mensais. Usar a carteira NYKNYC torna as transações totalmente sem gas."
+        },
+        "supportedCrypto": {
+          "question": "Quais criptomoedas e redes a Zenland suporta?",
+          "answer": "Atualmente a Zenland opera na mainnet do Ethereum, com suporte a stablecoins USDC e USDT. Mais tokens podem ser adicionados via governança da DAO. Focamos no Ethereum por sua segurança comprovada e ampla adoção."
+        }
+      }
+    },
+    "cta": {
+      "title": "Pronto para começar?",
+      "subtitle": "Conecte sua carteira e crie seu primeiro escrow em minutos."
+    },
+    "heroCard": {
+      "steps": {
+        "creation": {
+          "label": "Etapa 1: Criação",
+          "status": "Protegido"
+        },
+        "protection": {
+          "label": "Etapa 2: Proteção",
+          "status": "Bloqueado"
+        },
+        "settlement": {
+          "label": "Etapa 3: Liquidação",
+          "status": "Liberado"
+        }
+      },
+      "send": {
+        "label": "Você envia",
+        "network": "Ethereum"
+      },
+      "recipient": {
+        "label": "Para o destinatário"
+      },
+      "secured": {
+        "title": "Fundos protegidos",
+        "description": "O contrato inteligente bloqueou {amount} no Ethereum."
+      },
+      "released": {
+        "title": "Liberado com sucesso",
+        "description": "Pagamento entregue ao destinatário instantaneamente.",
+        "badge": "Verificado no explorer"
+      },
+      "metrics": {
+        "gasFee": "Taxa de gas",
+        "platform": "Plataforma",
+        "verified": "Transação verificada do contrato inteligente"
+      },
+      "buttons": {
+        "start": "Começar escrow seguro",
+        "verifying": "Verificando on-chain...",
+        "completed": "Transação concluída"
+      },
+      "badges": {
+        "zeroTrust": "Zero-trust",
+        "encrypted": "Detalhes criptografados"
+      }
+    }
+  }
+}

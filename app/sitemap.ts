@@ -11,7 +11,7 @@ import type { MetadataRoute } from "next";
  */
 export default function sitemap(): MetadataRoute.Sitemap {
   const baseUrl = "https://zen.land";
-  const locales = ["en", "es", "zh"];
+  const locales = ["en", "es", "zh", "pt", "ru", "id", "vi"];
   const defaultLocale = "en";
 
   // Marketing pages (relative to locale, with localization support)
@@ -43,16 +43,23 @@ export default function sitemap(): MetadataRoute.Sitemap {
   // Generate entries for each marketing page in each locale
   for (const page of marketingPages) {
     // Create alternates for hreflang
+    // English (default locale) uses root URL without /en prefix (localePrefix: 'as-needed')
     const alternates: Record<string, string> = {};
     for (const locale of locales) {
-      alternates[locale] = `${baseUrl}/${locale}${page.path}`;
+      alternates[locale] = locale === defaultLocale
+        ? `${baseUrl}${page.path || "/"}`
+        : `${baseUrl}/${locale}${page.path}`;
     }
-    alternates["x-default"] = `${baseUrl}/${defaultLocale}${page.path}`;
+    alternates["x-default"] = `${baseUrl}${page.path || "/"}`;
 
     // Add entry for each locale
     for (const locale of locales) {
+      const url = locale === defaultLocale
+        ? `${baseUrl}${page.path || "/"}`
+        : `${baseUrl}/${locale}${page.path}`;
+
       sitemap.push({
-        url: `${baseUrl}/${locale}${page.path}`,
+        url,
         lastModified: new Date(),
         changeFrequency: page.changeFrequency,
         priority: page.priority,
@@ -62,14 +69,6 @@ export default function sitemap(): MetadataRoute.Sitemap {
       });
     }
   }
-
-  // Add root URL (redirects to default locale)
-  sitemap.push({
-    url: baseUrl,
-    lastModified: new Date(),
-    changeFrequency: "weekly",
-    priority: 1.0,
-  });
 
   // Add public app pages (no localization)
   for (const page of appPages) {

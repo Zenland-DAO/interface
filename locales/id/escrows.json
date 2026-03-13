@@ -1,0 +1,532 @@
+{
+  "escrows": {
+    "list": {
+      "title": "Escrow Saya",
+      "description": "Lihat dan kelola semua kontrak Escrow Anda",
+      "createEscrow": "Buat Escrow",
+      "createFirstEscrow": "Buat Escrow Pertama Anda",
+      "error": "Gagal memuat Escrow. Silakan coba lagi nanti.",
+      "showing": "Menampilkan {count} Escrow",
+      "showingPlural": "Menampilkan {count} Escrow",
+      "addressCopied": "Alamat disalin",
+      "roles": {
+        "all": "Semua Peran",
+        "buyer": "Sebagai Pembeli",
+        "seller": "Sebagai Penjual",
+        "agent": "Sebagai Agent"
+      },
+      "tabs": {
+        "all": "Semua",
+        "needs_attention": "Perlu Perhatian",
+        "ACTIVE": "Aktif",
+        "IN_DISPUTE": "Dalam Sengketa",
+        "COMPLETED": "Selesai"
+      },
+      "tableHeaders": {
+        "id": "ID",
+        "amount": "Jumlah",
+        "counterparty": "Pihak Lawan",
+        "role": "Peran",
+        "status": "Status",
+        "date": "Tanggal",
+        "action": "Aksi"
+      },
+      "bothParties": "Kedua pihak",
+      "emptyStates": {
+        "noEscrows": {
+          "title": "Tidak ada Escrow yang ditemukan",
+          "description": "Anda belum membuat atau berpartisipasi dalam kontrak Escrow apa pun."
+        },
+        "allCaughtUp": {
+          "title": "Tidak ada yang perlu ditindaklanjuti",
+          "description": "Saat ini tidak ada Escrow yang memerlukan perhatian Anda."
+        },
+        "noActive": {
+          "title": "Tidak ada Escrow aktif",
+          "descriptionAgent": "Anda tidak ditugaskan sebagai Agent pada Escrow aktif mana pun.",
+          "description": "Anda tidak memiliki Escrow aktif{role}."
+        },
+        "noDisputes": {
+          "title": "Tidak ada sengketa",
+          "descriptionAgent": "Tidak ada sengketa untuk diselesaikan",
+          "descriptionAgentFull": "Saat ini tidak ada sengketa yang ditugaskan kepada Anda untuk diselesaikan.",
+          "description": "Anda tidak memiliki Escrow dalam sengketa{role}."
+        },
+        "noCompleted": {
+          "title": "Tidak ada Escrow selesai",
+          "description": "Tidak ada Escrow yang selesai ditemukan{role}."
+        },
+        "generic": {
+          "title": "Tidak ada Escrow yang ditemukan",
+          "description": "Tidak ada Escrow {state} ditemukan{role}."
+        },
+        "roleLabels": {
+          "buyer": " sebagai pembeli",
+          "seller": " sebagai penjual",
+          "agent": " sebagai Agent"
+        }
+      },
+      "attention": {
+        "acceptOrDecline": "Terima atau tolak Escrow",
+        "canCancelExpired": "Dapat membatalkan Escrow yang kedaluwarsa",
+        "claimFunds": "Klaim dana Anda",
+        "resolutionNeeded": "Diperlukan penyelesaian",
+        "reviewSplit": "Tinjau usulan pembagian"
+      },
+      "card": {
+        "escrowInteraction": "Interaksi Escrow",
+        "protected": "Dilindungi {days} hari",
+        "buyer": "Pembeli",
+        "seller": "Penjual",
+        "role": "Peran: {role}"
+      }
+    },
+    "states": {
+      "PENDING": "Menunggu Persetujuan",
+      "ACTIVE": "Aktif",
+      "FULFILLED": "Terpenuhi",
+      "RELEASED": "Dilepaskan",
+      "DISPUTED": "Dalam Sengketa",
+      "AGENT_INVITED": "Agent Diundang",
+      "AGENT_RESOLVED": "Diselesaikan oleh Agent",
+      "REFUNDED": "Direfund",
+      "SPLIT": "Split"
+    },
+    "stateDescriptions": {
+      "PENDING": "Escrow telah didanai dan menunggu Penjual untuk menerima syarat.",
+      "ACTIVE": "Escrow aktif dan menunggu Penjual untuk mengonfirmasi pengiriman.",
+      "FULFILLED": "Penjual telah mengonfirmasi pemenuhan. Pembeli dapat melepaskan dana atau menunggu hingga periode perlindungan berakhir.",
+      "RELEASED": "Dana telah dilepaskan kepada Penjual. Escrow ini telah selesai.",
+      "DISPUTED": "Sengketa telah dibuka. Para pihak dapat mengundang Agent atau bernegosiasi Split.",
+      "AGENT_INVITED": "Agent telah diundang untuk menyelesaikan sengketa.",
+      "AGENT_RESOLVED": "Agent telah menyelesaikan sengketa. Escrow ini telah selesai.",
+      "REFUNDED": "Dana telah direfund kepada Pembeli. Escrow ini telah selesai.",
+      "SPLIT": "Dana telah dibagi antara Pembeli dan Penjual. Escrow ini telah selesai."
+    },
+    "roles": {
+      "buyer": "Pembeli",
+      "seller": "Penjual",
+      "agent": "Agent",
+      "observer": "Pengamat",
+      "viewer": "Peninjau"
+    },
+    "actions": {
+      "accept": "Terima Escrow",
+      "decline": "Tolak Escrow",
+      "cancelExpired": "Batalkan & Refund",
+      "confirmFulfillment": "Konfirmasi Pemenuhan",
+      "release": "Lepaskan Dana",
+      "releaseAfterProtection": "Klaim Dana",
+      "sellerRefund": "Terbitkan Refund",
+      "openDispute": "Buka Sengketa",
+      "inviteAgent": "Undang Agent",
+      "agentResolve": "Selesaikan Sengketa",
+      "claimAgentTimeout": "Klaim Timeout Agent",
+      "proposeSplit": "Usulkan Split",
+      "approveSplit": "Setujui Split",
+      "cancelSplit": "Batalkan Usulan Split",
+      "connectWallet": "Hubungkan Wallet"
+    },
+    "actionDescriptions": {
+      "accept": "Terima syarat Escrow dan mulai keterlibatan.",
+      "decline": "Tolak Escrow dan lakukan refund kepada Pembeli secara langsung.",
+      "cancelExpired": "Penjual tidak menerima tepat waktu. Batalkan Escrow dan lakukan refund.",
+      "confirmFulfillment": "Tandai pekerjaan/pengiriman sebagai selesai dan mulai periode perlindungan Pembeli.",
+      "release": "Lepaskan dana yang di-escrow kepada Penjual sekarang juga.",
+      "releaseAfterProtection": "Periode perlindungan telah berakhir. Klaim dana sebagai Penjual.",
+      "sellerRefund": "Kembalikan seluruh dana kepada Pembeli. Tindakan ini tidak dapat dibatalkan.",
+      "openDispute": "Buka sengketa untuk menghentikan sementara Escrow dan mencari penyelesaian.",
+      "inviteAgent": "Undang Agent yang ditugaskan untuk membantu menyelesaikan sengketa ini.",
+      "agentResolve": "Sebagai Agent, tentukan bagaimana dana dibagi antara para pihak.",
+      "claimAgentTimeout": "Agent tidak merespons tepat waktu. Kembalikan ke status sengketa.",
+      "proposeSplit": "Usulkan pembagian dana antara Pembeli dan Penjual.",
+      "approveSplit": "Setujui usulan Split. Jika kedua pihak menyetujui, dana akan didistribusikan.",
+      "cancelSplit": "Batalkan usulan Split Anda."
+    },
+    "actionProgress": {
+      "releasing": "Melepaskan...",
+      "opening": "Membuka...",
+      "confirming": "Mengonfirmasi...",
+      "claiming": "Mengklaim...",
+      "processing": "Memproses...",
+      "inviting": "Mengundang...",
+      "resolving": "Menyelesaikan...",
+      "proposing": "Mengusulkan...",
+      "approving": "Menyetujui..."
+    },
+    "events": {
+      "EscrowPending": "Escrow Dibuat",
+      "SellerAccepted": "Penjual Menerima",
+      "SellerDeclined": "Penjual Menolak",
+      "EscrowCancelledExpired": "Dibatalkan (Kedaluwarsa)",
+      "EscrowFunded": "Escrow Didanai",
+      "FulfillmentConfirmed": "Pemenuhan Dikonfirmasi",
+      "FundsReleased": "Dana Dilepaskan",
+      "DisputeOpened": "Sengketa Dibuka",
+      "AgentInvited": "Agent Diundang",
+      "AgentResolved": "Sengketa Diselesaikan",
+      "AgentTimedOut": "Agent Timeout",
+      "Refunded": "Refund Diterbitkan",
+      "SplitProposed": "Split Diusulkan",
+      "SplitApproved": "Split Disetujui",
+      "SplitProposalCancelled": "Usulan Split Dibatalkan",
+      "SplitExecuted": "Split Dieksekusi"
+    },
+    "modals": {
+      "cancel": "Batal",
+      "processing": "Memproses...",
+      "splitPreview": "Pratinjau Split",
+      "buyerReceives": "Pembeli menerima",
+      "sellerReceives": "Penjual menerima",
+      "buyer": "Pembeli",
+      "seller": "Penjual",
+      "accept": {
+        "title": "Terima Escrow",
+        "description": "Anda akan menerima syarat Escrow. Ini akan mengaktifkan Escrow.",
+        "confirm": "Terima Escrow"
+      },
+      "decline": {
+        "title": "Tolak Escrow",
+        "description": "Anda akan menolak Escrow ini. Dana akan direfund kepada Pembeli.",
+        "confirm": "Tolak Escrow"
+      },
+      "cancelExpired": {
+        "title": "Batalkan & Refund",
+        "description": "Batas waktu persetujuan Penjual telah berakhir. Anda dapat membatalkan Escrow dan menerima refund penuh.",
+        "confirm": "Batalkan & Refund"
+      },
+      "release": {
+        "title": "Lepaskan Dana",
+        "description": "Anda akan melepaskan dana yang di-escrow kepada Penjual. Tindakan ini tidak dapat dibatalkan.",
+        "confirm": "Lepaskan Dana"
+      },
+      "refund": {
+        "title": "Terbitkan Refund",
+        "description": "Anda akan melakukan refund seluruh dana Escrow kepada Pembeli. Tindakan ini tidak dapat dibatalkan.",
+        "confirm": "Terbitkan Refund"
+      },
+      "dispute": {
+        "title": "Buka Sengketa",
+        "description": "Membuka sengketa akan menghentikan sementara Escrow dan memungkinkan Anda mencari penyelesaian. Anda dapat mengundang Agent atau bernegosiasi Split dengan Penjual.",
+        "confirm": "Buka Sengketa"
+      },
+      "inviteAgent": {
+        "title": "Undang Agent",
+        "description": "Agent yang ditugaskan akan diundang untuk meninjau dan menyelesaikan sengketa ini. Agent berwenang memutuskan distribusi dana.",
+        "confirm": "Undang Agent"
+      },
+      "agentResolve": {
+        "title": "Selesaikan Sengketa",
+        "description": "Sebagai Agent, Anda akan menentukan bagaimana dana Escrow dibagi antara Pembeli dan Penjual. Keputusan Anda bersifat final.",
+        "confirm": "Kirim Penyelesaian"
+      },
+      "claimTimeout": {
+        "title": "Klaim Timeout Agent",
+        "description": "Agent tidak merespons dalam waktu yang diwajibkan. Ini akan mengembalikan Escrow ke status sengketa tanpa Agent yang ditugaskan.",
+        "confirm": "Klaim Timeout"
+      },
+      "proposeSplit": {
+        "title": "Usulkan Split",
+        "description": "Anda mengusulkan pembagian dana Escrow. Jika pihak lain menyetujui, dana akan didistribusikan secara otomatis.",
+        "confirm": "Usulkan Split"
+      },
+      "approveSplit": {
+        "title": "Setujui Split",
+        "description": "Anda menyetujui usulan Split. Setelah dikonfirmasi, dana akan didistribusikan sesuai persentase yang disepakati.",
+        "confirm": "Setujui & Eksekusi"
+      }
+    },
+    "detail": {
+      "backToEscrows": "Kembali ke daftar Escrow",
+      "escrow": "Escrow",
+      "createdOn": "Dibuat pada {date}",
+      "escrowDetails": "Detail Escrow",
+      "amount": "Jumlah",
+      "status": "Status",
+      "participants": "Peserta",
+      "you": "Anda",
+      "notAssigned": "Tidak ditugaskan",
+      "termsHash": "Terms Hash",
+      "resolution": "Penyelesaian",
+      "buyerReceived": "Pembeli Menerima",
+      "sellerReceived": "Penjual Menerima",
+      "agentFee": "Biaya Agent",
+      "actionsTitle": "Aksi",
+      "wrongNetwork": "Jaringan Salah",
+      "switchToNetwork": "Beralih ke {chain} untuk melakukan aksi pada Escrow ini.",
+      "connectToInteract": "Hubungkan Wallet Anda untuk berinteraksi dengan Escrow ini.",
+      "noActionsAvailable": "Tidak ada aksi yang tersedia saat ini.",
+      "contract": "Kontrak",
+      "contractAddress": "Alamat Kontrak",
+      "contractVersion": "Versi Kontrak",
+      "viewOnExplorer": "Lihat di Explorer",
+      "timeline": {
+        "title": "Linimasa Aktivitas",
+        "failedToLoad": "Gagal memuat aktivitas",
+        "noActivity": "Belum ada aktivitas"
+      },
+      "protection": {
+        "buyerProtection": "Perlindungan Pembeli",
+        "duration": "Durasi: {duration}",
+        "expiredOn": "Berakhir pada",
+        "endsOn": "Berakhir pada",
+        "protectionEnded": "Periode perlindungan telah berakhir",
+        "sellerCanClaim": "Penjual sekarang dapat mengklaim dana.",
+        "sellerCanClaimAfter": "Penjual dapat mengklaim dana setelah periode ini berakhir jika Pembeli tidak melepaskannya.",
+        "noProtection": "Tanpa perlindungan"
+      },
+      "acceptance": {
+        "title": "Batas Waktu Persetujuan Penjual",
+        "expired": "Batas waktu persetujuan telah berakhir",
+        "waiting": "Menunggu Penjual menerima Escrow",
+        "deadlinePassed": "Tenggat telah lewat",
+        "acceptBy": "Terima sebelum",
+        "timeLimitReached": "Batas waktu tercapai",
+        "buyerCanCancel": "Penjual tidak menerima tepat waktu. Anda dapat membatalkan dan menerima refund penuh.",
+        "sellerReview": "Silakan tinjau dan terima syarat Escrow sebelum tenggat."
+      },
+      "agentTimer": {
+        "title": "Respons Agent",
+        "waiting": "Menunggu Agent menyelesaikan",
+        "deadlinePassed": "Tenggat respons telah lewat",
+        "deadline": "Tenggat respons",
+        "timedOut": "Agent tidak merespons tepat waktu",
+        "notRespondedInTime": "Agent tidak merespons tepat waktu",
+        "canClaimTimeout": "Anda dapat mengklaim timeout Agent untuk kembali ke status sengketa.",
+        "mustResolve": "Agent harus menyelesaikan sengketa sebelum tenggat."
+      },
+      "chain": {
+        "wrongNetwork": "Jaringan Salah",
+        "wrongNetworkDesc": "Escrow ini dideploy di {escrowChain}, namun Wallet Anda terhubung ke {walletChain}. Beralih jaringan untuk berinteraksi dengan Escrow ini.",
+        "switchTo": "Beralih ke {chain}",
+        "unsupportedNetwork": "Jaringan Tidak Didukung",
+        "unsupportedNetworkDesc": "Anda terhubung ke {walletChain} yang tidak didukung. Escrow ini berada di {escrowChain}.",
+        "testnetEscrow": "Escrow Testnet",
+        "testnetDesc": "Escrow ini berada di testnet {chain}. Transaksi menggunakan token test saja."
+      },
+      "split": {
+        "title": "Negosiasi Split",
+        "active": "Aktif",
+        "currentProposal": "Usulan Saat Ini",
+        "by": "oleh {address}",
+        "buyer": "Pembeli",
+        "seller": "Penjual",
+        "buyerApproved": "Pembeli menyetujui",
+        "buyerPending": "Pembeli menunggu",
+        "sellerApproved": "Penjual menyetujui",
+        "sellerPending": "Penjual menunggu",
+        "approveSplit": "Setujui Split",
+        "cancel": "Batal",
+        "proposeDescription": "Usulkan pembagian dana Escrow. Jika kedua pihak menyetujui, dana akan didistribusikan secara otomatis.",
+        "proposeSplit": "Usulkan Split",
+        "waitingForOther": "Menunggu pihak lain merespons usulan."
+      },
+      "agent": {
+        "resolveDispute": "Selesaikan Sengketa",
+        "resolveDescription": "Sebagai Agent, tentukan bagaimana dana Escrow dibagi antara para pihak. Keputusan Anda bersifat final dan tidak dapat dibatalkan.",
+        "buyerReceives": "Pembeli menerima",
+        "sellerReceives": "Penjual menerima",
+        "buyerAmount": "Jumlah Pembeli",
+        "sellerAmount": "Jumlah Penjual",
+        "submitResolution": "Kirim Penyelesaian"
+      }
+    },
+    "create": {
+      "title": "Buat Escrow Baru",
+      "description": "Siapkan kontrak Escrow yang aman untuk transaksi Anda",
+      "backToEscrows": "Kembali ke daftar Escrow",
+      "steps": {
+        "form": "Isi Detail",
+        "formShort": "Detail",
+        "review": "Tinjau",
+        "reviewShort": "Tinjau",
+        "approve": "Setujui",
+        "approveShort": "Setujui",
+        "confirm": "Konfirmasi",
+        "confirmShort": "Konfirmasi",
+        "success": "Selesai",
+        "successShort": "Selesai",
+        "stepOf": "Langkah {current} dari {total}"
+      },
+      "sections": {
+        "sellerAddress": "Alamat Penjual",
+        "sellerAddressDesc": "Alamat Wallet yang akan menerima pembayaran",
+        "paymentAmount": "Jumlah Pembayaran",
+        "paymentAmountDesc": "Jumlah dana yang akan ditahan dalam Escrow",
+        "buyerProtection": "Periode Perlindungan Pembeli",
+        "buyerProtectionDesc": "Waktu yang dimiliki Pembeli untuk meminta sengketa atau melepaskan dana",
+        "contractTerms": "Syarat Kontrak",
+        "contractTermsDesc": "Jelaskan deliverable dan kondisi untuk Escrow ini",
+        "disputeAgent": "Agent Penyelesaian Sengketa",
+        "disputeAgentDesc": "Pilih bagaimana sengketa akan ditangani",
+        "parties": "Pihak",
+        "financialDetails": "Detail Keuangan",
+        "disputeResolution": "Penyelesaian Sengketa"
+      },
+      "form": {
+        "termsPlaceholder": "Jelaskan apa yang harus diserahkan Penjual, tenggat waktu, ekspektasi kualitas, dan sebagainya.",
+        "characters": "{count} karakter",
+        "customDuration": "Durasi Kustom (hari)",
+        "enterDays": "Masukkan jumlah hari",
+        "maxDays": "Maksimum: {max} hari",
+        "continueToReview": "Lanjut ke Tinjauan",
+        "connectToContinue": "Hubungkan Wallet untuk Melanjutkan"
+      },
+      "summary": {
+        "title": "Ringkasan Singkat",
+        "amount": "Jumlah",
+        "seller": "Penjual",
+        "protection": "Perlindungan",
+        "agent": "Agent",
+        "assigned": "Ditugaskan",
+        "locked": "Locked",
+        "notSet": "Belum diatur",
+        "noAgentWarning": "Tanpa Agent, sengketa tidak dapat diselesaikan."
+      },
+      "agentSelector": {
+        "noAgent": "Tanpa Agent (Locked Escrow)",
+        "noAgentDesc": "Lanjutkan tanpa penyelesaian sengketa",
+        "enterAddress": "Masukkan Alamat Agent",
+        "enterAddressDesc": "Masukkan alamat Agent yang Anda ketahui secara langsung",
+        "browseAgents": "Telusuri Agent Tersedia",
+        "browseAgentsDesc": "Pilih dari daftar Agent terverifikasi",
+        "browseAgentsBtn": "Telusuri Agent",
+        "agentSelected": "Agent Dipilih",
+        "change": "Ubah",
+        "recommendation": "Kami sangat menyarankan untuk menetapkan Agent untuk penyelesaian sengketa.",
+        "agentVerified": "Agent terverifikasi",
+        "agentVerifiedDesc": "Aktif, tersedia, dan memiliki MAV yang cukup untuk Escrow ini.",
+        "agentNotRegistered": "Agent tidak terdaftar",
+        "agentNotRegisteredDesc": "Alamat ini tidak terdaftar sebagai Agent di protokol.",
+        "agentInactive": "Agent tidak aktif",
+        "agentInactiveDesc": "Agent ini terdaftar namun saat ini tidak aktif.",
+        "agentUnavailable": "Agent tidak tersedia",
+        "agentUnavailableDesc": "Agent ini aktif namun saat ini tidak menerima kasus baru.",
+        "insufficientMav": "MAV tidak mencukupi",
+        "insufficientMavDesc": "MAV Agent ini tidak cukup untuk jumlah Escrow ini.",
+        "agentNotEligible": "Agent tidak memenuhi syarat",
+        "checkingAgent": "Memeriksa Agent…",
+        "checkingAgentDesc": "Mengambil informasi Agent dari indexer.",
+        "mav": "MAV",
+        "thisEscrow": "Escrow ini",
+        "activeCases": "Kasus aktif",
+        "registered": "Terdaftar"
+      },
+      "locked": {
+        "title": "Membuat Locked Escrow",
+        "subtitle": "Anda membuat Escrow tanpa Agent",
+        "understandNoDispute": "Saya memahami bahwa sengketa tidak dapat diselesaikan tanpa Agent",
+        "understandNoDisputeDesc": "Jika terjadi perselisihan, tidak ada pihak ketiga untuk memediasi.",
+        "understandFundsLocked": "Saya memahami bahwa dana dapat terkunci secara permanen",
+        "understandFundsLockedDesc": "Jika Pembeli dan Penjual tidak dapat mencapai kesepakatan, dana dapat terkunci selamanya.",
+        "acceptRisk": "Saya menerima semua risiko yang terkait dengan Locked Escrow",
+        "acceptRiskDesc": "Saya telah membaca dan memahami implikasi membuat Escrow tanpa Agent."
+      },
+      "review": {
+        "backToEdit": "Kembali untuk Mengubah",
+        "proceedToApproval": "Lanjut ke Persetujuan",
+        "generatingAgreement": "Membuat Perjanjian...",
+        "noTerms": "Tidak ada syarat yang ditentukan",
+        "agentAssigned": "Agent Ditugaskan",
+        "agentAssignedDesc": "Sengketa akan diselesaikan oleh Agent yang ditugaskan",
+        "lockedEscrow": "Locked Escrow (Tanpa Agent)",
+        "lockedEscrowDesc": "Escrow ini tidak memiliki penyelesaian sengketa. Jika terjadi perselisihan, dana dapat terkunci secara permanen.",
+        "feesBreakdown": "Rincian Biaya",
+        "escrowAmount": "Jumlah Escrow",
+        "creationFee": "Biaya Pembuatan",
+        "agentAssignmentFee": "Biaya Penugasan Agent",
+        "totalRequired": "Total Diperlukan",
+        "agreementPdf": "PDF Perjanjian",
+        "generating": "Membuat…",
+        "failedToGeneratePdf": "Gagal membuat PDF: {error}",
+        "downloadPdf": "Unduh PDF",
+        "generatePdf": "Buat PDF",
+        "predictedAddress": "Alamat Escrow Prediksi",
+        "generatingAddress": "Membuat alamat Escrow...",
+        "predictedAddressNote": "Alamat prediksi bersifat deterministik. Selama parameter tidak berubah, Escrow akan dideploy pada alamat ini.",
+        "generatingAgreementInfo": "Membuat Perjanjian",
+        "generatingAgreementDesc": "PDF perjanjian Escrow Anda sedang dibuat. Dokumen ini akan ditautkan secara kriptografis ke smart contract Anda."
+      },
+      "approve": {
+        "backToReview": "Kembali ke Tinjauan",
+        "waitingForApproval": "Menunggu persetujuan...",
+        "confirmInWallet": "Silakan konfirmasi transaksi di Wallet Anda"
+      },
+      "confirm": {
+        "amount": "Jumlah",
+        "seller": "Penjual",
+        "protection": "Perlindungan",
+        "totalCost": "Total Biaya",
+        "protectedEscrow": "Escrow Terlindungi",
+        "protectedDesc": "Agent ditugaskan untuk penyelesaian sengketa",
+        "lockedWarning": "Peringatan Locked Escrow",
+        "lockedWarningDesc": "Tidak ada Agent yang ditugaskan. Sengketa tidak dapat diselesaikan. Dana dapat terkunci secara permanen jika para pihak tidak sepakat.",
+        "deployedAt": "Escrow akan dideploy di",
+        "transactionFailed": "Transaksi Gagal",
+        "creatingEscrow": "Membuat Escrow...",
+        "insufficientBalance": "Saldo Tidak Mencukupi",
+        "whatHappensNext": "Apa yang terjadi selanjutnya",
+        "deployedOnChain": "Kontrak Escrow Anda akan dideploy on-chain",
+        "fundsTransferred": "Dana akan ditransfer dari Wallet Anda ke Escrow",
+        "sellerNotified": "Penjual akan diberitahu dan dapat mulai bekerja",
+        "createEscrow": "Buat Escrow",
+        "creatingEscrowBtn": "Membuat Escrow...",
+        "termsAgreement": "Dengan membuat Escrow ini, Anda menyetujui",
+        "termsOfService": "Ketentuan Layanan"
+      },
+      "success": {
+        "title": "Kontrak Berhasil Dibuat",
+        "description": "Kontrak Escrow Anda telah dideploy dengan aman on-chain.",
+        "escrowAddress": "Alamat Escrow",
+        "transactionHash": "Hash Transaksi",
+        "amountInEscrow": "Jumlah dalam Escrow",
+        "buyerProtection": "Perlindungan Pembeli",
+        "viewDashboard": "Lihat Dashboard Escrow",
+        "downloadPdf": "Unduh PDF",
+        "generatePdf": "Buat PDF",
+        "generatingPdf": "Membuat...",
+        "createAnother": "Buat Lagi",
+        "savePdfTitle": "Simpan PDF Kontrak Anda",
+        "savePdfDesc": "Unduh dan simpan PDF kontrak Anda dengan aman. Dokumen ini menjadi bukti perjanjian yang dapat Anda bagikan kepada Penjual, dan Agent mungkin memerlukan dokumen ini jika terjadi sengketa.",
+        "whatsNext": "Langkah selanjutnya",
+        "informSeller": "Beritahu Penjual",
+        "informSellerDesc": "Bagikan alamat Escrow atau PDF kontrak kepada Penjual agar mereka dapat meninjau dan menerima syarat.",
+        "waitForDelivery": "Tunggu Pengiriman",
+        "waitForDeliveryDesc": "Setelah Penjual menerima, mereka akan mengirim barang atau layanan sesuai kesepakatan.",
+        "releaseFunds": "Lepaskan Dana",
+        "releaseFundsDesc": "Ketika Anda puas dengan hasilnya, lepaskan dana untuk menyelesaikan transaksi."
+      },
+      "errors": {
+        "sellerAddressRequired": "Alamat Penjual wajib diisi",
+        "sellerAddressInvalid": "Silakan masukkan alamat Ethereum yang valid",
+        "sellerAddressSameAsBuyer": "Alamat Penjual tidak boleh sama dengan alamat Anda",
+        "amountRequired": "Jumlah wajib diisi",
+        "amountInvalid": "Silakan masukkan jumlah yang valid",
+        "amountTooSmall": "Jumlah harus lebih besar dari 0",
+        "amountExceedsBalance": "Jumlah melebihi saldo Anda",
+        "protectionTimeRequired": "Periode perlindungan wajib diisi",
+        "protectionTimeTooShort": "Periode perlindungan minimal {min} hari",
+        "protectionTimeTooLong": "Periode perlindungan tidak boleh melebihi {max} hari",
+        "protectionTimeInvalid": "Silakan masukkan jumlah hari yang valid",
+        "termsRequired": "Syarat kontrak wajib diisi",
+        "agentAddressInvalid": "Silakan masukkan alamat Agent yang valid",
+        "agentAddressSameAsBuyer": "Agent tidak boleh sama dengan Pembeli",
+        "agentAddressSameAsSeller": "Agent tidak boleh sama dengan Penjual",
+        "agentNotRegistered": "Alamat ini bukan Agent terdaftar",
+        "lockedConfirmationsRequired": "Anda harus mengakui semua risiko untuk membuat Locked Escrow",
+        "walletNotConnected": "Silakan hubungkan Wallet Anda",
+        "insufficientAllowance": "Allowance token tidak mencukupi"
+      },
+      "protectionPresets": {
+        "7d": "7 Hari",
+        "14d": "14 Hari",
+        "30d": "30 Hari",
+        "custom": "Kustom",
+        "7dDesc": "Perlindungan standar untuk transaksi cepat",
+        "14dDesc": "Direkomendasikan untuk sebagian besar transaksi",
+        "30dDesc": "Perlindungan lebih lama untuk deliverable yang kompleks",
+        "customDesc": "Atur periode perlindungan kustom"
+      }
+    }
+  }
+}

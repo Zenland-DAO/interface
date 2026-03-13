@@ -1,0 +1,368 @@
+{
+  "agents": {
+    "list": {
+      "title": "Đại lý",
+      "selectTitle": "Chọn một đại lý",
+      "description": "Duyệt các đại lý giải quyết tranh chấp đã được xác minh",
+      "selectDescription": "Chọn đại lý cho ký quỹ của quý vị",
+      "searchLabel": "Tìm kiếm đại lý",
+      "searchPlaceholder": "Tìm theo tên, địa chỉ hoặc mô tả...",
+      "sortBy": "Sắp xếp theo",
+      "sortOptions": {
+        "reputation": "Uy tín",
+        "stake": "Mức stake",
+        "fees": "Phí thấp nhất",
+        "cases": "Hoạt động nhiều nhất"
+      },
+      "selectModeBanner": {
+        "title": "Đang chọn đại lý để tạo ký quỹ",
+        "description": "Nhấp \"Chọn\" trên thẻ đại lý hoặc xem hồ sơ để biết thêm chi tiết"
+      },
+      "card": {
+        "you": "QUÝ VỊ",
+        "active": "Đang hoạt động",
+        "inactive": "Không hoạt động",
+        "busy": "Bận",
+        "stablecoin": "Stablecoin",
+        "daoToken": "Token DAO",
+        "maxCoverage": "Bảo đảm tối đa",
+        "disputeFee": "Phí tranh chấp",
+        "assignFee": "Phí chỉ định",
+        "noDescription": "Đại lý này chưa cung cấp tóm tắt chuyên môn.",
+        "selectAgent": "Chọn đại lý",
+        "viewDetails": "Xem chi tiết",
+        "joined": "Tham gia {date}",
+        "view": "Xem"
+      },
+      "error": {
+        "title": "Lỗi registry",
+        "description": "Không thể tải danh sách đại lý từ registry. Vui lòng kiểm tra kết nối của quý vị.",
+        "retry": "Thử lại"
+      },
+      "empty": {
+        "title": "Không tìm thấy đại lý",
+        "searchEmpty": "Vui lòng điều chỉnh từ khóa hoặc bộ lọc.",
+        "noAgents": "Hiện chưa có đại lý đang hoạt động trong registry."
+      }
+    },
+    "headerActions": {
+      "dashboard": "Bảng điều khiển Đại lý",
+      "becomeAgent": "Trở thành Đại lý"
+    },
+    "register": {
+      "backToAgents": "Quay lại Đại lý",
+      "title": "Trở thành Đại lý",
+      "description": "Đăng ký làm đại lý giải quyết tranh chấp và hỗ trợ cộng đồng",
+      "connectWallet": {
+        "title": "Kết nối ví",
+        "description": "Tham gia mạng lưới các chuyên gia giải quyết tranh chấp và nhận phí cho chuyên môn của quý vị."
+      },
+      "formTitle": "Đăng ký Đại lý",
+      "formDescription": "Cấu hình hồ sơ chuyên môn và khoản đặt cọc bảo đảm",
+      "requirements": {
+        "title": "Yêu cầu đối với Đại lý",
+        "stablecoinStake": "Stake stablecoin xác định Maximum Arbitratable Value (MAV = 20× stake)",
+        "daoTokenStake": "Yêu cầu stake token DAO để đồng thuận với giao thức (có thể bị slash nếu có hành vi sai phạm)",
+        "responseDeadline": "Phản hồi tranh chấp được giao trong thời hạn (mặc định 7 ngày)",
+        "fairResolution": "Yêu cầu giải quyết tranh chấp công bằng và khách quan"
+      },
+      "sections": {
+        "collateral": "Cấu hình tài sản bảo đảm",
+        "serviceFees": "Phí dịch vụ",
+        "publicProfile": "Hồ sơ công khai",
+        "securityApprovals": "Phê duyệt bảo mật"
+      },
+      "stablecoinStake": "Stake stablecoin",
+      "available": "Số dư:",
+      "minStake": "Stake tối thiểu: ${amount}",
+      "minStakeToken": "Stake tối thiểu: {amount} {symbol}",
+      "zenGovernanceStake": "Stake quản trị ZEN",
+      "assignmentFee": "Phí chỉ định",
+      "disputeFee": "Phí tranh chấp",
+      "assignmentFeeHelper": "Tự động thu khi được chỉ định vụ việc. <earn>Kiếm ${amount} với ký quỹ $10k.</earn>",
+      "disputeFeeHelper": "Chỉ nhận khi giải quyết thành công. <earn>Kiếm ${amount} với ký quỹ $10k.</earn>",
+      "feeRange": "Khoảng phí: {min}% - {max}%",
+      "professionalBio": "Giới thiệu chuyên môn",
+      "bioPlaceholder": "Chuyên gia về DeFi, tiền bản quyền NFT và cầu nối cross-chain...",
+      "bytesTip": "Lưu ý: một số ký tự (như \"→\", emoji, v.v.) chiếm hơn 1 byte và có thể vượt giới hạn on-chain.",
+      "securityApprovalsTitle": "Phê duyệt bảo mật",
+      "securityApprovalsDesc": "Cấp quyền khóa các token bảo đảm trong registry",
+      "termsAcknowledgement": "Tôi xác nhận rằng khoản stake của tôi đóng vai trò tiền ký quỹ và có thể bị slash đối với hành vi sai phạm theo <link>Điều khoản & Điều kiện của Đại lý</link>.",
+      "cancel": "Hủy",
+      "agreeToTerms": "Đồng ý điều khoản",
+      "registerAsAgent": "Đăng ký làm Đại lý",
+      "approvingToken": "Đang phê duyệt {symbol}...",
+      "registering": "Đang đăng ký...",
+      "registered": "Đã đăng ký!",
+      "enterAmountToApprove": "Nhập số lượng để bật phê duyệt",
+      "copyDetails": "Sao chép chi tiết",
+      "copied": "Đã sao chép",
+      "success": {
+        "title": "Đăng ký thành công!",
+        "description": "Quý vị đã được đăng ký làm đại lý. Quý vị có thể bắt đầu nhận tranh chấp.",
+        "transaction": "Giao dịch:",
+        "goToDashboard": "Đi đến bảng điều khiển"
+      },
+      "alreadyRegistered": {
+        "title": "Đã đăng ký",
+        "description": "Ví của quý vị đã được đăng ký làm đại lý.",
+        "goToDashboard": "Đi đến bảng điều khiển"
+      },
+      "faq": {
+        "title": "Câu hỏi thường gặp",
+        "mavQuestion": "MAV (Maximum Arbitratable Value) là gì?",
+        "mavAnswer": "MAV xác định giá trị ký quỹ tối đa mà quý vị có thể được giao để xử lý. MAV được tính bằng 20× stake stablecoin của quý vị. Ví dụ, stake $100 cho phép MAV $2,000.",
+        "feesQuestion": "Hai loại phí dùng để làm gì?",
+        "feesAnswer": "<bold>Phí chỉ định:</bold> thu khi quý vị được chỉ định cho một ký quỹ (kể cả khi không có tranh chấp). <bold>Phí tranh chấp:</bold> chỉ thu khi quý vị giải quyết tranh chấp. Cả hai đều là phần trăm của số tiền ký quỹ.",
+        "slashQuestion": "Khi nào khoản stake của tôi có thể bị slash?",
+        "slashAnswer": "Khoản stake token DAO của quý vị có thể bị slash theo quản trị DAO nếu quý vị không phản hồi tranh chấp đúng hạn hoặc nếu hành vi sai phạm được xác định thông qua một đề xuất quản trị.",
+        "withdrawQuestion": "Tôi có thể rút stake không?",
+        "withdrawAnswer": "Có. Quý vị có thể unstake khi không còn vụ việc đang xử lý. Trước tiên, đặt trạng thái không sẵn sàng, sau đó chờ 30 ngày (thời gian cooldown), rồi thực hiện unstake để rút cả hai khoản stake.",
+        "gaslessQuestion": "Phê duyệt \"không phí gas\" là gì?",
+        "gaslessAnswer": "Các token hỗ trợ EIP-2612 permit cho phép quý vị ký một thông điệp phê duyệt thay vì gửi một giao dịch riêng. Điều này giúp tiết kiệm phí gas. USDC và token DAO hỗ trợ tính năng này; USDT thì không."
+      }
+    },
+    "dashboard": {
+      "connectWallet": {
+        "title": "Kết nối ví",
+        "description": "Vui lòng kết nối ví để xem bảng điều khiển đại lý và quản lý các vụ việc."
+      },
+      "notRegistered": {
+        "title": "Chưa đăng ký làm Đại lý",
+        "description": "Hiện tại quý vị chưa đăng ký làm đại lý trên mạng này. Vui lòng đăng ký để bắt đầu giải quyết tranh chấp và nhận phí.",
+        "becomeAgent": "Trở thành Đại lý"
+      },
+      "backToAgents": "Quay lại Đại lý",
+      "title": "Bảng điều khiển Đại lý",
+      "description": "Theo dõi hiệu suất và quản lý các vụ tranh chấp được giao",
+      "joined": "Tham gia {date}",
+      "online": "Trực tuyến",
+      "offline": "Ngoại tuyến",
+      "setUnavailable": "Đặt không sẵn sàng",
+      "setAvailable": "Đặt sẵn sàng",
+      "editProfile": "Chỉnh sửa hồ sơ",
+      "defaultDescription": "Chuyên gia giải quyết tranh chấp góp phần duy trì tính toàn vẹn của hệ sinh thái Zenland.",
+      "stats": {
+        "activeCases": "Vụ việc đang xử lý",
+        "totalResolved": "Tổng đã giải quyết",
+        "totalEarnings": "Tổng thu nhập",
+        "totalSlashed": "Tổng bị slash"
+      },
+      "cases": {
+        "title": "Vụ tranh chấp gần đây",
+        "assigned": "Đã giao {count}",
+        "viewAll": "Xem tất cả →",
+        "empty": "Chưa có vụ việc nào được giao. Quý vị sẽ được thông báo khi có tranh chấp cần xem xét.",
+        "dispute": "Tranh chấp #{id}",
+        "resolved": "Đã giải quyết",
+        "active": "Đang xử lý",
+        "escrowInfo": "Ký quỹ #{id} • {amount} USDC",
+        "loading": "Đang tải...",
+        "view": "Xem",
+        "review": "Xem xét"
+      },
+      "feeConfig": {
+        "title": "Cấu hình phí",
+        "assignmentFee": "Phí chỉ định",
+        "disputeResolution": "Giải quyết tranh chấp",
+        "updateFees": "Cập nhật phí"
+      },
+      "stakeCapacity": {
+        "title": "Stake & hạn mức",
+        "stablecoinStake": "Stake stablecoin (MAV)",
+        "daoTokenStake": "Stake token DAO",
+        "mavCoverage": "Cung cấp hạn mức MAV <bold>${amount}</bold>.",
+        "governanceNote": "Cần thiết cho quản trị và an toàn giao thức.",
+        "increaseStake": "Tăng stake",
+        "withdrawStake": "Rút stake"
+      }
+    },
+    "edit": {
+      "connectWallet": {
+        "title": "Kết nối ví",
+        "description": "Vui lòng kết nối ví để quản lý hồ sơ đại lý."
+      },
+      "notAgent": {
+        "title": "Không phải Đại lý",
+        "description": "Quý vị chưa đăng ký làm đại lý. Vui lòng đăng ký trước khi chỉnh sửa hồ sơ.",
+        "becomeAgent": "Trở thành Đại lý"
+      },
+      "backToDashboard": "Quay lại bảng điều khiển",
+      "editProfile": "Chỉnh sửa hồ sơ",
+      "configureFees": "Cấu hình phí",
+      "editProfileDesc": "Cập nhật tóm tắt chuyên môn và thông tin liên hệ on-chain",
+      "configureFeesDesc": "Thiết lập phí chỉ định và phí giải quyết tranh chấp",
+      "profile": {
+        "title": "Thông tin hồ sơ",
+        "description": "Cập nhật mô tả công khai và thông tin liên hệ",
+        "professionalSummary": "Tóm tắt chuyên môn",
+        "summaryPlaceholder": "Hãy cho người dùng biết vì sao họ nên chọn quý vị làm đại lý...",
+        "visibilityNote": "Hiển thị công khai trong danh sách đại lý.",
+        "saveChanges": "Lưu thay đổi",
+        "cancel": "Hủy",
+        "updatingOnChain": "Đang cập nhật on-chain...",
+        "updateSuccessful": "Cập nhật thành công! Đang chuyển hướng...",
+        "profileUpdated": "Cập nhật hồ sơ thành công!",
+        "noChanges": "Không phát hiện thay đổi",
+        "descriptionExceedsBytes": "Mô tả vượt quá {max} byte ({current}/{max})"
+      },
+      "fees": {
+        "assignmentFee": "Phí chỉ định",
+        "assignmentFeeDesc": "Thu khi được chỉ định vụ việc",
+        "disputeFee": "Phí tranh chấp",
+        "disputeFeeDesc": "Thu khi giải quyết thành công",
+        "feePercentage": "Tỷ lệ phí (%)",
+        "updateAssignmentFee": "Cập nhật phí chỉ định",
+        "updateDisputeFee": "Cập nhật phí tranh chấp",
+        "waitingForSignature": "Đang chờ ký...",
+        "confirmingOnChain": "Đang xác nhận on-chain...",
+        "updatedSuccessfully": "Cập nhật thành công!",
+        "protocolLimits": "Mỗi cập nhật yêu cầu một giao dịch riêng. Giới hạn giao thức: 0.1% đến 10.0%.",
+        "backToDashboard": "Quay lại bảng điều khiển",
+        "noAssignmentChanges": "Không có thay đổi đối với phí chỉ định",
+        "noDisputeChanges": "Không có thay đổi đối với phí tranh chấp"
+      }
+    },
+    "profile": {
+      "backToAgents": "Quay lại Đại lý",
+      "backToSelection": "Quay lại chọn đại lý",
+      "error": {
+        "title": "Không tìm thấy đại lý",
+        "description": "Không thể tìm thấy đại lý được yêu cầu.",
+        "tryAgain": "Thử lại"
+      },
+      "selectModeBanner": {
+        "title": "Đang chọn đại lý để tạo ký quỹ",
+        "description": "Xem hồ sơ đại lý này và nhấp \"Chọn đại lý\" để chỉ định cho ký quỹ của quý vị"
+      },
+      "header": {
+        "you": "QUÝ VỊ",
+        "active": "Đang hoạt động",
+        "inactive": "Không hoạt động",
+        "unavailable": "Không sẵn sàng",
+        "addressCopied": "Đã sao chép địa chỉ vào clipboard",
+        "joined": "Tham gia {date}",
+        "goToDashboard": "Đi đến bảng điều khiển",
+        "selectAgent": "Chọn đại lý",
+        "viewOnExplorer": "Xem trên Explorer"
+      },
+      "stats": {
+        "casesResolved": "Số vụ đã giải quyết",
+        "totalEscrows": "Tổng số ký quỹ",
+        "disputeFee": "Phí tranh chấp",
+        "assignFee": "Phí chỉ định"
+      },
+      "contact": {
+        "title": "Tóm tắt chuyên môn & liên hệ",
+        "bioLabel": "Giới thiệu / Mô tả",
+        "noDescription": "Đại lý này chưa cung cấp tóm tắt chuyên môn.",
+        "contactChannels": "Kênh liên hệ"
+      },
+      "collateral": {
+        "title": "Tài sản bảo đảm của đại lý",
+        "maxCoverage": "Bảo đảm tối đa",
+        "maxCoverageNote": "Dựa trên stake stablecoin × {multiplier}",
+        "stablecoinStake": "Stake stablecoin",
+        "daoTokenStake": "Stake token DAO",
+        "totalEarnings": "Tổng thu nhập",
+        "totalSlashed": "Tổng bị slash"
+      }
+    },
+    "fees": {
+      "title": "Cấu hình phí",
+      "description": "Thiết lập phí chỉ định và phí giải quyết tranh chấp",
+      "tabs": {
+        "assignment": "Phí chỉ định",
+        "dispute": "Phí tranh chấp"
+      },
+      "assignmentFee": "Phí chỉ định",
+      "disputeResolutionFee": "Phí giải quyết tranh chấp",
+      "updateAssignmentFee": "Cập nhật phí chỉ định",
+      "updateDisputeFee": "Cập nhật phí tranh chấp",
+      "status": {
+        "waitingForSignature": "Đang chờ ký...",
+        "confirmingOnChain": "Đang xác nhận on-chain...",
+        "indexingUpdate": "Đang cập nhật indexer...",
+        "feeUpdated": "Cập nhật phí thành công!"
+      },
+      "protocolLimits": "Mỗi cập nhật yêu cầu một giao dịch riêng. Giới hạn giao thức: 0.1% đến 10.0%."
+    },
+    "stake": {
+      "increase": {
+        "title": "Tăng stake",
+        "description": "Bổ sung tài sản bảo đảm để tăng Maximum Arbitratable Value (MAV)",
+        "amountOf": "Số lượng {symbol}",
+        "balance": "Số dư:",
+        "insufficientBalance": "Số dư không đủ",
+        "mavNote": "Tăng stake sẽ tăng Maximum Arbitratable Value (MAV) của quý vị.",
+        "signPermit": "Ký Permit cho {symbol}",
+        "approveToken": "Phê duyệt {symbol}",
+        "stakeToken": "Stake {symbol}",
+        "permitSigned": "Đã ký Permit — nhấp lần nữa để stake",
+        "stakeUpdated": "Cập nhật stake thành công!"
+      },
+      "withdraw": {
+        "title": "Rút stake",
+        "description": "Quản lý việc rời khỏi hệ thống và rút tài sản bảo đảm",
+        "statusActive": "Trạng thái: Đang hoạt động",
+        "statusRetiring": "Trạng thái: Đang rút",
+        "activeDescription": "Hiện tại quý vị đang nhận các tranh chấp mới. Để rút stake, quý vị cần tắt trạng thái sẵn sàng trước.",
+        "retiringDescription": "Đã tắt trạng thái sẵn sàng. Quý vị sẽ không còn được giao vụ việc mới.",
+        "prerequisiteCases": "Tất cả vụ việc đang xử lý đã hoàn tất ({count} còn lại)",
+        "prerequisiteAvailability": "Trạng thái sẵn sàng đã tắt",
+        "prerequisiteCooldown": "Đã qua thời gian an toàn",
+        "cooldownEnds": "Kết thúc: {date}",
+        "withdrawAll": "Rút toàn bộ stake",
+        "cooldownExplanation": "Thời gian an toàn đảm bảo không có hành vi xấu trước khi rời giao thức. Khi tất cả điều kiện được đáp ứng, nút phía trên sẽ được kích hoạt."
+      },
+      "tabs": {
+        "increase": "Tăng stake",
+        "withdraw": "Rút stake"
+      }
+    },
+    "availability": {
+      "setAvailable": {
+        "title": "Đặt sẵn sàng",
+        "confirmText": "Đặt sẵn sàng",
+        "message": "Quý vị sẽ bắt đầu nhận các lời mời tranh chấp mới trở lại."
+      },
+      "setUnavailable": {
+        "title": "Đặt không sẵn sàng",
+        "confirmText": "Đặt không sẵn sàng",
+        "message": "Khi không sẵn sàng:\n• Quý vị sẽ không nhận lời mời tranh chấp mới.\n• Bất kỳ ký quỹ nào chọn quý vị làm đại lý sẽ không thể mời quý vị trong lúc tranh chấp.\n• Các bên có thể buộc phải thương lượng phương án chia (SPLIT) mà không có quyết định của quý vị.\n{casesLine}\nĐiều này có thể làm giảm mức độ tin cậy từ các bên đã chọn quý vị làm trọng tài.",
+        "activeCasesLine": " Quý vị hiện có {count} vụ việc đang xử lý."
+      }
+    },
+    "shared": {
+      "contact": {
+        "telegram": "Telegram",
+        "discord": "Discord",
+        "email": "Email",
+        "contact": "Liên hệ",
+        "copiedToClipboard": "Đã sao chép {label} vào clipboard",
+        "failedToCopy": "Không thể sao chép",
+        "noContactInfo": "Chưa có thông tin liên hệ",
+        "primary": "Chính",
+        "secondary": "Phụ"
+      },
+      "contactFields": {
+        "telegram": "Telegram",
+        "discord": "Discord",
+        "email": "Email",
+        "custom": "Tùy chỉnh",
+        "none": "Không có",
+        "primaryContact": "Liên hệ chính",
+        "secondaryContact": "Liên hệ phụ",
+        "usernamePlaceholder": "@username",
+        "emailPlaceholder": "name@example.com",
+        "valuePlaceholder": "giá trị",
+        "namePlaceholder": "tên",
+        "primaryRequired": "Bắt buộc có liên hệ chính",
+        "optional": "Không bắt buộc",
+        "formatHint": "Định dạng {kind} sẽ được lưu on-chain dưới dạng name:value",
+        "storedOnChain": "Lưu on-chain dưới dạng: <name>:<value>[;<name>:<value>]",
+        "totalExceedsMax": "Tổng thông tin liên hệ vượt quá {max} ký tự"
+      }
+    }
+  }
+}

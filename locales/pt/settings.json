@@ -1,0 +1,31 @@
+{
+  "settings": {
+    "title": "Configurações",
+    "description": "Gerencie as preferências da sua conta",
+    "wallet": {
+      "title": "Carteira",
+      "connectedWallet": "Carteira conectada",
+      "disconnect": "Desconectar",
+      "network": "Rede",
+      "networkDescription": "Alternar entre mainnet e testnet",
+      "noWallet": "Nenhuma carteira conectada",
+      "noWalletDescription": "Conecte sua carteira para acessar todos os recursos",
+      "connectWallet": "Conectar carteira"
+    },
+    "appearance": {
+      "title": "Aparência",
+      "theme": "Tema",
+      "themeDescription": "Alternar entre modo claro e escuro"
+    },
+    "about": {
+      "title": "Sobre",
+      "version": "Versão",
+      "versionDescription": "Versão atual do aplicativo",
+      "documentation": "Documentação",
+      "github": "GitHub",
+      "termsOfService": "Termos de Serviço",
+      "privacyPolicy": "Política de Privacidade",
+      "support": "Suporte"
+    }
+  }
+}

@@ -1,0 +1,328 @@
+{
+  "marketing": {
+    "meta": {
+      "title": "Zenland - Nền tảng ký quỹ Web3",
+      "description": "Ký quỹ an toàn, không cần tin cậy cho giao dịch blockchain. Không trung gian, chỉ có hợp đồng thông minh."
+    },
+    "hero": {
+      "badge": "Web3 thuần gốc",
+      "title": {
+        "line1": "Nền tảng",
+        "highlight": "Ký quỹ",
+        "line2": "Web3."
+      },
+      "description": "Bảo vệ giao dịch của quý vị bằng ký quỹ on-chain. Không trung gian, không cần đặt niềm tin. Chỉ có hợp đồng thông minh bảo vệ cả hai bên.",
+      "stats": {
+        "fee": {
+          "value": "1%",
+          "label": "Phí (tối thiểu $0.50, tối đa $50)"
+        },
+        "onchain": {
+          "value": "100%",
+          "label": "On-chain"
+        },
+        "available": {
+          "value": "24/7",
+          "label": "Luôn sẵn sàng"
+        }
+      }
+    },
+    "protocolStats": {
+      "badge": "Dữ liệu on-chain trực tiếp",
+      "title": "Thống kê giao thức",
+      "subtitle": "Dữ liệu thời gian thực từ blockchain Ethereum. Mọi giao dịch đều có thể xác minh.",
+      "header": {
+        "title": "Giao thức Zenland",
+        "subtitle": "Hệ thống ký quỹ phi tập trung"
+      },
+      "stats": {
+        "tvl": {
+          "label": "Tổng giá trị khóa",
+          "subValue": "Được bảo vệ trong hợp đồng thông minh"
+        },
+        "volume": {
+          "label": "Tổng khối lượng",
+          "subValue": "Tổng khối lượng giao dịch mọi thời điểm"
+        },
+        "security": {
+          "label": "Trạng thái an toàn",
+          "subValue": "100% minh bạch & có thể xác minh",
+          "value": "On-chain"
+        }
+      },
+      "metrics": {
+        "title": "Chỉ số giao thức",
+        "escrowsCreated": "Số hợp đồng ký quỹ đã tạo",
+        "activeNow": "Đang hoạt động",
+        "registeredAgents": "Đại lý đã đăng ký",
+        "availableAgents": "Đại lý sẵn sàng"
+      },
+      "activity": {
+        "title": "Hoạt động gần đây",
+        "live": "Trực tiếp",
+        "escrowed": "đã ký quỹ",
+        "noActivity": "Không có hoạt động gần đây",
+        "timeAgo": {
+          "justNow": "vừa xong",
+          "minutes": "{count} phút trước",
+          "hours": "{count} giờ trước",
+          "days": "{count} ngày trước"
+        }
+      },
+      "trustBadges": {
+        "onChain": "Đã xác minh on-chain",
+        "openSource": "Mã nguồn mở",
+        "nonCustodial": "Không lưu ký",
+        "gasOptimized": "Tối ưu phí gas"
+      },
+      "footer": {
+        "updateInterval": "Dữ liệu được cập nhật mỗi 30 giây",
+        "poweredBy": "Vận hành bởi Zenland Indexer"
+      }
+    },
+    "features": {
+      "title": "Vì sao chọn Zenland?",
+      "subtitle": "Xây dựng cho tương lai phi tập trung. Mọi tính năng đều được thiết kế với an toàn và minh bạch là ưu tiên.",
+      "items": {
+        "onchain": {
+          "title": "Hoàn toàn on-chain",
+          "description": "Toàn bộ logic ký quỹ nằm trên blockchain. Minh bạch, bất biến và có thể kiểm chứng bởi bất kỳ ai."
+        },
+        "disputes": {
+          "title": "Giải quyết tranh chấp",
+          "description": "Đại lý chuyên nghiệp sẵn sàng giải quyết tranh chấp một cách công bằng và hiệu quả khi cần."
+        },
+        "instant": {
+          "title": "Thanh toán tức thì",
+          "description": "Giải ngân ngay khi điều kiện được đáp ứng. Không chờ ngân hàng hay trung gian."
+        }
+      }
+    },
+    "bento": {
+      "title": "Thiết kế cho",
+      "titleHighlight": "nền kinh tế hiện đại.",
+      "subtitle": "Zenland loại bỏ sự phức tạp của ký quỹ truyền thống. Không người gác cổng, không phí ẩn, chỉ có mã nguồn.",
+      "fees": {
+        "badge": "Giá",
+        "value": "1%",
+        "title": "Phí cực thấp.",
+        "description": "Không chi phí ẩn. Không đăng ký theo tháng.",
+        "highlight": "tối đa $50",
+        "descriptionSuffix": "Chỉ 1% phí — giới hạn ở mức",
+        "footnote": "* Mức phí thấp nhất trong thị trường ký quỹ"
+      },
+      "noCoding": {
+        "title": "Không cần lập trình.",
+        "description": "Trình dựng hợp đồng trực quan. Kéo, thả và triển khai thỏa thuận ký quỹ an toàn trong vài phút."
+      },
+      "instant": {
+        "title": "Thanh toán tức thì",
+        "description": "Giải ngân ngay lập tức trên chuỗi.",
+        "highlight": "Không chờ đợi."
+      }
+    },
+    "wallets": {
+      "title": "Kết nối ví của quý vị",
+      "subtitle": "Zenland hỗ trợ tất cả các ví Web3 phổ biến. Để có trải nghiệm tốt nhất, vui lòng dùng NYKNYC — ví thông minh được khuyến nghị với giao dịch không phí gas.",
+      "nyknyc": {
+        "badge": "Khuyến nghị",
+        "title": "Ví NYKNYC",
+        "description": "Ví thông minh dành cho Zenland. Dựa trên ERC-4337 (account abstraction), NYKNYC cho phép quý vị tương tác với Zenland mà không cần lo về phí gas.",
+        "benefits": {
+          "gasless": "Không phí gas — Zenland tài trợ mọi giao dịch",
+          "agentFree": "Miễn phí đăng ký Đại lý và mọi thao tác của Đại lý",
+          "escrowFree": "Miễn phí tạo ký quỹ",
+          "smartAccount": "Công nghệ Smart Account ERC-4337"
+        },
+        "cta": "Nhận NYKNYC"
+      },
+      "otherWallets": "Cũng hỗ trợ tất cả các ví phổ biến"
+    },
+    "networks": {
+      "title": "Hệ sinh thái",
+      "subtitle": "Zenland được triển khai trên Ethereum — mạng blockchain an toàn và phi tập trung nhất.",
+      "ethereum": "Ethereum",
+      "mainnet": "Mainnet",
+      "tagline": "Bảo mật đã được kiểm chứng từ năm 2015"
+    },
+    "howItWorks": {
+      "title": "Cách hoạt động",
+      "subtitle": "Ba bước đơn giản để bảo vệ giao dịch của quý vị. Không cần lập trình.",
+      "steps": {
+        "create": {
+          "step": "01",
+          "title": "Tạo ký quỹ",
+          "description": "Xác định điều khoản, đặt điều kiện và nạp tiền vào hợp đồng thông minh."
+        },
+        "work": {
+          "step": "02",
+          "title": "Phối hợp thực hiện",
+          "description": "Hoàn thành công việc hoặc giao sản phẩm. Tất cả các bên có thể theo dõi tiến độ."
+        },
+        "release": {
+          "step": "03",
+          "title": "Giải ngân",
+          "description": "Khi các điều kiện được đáp ứng, giải ngân ngay cho bên còn lại."
+        }
+      }
+    },
+    "community": {
+      "title": "Tham gia cộng đồng",
+      "subtitle": "Kết nối với người dùng khác, nhận hỗ trợ, tham gia quản trị và cùng định hình tương lai của Zenland.",
+      "telegram": {
+        "title": "Telegram",
+        "description": "Tham gia nhóm Telegram để thảo luận theo thời gian thực, nhận thông báo và được hỗ trợ nhanh từ cộng đồng.",
+        "cta": "Tham gia trò chuyện"
+      },
+      "twitter": {
+        "title": "X (Twitter)",
+        "description": "Theo dõi chúng tôi trên X để cập nhật mới nhất, thông báo và góc nhìn từ đội ngũ Zenland.",
+        "cta": "Theo dõi"
+      },
+      "daoForum": {
+        "badge": "Trung tâm quản trị",
+        "title": "Diễn đàn Zenland",
+        "description": "Diễn đàn chính thức của Zenland — cổng vào quản trị DAO, giải quyết tranh chấp và hỗ trợ cộng đồng.",
+        "features": {
+          "escalate": {
+            "title": "Báo cáo hành vi sai phạm của Đại lý",
+            "description": "Báo cáo Đại lý có hành vi sai phạm lên DAO. Cộng đồng có thể bỏ phiếu để cắt giảm (slash) khoản đặt cọc của họ như hình phạt."
+          },
+          "proposals": {
+            "title": "Thảo luận đề xuất",
+            "description": "Tham gia thảo luận quản trị về các cải tiến và thay đổi giao thức trong tương lai."
+          },
+          "developer": {
+            "title": "Hỗ trợ nhà phát triển",
+            "description": "Nhận hỗ trợ kỹ thuật để tích hợp với hợp đồng thông minh và API của Zenland."
+          },
+          "onboarding": {
+            "title": "Hướng dẫn Đại lý",
+            "description": "Đại lý mới có thể học các thực hành tốt nhất và nhận hỗ trợ khi bắt đầu cung cấp dịch vụ ký quỹ."
+          }
+        },
+        "cta": "Truy cập DAOForum"
+      }
+    },
+    "openBook": {
+      "title": "Quản trị & quản lý DAO",
+      "subtitle": "Zenland được quản trị bởi một DAO. Sử dụng OpenBook để tham gia quản trị và CreateDAO để triển khai DAO của riêng quý vị.",
+      "openBook": {
+        "title": "📖 OpenBook",
+        "subtitle": "Nền tảng quản lý DAO",
+        "description": "Bảng điều khiển toàn diện cho quản trị DAO. Tạo đề xuất, bỏ phiếu cho các quyết định quan trọng và theo dõi tình hình tài chính của DAO — tất cả trong một nơi.",
+        "features": {
+          "vote": {
+            "title": "Tạo & bỏ phiếu cho đề xuất",
+            "description": "Gửi đề xuất quản trị và bỏ phiếu cho các quyết định quan trọng của giao thức."
+          },
+          "monitor": {
+            "title": "Theo dõi chi phí & doanh thu",
+            "description": "Theo dõi kho bạc DAO theo thời gian thực với báo cáo tài chính chi tiết."
+          },
+          "transparency": {
+            "title": "Minh bạch toàn diện",
+            "description": "Mọi giao dịch, phiếu bầu và quyết định đều được ghi lại và hiển thị cho tất cả các chủ sở hữu token."
+          }
+        },
+        "cta": "Mở bảng điều khiển"
+      },
+      "createDAO": {
+        "subtitle": "Triển khai DAO của quý vị",
+        "description": "Khởi chạy một DAO hoàn chỉnh, sẵn sàng cho sản xuất chỉ trong một giao dịch. Không cần lập trình — chỉ cấu hình tham số và triển khai.",
+        "highlight": {
+          "title": "Triển khai trong 1 giao dịch",
+          "features": {
+            "governor": "Hợp đồng Governor để quản lý đề xuất",
+            "token": "Token quản trị ERC-20",
+            "timelock": "Timelock để thực thi an toàn"
+          }
+        },
+        "integration": "được xây dựng riêng cho các DAO tạo bằng CreateDAO — tích hợp liền mạch ngay từ đầu.",
+        "cta": "Tạo DAO của quý vị"
+      }
+    },
+    "faq": {
+      "title": "Câu hỏi thường gặp",
+      "subtitle": "Những điều quý vị cần biết về ký quỹ crypto và cách Zenland bảo vệ giao dịch.",
+      "moreQuestions": "Quý vị còn câu hỏi khác?",
+      "viewDocs": "Xem tài liệu",
+      "items": {
+        "whatIsCryptoEscrow": {
+          "question": "Ký quỹ crypto là gì và Zenland hoạt động như thế nào?",
+          "answer": "Ký quỹ crypto là phương thức an toàn để bảo vệ giao dịch tiền mã hóa giữa các bên chưa hoàn toàn tin tưởng nhau. Zenland dùng hợp đồng thông minh trên Ethereum để khóa tiền cho đến khi các điều kiện được định nghĩa trước được đáp ứng, loại bỏ nhu cầu về bên trung gian truyền thống."
+        },
+        "howToCreate": {
+          "question": "Tôi tạo một hợp đồng ký quỹ trên Zenland như thế nào?",
+          "answer": "Việc tạo ký quỹ rất đơn giản: kết nối ví, xác định điều khoản và điều kiện, đặt số tiền thanh toán và nạp tiền vào hợp đồng thông minh. Không cần lập trình — giao diện trực quan sẽ hướng dẫn quý vị trong vài phút."
+        },
+        "fundsProtection": {
+          "question": "Tiền được bảo vệ như thế nào trong ký quỹ blockchain?",
+          "answer": "Toàn bộ logic ký quỹ nằm trên blockchain Ethereum. Tiền được khóa trong các hợp đồng thông minh đã được kiểm toán, minh bạch, bất biến và có thể kiểm chứng bởi bất kỳ ai. Zenland không lưu ký — chúng tôi không bao giờ có quyền truy cập vào tiền của quý vị."
+        },
+        "disputeResolution": {
+          "question": "Nếu xảy ra tranh chấp thì điều gì sẽ diễn ra?",
+          "answer": "Đại lý chuyên nghiệp sẵn sàng giải quyết tranh chấp một cách công bằng và hiệu quả. Nếu Đại lý không phản hồi, một trong hai bên có thể yêu cầu hết thời hạn và dàn xếp thông qua thỏa thuận chung. DAO giám sát chất lượng Đại lý và có thể cắt giảm (slash) khoản đặt cọc của Đại lý có hành vi sai phạm."
+        },
+        "fees": {
+          "question": "Phí dịch vụ ký quỹ của Zenland là bao nhiêu?",
+          "answer": "Zenland thu 1% phí nền tảng với mức tối thiểu $0.50 và tối đa $50 cho mỗi giao dịch — thuộc nhóm thấp nhất trên thị trường ký quỹ crypto. Không phí ẩn, không đăng ký theo tháng. Nếu dùng ví NYKNYC, giao dịch sẽ hoàn toàn không tốn phí gas."
+        },
+        "supportedCrypto": {
+          "question": "Zenland hỗ trợ những loại tiền và mạng nào?",
+          "answer": "Hiện tại Zenland vận hành trên Ethereum mainnet và hỗ trợ stablecoin USDC và USDT. Các token khác có thể được bổ sung thông qua quản trị DAO. Chúng tôi tập trung vào Ethereum nhờ tính an toàn đã được kiểm chứng và mức độ chấp nhận rộng rãi."
+        }
+      }
+    },
+    "cta": {
+      "title": "Sẵn sàng bắt đầu?",
+      "subtitle": "Kết nối ví và tạo hợp đồng ký quỹ đầu tiên trong vài phút."
+    },
+    "heroCard": {
+      "steps": {
+        "creation": {
+          "label": "Bước 1: Tạo",
+          "status": "Được bảo vệ"
+        },
+        "protection": {
+          "label": "Bước 2: Bảo vệ",
+          "status": "Đã khóa"
+        },
+        "settlement": {
+          "label": "Bước 3: Hoàn tất",
+          "status": "Đã giải ngân"
+        }
+      },
+      "send": {
+        "label": "Quý vị gửi",
+        "network": "Ethereum"
+      },
+      "recipient": {
+        "label": "Tới người nhận"
+      },
+      "secured": {
+        "title": "Tiền đã được bảo vệ",
+        "description": "Hợp đồng thông minh đã khóa {amount} trên Ethereum."
+      },
+      "released": {
+        "title": "Đã giải ngân thành công",
+        "description": "Thanh toán được chuyển cho người nhận ngay lập tức.",
+        "badge": "Đã xác minh trên explorer"
+      },
+      "metrics": {
+        "gasFee": "Phí gas",
+        "platform": "Nền tảng",
+        "verified": "Giao dịch hợp đồng thông minh đã được xác minh"
+      },
+      "buttons": {
+        "start": "Bắt đầu ký quỹ an toàn",
+        "verifying": "Đang xác minh on-chain...",
+        "completed": "Giao dịch đã hoàn tất"
+      },
+      "badges": {
+        "zeroTrust": "Zero-Trust",
+        "encrypted": "Chi tiết được mã hóa"
+      }
+    }
+  }
+}

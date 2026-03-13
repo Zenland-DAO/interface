@@ -16,6 +16,10 @@ export default getRequestConfig(async ({ requestLocale }) => {
     locale = defaultLocale;
   }
 
+  // Legal pages should not be translated for Vietnamese.
+  // For `vi`, always fall back to English legal strings.
+  const legalLocale = locale === 'vi' ? defaultLocale : locale;
+
   return {
     locale,
     // Ensure deterministic date/time formatting across environments.
@@ -28,7 +32,9 @@ export default getRequestConfig(async ({ requestLocale }) => {
       // Load marketing translations
       ...(await import(`../locales/${locale}/marketing.json`)).default,
       // Load legal translations (terms, privacy, agent-tos)
-      ...(await import(`../locales/${locale}/legal.json`)).default,
+      // If a locale doesn't provide legal docs, fall back to English.
+      // Additionally, Vietnamese must always use English legal docs.
+      ...(await import(`../locales/${legalLocale}/legal.json`).catch(() => import(`../locales/${defaultLocale}/legal.json`))).default,
     },
   };
 });

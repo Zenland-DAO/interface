@@ -1,0 +1,155 @@
+{
+  "verify": {
+    "title": "Verifikasi PDF",
+    "description": "Unggah PDF perjanjian Escrow Zenland untuk memverifikasi keasliannya dan memeriksa apakah dokumen tersebut sesuai dengan catatan on-chain.",
+    "infoCard": {
+      "title": "Apa yang diperiksa oleh verifikasi?",
+      "signatureAuth": "Keaslian tanda tangan digital Zenland",
+      "contentIntegrity": "Integritas konten PDF (deteksi perubahan)",
+      "onChainMatch": "Kecocokan termsHash on-chain",
+      "roleGuidance": "Panduan berdasarkan peran untuk para pihak kontrak"
+    },
+    "signatureFailed": {
+      "title": "PDF Tidak Valid",
+      "description": "PDF ini bukan perjanjian Escrow Zenland yang valid",
+      "reason": "Alasan:",
+      "tryAnother": "Coba PDF Lain"
+    },
+    "dropZone": {
+      "verifying": "Memverifikasi...",
+      "dropHere": "Letakkan PDF Anda di sini",
+      "pleaseWait": "Mohon tunggu saat kami memverifikasi dokumen Anda",
+      "orClickToBrowse": "atau klik untuk memilih berkas. Hanya PDF Escrow Zenland yang didukung.",
+      "pdfOnly": "Hanya berkas PDF"
+    },
+    "status": {
+      "loading": {
+        "title": "Memverifikasi on-chain...",
+        "description": "Memeriksa data kontrak di blockchain"
+      },
+      "hashMatch": {
+        "title": "Terverifikasi ✓",
+        "description": "PDF ini sesuai dengan catatan kontrak on-chain",
+        "signedBy": "Ditandatangani oleh Zenland"
+      },
+      "notDeployed": {
+        "title": "Kontrak Belum Dideploy",
+        "description": "PDF ini ditandatangani oleh Zenland, namun kontraknya tidak ada di blockchain.",
+        "warningTitle": "INI BUKAN KONTRAK AKTIF",
+        "warningDescription": "Jangan mengirim dana atau barang apa pun berdasarkan PDF ini. Kontrak harus dideploy terlebih dahulu."
+      },
+      "hashMismatch": {
+        "title": "🚨 Hash Tidak Cocok - Potensi Penipuan",
+        "description": "PDF ini tidak sesuai dengan catatan kontrak on-chain. Dokumen mungkin telah dimodifikasi.",
+        "pdfHash": "Hash PDF (dokumen ini)",
+        "onChainHash": "Hash on-chain (yang diharapkan)",
+        "warningTitle": "⛔ JANGAN PERCAYA DOKUMEN INI",
+        "warningDescription": "Ini bisa merupakan penipuan atau versi kontrak yang lama/diubah. Percayai hanya dokumen yang hash-nya cocok dengan on-chain."
+      },
+      "error": {
+        "title": "Kesalahan Verifikasi"
+      }
+    },
+    "escrowDetails": {
+      "title": "Detail Escrow",
+      "escrowAddress": "Alamat Escrow",
+      "network": "Jaringan",
+      "buyer": "Pembeli",
+      "seller": "Penjual",
+      "agent": "Agent",
+      "noAgent": "Tanpa Agent (Locked)",
+      "lockStatus": "Status Kunci",
+      "locked": "Terkunci",
+      "unlocked": "Tidak Terkunci",
+      "amount": "Jumlah",
+      "buyerProtection": "Perlindungan Pembeli",
+      "viewEscrow": "Lihat Detail Escrow",
+      "verifyAnother": "Verifikasi Lainnya"
+    },
+    "walletInstructions": {
+      "roles": {
+        "buyer": "Pembeli",
+        "seller": "Penjual",
+        "agent": "Agent",
+        "viewer": "Peninjau"
+      },
+      "notConnected": "Belum Terhubung"
+    },
+    "instructions": {
+      "contractCompleted": {
+        "title": "Kontrak Selesai",
+        "description": "Kontrak ini telah diselesaikan dan difinalisasi."
+      },
+      "contractNotFound": {
+        "title": "Kontrak Tidak Ditemukan",
+        "description": "Kontrak ini belum dideploy on-chain. Tidak ada aksi yang tersedia."
+      },
+      "contractActive": {
+        "title": "Kontrak Aktif",
+        "description": "Kontrak ini sedang berlangsung."
+      },
+      "connectWallet": {
+        "title": "Hubungkan Wallet",
+        "description": "Hubungkan Wallet Anda untuk menerima instruksi yang dipersonalisasi berdasarkan peran Anda dalam kontrak ini."
+      },
+      "notParticipant": {
+        "title": "Bukan Peserta",
+        "description": "Wallet yang Anda hubungkan bukan peserta dalam kontrak ini. Anda melihat sebagai pihak ketiga."
+      },
+      "buyer": {
+        "pending": {
+          "title": "Menunggu Penjual",
+          "description": "Penjual perlu meninjau dan menerima kontrak ini. Hubungi mereka untuk mengonfirmasi partisipasi."
+        },
+        "active": {
+          "title": "Kontrak Aktif",
+          "description": "Kontrak aktif. Tunggu Penjual melakukan pengiriman, lalu lepaskan dana ketika Anda sudah puas."
+        },
+        "fulfilled": {
+          "title": "Pengiriman Dikonfirmasi",
+          "description": "Penjual telah mengonfirmasi pemenuhan. Tinjau hasilnya dan lepaskan dana jika Anda sudah puas."
+        },
+        "disputed": {
+          "title": "Sengketa Dibuka",
+          "description": "Anda telah membuka sengketa. Anda dapat mengundang Agent untuk menyelesaikannya atau mengusulkan penyelesaian."
+        },
+        "agentInvited": {
+          "title": "Agent Menangani",
+          "description": "Agent telah diundang untuk menyelesaikan sengketa ini. Silakan menunggu keputusan mereka."
+        }
+      },
+      "seller": {
+        "pending": {
+          "title": "Aksi Diperlukan",
+          "description": "Kontrak ini menunggu konfirmasi Anda. Tinjau syarat dengan saksama dan terima untuk mengaktifkan Escrow."
+        },
+        "active": {
+          "title": "Aman untuk Mengirim",
+          "description": "Kontrak aktif dan dana terkunci. Aman untuk mengirim produk atau layanan. Dana tidak dapat ditarik kecuali melalui aturan kontrak."
+        },
+        "fulfilled": {
+          "title": "Menunggu Pelepasan",
+          "description": "Anda telah mengonfirmasi pemenuhan. Menunggu Pembeli melepaskan dana. Jika mereka tidak melepaskan dalam periode perlindungan, Anda dapat mengklaim dana."
+        },
+        "disputed": {
+          "title": "Sengketa Dibuka",
+          "description": "Sengketa telah dibuka. Anda dapat mengundang Agent untuk menyelesaikannya, mengusulkan penyelesaian, atau mengeluarkan refund."
+        },
+        "agentInvited": {
+          "title": "Agent Menangani",
+          "description": "Agent telah diundang untuk menyelesaikan sengketa ini. Silakan menunggu keputusan mereka."
+        }
+      },
+      "agent": {
+        "invited": {
+          "title": "Aksi Diperlukan",
+          "description": "Anda adalah Agent. Kontrak ini menunggu investigasi dan penyelesaian Anda. Tinjau bukti dan buat keputusan yang adil."
+        },
+        "assigned": {
+          "title": "Agent Ditugaskan",
+          "description": "Anda adalah Agent yang ditugaskan untuk kontrak ini. Para pihak belum mengundang Anda untuk menyelesaikan sengketa."
+        }
+      }
+    }
+  }
+}

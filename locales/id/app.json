@@ -1,0 +1,32 @@
+{
+  "app": {
+    "nav": {
+      "dashboard": "Dashboard",
+      "escrows": "Escrows",
+      "agents": "Agents",
+      "verifyPdf": "Verifikasi PDF"
+    },
+    "header": {
+      "settings": "Pengaturan",
+      "disconnect": "Putuskan Koneksi",
+      "connectWallet": "Hubungkan Wallet",
+      "connect": "Hubungkan"
+    },
+    "sidebar": {
+      "banner": {
+        "badge": "Zenland Agent",
+        "title": "Dapatkan penghasilan dengan menyelesaikan sengketa.",
+        "description": "Bergabung dengan program Agent terdesentralisasi dan mulai memperoleh biaya.",
+        "cta": "Pelajari Lebih Lanjut"
+      }
+    },
+    "userProfile": {
+      "addressCopied": "Alamat Disalin",
+      "addressCopiedDescription": "Alamat Wallet disalin ke clipboard"
+    },
+    "announcement": {
+      "betaMessage": "Zenland V2 masih dalam Beta — bantu kami menjadi lebih baik! Menemukan bug atau memiliki masukan?",
+      "telegramLink": "Telegram"
+    }
+  }
+}

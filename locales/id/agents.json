@@ -1,0 +1,368 @@
+{
+  "agents": {
+    "list": {
+      "title": "Agents",
+      "selectTitle": "Pilih Agent",
+      "description": "Telusuri Agent penyelesaian sengketa yang terverifikasi",
+      "selectDescription": "Pilih Agent untuk Escrow Anda",
+      "searchLabel": "Cari Agents",
+      "searchPlaceholder": "Cari berdasarkan nama, alamat, atau deskripsi...",
+      "sortBy": "Urutkan",
+      "sortOptions": {
+        "reputation": "Reputasi",
+        "stake": "Jumlah Stake",
+        "fees": "Biaya Terendah",
+        "cases": "Paling Aktif"
+      },
+      "selectModeBanner": {
+        "title": "Memilih Agent untuk pembuatan Escrow",
+        "description": "Klik \"Pilih\" pada kartu Agent atau lihat profilnya untuk detail lebih lanjut"
+      },
+      "card": {
+        "you": "ANDA",
+        "active": "Aktif",
+        "inactive": "Tidak Aktif",
+        "busy": "Sibuk",
+        "stablecoin": "Stablecoin",
+        "daoToken": "DAO Token",
+        "maxCoverage": "Cakupan Maks",
+        "disputeFee": "Biaya Sengketa",
+        "assignFee": "Biaya Penugasan",
+        "noDescription": "Tidak ada ringkasan profesional yang disediakan oleh Agent ini.",
+        "selectAgent": "Pilih Agent",
+        "viewDetails": "Lihat Detail",
+        "joined": "Bergabung {date}",
+        "view": "Lihat"
+      },
+      "error": {
+        "title": "Kesalahan Registry",
+        "description": "Tidak dapat mengambil data Agent dari registry. Silakan periksa koneksi Anda.",
+        "retry": "Coba Lagi"
+      },
+      "empty": {
+        "title": "Tidak Ada Agent",
+        "searchEmpty": "Coba sesuaikan kata kunci pencarian atau filter.",
+        "noAgents": "Belum ada Agent aktif di registry."
+      }
+    },
+    "headerActions": {
+      "dashboard": "Agent Dashboard",
+      "becomeAgent": "Menjadi Agent"
+    },
+    "register": {
+      "backToAgents": "Kembali ke Agents",
+      "title": "Menjadi Agent",
+      "description": "Daftar sebagai Agent penyelesaian sengketa dan bantu komunitas",
+      "connectWallet": {
+        "title": "Hubungkan Wallet Anda",
+        "description": "Bergabunglah dalam jaringan penyelesai sengketa profesional dan dapatkan biaya atas keahlian Anda."
+      },
+      "formTitle": "Registrasi Agent",
+      "formDescription": "Konfigurasikan profil profesional dan deposit keamanan Anda",
+      "requirements": {
+        "title": "Persyaratan Agent",
+        "stablecoinStake": "Stake stablecoin menentukan Maximum Arbitratable Value (MAV = 20× stake)",
+        "daoTokenStake": "Stake DAO token diperlukan untuk penyelarasan protokol (dapat di-slash untuk pelanggaran)",
+        "responseDeadline": "Respons terhadap sengketa yang ditugaskan dalam tenggat waktu (7 hari secara default)",
+        "fairResolution": "Diharapkan penyelesaian sengketa yang adil dan tidak memihak"
+      },
+      "sections": {
+        "collateral": "Konfigurasi Kolateral",
+        "serviceFees": "Biaya Layanan",
+        "publicProfile": "Profil Publik",
+        "securityApprovals": "Persetujuan Keamanan"
+      },
+      "stablecoinStake": "Stake Stablecoin",
+      "available": "Tersedia:",
+      "minStake": "Min. Stake: ${amount}",
+      "minStakeToken": "Min. Stake: {amount} {symbol}",
+      "zenGovernanceStake": "Stake Governance ZEN",
+      "assignmentFee": "Biaya Penugasan",
+      "disputeFee": "Biaya Sengketa",
+      "assignmentFeeHelper": "Dikenakan otomatis saat penugasan kasus. <earn>Dapatkan ${amount} pada Escrow $10k.</earn>",
+      "disputeFeeHelper": "Diperoleh hanya setelah penyelesaian kasus berhasil. <earn>Dapatkan ${amount} pada Escrow $10k.</earn>",
+      "feeRange": "Rentang biaya: {min}% - {max}%",
+      "professionalBio": "Bio Profesional",
+      "bioPlaceholder": "Ahli dalam DeFi, NFT Royalties, dan cross-chain bridges...",
+      "bytesTip": "Catatan: beberapa karakter (seperti \"→\", emoji, dll.) memakan lebih dari 1 byte dan dapat melampaui batas on-chain.",
+      "securityApprovalsTitle": "Persetujuan Keamanan",
+      "securityApprovalsDesc": "Berikan izin untuk mengunci token kolateral di registry",
+      "termsAcknowledgement": "Saya mengakui bahwa Stake saya berfungsi sebagai bond dan dapat di-slash untuk pelanggaran protokol sebagaimana didefinisikan dalam <link>Agent Terms & Conditions</link>.",
+      "cancel": "Batal",
+      "agreeToTerms": "Setujui Ketentuan",
+      "registerAsAgent": "Daftar sebagai Agent",
+      "approvingToken": "Menyetujui {symbol}...",
+      "registering": "Mendaftarkan...",
+      "registered": "Terdaftar!",
+      "enterAmountToApprove": "Masukkan jumlah untuk mengaktifkan persetujuan",
+      "copyDetails": "Salin detail",
+      "copied": "Tersalin",
+      "success": {
+        "title": "Registrasi Berhasil!",
+        "description": "Anda sekarang terdaftar sebagai Agent. Anda dapat mulai menerima sengketa.",
+        "transaction": "Transaksi:",
+        "goToDashboard": "Buka Dashboard"
+      },
+      "alreadyRegistered": {
+        "title": "Sudah Terdaftar",
+        "description": "Wallet Anda sudah terdaftar sebagai Agent.",
+        "goToDashboard": "Buka Dashboard"
+      },
+      "faq": {
+        "title": "Pertanyaan yang Sering Diajukan",
+        "mavQuestion": "Apa itu MAV (Maximum Arbitratable Value)?",
+        "mavAnswer": "MAV menentukan nilai maksimum Escrow yang dapat Anda tangani untuk penyelesaian. MAV dihitung sebagai 20× Stake stablecoin Anda. Contoh: Stake $100 memberi Anda MAV $2,000.",
+        "feesQuestion": "Untuk apa dua jenis biaya tersebut?",
+        "feesAnswer": "<bold>Biaya Penugasan:</bold> Dikenakan saat Anda ditugaskan pada sebuah Escrow (bahkan tanpa sengketa). <bold>Biaya Sengketa:</bold> Dikenakan hanya saat Anda menyelesaikan sengketa. Keduanya merupakan persentase dari jumlah Escrow.",
+        "slashQuestion": "Kapan Stake saya dapat di-slash?",
+        "slashAnswer": "Stake DAO token Anda dapat di-slash melalui governance DAO jika Anda gagal merespons sengketa dalam tenggat waktu atau jika pelanggaran ditetapkan melalui proposal governance.",
+        "withdrawQuestion": "Apakah saya dapat menarik Stake saya?",
+        "withdrawAnswer": "Ya, Anda dapat melakukan unstake ketika tidak memiliki kasus aktif. Pertama, set ketersediaan menjadi tidak tersedia, lalu tunggu 30 hari (engagement cooldown). Setelah itu, Anda dapat mengeksekusi unstake untuk menarik kedua Stake.",
+        "gaslessQuestion": "Apa itu persetujuan \"Gasless\"?",
+        "gaslessAnswer": "Token yang mendukung EIP-2612 permit memungkinkan Anda menandatangani pesan persetujuan alih-alih mengirim transaksi terpisah. Ini menghemat biaya gas. USDC dan DAO token mendukung fitur ini; USDT tidak."
+      }
+    },
+    "dashboard": {
+      "connectWallet": {
+        "title": "Hubungkan Wallet Anda",
+        "description": "Silakan hubungkan Wallet Anda untuk melihat Agent dashboard dan mengelola kasus."
+      },
+      "notRegistered": {
+        "title": "Belum Terdaftar sebagai Agent",
+        "description": "Anda saat ini belum terdaftar sebagai Agent di jaringan ini. Daftar sekarang untuk mulai menyelesaikan sengketa dan memperoleh biaya.",
+        "becomeAgent": "Menjadi Agent"
+      },
+      "backToAgents": "Kembali ke Agents",
+      "title": "Agent Dashboard",
+      "description": "Pantau kinerja Anda dan kelola kasus sengketa yang ditugaskan",
+      "joined": "Bergabung {date}",
+      "online": "Online",
+      "offline": "Offline",
+      "setUnavailable": "Set Tidak Tersedia",
+      "setAvailable": "Set Tersedia",
+      "editProfile": "Edit Profil",
+      "defaultDescription": "Penyelesai sengketa profesional yang menjaga integritas ekosistem Zenland.",
+      "stats": {
+        "activeCases": "Kasus Aktif",
+        "totalResolved": "Total Diselesaikan",
+        "totalEarnings": "Total Pendapatan",
+        "totalSlashed": "Total Di-Slash"
+      },
+      "cases": {
+        "title": "Kasus Sengketa Terbaru",
+        "assigned": "{count} ditugaskan",
+        "viewAll": "Lihat Semua →",
+        "empty": "Belum ada kasus yang ditugaskan. Anda akan diberi tahu saat sengketa memerlukan tinjauan Anda.",
+        "dispute": "Sengketa #{id}",
+        "resolved": "Selesai",
+        "active": "Aktif",
+        "escrowInfo": "Escrow #{id} • {amount} USDC",
+        "loading": "Memuat...",
+        "view": "Lihat",
+        "review": "Tinjau"
+      },
+      "feeConfig": {
+        "title": "Konfigurasi Biaya",
+        "assignmentFee": "Biaya Penugasan",
+        "disputeResolution": "Penyelesaian Sengketa",
+        "updateFees": "Perbarui Biaya"
+      },
+      "stakeCapacity": {
+        "title": "Stake & Kapasitas",
+        "stablecoinStake": "Stake Stablecoin (MAV)",
+        "daoTokenStake": "Stake DAO Token",
+        "mavCoverage": "Memberikan cakupan MAV sebesar <bold>${amount}</bold>.",
+        "governanceNote": "Diperlukan untuk governance dan keamanan protokol.",
+        "increaseStake": "Tingkatkan Stake",
+        "withdrawStake": "Tarik Stake"
+      }
+    },
+    "edit": {
+      "connectWallet": {
+        "title": "Hubungkan Wallet Anda",
+        "description": "Silakan hubungkan Wallet Anda untuk mengelola profil Agent."
+      },
+      "notAgent": {
+        "title": "Bukan Agent",
+        "description": "Anda belum terdaftar sebagai Agent. Anda harus mendaftar sebelum dapat mengedit profil.",
+        "becomeAgent": "Menjadi Agent"
+      },
+      "backToDashboard": "Kembali ke Dashboard",
+      "editProfile": "Edit Profil",
+      "configureFees": "Konfigurasi Biaya",
+      "editProfileDesc": "Perbarui ringkasan profesional dan info kontak Anda on-chain",
+      "configureFeesDesc": "Atur biaya penugasan dan biaya penyelesaian sengketa",
+      "profile": {
+        "title": "Detail Profil",
+        "description": "Perbarui deskripsi publik dan info kontak",
+        "professionalSummary": "Ringkasan Profesional",
+        "summaryPlaceholder": "Jelaskan alasan pengguna harus memilih Anda sebagai Agent...",
+        "visibilityNote": "Terlihat oleh semua orang di daftar Agent.",
+        "saveChanges": "Simpan Perubahan",
+        "cancel": "Batal",
+        "updatingOnChain": "Memperbarui on-chain...",
+        "updateSuccessful": "Berhasil diperbarui! Mengalihkan...",
+        "profileUpdated": "Profil berhasil diperbarui!",
+        "noChanges": "Tidak ada perubahan profil",
+        "descriptionExceedsBytes": "Deskripsi melebihi {max} byte ({current}/{max})"
+      },
+      "fees": {
+        "assignmentFee": "Biaya Penugasan",
+        "assignmentFeeDesc": "Dikenakan saat ditugaskan ke kasus",
+        "disputeFee": "Biaya Sengketa",
+        "disputeFeeDesc": "Dikenakan setelah penyelesaian berhasil",
+        "feePercentage": "Persentase Biaya (%)",
+        "updateAssignmentFee": "Perbarui Biaya Penugasan",
+        "updateDisputeFee": "Perbarui Biaya Sengketa",
+        "waitingForSignature": "Menunggu tanda tangan...",
+        "confirmingOnChain": "Mengonfirmasi on-chain...",
+        "updatedSuccessfully": "Berhasil diperbarui!",
+        "protocolLimits": "Diperlukan transaksi terpisah untuk setiap pembaruan. Batas protokol: 0.1% hingga 10.0%.",
+        "backToDashboard": "Kembali ke Dashboard",
+        "noAssignmentChanges": "Tidak ada perubahan pada biaya penugasan",
+        "noDisputeChanges": "Tidak ada perubahan pada biaya sengketa"
+      }
+    },
+    "profile": {
+      "backToAgents": "Kembali ke Agents",
+      "backToSelection": "Kembali ke Pemilihan Agent",
+      "error": {
+        "title": "Agent Tidak Ditemukan",
+        "description": "Agent yang diminta tidak dapat ditemukan.",
+        "tryAgain": "Coba Lagi"
+      },
+      "selectModeBanner": {
+        "title": "Memilih Agent untuk pembuatan Escrow",
+        "description": "Tinjau profil Agent ini dan klik \"Pilih Agent\" untuk menetapkannya pada Escrow Anda"
+      },
+      "header": {
+        "you": "ANDA",
+        "active": "Aktif",
+        "inactive": "Tidak Aktif",
+        "unavailable": "Tidak Tersedia",
+        "addressCopied": "Alamat disalin ke clipboard",
+        "joined": "Bergabung {date}",
+        "goToDashboard": "Buka Dashboard",
+        "selectAgent": "Pilih Agent",
+        "viewOnExplorer": "Lihat di Explorer"
+      },
+      "stats": {
+        "casesResolved": "Kasus Diselesaikan",
+        "totalEscrows": "Total Escrows",
+        "disputeFee": "Biaya Sengketa",
+        "assignFee": "Biaya Penugasan"
+      },
+      "contact": {
+        "title": "Ringkasan Profesional & Kontak",
+        "bioLabel": "Bio / Deskripsi",
+        "noDescription": "Tidak ada ringkasan profesional yang disediakan oleh Agent ini.",
+        "contactChannels": "Saluran Kontak"
+      },
+      "collateral": {
+        "title": "Kolateral Agent",
+        "maxCoverage": "Cakupan Maks",
+        "maxCoverageNote": "Berdasarkan Stake stablecoin × {multiplier}",
+        "stablecoinStake": "Stake Stablecoin",
+        "daoTokenStake": "Stake DAO Token",
+        "totalEarnings": "Total Pendapatan",
+        "totalSlashed": "Total Di-Slash"
+      }
+    },
+    "fees": {
+      "title": "Konfigurasi Biaya",
+      "description": "Atur biaya penugasan dan biaya penyelesaian sengketa",
+      "tabs": {
+        "assignment": "Biaya Penugasan",
+        "dispute": "Biaya Sengketa"
+      },
+      "assignmentFee": "Biaya Penugasan",
+      "disputeResolutionFee": "Biaya Penyelesaian Sengketa",
+      "updateAssignmentFee": "Perbarui Biaya Penugasan",
+      "updateDisputeFee": "Perbarui Biaya Sengketa",
+      "status": {
+        "waitingForSignature": "Menunggu tanda tangan...",
+        "confirmingOnChain": "Mengonfirmasi on-chain...",
+        "indexingUpdate": "Memperbarui indexer...",
+        "feeUpdated": "Biaya berhasil diperbarui!"
+      },
+      "protocolLimits": "Diperlukan transaksi terpisah untuk setiap pembaruan. Batas protokol: 0.1% hingga 10.0%."
+    },
+    "stake": {
+      "increase": {
+        "title": "Tingkatkan Stake",
+        "description": "Tambahkan kolateral untuk meningkatkan Maximum Arbitratable Value (MAV)",
+        "amountOf": "Jumlah {symbol}",
+        "balance": "Saldo:",
+        "insufficientBalance": "Saldo tidak mencukupi",
+        "mavNote": "Meningkatkan Stake akan meningkatkan Maximum Arbitratable Value (MAV).",
+        "signPermit": "Tandatangani Permit untuk {symbol}",
+        "approveToken": "Setujui {symbol}",
+        "stakeToken": "Stake {symbol}",
+        "permitSigned": "Permit ditandatangani — klik lagi untuk Stake",
+        "stakeUpdated": "Stake berhasil diperbarui!"
+      },
+      "withdraw": {
+        "title": "Tarik Stake",
+        "description": "Kelola masa pensiun Anda dan tarik kolateral yang tersedia",
+        "statusActive": "Status: Aktif",
+        "statusRetiring": "Status: Pensiun",
+        "activeDescription": "Anda saat ini menerima sengketa baru. Untuk menarik Stake, Anda harus menonaktifkan ketersediaan terlebih dahulu.",
+        "retiringDescription": "Ketersediaan dinonaktifkan. Anda tidak akan ditugaskan ke kasus baru.",
+        "prerequisiteCases": "Semua kasus aktif selesai ({count} tertunda)",
+        "prerequisiteAvailability": "Ketersediaan diset ke Nonaktif",
+        "prerequisiteCooldown": "Security cooldown telah lewat",
+        "cooldownEnds": "Berakhir: {date}",
+        "withdrawAll": "Tarik Semua Stake",
+        "cooldownExplanation": "Security cooldown memastikan tidak ada tindakan berbahaya sebelum keluar dari protokol. Setelah semua kondisi terpenuhi, tombol di atas akan tersedia."
+      },
+      "tabs": {
+        "increase": "Tingkatkan Stake",
+        "withdraw": "Tarik Stake"
+      }
+    },
+    "availability": {
+      "setAvailable": {
+        "title": "Set Tersedia",
+        "confirmText": "Set Tersedia",
+        "message": "Anda akan mulai menerima undangan sengketa baru lagi."
+      },
+      "setUnavailable": {
+        "title": "Set Tidak Tersedia",
+        "confirmText": "Set Tidak Tersedia",
+        "message": "Saat tidak tersedia:\n• Anda tidak akan menerima undangan sengketa baru.\n• Escrow yang memilih Anda sebagai Agent tidak dapat mengundang Anda saat sengketa.\n• Para pihak mungkin harus bernegosiasi penyelesaian (SPLIT) tanpa keputusan Anda.\n{casesLine}\nIni dapat mengurangi kepercayaan dari pihak yang memilih Anda untuk arbitrase.",
+        "activeCasesLine": " Anda saat ini memiliki {count} kasus aktif."
+      }
+    },
+    "shared": {
+      "contact": {
+        "telegram": "Telegram",
+        "discord": "Discord",
+        "email": "Email",
+        "contact": "Kontak",
+        "copiedToClipboard": "{label} disalin ke clipboard",
+        "failedToCopy": "Gagal menyalin",
+        "noContactInfo": "Tidak ada info kontak",
+        "primary": "Utama",
+        "secondary": "Sekunder"
+      },
+      "contactFields": {
+        "telegram": "Telegram",
+        "discord": "Discord",
+        "email": "Email",
+        "custom": "Kustom",
+        "none": "Tidak ada",
+        "primaryContact": "Kontak Utama",
+        "secondaryContact": "Kontak Sekunder",
+        "usernamePlaceholder": "@username",
+        "emailPlaceholder": "name@example.com",
+        "valuePlaceholder": "value",
+        "namePlaceholder": "name",
+        "primaryRequired": "Kontak utama wajib diisi",
+        "optional": "Opsional",
+        "formatHint": "Format {kind} akan disimpan on-chain sebagai name:value",
+        "storedOnChain": "Disimpan on-chain sebagai: <name>:<value>[;<name>:<value>]",
+        "totalExceedsMax": "Total info kontak melebihi {max} karakter"
+      }
+    }
+  }
+}

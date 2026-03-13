@@ -1,0 +1,46 @@
+{
+  "dashboard": {
+    "title": "Dashboard",
+    "description": "Selamat datang kembali! Berikut ringkasan aktivitas Escrow.",
+    "createEscrow": "Buat Escrow",
+    "quickActions": {
+      "becomeAgent": {
+        "title": "Menjadi Agent",
+        "description": "Bantu menyelesaikan sengketa dan dapatkan biaya dengan menjadi Agent terdaftar.",
+        "cta": "Pelajari Lebih Lanjut"
+      },
+      "needHelp": {
+        "title": "Butuh Bantuan?",
+        "description": "Lihat dokumentasi kami untuk mempelajari cara kerja Escrow Zenland.",
+        "cta": "Lihat Dokumentasi"
+      }
+    },
+    "stats": {
+      "protocolStats": "Statistik Protokol",
+      "myStats": "Statistik Saya",
+      "protocol": "Protokol",
+      "yourActivity": "Aktivitas Anda",
+      "protocolOverview": "Ringkasan Protokol",
+      "active": "Escrow Aktif",
+      "tvlPersonal": "Nilai Terkunci Anda",
+      "tvlGlobal": "Total Nilai Terkunci",
+      "completed": "Selesai",
+      "disputed": "Dalam Sengketa",
+      "error": "Gagal memuat statistik. Silakan coba lagi nanti."
+    },
+    "recentEscrows": {
+      "titlePersonal": "Escrow Terbaru",
+      "titleGlobal": "Escrow Terbaru",
+      "viewAll": "Lihat semua",
+      "emptyPersonal": {
+        "title": "Belum ada Escrow terbaru",
+        "description": "Buat kontrak Escrow pertama Anda untuk memulai.",
+        "cta": "Buat Escrow"
+      },
+      "emptyGlobal": {
+        "title": "Belum ada Escrow",
+        "description": "Jadilah yang pertama membuat Escrow di Zenland!"
+      }
+    }
+  }
+}

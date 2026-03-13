@@ -14,13 +14,13 @@ const SITE_NAME = "Zenland";
 const TWITTER_HANDLE = "@zenland_app";
 
 const inter = Inter({
-  subsets: ["latin"],
+  subsets: ["latin", "cyrillic", "cyrillic-ext", "vietnamese"],
   display: "optional",
   variable: "--font-inter",
 });
 
 const figtree = Figtree({
-  subsets: ["latin"],
+  subsets: ["latin", "latin-ext"],
   display: "optional",
   variable: "--font-figtree",
   weight: ["400", "500", "600", "700"],
@@ -112,10 +112,14 @@ export const metadata: Metadata = {
   alternates: {
     canonical: SITE_URL,
     languages: {
-      "en": `${SITE_URL}/en`,
+      "en": SITE_URL,
       "es": `${SITE_URL}/es`,
       "zh": `${SITE_URL}/zh`,
-      "x-default": `${SITE_URL}/en`,
+      "pt": `${SITE_URL}/pt`,
+      "ru": `${SITE_URL}/ru`,
+      "id": `${SITE_URL}/id`,
+      "vi": `${SITE_URL}/vi`,
+      "x-default": SITE_URL,
     },
   },
   category: "Finance",
@@ -186,7 +190,7 @@ export default async function RootLayout({
                   name: SITE_NAME,
                   description: "Secure, trustless escrow for blockchain transactions",
                   publisher: { "@id": `${SITE_URL}/#organization` },
-                  inLanguage: ["en", "es", "zh"],
+                  inLanguage: ["en", "es", "zh", "pt", "ru", "id", "vi"],
                 },
                 {
                   "@type": "SoftwareApplication",

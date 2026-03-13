@@ -1,0 +1,328 @@
+{
+  "marketing": {
+    "meta": {
+      "title": "Zenland - Platform Escrow Web3",
+      "description": "Escrow aman dan trustless untuk transaksi blockchain. Tanpa perantara, hanya smart contract."
+    },
+    "hero": {
+      "badge": "Native Web3",
+      "title": {
+        "line1": "Web3",
+        "highlight": "Escrow",
+        "line2": "Platform."
+      },
+      "description": "Amankan transaksi Anda dengan Escrow on-chain. Tanpa perantara, tanpa perlu kepercayaan. Hanya smart contract yang melindungi kedua pihak.",
+      "stats": {
+        "fee": {
+          "value": "1%",
+          "label": "Biaya (min $0.50, maks $50)"
+        },
+        "onchain": {
+          "value": "100%",
+          "label": "On-Chain"
+        },
+        "available": {
+          "value": "24/7",
+          "label": "Tersedia"
+        }
+      }
+    },
+    "protocolStats": {
+      "badge": "Data On-Chain Langsung",
+      "title": "Statistik Protokol",
+      "subtitle": "Data real-time dari blockchain Ethereum. Setiap transaksi dapat diverifikasi.",
+      "header": {
+        "title": "Protokol Zenland",
+        "subtitle": "Sistem Escrow Terdesentralisasi"
+      },
+      "stats": {
+        "tvl": {
+          "label": "Total Nilai Terkunci",
+          "subValue": "Diamankan dalam smart contract"
+        },
+        "volume": {
+          "label": "Total Volume",
+          "subValue": "Volume transaksi sepanjang waktu"
+        },
+        "security": {
+          "label": "Status Keamanan",
+          "subValue": "100% transparan & dapat diverifikasi",
+          "value": "On-Chain"
+        }
+      },
+      "metrics": {
+        "title": "Metrik Protokol",
+        "escrowsCreated": "Escrow Dibuat",
+        "activeNow": "Aktif Saat Ini",
+        "registeredAgents": "Agent Terdaftar",
+        "availableAgents": "Agent Tersedia"
+      },
+      "activity": {
+        "title": "Aktivitas Terbaru",
+        "live": "Langsung",
+        "escrowed": "di-escrow",
+        "noActivity": "Tidak ada aktivitas terbaru",
+        "timeAgo": {
+          "justNow": "baru saja",
+          "minutes": "{count} menit lalu",
+          "hours": "{count} jam lalu",
+          "days": "{count} hari lalu"
+        }
+      },
+      "trustBadges": {
+        "onChain": "Terverifikasi On-Chain",
+        "openSource": "Open Source",
+        "nonCustodial": "Non-Custodial",
+        "gasOptimized": "Dioptimalkan untuk Gas"
+      },
+      "footer": {
+        "updateInterval": "Data diperbarui setiap 30 detik",
+        "poweredBy": "Didukung oleh Zenland Indexer"
+      }
+    },
+    "features": {
+      "title": "Mengapa Zenland?",
+      "subtitle": "Dibangun untuk masa depan yang terdesentralisasi. Setiap fitur dirancang dengan keamanan dan transparansi sebagai prioritas.",
+      "items": {
+        "onchain": {
+          "title": "Sepenuhnya On-Chain",
+          "description": "Seluruh logika Escrow berjalan di blockchain. Transparan, immutable, dan dapat diverifikasi oleh siapa pun."
+        },
+        "disputes": {
+          "title": "Penyelesaian Sengketa",
+          "description": "Agent profesional tersedia untuk menyelesaikan sengketa secara adil dan efisien saat diperlukan."
+        },
+        "instant": {
+          "title": "Penyelesaian Instan",
+          "description": "Lepaskan dana secara instan ketika kondisi telah terpenuhi. Tanpa menunggu bank atau perantara."
+        }
+      }
+    },
+    "bento": {
+      "title": "Dirancang untuk",
+      "titleHighlight": "ekonomi modern.",
+      "subtitle": "Zenland menghilangkan kompleksitas escrow tradisional. Tanpa gatekeeper, tanpa biaya tersembunyi, hanya kode murni.",
+      "fees": {
+        "badge": "Harga",
+        "value": "1%",
+        "title": "Biaya Sangat Rendah.",
+        "description": "Tanpa biaya tersembunyi. Tanpa langganan bulanan.",
+        "highlight": "$50 maks",
+        "descriptionSuffix": "Hanya biaya 1% — dibatasi hingga",
+        "footnote": "* Biaya terendah di pasar escrow"
+      },
+      "noCoding": {
+        "title": "Tanpa Coding.",
+        "description": "Pembuat kontrak visual. Seret, lepas, dan deploy perjanjian Escrow yang aman dalam hitungan menit."
+      },
+      "instant": {
+        "title": "Penyelesaian Instan",
+        "description": "Dana dilepaskan secara instan di on-chain.",
+        "highlight": "Tanpa menunggu."
+      }
+    },
+    "wallets": {
+      "title": "Hubungkan Wallet Anda",
+      "subtitle": "Zenland mendukung semua Wallet Web3 populer. Untuk pengalaman terbaik, gunakan NYKNYC — smart wallet yang direkomendasikan dengan transaksi tanpa biaya gas.",
+      "nyknyc": {
+        "badge": "Direkomendasikan",
+        "title": "NYKNYC Wallet",
+        "description": "Smart wallet yang dibuat untuk Zenland. Ditopang oleh ERC-4337 account abstraction, NYKNYC memungkinkan Anda berinteraksi dengan Zenland tanpa memikirkan biaya gas.",
+        "benefits": {
+          "gasless": "Tanpa biaya gas — Zenland mensponsori semua transaksi",
+          "agentFree": "Registrasi Agent gratis & semua aksi Agent",
+          "escrowFree": "Pembuatan Escrow gratis",
+          "smartAccount": "Teknologi ERC-4337 Smart Account"
+        },
+        "cta": "Dapatkan NYKNYC"
+      },
+      "otherWallets": "Juga mendukung semua Wallet populer"
+    },
+    "networks": {
+      "title": "Ekosistem",
+      "subtitle": "Zenland dideploy di Ethereum — jaringan blockchain yang paling aman dan terdesentralisasi.",
+      "ethereum": "Ethereum",
+      "mainnet": "Mainnet",
+      "tagline": "Keamanan teruji sejak 2015"
+    },
+    "howItWorks": {
+      "title": "Cara Kerja",
+      "subtitle": "Tiga langkah sederhana untuk mengamankan transaksi Anda. Tanpa perlu coding.",
+      "steps": {
+        "create": {
+          "step": "01",
+          "title": "Buat Escrow",
+          "description": "Tentukan syarat, atur kondisi, dan deposit dana ke smart contract."
+        },
+        "work": {
+          "step": "02",
+          "title": "Bekerja Sama",
+          "description": "Selesaikan pekerjaan atau kirim produk. Semua pihak dapat melacak progres."
+        },
+        "release": {
+          "step": "03",
+          "title": "Lepaskan Dana",
+          "description": "Setelah kondisi terpenuhi, lepaskan dana secara instan ke pihak lain."
+        }
+      }
+    },
+    "community": {
+      "title": "Bergabung dengan Komunitas Kami",
+      "subtitle": "Terhubung dengan pengguna lain, dapatkan dukungan, ikut serta dalam governance, dan bantu membentuk masa depan Zenland.",
+      "telegram": {
+        "title": "Telegram",
+        "description": "Bergabunglah dengan grup Telegram kami untuk diskusi real-time, pengumuman, dan dukungan cepat dari komunitas.",
+        "cta": "Bergabung"
+      },
+      "twitter": {
+        "title": "X (Twitter)",
+        "description": "Ikuti kami di X untuk pembaruan, pengumuman, dan wawasan terbaru dari tim Zenland.",
+        "cta": "Ikuti Kami"
+      },
+      "daoForum": {
+        "badge": "Pusat Governance",
+        "title": "Zenland Forum",
+        "description": "Forum resmi Zenland — gerbang Anda menuju governance DAO, penyelesaian sengketa, dan dukungan komunitas.",
+        "features": {
+          "escalate": {
+            "title": "Laporkan Pelanggaran Agent",
+            "description": "Laporkan Agent yang berperilaku buruk kepada DAO. Komunitas dapat melakukan voting untuk slash Stake mereka sebagai hukuman."
+          },
+          "proposals": {
+            "title": "Diskusikan Proposal",
+            "description": "Ikut serta dalam diskusi governance terkait peningkatan protokol dan perubahan di masa mendatang."
+          },
+          "developer": {
+            "title": "Dukungan Developer",
+            "description": "Dapatkan bantuan teknis untuk integrasi dengan smart contract dan API Zenland."
+          },
+          "onboarding": {
+            "title": "Onboarding Agent",
+            "description": "Agent baru dapat mempelajari praktik terbaik dan mendapatkan bantuan untuk memulai bisnis escrow mereka."
+          }
+        },
+        "cta": "Kunjungi DAOForum"
+      }
+    },
+    "openBook": {
+      "title": "Governance & Manajemen DAO",
+      "subtitle": "Zenland dikelola oleh DAO. Gunakan OpenBook untuk berpartisipasi dalam governance dan CreateDAO untuk meluncurkan DAO Anda sendiri.",
+      "openBook": {
+        "title": "📖 OpenBook",
+        "subtitle": "Platform Manajemen DAO",
+        "description": "Dashboard lengkap untuk governance DAO. Buat proposal, lakukan voting atas keputusan penting, dan pantau kesehatan keuangan DAO Anda — semuanya dalam satu tempat.",
+        "features": {
+          "vote": {
+            "title": "Buat & Voting Proposal",
+            "description": "Ajukan proposal governance dan berikan suara Anda untuk keputusan protokol penting."
+          },
+          "monitor": {
+            "title": "Pantau Pengeluaran & Pendapatan",
+            "description": "Lacak treasury DAO secara real-time dengan pelaporan keuangan yang terperinci."
+          },
+          "transparency": {
+            "title": "Transparansi Penuh",
+            "description": "Setiap transaksi, voting, dan keputusan tercatat dan dapat dilihat oleh seluruh pemegang token."
+          }
+        },
+        "cta": "Buka Dashboard"
+      },
+      "createDAO": {
+        "subtitle": "Deploy DAO Anda",
+        "description": "Luncurkan DAO lengkap yang siap produksi dalam satu transaksi. Tanpa coding — cukup konfigurasikan parameter Anda dan deploy.",
+        "highlight": {
+          "title": "Deploy dalam 1 Transaksi",
+          "features": {
+            "governor": "Kontrak Governor untuk manajemen proposal",
+            "token": "Token governance ERC-20",
+            "timelock": "Timelock untuk eksekusi yang aman"
+          }
+        },
+        "integration": "dibangun khusus untuk DAO yang dibuat dengan CreateDAO — integrasi yang mulus sejak awal.",
+        "cta": "Buat DAO Anda"
+      }
+    },
+    "faq": {
+      "title": "Pertanyaan yang Sering Diajukan",
+      "subtitle": "Semua yang perlu Anda ketahui tentang crypto escrow dan bagaimana Zenland melindungi transaksi Anda.",
+      "moreQuestions": "Masih ada pertanyaan?",
+      "viewDocs": "Lihat dokumentasi kami",
+      "items": {
+        "whatIsCryptoEscrow": {
+          "question": "Apa itu crypto escrow dan bagaimana Zenland bekerja?",
+          "answer": "Crypto escrow adalah metode aman untuk melindungi transaksi cryptocurrency antara pihak yang belum sepenuhnya saling percaya. Zenland menggunakan smart contract di Ethereum untuk mengunci dana hingga kondisi yang telah ditentukan terpenuhi, sehingga tidak diperlukan perantara tradisional."
+        },
+        "howToCreate": {
+          "question": "Bagaimana cara membuat Escrow di Zenland?",
+          "answer": "Membuat Escrow sangat mudah: hubungkan Wallet Anda, tentukan syarat dan kondisi, atur jumlah pembayaran, lalu deposit dana ke smart contract. Tanpa coding — antarmuka visual kami memandu Anda melalui seluruh proses dalam hitungan menit."
+        },
+        "fundsProtection": {
+          "question": "Bagaimana dana dilindungi dalam escrow berbasis blockchain?",
+          "answer": "Seluruh logika Escrow berjalan di blockchain Ethereum. Dana terkunci dalam smart contract yang telah diaudit, transparan, immutable, dan dapat diverifikasi oleh siapa pun. Zenland bersifat non-custodial — kami tidak pernah memiliki akses ke dana Anda."
+        },
+        "disputeResolution": {
+          "question": "Apa yang terjadi jika ada sengketa?",
+          "answer": "Agent profesional tersedia untuk menyelesaikan sengketa secara adil dan efisien. Jika Agent tidak responsif, salah satu pihak dapat mengklaim timeout dan menyelesaikan melalui kesepakatan bersama. DAO mengawasi kualitas Agent dan dapat melakukan slash Stake Agent yang berperilaku buruk."
+        },
+        "fees": {
+          "question": "Berapa biaya Zenland untuk layanan Escrow?",
+          "answer": "Zenland mengenakan biaya platform 1% dengan minimum $0.50 dan maksimum $50 per transaksi — biaya terendah di pasar crypto escrow. Tanpa biaya tersembunyi, tanpa langganan bulanan. Menggunakan NYKNYC Wallet membuat transaksi sepenuhnya tanpa biaya gas."
+        },
+        "supportedCrypto": {
+          "question": "Cryptocurrency dan jaringan apa yang didukung Zenland?",
+          "answer": "Zenland saat ini beroperasi di Ethereum mainnet, mendukung stablecoin USDC dan USDT. Token lain dapat ditambahkan melalui governance DAO. Kami berfokus pada Ethereum karena keamanannya yang telah teruji dan adopsinya yang luas."
+        }
+      }
+    },
+    "cta": {
+      "title": "Siap untuk memulai?",
+      "subtitle": "Hubungkan Wallet Anda dan buat Escrow pertama Anda dalam hitungan menit."
+    },
+    "heroCard": {
+      "steps": {
+        "creation": {
+          "label": "Langkah 1: Pembuatan",
+          "status": "Terlindungi"
+        },
+        "protection": {
+          "label": "Langkah 2: Perlindungan",
+          "status": "Terkunci"
+        },
+        "settlement": {
+          "label": "Langkah 3: Penyelesaian",
+          "status": "Dilepaskan"
+        }
+      },
+      "send": {
+        "label": "Anda Mengirim",
+        "network": "Ethereum"
+      },
+      "recipient": {
+        "label": "Kepada Penerima"
+      },
+      "secured": {
+        "title": "Dana Diamankan",
+        "description": "Smart contract telah mengunci {amount} di Ethereum."
+      },
+      "released": {
+        "title": "Berhasil Dilepaskan",
+        "description": "Pembayaran dikirimkan kepada penerima secara instan.",
+        "badge": "Terverifikasi di Explorer"
+      },
+      "metrics": {
+        "gasFee": "Biaya Gas",
+        "platform": "Platform",
+        "verified": "Transaksi Terverifikasi Smart Contract"
+      },
+      "buttons": {
+        "start": "Mulai Escrow Aman",
+        "verifying": "Memverifikasi di on-chain...",
+        "completed": "Transaksi Selesai"
+      },
+      "badges": {
+        "zeroTrust": "Zero-Trust",
+        "encrypted": "Detail Terenkripsi"
+      }
+    }
+  }
+}

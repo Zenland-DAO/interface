@@ -1,0 +1,46 @@
+{
+  "dashboard": {
+    "title": "Painel",
+    "description": "Bem-vindo de volta! Aqui está uma visão geral da atividade de escrows.",
+    "createEscrow": "Criar escrow",
+    "quickActions": {
+      "becomeAgent": {
+        "title": "Torne-se um agente",
+        "description": "Ajude a resolver disputas e ganhe taxas ao se tornar um agente registrado.",
+        "cta": "Saiba mais"
+      },
+      "needHelp": {
+        "title": "Precisa de ajuda?",
+        "description": "Confira nossa documentação para entender como o escrow da Zenland funciona.",
+        "cta": "Ver docs"
+      }
+    },
+    "stats": {
+      "protocolStats": "Estatísticas do protocolo",
+      "myStats": "Minhas estatísticas",
+      "protocol": "Protocolo",
+      "yourActivity": "Sua atividade",
+      "protocolOverview": "Visão geral do protocolo",
+      "active": "Escrows ativos",
+      "tvlPersonal": "Seu valor bloqueado",
+      "tvlGlobal": "Valor total bloqueado",
+      "completed": "Concluídos",
+      "disputed": "Em disputa",
+      "error": "Falha ao carregar as estatísticas. Tente novamente mais tarde."
+    },
+    "recentEscrows": {
+      "titlePersonal": "Escrows recentes",
+      "titleGlobal": "Últimos escrows",
+      "viewAll": "Ver todos",
+      "emptyPersonal": {
+        "title": "Nenhum escrow recente",
+        "description": "Crie seu primeiro contrato de escrow para começar.",
+        "cta": "Criar escrow"
+      },
+      "emptyGlobal": {
+        "title": "Ainda não há escrows",
+        "description": "Seja o primeiro a criar um escrow na Zenland!"
+      }
+    }
+  }
+}

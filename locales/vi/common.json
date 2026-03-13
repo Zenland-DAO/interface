@@ -1,0 +1,104 @@
+{
+  "common": {
+    "nav": {
+      "features": "Tính năng",
+      "howItWorks": "Cách hoạt động",
+      "stats": "Thống kê",
+      "community": "Cộng đồng",
+      "blog": "Blog"
+    },
+    "buttons": {
+      "app": "⚡ Ứng dụng",
+      "learnMore": "Tìm hiểu thêm",
+      "getStarted": "Bắt đầu",
+      "connectWallet": "Kết nối ví"
+    },
+    "footer": {
+      "tagline": "Dịch vụ ký quỹ an toàn, không cần tin cậy cho giao dịch blockchain. Xây dựng cho Web3, vận hành bằng hợp đồng thông minh.",
+      "sections": {
+        "product": {
+          "title": "Sản phẩm",
+          "features": "Tính năng",
+          "howItWorks": "Cách hoạt động",
+          "community": "Cộng đồng",
+          "faq": "Câu hỏi thường gặp"
+        },
+        "resources": {
+          "title": "Tài nguyên",
+          "documentation": "Tài liệu",
+          "apiReference": "API",
+          "contracts": "Hợp đồng",
+          "blog": "Blog"
+        },
+        "legal": {
+          "title": "Pháp lý",
+          "privacy": "Chính sách quyền riêng tư",
+          "terms": "Điều khoản dịch vụ",
+          "agentTos": "Điều khoản của Đại lý"
+        }
+      },
+      "copyright": "© {year} Zenland. Bảo lưu mọi quyền.",
+      "bottomLinks": {
+        "privacy": "Quyền riêng tư",
+        "terms": "Điều khoản"
+      },
+      "disclaimer": {
+        "title": "Minh bạch giao thức",
+        "text": "Zenland là một giao thức mã nguồn mở có điều kiện (source-available) do cộng đồng quản trị thông qua Zenland DAO — không phải là công ty tài chính đã đăng ký. Giao thức hoạt động hoàn toàn không lưu ký: tiền đi trực tiếp vào các hợp đồng thông minh đã được kiểm toán trên Ethereum. Không cá nhân hay tổ chức nào nắm giữ tiền của quý vị. Vì không có bên nào có thể truy cập hoặc kiểm soát số tiền đã nộp, nên không yêu cầu giấy phép ký quỹ.",
+        "verifyCode": "Xác minh mã nguồn",
+        "learnMore": "Tìm hiểu thêm"
+      }
+    },
+    "wallet": {
+      "title": "Kết nối ví",
+      "subtitle": "Vui lòng chọn ví để tiếp tục",
+      "recommended": "Khuyến nghị",
+      "otherWallets": "Ví khác",
+      "connecting": "Đang kết nối…",
+      "showMore": "Hiển thị thêm {count} ví",
+      "showMorePlural": "Hiển thị thêm {count} ví",
+      "noWalletsDetected": "Không phát hiện ví",
+      "installWallet": "Vui lòng cài đặt ví Web3 để tiếp tục",
+      "sponsoredDescription": "Kết nối với giao dịch không tốn phí gas",
+      "defaultDescription": "Kết nối bằng tiện ích mở rộng trình duyệt",
+      "sponsorBadge": "Được Zenland tài trợ — Không phí gas",
+      "footer": "Bằng việc kết nối, quý vị đồng ý với <terms>Điều khoản</terms> và <privacy>Chính sách quyền riêng tư</privacy> của chúng tôi",
+      "errors": {
+        "timedOut": "Kết nối đã quá thời gian. Vui lòng thử lại.",
+        "cancelled": "Kết nối đã bị hủy. Vui lòng thử lại."
+      }
+    },
+    "accessibility": {
+      "openMenu": "Mở menu",
+      "closeMenu": "Đóng menu",
+      "changeLanguage": "Thay đổi ngôn ngữ",
+      "selectLanguage": "Chọn ngôn ngữ"
+    },
+    "notFound": {
+      "title": "Không tìm thấy trang",
+      "code": "404",
+      "heading": "Rất tiếc, trang này không tồn tại",
+      "description": "Trang quý vị tìm có thể đã được di chuyển, bị xóa hoặc chưa từng tồn tại. Vui lòng quay lại đúng hướng.",
+      "backHome": "Quay về trang chủ",
+      "suggestions": {
+        "title": "Dưới đây là một số liên kết hữu ích:",
+        "home": {
+          "title": "Trang chủ",
+          "description": "Quay về trang chính"
+        },
+        "app": {
+          "title": "Mở ứng dụng",
+          "description": "Truy cập nền tảng ký quỹ"
+        },
+        "docs": {
+          "title": "Tài liệu",
+          "description": "Tìm hiểu Zenland hoạt động như thế nào"
+        },
+        "community": {
+          "title": "Cộng đồng",
+          "description": "Tham gia nhóm Telegram của chúng tôi"
+        }
+      }
+    }
+  }
+}

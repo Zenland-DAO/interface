@@ -1,0 +1,32 @@
+{
+  "app": {
+    "nav": {
+      "dashboard": "Bảng điều khiển",
+      "escrows": "Ký quỹ",
+      "agents": "Đại lý",
+      "verifyPdf": "Xác minh PDF"
+    },
+    "header": {
+      "settings": "Cài đặt",
+      "disconnect": "Ngắt kết nối",
+      "connectWallet": "Kết nối ví",
+      "connect": "Kết nối"
+    },
+    "sidebar": {
+      "banner": {
+        "badge": "Đại lý Zenland",
+        "title": "Nhận thu nhập bằng cách giải quyết tranh chấp.",
+        "description": "Tham gia chương trình đại lý phi tập trung và bắt đầu nhận phí.",
+        "cta": "Tìm hiểu thêm"
+      }
+    },
+    "userProfile": {
+      "addressCopied": "Đã sao chép địa chỉ",
+      "addressCopiedDescription": "Địa chỉ ví đã được sao chép vào clipboard"
+    },
+    "announcement": {
+      "betaMessage": "Zenland V2 đang trong giai đoạn Beta — xin quý vị giúp chúng tôi cải thiện! Quý vị phát hiện lỗi hoặc có phản hồi?",
+      "telegramLink": "Telegram"
+    }
+  }
+}

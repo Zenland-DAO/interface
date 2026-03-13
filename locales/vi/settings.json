@@ -1,0 +1,31 @@
+{
+  "settings": {
+    "title": "Cài đặt",
+    "description": "Quản lý tùy chọn tài khoản",
+    "wallet": {
+      "title": "Ví",
+      "connectedWallet": "Ví đã kết nối",
+      "disconnect": "Ngắt kết nối",
+      "network": "Mạng",
+      "networkDescription": "Chuyển đổi giữa mainnet và testnet",
+      "noWallet": "Chưa kết nối ví",
+      "noWalletDescription": "Vui lòng kết nối ví để sử dụng đầy đủ tính năng",
+      "connectWallet": "Kết nối ví"
+    },
+    "appearance": {
+      "title": "Giao diện",
+      "theme": "Chủ đề",
+      "themeDescription": "Chuyển đổi giữa chế độ sáng và tối"
+    },
+    "about": {
+      "title": "Giới thiệu",
+      "version": "Phiên bản",
+      "versionDescription": "Phiên bản ứng dụng hiện tại",
+      "documentation": "Tài liệu",
+      "github": "GitHub",
+      "termsOfService": "Điều khoản dịch vụ",
+      "privacyPolicy": "Chính sách quyền riêng tư",
+      "support": "Hỗ trợ"
+    }
+  }
+}

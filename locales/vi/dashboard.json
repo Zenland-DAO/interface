@@ -1,0 +1,46 @@
+{
+  "dashboard": {
+    "title": "Bảng điều khiển",
+    "description": "Chào mừng quý vị trở lại! Dưới đây là tổng quan về hoạt động ký quỹ.",
+    "createEscrow": "Tạo ký quỹ",
+    "quickActions": {
+      "becomeAgent": {
+        "title": "Trở thành Đại lý",
+        "description": "Hỗ trợ giải quyết tranh chấp và nhận phí bằng cách trở thành Đại lý đã đăng ký.",
+        "cta": "Tìm hiểu thêm"
+      },
+      "needHelp": {
+        "title": "Cần hỗ trợ?",
+        "description": "Vui lòng xem tài liệu của chúng tôi để tìm hiểu cách Zenland ký quỹ hoạt động.",
+        "cta": "Xem tài liệu"
+      }
+    },
+    "stats": {
+      "protocolStats": "Thống kê giao thức",
+      "myStats": "Thống kê của quý vị",
+      "protocol": "Giao thức",
+      "yourActivity": "Hoạt động của quý vị",
+      "protocolOverview": "Tổng quan giao thức",
+      "active": "Ký quỹ đang hoạt động",
+      "tvlPersonal": "Giá trị khóa của quý vị",
+      "tvlGlobal": "Tổng giá trị khóa",
+      "completed": "Đã hoàn tất",
+      "disputed": "Đang tranh chấp",
+      "error": "Không thể tải thống kê. Vui lòng thử lại sau."
+    },
+    "recentEscrows": {
+      "titlePersonal": "Ký quỹ gần đây",
+      "titleGlobal": "Ký quỹ mới nhất",
+      "viewAll": "Xem tất cả",
+      "emptyPersonal": {
+        "title": "Không có ký quỹ gần đây",
+        "description": "Hãy tạo hợp đồng ký quỹ đầu tiên để bắt đầu.",
+        "cta": "Tạo ký quỹ"
+      },
+      "emptyGlobal": {
+        "title": "Chưa có ký quỹ",
+        "description": "Hãy là người đầu tiên tạo ký quỹ trên Zenland!"
+      }
+    }
+  }
+}

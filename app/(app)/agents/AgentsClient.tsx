@@ -38,6 +38,14 @@ import { AgentHeaderActions } from "@/components/app/agents/AgentHeaderActions";
 /** Multiplier for calculating maximum arbitrage coverage */
 const ARBITRAGE_MULTIPLIER = 20;
 
+/** Maps frontend sort option values to API orderBy field and direction */
+const SORT_MAP: Record<string, { orderBy: string; orderDirection: "asc" | "desc" }> = {
+  stake: { orderBy: "stablecoinStake", orderDirection: "desc" },
+  reputation: { orderBy: "totalEscrowsAssigned", orderDirection: "desc" },
+  fees: { orderBy: "disputeFeeBps", orderDirection: "asc" },
+  cases: { orderBy: "totalResolved", orderDirection: "desc" },
+};
+
 function shortAddress(addr: string) {
   return `${addr.slice(0, 6)}...${addr.slice(-4)}`;
 }
@@ -58,9 +66,14 @@ interface AgentsClientProps {
 export function AgentsClient({ isSelectMode = false }: AgentsClientProps) {
   const t = useTranslations("agents.list");
   const [search, setSearch] = useState("");
-  const [sortBy, setSortBy] = useState("reputation");
+  const [sortBy, setSortBy] = useState("stake");
   const { address: userAddress } = useConnection();
-  const { data, isLoading, error } = useAgents({ onlyActive: true });
+  const sortConfig = SORT_MAP[sortBy] ?? SORT_MAP.stake;
+  const { data, isLoading, error } = useAgents({
+    onlyActive: true,
+    orderBy: sortConfig.orderBy,
+    orderDirection: sortConfig.orderDirection,
+  });
   const { sendSelection } = useAgentSelectionSender();
 
   const SORT_OPTIONS = [

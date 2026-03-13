@@ -1,0 +1,31 @@
+{
+  "settings": {
+    "title": "Настройки",
+    "description": "Управляйте предпочтениями аккаунта",
+    "wallet": {
+      "title": "Кошелёк",
+      "connectedWallet": "Подключённый кошелёк",
+      "disconnect": "Отключиться",
+      "network": "Сеть",
+      "networkDescription": "Переключайтесь между mainnet и testnet",
+      "noWallet": "Кошелёк не подключён",
+      "noWalletDescription": "Подключите кошелёк, чтобы получить доступ ко всем функциям",
+      "connectWallet": "Подключить кошелёк"
+    },
+    "appearance": {
+      "title": "Внешний вид",
+      "theme": "Тема",
+      "themeDescription": "Переключайтесь между светлой и тёмной темой"
+    },
+    "about": {
+      "title": "О приложении",
+      "version": "Версия",
+      "versionDescription": "Текущая версия приложения",
+      "documentation": "Документация",
+      "github": "GitHub",
+      "termsOfService": "Условия обслуживания",
+      "privacyPolicy": "Политика конфиденциальности",
+      "support": "Поддержка"
+    }
+  }
+}

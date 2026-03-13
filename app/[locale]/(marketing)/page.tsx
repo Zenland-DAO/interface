@@ -23,6 +23,10 @@ const OG_LOCALES: Record<string, string> = {
   en: "en_US",
   es: "es_ES",
   zh: "zh_CN",
+  pt: "pt_BR",
+  ru: "ru_RU",
+  id: "id_ID",
+  vi: "vi_VN",
 };
 
 /**
@@ -36,12 +40,16 @@ export async function generateMetadata({ params }: { params: Promise<{ locale: s
     title: t("title"),
     description: t("description"),
     alternates: {
-      canonical: `${SITE_URL}/${locale}`,
+      canonical: locale === "en" ? SITE_URL : `${SITE_URL}/${locale}`,
       languages: {
-        "en": `${SITE_URL}/en`,
+        "en": SITE_URL,
         "es": `${SITE_URL}/es`,
         "zh": `${SITE_URL}/zh`,
-        "x-default": `${SITE_URL}/en`,
+        "pt": `${SITE_URL}/pt`,
+        "ru": `${SITE_URL}/ru`,
+        "id": `${SITE_URL}/id`,
+        "vi": `${SITE_URL}/vi`,
+        "x-default": SITE_URL,
       },
     },
     openGraph: {

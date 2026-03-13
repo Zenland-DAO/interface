@@ -1,0 +1,532 @@
+{
+  "escrows": {
+    "list": {
+      "title": "Meus escrows",
+      "description": "Veja e gerencie todos os seus contratos de escrow",
+      "createEscrow": "Criar escrow",
+      "createFirstEscrow": "Crie seu primeiro escrow",
+      "error": "Falha ao carregar escrows. Tente novamente mais tarde.",
+      "showing": "Mostrando {count} escrow",
+      "showingPlural": "Mostrando {count} escrows",
+      "addressCopied": "Endereço copiado",
+      "roles": {
+        "all": "Todos os papéis",
+        "buyer": "Como comprador",
+        "seller": "Como vendedor",
+        "agent": "Como agente"
+      },
+      "tabs": {
+        "all": "Todos",
+        "needs_attention": "Requer atenção",
+        "ACTIVE": "Ativos",
+        "IN_DISPUTE": "Em disputa",
+        "COMPLETED": "Concluídos"
+      },
+      "tableHeaders": {
+        "id": "ID",
+        "amount": "Valor",
+        "counterparty": "Contraparte",
+        "role": "Papel",
+        "status": "Status",
+        "date": "Data",
+        "action": "Ação"
+      },
+      "bothParties": "Ambas as partes",
+      "emptyStates": {
+        "noEscrows": {
+          "title": "Nenhum escrow encontrado",
+          "description": "Você ainda não criou nem participou de nenhum contrato de escrow."
+        },
+        "allCaughtUp": {
+          "title": "Tudo em dia!",
+          "description": "Nenhum escrow requer sua atenção no momento."
+        },
+        "noActive": {
+          "title": "Nenhum escrow ativo",
+          "descriptionAgent": "Você não está atribuído como agente a nenhum escrow ativo.",
+          "description": "Você não tem escrows ativos{role}."
+        },
+        "noDisputes": {
+          "title": "Sem disputas",
+          "descriptionAgent": "Nenhuma disputa para resolver",
+          "descriptionAgentFull": "Nenhuma disputa está atribuída a você no momento para resolução.",
+          "description": "Você não tem escrows em disputa{role}."
+        },
+        "noCompleted": {
+          "title": "Sem escrows concluídos",
+          "description": "Nenhum escrow concluído foi encontrado{role}."
+        },
+        "generic": {
+          "title": "Nenhum escrow encontrado",
+          "description": "Nenhum escrow {state} encontrado{role}."
+        },
+        "roleLabels": {
+          "buyer": " como comprador",
+          "seller": " como vendedor",
+          "agent": " como agente"
+        }
+      },
+      "attention": {
+        "acceptOrDecline": "Aceitar ou recusar escrow",
+        "canCancelExpired": "Pode cancelar escrow expirado",
+        "claimFunds": "Resgatar seus fundos",
+        "resolutionNeeded": "Resolução necessária",
+        "reviewSplit": "Revisar proposta de divisão"
+      },
+      "card": {
+        "escrowInteraction": "Interação do escrow",
+        "protected": "{days}d protegido",
+        "buyer": "Comprador",
+        "seller": "Vendedor",
+        "role": "Papel: {role}"
+      }
+    },
+    "states": {
+      "PENDING": "Aguardando aceitação",
+      "ACTIVE": "Ativo",
+      "FULFILLED": "Cumprido",
+      "RELEASED": "Liberado",
+      "DISPUTED": "Em disputa",
+      "AGENT_INVITED": "Agente convidado",
+      "AGENT_RESOLVED": "Resolvido pelo agente",
+      "REFUNDED": "Reembolsado",
+      "SPLIT": "Dividido"
+    },
+    "stateDescriptions": {
+      "PENDING": "O escrow está financiado e aguardando o vendedor aceitar os termos.",
+      "ACTIVE": "O escrow está ativo e aguardando o vendedor confirmar a entrega.",
+      "FULFILLED": "O vendedor confirmou o cumprimento. O comprador pode liberar os fundos ou esperar a proteção expirar.",
+      "RELEASED": "Os fundos foram liberados ao vendedor. Este escrow está concluído.",
+      "DISPUTED": "Uma disputa foi aberta. As partes podem convidar um agente ou negociar uma divisão.",
+      "AGENT_INVITED": "Um agente foi convidado para resolver a disputa.",
+      "AGENT_RESOLVED": "O agente resolveu a disputa. Este escrow está concluído.",
+      "REFUNDED": "Os fundos foram reembolsados ao comprador. Este escrow está concluído.",
+      "SPLIT": "Os fundos foram divididos entre comprador e vendedor. Este escrow está concluído."
+    },
+    "roles": {
+      "buyer": "Comprador",
+      "seller": "Vendedor",
+      "agent": "Agente",
+      "observer": "Observador",
+      "viewer": "Visualizador"
+    },
+    "actions": {
+      "accept": "Aceitar escrow",
+      "decline": "Recusar escrow",
+      "cancelExpired": "Cancelar e reembolsar",
+      "confirmFulfillment": "Confirmar cumprimento",
+      "release": "Liberar fundos",
+      "releaseAfterProtection": "Resgatar fundos",
+      "sellerRefund": "Emitir reembolso",
+      "openDispute": "Abrir disputa",
+      "inviteAgent": "Convidar agente",
+      "agentResolve": "Resolver disputa",
+      "claimAgentTimeout": "Reivindicar timeout do agente",
+      "proposeSplit": "Propor divisão",
+      "approveSplit": "Aprovar divisão",
+      "cancelSplit": "Cancelar proposta de divisão",
+      "connectWallet": "Conectar carteira"
+    },
+    "actionDescriptions": {
+      "accept": "Aceite os termos do escrow e inicie o acordo.",
+      "decline": "Recuse o escrow e reembolse o comprador imediatamente.",
+      "cancelExpired": "O vendedor não aceitou a tempo. Cancele o escrow e receba um reembolso.",
+      "confirmFulfillment": "Marque o trabalho/entrega como concluído e inicie o período de proteção do comprador.",
+      "release": "Libere os fundos do escrow para o vendedor imediatamente.",
+      "releaseAfterProtection": "O período de proteção expirou. Resgate os fundos como vendedor.",
+      "sellerRefund": "Devolva todos os fundos ao comprador. Esta ação não pode ser desfeita.",
+      "openDispute": "Abra uma disputa para pausar o escrow e buscar uma resolução.",
+      "inviteAgent": "Convide o agente atribuído para ajudar a resolver esta disputa.",
+      "agentResolve": "Como agente, decida como dividir os fundos entre as partes.",
+      "claimAgentTimeout": "O agente não respondeu a tempo. Voltar ao estado de disputa.",
+      "proposeSplit": "Proponha uma divisão dos fundos entre comprador e vendedor.",
+      "approveSplit": "Aprove a divisão proposta. Se ambas as partes aprovarem, os fundos serão distribuídos.",
+      "cancelSplit": "Cancele sua proposta de divisão."
+    },
+    "actionProgress": {
+      "releasing": "Liberando...",
+      "opening": "Abrindo...",
+      "confirming": "Confirmando...",
+      "claiming": "Resgatando...",
+      "processing": "Processando...",
+      "inviting": "Convidando...",
+      "resolving": "Resolvendo...",
+      "proposing": "Propondo...",
+      "approving": "Aprovando..."
+    },
+    "events": {
+      "EscrowPending": "Escrow criado",
+      "SellerAccepted": "Vendedor aceitou",
+      "SellerDeclined": "Vendedor recusou",
+      "EscrowCancelledExpired": "Cancelado (expirado)",
+      "EscrowFunded": "Escrow financiado",
+      "FulfillmentConfirmed": "Cumprimento confirmado",
+      "FundsReleased": "Fundos liberados",
+      "DisputeOpened": "Disputa aberta",
+      "AgentInvited": "Agente convidado",
+      "AgentResolved": "Disputa resolvida",
+      "AgentTimedOut": "Agente expirou",
+      "Refunded": "Reembolso emitido",
+      "SplitProposed": "Divisão proposta",
+      "SplitApproved": "Divisão aprovada",
+      "SplitProposalCancelled": "Divisão cancelada",
+      "SplitExecuted": "Divisão executada"
+    },
+    "modals": {
+      "cancel": "Cancelar",
+      "processing": "Processando...",
+      "splitPreview": "Prévia da divisão",
+      "buyerReceives": "O comprador recebe",
+      "sellerReceives": "O vendedor recebe",
+      "buyer": "Comprador",
+      "seller": "Vendedor",
+      "accept": {
+        "title": "Aceitar escrow",
+        "description": "Você está prestes a aceitar os termos do escrow. Isso ativará o escrow.",
+        "confirm": "Aceitar escrow"
+      },
+      "decline": {
+        "title": "Recusar escrow",
+        "description": "Você está prestes a recusar este escrow. Os fundos serão reembolsados ao comprador.",
+        "confirm": "Recusar escrow"
+      },
+      "cancelExpired": {
+        "title": "Cancelar e reembolsar",
+        "description": "A janela de aceitação do vendedor expirou. Você pode cancelar o escrow e receber um reembolso integral.",
+        "confirm": "Cancelar e reembolsar"
+      },
+      "release": {
+        "title": "Liberar fundos",
+        "description": "Você está prestes a liberar os fundos do escrow para o vendedor. Esta ação não pode ser desfeita.",
+        "confirm": "Liberar fundos"
+      },
+      "refund": {
+        "title": "Emitir reembolso",
+        "description": "Você está prestes a reembolsar todos os fundos do escrow ao comprador. Esta ação não pode ser desfeita.",
+        "confirm": "Emitir reembolso"
+      },
+      "dispute": {
+        "title": "Abrir disputa",
+        "description": "Abrir uma disputa pausará o escrow e permitirá buscar uma resolução. Você pode convidar um agente ou negociar uma divisão com o vendedor.",
+        "confirm": "Abrir disputa"
+      },
+      "inviteAgent": {
+        "title": "Convidar agente",
+        "description": "O agente atribuído será convidado para revisar e resolver esta disputa. O agente terá autoridade para decidir como os fundos serão distribuídos.",
+        "confirm": "Convidar agente"
+      },
+      "agentResolve": {
+        "title": "Resolver disputa",
+        "description": "Como agente, você determinará como os fundos do escrow serão divididos entre comprador e vendedor. Sua decisão é final.",
+        "confirm": "Enviar resolução"
+      },
+      "claimTimeout": {
+        "title": "Reivindicar timeout do agente",
+        "description": "O agente não respondeu dentro do prazo exigido. Isso retornará o escrow ao estado de disputa sem agente atribuído.",
+        "confirm": "Reivindicar timeout"
+      },
+      "proposeSplit": {
+        "title": "Propor divisão",
+        "description": "Você está propondo uma divisão dos fundos do escrow. Se a outra parte aprovar, os fundos serão distribuídos automaticamente.",
+        "confirm": "Propor divisão"
+      },
+      "approveSplit": {
+        "title": "Aprovar divisão",
+        "description": "Você está aprovando a divisão proposta. Após confirmar, os fundos serão distribuídos conforme as porcentagens acordadas.",
+        "confirm": "Aprovar e executar"
+      }
+    },
+    "detail": {
+      "backToEscrows": "Voltar para escrows",
+      "escrow": "Escrow",
+      "createdOn": "Criado em {date}",
+      "escrowDetails": "Detalhes do escrow",
+      "amount": "Valor",
+      "status": "Status",
+      "participants": "Participantes",
+      "you": "Você",
+      "notAssigned": "Não atribuído",
+      "termsHash": "Hash dos termos",
+      "resolution": "Resolução",
+      "buyerReceived": "Comprador recebeu",
+      "sellerReceived": "Vendedor recebeu",
+      "agentFee": "Taxa do agente",
+      "actionsTitle": "Ações",
+      "wrongNetwork": "Rede incorreta",
+      "switchToNetwork": "Mude para {chain} para realizar ações neste escrow.",
+      "connectToInteract": "Conecte sua carteira para interagir com este escrow.",
+      "noActionsAvailable": "Nenhuma ação disponível no momento.",
+      "contract": "Contrato",
+      "contractAddress": "Endereço do contrato",
+      "contractVersion": "Versão do contrato",
+      "viewOnExplorer": "Ver no explorer",
+      "timeline": {
+        "title": "Linha do tempo",
+        "failedToLoad": "Falha ao carregar a atividade",
+        "noActivity": "Sem atividade ainda"
+      },
+      "protection": {
+        "buyerProtection": "Proteção do comprador",
+        "duration": "Duração: {duration}",
+        "expiredOn": "Expirou em",
+        "endsOn": "Termina em",
+        "protectionEnded": "O período de proteção terminou",
+        "sellerCanClaim": "O vendedor agora pode resgatar os fundos.",
+        "sellerCanClaimAfter": "O vendedor pode resgatar os fundos após este período expirar se o comprador não liberar.",
+        "noProtection": "Sem proteção"
+      },
+      "acceptance": {
+        "title": "Janela de aceitação do vendedor",
+        "expired": "A janela de aceitação expirou",
+        "waiting": "Aguardando o vendedor aceitar o escrow",
+        "deadlinePassed": "Prazo expirado",
+        "acceptBy": "Aceitar até",
+        "timeLimitReached": "Limite de tempo atingido",
+        "buyerCanCancel": "O vendedor não aceitou a tempo. Você pode cancelar e receber um reembolso integral.",
+        "sellerReview": "Revise e aceite os termos do escrow antes do prazo."
+      },
+      "agentTimer": {
+        "title": "Resposta do agente",
+        "waiting": "Aguardando o agente resolver",
+        "deadlinePassed": "Prazo de resposta expirado",
+        "deadline": "Prazo de resposta",
+        "timedOut": "O agente não respondeu a tempo",
+        "notRespondedInTime": "O agente não respondeu a tempo",
+        "canClaimTimeout": "Você pode reivindicar o timeout do agente para voltar ao estado de disputa.",
+        "mustResolve": "O agente deve resolver a disputa antes do prazo."
+      },
+      "chain": {
+        "wrongNetwork": "Rede incorreta",
+        "wrongNetworkDesc": "Este escrow está implantado em {escrowChain}, mas sua carteira está conectada a {walletChain}. Troque de rede para interagir com este escrow.",
+        "switchTo": "Trocar para {chain}",
+        "unsupportedNetwork": "Rede não suportada",
+        "unsupportedNetworkDesc": "Você está conectado a {walletChain} que não é suportada. Este escrow está em {escrowChain}.",
+        "testnetEscrow": "Escrow em testnet",
+        "testnetDesc": "Este escrow está na testnet de {chain}. As transações usam apenas tokens de teste."
+      },
+      "split": {
+        "title": "Negociação de divisão",
+        "active": "Ativa",
+        "currentProposal": "Proposta atual",
+        "by": "por {address}",
+        "buyer": "Comprador",
+        "seller": "Vendedor",
+        "buyerApproved": "Comprador aprovou",
+        "buyerPending": "Comprador pendente",
+        "sellerApproved": "Vendedor aprovou",
+        "sellerPending": "Vendedor pendente",
+        "approveSplit": "Aprovar divisão",
+        "cancel": "Cancelar",
+        "proposeDescription": "Proponha uma divisão dos fundos do escrow. Se ambas as partes aprovarem, os fundos serão distribuídos automaticamente.",
+        "proposeSplit": "Propor divisão",
+        "waitingForOther": "Aguardando a outra parte responder à proposta."
+      },
+      "agent": {
+        "resolveDispute": "Resolver disputa",
+        "resolveDescription": "Como agente, decida como dividir os fundos do escrow entre comprador e vendedor. Sua decisão é final e não pode ser desfeita.",
+        "buyerReceives": "O comprador recebe",
+        "sellerReceives": "O vendedor recebe",
+        "buyerAmount": "Valor do comprador",
+        "sellerAmount": "Valor do vendedor",
+        "submitResolution": "Enviar resolução"
+      }
+    },
+    "create": {
+      "title": "Criar novo escrow",
+      "description": "Configure um contrato de escrow seguro para sua transação",
+      "backToEscrows": "Voltar para escrows",
+      "steps": {
+        "form": "Preencher detalhes",
+        "formShort": "Detalhes",
+        "review": "Revisar",
+        "reviewShort": "Revisar",
+        "approve": "Aprovar",
+        "approveShort": "Aprovar",
+        "confirm": "Confirmar",
+        "confirmShort": "Confirmar",
+        "success": "Concluído",
+        "successShort": "Pronto",
+        "stepOf": "Etapa {current} de {total}"
+      },
+      "sections": {
+        "sellerAddress": "Endereço do vendedor",
+        "sellerAddressDesc": "O endereço da carteira que receberá o pagamento",
+        "paymentAmount": "Valor do pagamento",
+        "paymentAmountDesc": "O valor que ficará em escrow",
+        "buyerProtection": "Período de proteção do comprador",
+        "buyerProtectionDesc": "Tempo que o comprador tem para abrir disputa ou liberar fundos",
+        "contractTerms": "Termos do contrato",
+        "contractTermsDesc": "Descreva os entregáveis e condições deste escrow",
+        "disputeAgent": "Agente de resolução de disputas",
+        "disputeAgentDesc": "Escolha como as disputas serão tratadas",
+        "parties": "Partes",
+        "financialDetails": "Detalhes financeiros",
+        "disputeResolution": "Resolução de disputas"
+      },
+      "form": {
+        "termsPlaceholder": "Descreva o que o vendedor deve entregar, prazos, expectativas de qualidade, etc.",
+        "characters": "{count} caracteres",
+        "customDuration": "Duração personalizada (dias)",
+        "enterDays": "Informe o número de dias",
+        "maxDays": "Máximo: {max} dias",
+        "continueToReview": "Continuar para revisão",
+        "connectToContinue": "Conectar carteira para continuar"
+      },
+      "summary": {
+        "title": "Resumo rápido",
+        "amount": "Valor",
+        "seller": "Vendedor",
+        "protection": "Proteção",
+        "agent": "Agente",
+        "assigned": "Atribuído",
+        "locked": "Bloqueado",
+        "notSet": "Não definido",
+        "noAgentWarning": "Sem um agente, disputas não podem ser resolvidas."
+      },
+      "agentSelector": {
+        "noAgent": "Sem agente (escrow bloqueado)",
+        "noAgentDesc": "Prosseguir sem resolução de disputas",
+        "enterAddress": "Inserir endereço do agente",
+        "enterAddressDesc": "Insira diretamente o endereço de um agente conhecido",
+        "browseAgents": "Procurar agentes disponíveis",
+        "browseAgentsDesc": "Selecione na lista de agentes verificados",
+        "browseAgentsBtn": "Procurar agentes",
+        "agentSelected": "Agente selecionado",
+        "change": "Alterar",
+        "recommendation": "Recomendamos fortemente atribuir um agente para resolução de disputas.",
+        "agentVerified": "Agente verificado",
+        "agentVerifiedDesc": "Ativo, disponível e com MAV suficiente para este escrow.",
+        "agentNotRegistered": "Agente não registrado",
+        "agentNotRegisteredDesc": "Este endereço não está registrado como agente no protocolo.",
+        "agentInactive": "Agente inativo",
+        "agentInactiveDesc": "Este agente está registrado, mas atualmente inativo.",
+        "agentUnavailable": "Agente indisponível",
+        "agentUnavailableDesc": "Este agente está ativo, mas não está aceitando novos casos.",
+        "insufficientMav": "MAV insuficiente",
+        "insufficientMavDesc": "O MAV deste agente não é suficiente para o valor deste escrow.",
+        "agentNotEligible": "Agente não elegível",
+        "checkingAgent": "Verificando agente…",
+        "checkingAgentDesc": "Buscando informações do agente no indexador.",
+        "mav": "MAV",
+        "thisEscrow": "Este escrow",
+        "activeCases": "Casos ativos",
+        "registered": "Registrado"
+      },
+      "locked": {
+        "title": "Criando um escrow bloqueado",
+        "subtitle": "Você está criando um escrow sem agente",
+        "understandNoDispute": "Entendo que disputas não podem ser resolvidas sem um agente",
+        "understandNoDisputeDesc": "Se surgir um desacordo, não haverá um terceiro para mediar.",
+        "understandFundsLocked": "Entendo que os fundos podem ficar permanentemente bloqueados",
+        "understandFundsLockedDesc": "Se comprador e vendedor não chegarem a um acordo, os fundos podem ficar bloqueados para sempre.",
+        "acceptRisk": "Aceito todos os riscos associados a um escrow bloqueado",
+        "acceptRiskDesc": "Li e entendi as implicações de criar um escrow sem agente."
+      },
+      "review": {
+        "backToEdit": "Voltar para edição",
+        "proceedToApproval": "Prosseguir para aprovação",
+        "generatingAgreement": "Gerando acordo...",
+        "noTerms": "Nenhum termo especificado",
+        "agentAssigned": "Agente atribuído",
+        "agentAssignedDesc": "Disputas serão resolvidas pelo agente atribuído",
+        "lockedEscrow": "Escrow bloqueado (sem agente)",
+        "lockedEscrowDesc": "Este escrow não tem resolução de disputas. Se houver desacordo, os fundos podem ficar permanentemente bloqueados.",
+        "feesBreakdown": "Detalhamento de taxas",
+        "escrowAmount": "Valor do escrow",
+        "creationFee": "Taxa de criação",
+        "agentAssignmentFee": "Taxa de atribuição do agente",
+        "totalRequired": "Total necessário",
+        "agreementPdf": "PDF do acordo",
+        "generating": "Gerando…",
+        "failedToGeneratePdf": "Falha ao gerar PDF: {error}",
+        "downloadPdf": "Baixar PDF",
+        "generatePdf": "Gerar PDF",
+        "predictedAddress": "Endereço previsto do escrow",
+        "generatingAddress": "Gerando endereço do escrow...",
+        "predictedAddressNote": "O endereço previsto é determinístico. Enquanto os parâmetros não mudarem, o escrow será implantado neste endereço.",
+        "generatingAgreementInfo": "Gerando acordo",
+        "generatingAgreementDesc": "O PDF do seu acordo de escrow está sendo gerado. Este documento será vinculado criptograficamente ao seu smart contract."
+      },
+      "approve": {
+        "backToReview": "Voltar para revisão",
+        "waitingForApproval": "Aguardando aprovação...",
+        "confirmInWallet": "Confirme a transação na sua carteira"
+      },
+      "confirm": {
+        "amount": "Valor",
+        "seller": "Vendedor",
+        "protection": "Proteção",
+        "totalCost": "Custo total",
+        "protectedEscrow": "Escrow protegido",
+        "protectedDesc": "Agente atribuído para resolução de disputas",
+        "lockedWarning": "Aviso: escrow bloqueado",
+        "lockedWarningDesc": "Sem agente atribuído. Disputas não podem ser resolvidas. Os fundos podem ficar permanentemente bloqueados se as partes discordarem.",
+        "deployedAt": "O escrow será implantado em",
+        "transactionFailed": "Falha na transação",
+        "creatingEscrow": "Criando escrow...",
+        "insufficientBalance": "Saldo insuficiente",
+        "whatHappensNext": "O que acontece agora",
+        "deployedOnChain": "Seu contrato de escrow será implantado on-chain",
+        "fundsTransferred": "Os fundos serão transferidos da sua carteira para o escrow",
+        "sellerNotified": "O vendedor será notificado e poderá iniciar o trabalho",
+        "createEscrow": "Criar escrow",
+        "creatingEscrowBtn": "Criando escrow...",
+        "termsAgreement": "Ao criar este escrow, você concorda com os",
+        "termsOfService": "Termos de Serviço"
+      },
+      "success": {
+        "title": "Contrato criado com sucesso",
+        "description": "Seu contrato de escrow foi implantado com segurança on-chain.",
+        "escrowAddress": "Endereço do escrow",
+        "transactionHash": "Hash da transação",
+        "amountInEscrow": "Valor em escrow",
+        "buyerProtection": "Proteção do comprador",
+        "viewDashboard": "Ver painel do escrow",
+        "downloadPdf": "Baixar PDF",
+        "generatePdf": "Gerar PDF",
+        "generatingPdf": "Gerando...",
+        "createAnother": "Criar outro",
+        "savePdfTitle": "Salve o PDF do seu contrato",
+        "savePdfDesc": "Baixe e guarde o PDF do contrato com segurança. Ele serve como prova do acordo que você pode compartilhar com o vendedor, e um agente pode exigir este documento se surgir uma disputa.",
+        "whatsNext": "Próximos passos",
+        "informSeller": "Informar o vendedor",
+        "informSellerDesc": "Compartilhe o endereço do escrow ou o PDF do contrato com o vendedor para que ele possa revisar e aceitar os termos.",
+        "waitForDelivery": "Aguardar a entrega",
+        "waitForDeliveryDesc": "Após o vendedor aceitar, ele entregará os bens ou serviços conforme o combinado.",
+        "releaseFunds": "Liberar fundos",
+        "releaseFundsDesc": "Quando você estiver satisfeito com a entrega, libere os fundos para concluir a transação."
+      },
+      "errors": {
+        "sellerAddressRequired": "O endereço do vendedor é obrigatório",
+        "sellerAddressInvalid": "Informe um endereço Ethereum válido",
+        "sellerAddressSameAsBuyer": "O endereço do vendedor não pode ser o mesmo que o seu",
+        "amountRequired": "O valor é obrigatório",
+        "amountInvalid": "Informe um valor válido",
+        "amountTooSmall": "O valor deve ser maior que 0",
+        "amountExceedsBalance": "O valor excede o seu saldo",
+        "protectionTimeRequired": "O tempo de proteção é obrigatório",
+        "protectionTimeTooShort": "O tempo de proteção deve ser de pelo menos {min} dia(s)",
+        "protectionTimeTooLong": "O tempo de proteção não pode exceder {max} dias",
+        "protectionTimeInvalid": "Informe um número de dias válido",
+        "termsRequired": "Os termos do contrato são obrigatórios",
+        "agentAddressInvalid": "Informe um endereço de agente válido",
+        "agentAddressSameAsBuyer": "O agente não pode ser o mesmo que o comprador",
+        "agentAddressSameAsSeller": "O agente não pode ser o mesmo que o vendedor",
+        "agentNotRegistered": "Este endereço não é um agente registrado",
+        "lockedConfirmationsRequired": "Você deve reconhecer todos os riscos para criar um escrow bloqueado",
+        "walletNotConnected": "Conecte sua carteira",
+        "insufficientAllowance": "Permissão de token insuficiente"
+      },
+      "protectionPresets": {
+        "7d": "7 dias",
+        "14d": "14 dias",
+        "30d": "30 dias",
+        "custom": "Personalizado",
+        "7dDesc": "Proteção padrão para transações rápidas",
+        "14dDesc": "Recomendado para a maioria das transações",
+        "30dDesc": "Proteção estendida para entregáveis complexos",
+        "customDesc": "Defina um período de proteção personalizado"
+      }
+    }
+  }
+}

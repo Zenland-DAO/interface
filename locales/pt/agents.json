@@ -1,0 +1,368 @@
+{
+  "agents": {
+    "list": {
+      "title": "Agentes",
+      "selectTitle": "Selecionar um agente",
+      "description": "Explore agentes verificados para resolução de disputas",
+      "selectDescription": "Escolha um agente para o seu escrow",
+      "searchLabel": "Buscar agentes",
+      "searchPlaceholder": "Buscar por nome, endereço ou descrição...",
+      "sortBy": "Ordenar por",
+      "sortOptions": {
+        "reputation": "Reputação",
+        "stake": "Valor em stake",
+        "fees": "Menores taxas",
+        "cases": "Mais ativos"
+      },
+      "selectModeBanner": {
+        "title": "Selecionando agente para criar o escrow",
+        "description": "Clique em \"Selecionar\" no card do agente ou veja o perfil para mais detalhes"
+      },
+      "card": {
+        "you": "VOCÊ",
+        "active": "Ativo",
+        "inactive": "Inativo",
+        "busy": "Ocupado",
+        "stablecoin": "Stablecoin",
+        "daoToken": "Token DAO",
+        "maxCoverage": "Cobertura máxima",
+        "disputeFee": "Taxa de disputa",
+        "assignFee": "Taxa de atribuição",
+        "noDescription": "Este agente não forneceu um resumo profissional.",
+        "selectAgent": "Selecionar agente",
+        "viewDetails": "Ver detalhes",
+        "joined": "Entrou em {date}",
+        "view": "Ver"
+      },
+      "error": {
+        "title": "Erro no registro",
+        "description": "Não foi possível buscar agentes no registro. Verifique sua conexão.",
+        "retry": "Tentar novamente"
+      },
+      "empty": {
+        "title": "Nenhum agente encontrado",
+        "searchEmpty": "Tente ajustar seus termos de busca ou filtros.",
+        "noAgents": "Ainda não há agentes ativos no registro."
+      }
+    },
+    "headerActions": {
+      "dashboard": "Painel do agente",
+      "becomeAgent": "Tornar-se agente"
+    },
+    "register": {
+      "backToAgents": "Voltar para agentes",
+      "title": "Tornar-se agente",
+      "description": "Registre-se como agente de resolução de disputas e ajude a comunidade",
+      "connectWallet": {
+        "title": "Conecte sua carteira",
+        "description": "Entre na rede de resolvedores profissionais de disputas e ganhe taxas pela sua expertise."
+      },
+      "formTitle": "Registro de agente",
+      "formDescription": "Configure seu perfil profissional e depósito de segurança",
+      "requirements": {
+        "title": "Requisitos do agente",
+        "stablecoinStake": "O stake em stablecoin define seu Valor Máximo Arbitrável (MAV = 20× stake)",
+        "daoTokenStake": "Stake em token DAO é necessário para alinhamento com o protocolo (pode ser penalizado por má conduta)",
+        "responseDeadline": "Responda disputas atribuídas dentro do prazo (7 dias por padrão)",
+        "fairResolution": "Espera-se uma resolução justa e imparcial"
+      },
+      "sections": {
+        "collateral": "Configuração de colateral",
+        "serviceFees": "Taxas de serviço",
+        "publicProfile": "Perfil público",
+        "securityApprovals": "Aprovações de segurança"
+      },
+      "stablecoinStake": "Stake em stablecoin",
+      "available": "Disponível:",
+      "minStake": "Stake mín.: ${amount}",
+      "minStakeToken": "Stake mín.: {amount} {symbol}",
+      "zenGovernanceStake": "Stake de governança ZEN",
+      "assignmentFee": "Taxa de atribuição",
+      "disputeFee": "Taxa de disputa",
+      "assignmentFeeHelper": "Cobrado automaticamente ao atribuir um caso. <earn>Ganhe ${amount} em um escrow de $10k.</earn>",
+      "disputeFeeHelper": "Ganho apenas ao resolver o caso com sucesso. <earn>Ganhe ${amount} em um escrow de $10k.</earn>",
+      "feeRange": "Faixa de taxa: {min}% - {max}%",
+      "professionalBio": "Bio profissional",
+      "bioPlaceholder": "Especialista em DeFi, royalties de NFTs e pontes cross-chain...",
+      "bytesTip": "Dica: alguns caracteres (como \"→\", emojis, etc.) ocupam mais de 1 byte e podem exceder o limite on-chain.",
+      "securityApprovalsTitle": "Aprovações de segurança",
+      "securityApprovalsDesc": "Conceda permissão para bloquear tokens de colateral no registro",
+      "termsAcknowledgement": "Reconheço que meu stake serve como garantia e pode ser penalizado por má conduta do protocolo conforme definido nos <link>Termos e Condições do Agente</link>.",
+      "cancel": "Cancelar",
+      "agreeToTerms": "Concordar com os termos",
+      "registerAsAgent": "Registrar como agente",
+      "approvingToken": "Aprovando {symbol}...",
+      "registering": "Registrando...",
+      "registered": "Registrado!",
+      "enterAmountToApprove": "Informe um valor para habilitar a aprovação",
+      "copyDetails": "Copiar detalhes",
+      "copied": "Copiado",
+      "success": {
+        "title": "Registro concluído!",
+        "description": "Você agora está registrado como agente. Você pode começar a aceitar disputas.",
+        "transaction": "Transação:",
+        "goToDashboard": "Ir para o painel"
+      },
+      "alreadyRegistered": {
+        "title": "Já registrado",
+        "description": "Sua carteira já está registrada como agente.",
+        "goToDashboard": "Ir para o painel"
+      },
+      "faq": {
+        "title": "Perguntas frequentes",
+        "mavQuestion": "O que é MAV (Valor Máximo Arbitrável)?",
+        "mavAnswer": "O MAV define o valor máximo de escrow que você pode receber para resolver. É calculado como 20× seu stake em stablecoin. Por exemplo, $100 em stake dá um MAV de $2.000.",
+        "feesQuestion": "Para que servem as duas taxas?",
+        "feesAnswer": "<bold>Taxa de atribuição:</bold> cobrada quando você é atribuído a um escrow (mesmo sem disputa). <bold>Taxa de disputa:</bold> cobrada apenas quando você resolve uma disputa. Ambas são percentuais do valor do escrow.",
+        "slashQuestion": "Quando meu stake pode ser penalizado (slash)?",
+        "slashAnswer": "Seu stake em token DAO pode ser penalizado pela governança da DAO se você não responder a disputas dentro do prazo ou se má conduta for determinada via proposta de governança.",
+        "withdrawQuestion": "Posso retirar meu stake?",
+        "withdrawAnswer": "Sim, você pode retirar quando não tiver casos ativos. Primeiro, defina sua disponibilidade como indisponível, depois aguarde 30 dias (cooldown), e então poderá executar o saque.",
+        "gaslessQuestion": "O que é aprovação \"sem gas\"?",
+        "gaslessAnswer": "Tokens com suporte a EIP-2612 permit permitem assinar uma mensagem de aprovação em vez de enviar uma transação separada. Isso economiza gas. USDC e o token DAO suportam esse recurso; USDT não."
+      }
+    },
+    "dashboard": {
+      "connectWallet": {
+        "title": "Conecte sua carteira",
+        "description": "Conecte sua carteira para ver o painel do agente e gerenciar seus casos."
+      },
+      "notRegistered": {
+        "title": "Não registrado como agente",
+        "description": "Você não está registrado como agente nesta rede. Registre-se agora para começar a resolver disputas e ganhar taxas.",
+        "becomeAgent": "Tornar-se agente"
+      },
+      "backToAgents": "Voltar para agentes",
+      "title": "Painel do agente",
+      "description": "Acompanhe seu desempenho e gerencie casos de disputa atribuídos",
+      "joined": "Entrou em {date}",
+      "online": "Online",
+      "offline": "Offline",
+      "setUnavailable": "Definir como indisponível",
+      "setAvailable": "Definir como disponível",
+      "editProfile": "Editar perfil",
+      "defaultDescription": "Resolvedor experiente de disputas mantendo a integridade do ecossistema Zenland.",
+      "stats": {
+        "activeCases": "Casos ativos",
+        "totalResolved": "Total resolvido",
+        "totalEarnings": "Total ganho",
+        "totalSlashed": "Total penalizado"
+      },
+      "cases": {
+        "title": "Casos de disputa recentes",
+        "assigned": "{count} atribuídos",
+        "viewAll": "Ver todos →",
+        "empty": "Nenhum caso atribuído ainda. Você será notificado quando uma disputa precisar de sua revisão.",
+        "dispute": "Disputa #{id}",
+        "resolved": "Resolvido",
+        "active": "Ativo",
+        "escrowInfo": "Escrow #{id} • {amount} USDC",
+        "loading": "Carregando...",
+        "view": "Ver",
+        "review": "Revisar"
+      },
+      "feeConfig": {
+        "title": "Configuração de taxas",
+        "assignmentFee": "Taxa de atribuição",
+        "disputeResolution": "Resolução de disputas",
+        "updateFees": "Atualizar taxas"
+      },
+      "stakeCapacity": {
+        "title": "Stake e capacidade",
+        "stablecoinStake": "Stake em stablecoin (MAV)",
+        "daoTokenStake": "Stake em token DAO",
+        "mavCoverage": "Fornece cobertura MAV de <bold>${amount}</bold>.",
+        "governanceNote": "Necessário para governança e segurança do protocolo.",
+        "increaseStake": "Aumentar stake",
+        "withdrawStake": "Retirar stake"
+      }
+    },
+    "edit": {
+      "connectWallet": {
+        "title": "Conecte sua carteira",
+        "description": "Conecte sua carteira para gerenciar seu perfil de agente."
+      },
+      "notAgent": {
+        "title": "Você não é um agente",
+        "description": "Você não está registrado como agente. Registre-se antes de editar seu perfil.",
+        "becomeAgent": "Tornar-se agente"
+      },
+      "backToDashboard": "Voltar para o painel",
+      "editProfile": "Editar perfil",
+      "configureFees": "Configurar taxas",
+      "editProfileDesc": "Atualize seu resumo profissional e contatos on-chain",
+      "configureFeesDesc": "Defina suas taxas de atribuição e de resolução de disputas",
+      "profile": {
+        "title": "Detalhes do perfil",
+        "description": "Atualize sua descrição pública e contatos",
+        "professionalSummary": "Resumo profissional",
+        "summaryPlaceholder": "Diga aos usuários por que eles devem te selecionar como agente...",
+        "visibilityNote": "Visível para todos na lista de agentes.",
+        "saveChanges": "Salvar alterações",
+        "cancel": "Cancelar",
+        "updatingOnChain": "Atualizando on-chain...",
+        "updateSuccessful": "Atualização concluída! Redirecionando...",
+        "profileUpdated": "Perfil atualizado com sucesso!",
+        "noChanges": "Nenhuma alteração detectada",
+        "descriptionExceedsBytes": "A descrição excede {max} bytes ({current}/{max})"
+      },
+      "fees": {
+        "assignmentFee": "Taxa de atribuição",
+        "assignmentFeeDesc": "Cobrado quando atribuído a um caso",
+        "disputeFee": "Taxa de disputa",
+        "disputeFeeDesc": "Cobrado ao resolver com sucesso",
+        "feePercentage": "Percentual da taxa (%)",
+        "updateAssignmentFee": "Atualizar taxa de atribuição",
+        "updateDisputeFee": "Atualizar taxa de disputa",
+        "waitingForSignature": "Aguardando assinatura...",
+        "confirmingOnChain": "Confirmando on-chain...",
+        "updatedSuccessfully": "Atualizado com sucesso!",
+        "protocolLimits": "Transações individuais são necessárias para cada atualização. Limites do protocolo: 0,1% a 10,0%.",
+        "backToDashboard": "Voltar para o painel",
+        "noAssignmentChanges": "Sem alterações na taxa de atribuição",
+        "noDisputeChanges": "Sem alterações na taxa de disputa"
+      }
+    },
+    "profile": {
+      "backToAgents": "Voltar para agentes",
+      "backToSelection": "Voltar para seleção de agente",
+      "error": {
+        "title": "Agente não encontrado",
+        "description": "Não foi possível localizar o agente solicitado.",
+        "tryAgain": "Tentar novamente"
+      },
+      "selectModeBanner": {
+        "title": "Selecionando agente para criar o escrow",
+        "description": "Revise o perfil deste agente e clique em \"Selecionar agente\" para atribuí-lo ao seu escrow"
+      },
+      "header": {
+        "you": "VOCÊ",
+        "active": "Ativo",
+        "inactive": "Inativo",
+        "unavailable": "Indisponível",
+        "addressCopied": "Endereço copiado para a área de transferência",
+        "joined": "Entrou em {date}",
+        "goToDashboard": "Ir para o painel",
+        "selectAgent": "Selecionar agente",
+        "viewOnExplorer": "Ver no explorer"
+      },
+      "stats": {
+        "casesResolved": "Casos resolvidos",
+        "totalEscrows": "Total de escrows",
+        "disputeFee": "Taxa de disputa",
+        "assignFee": "Taxa de atribuição"
+      },
+      "contact": {
+        "title": "Resumo profissional e contato",
+        "bioLabel": "Bio / descrição",
+        "noDescription": "Este agente não forneceu um resumo profissional.",
+        "contactChannels": "Canais de contato"
+      },
+      "collateral": {
+        "title": "Colateral do agente",
+        "maxCoverage": "Cobertura máxima",
+        "maxCoverageNote": "Baseado no stake em stablecoin × {multiplier}",
+        "stablecoinStake": "Stake em stablecoin",
+        "daoTokenStake": "Stake em token DAO",
+        "totalEarnings": "Total ganho",
+        "totalSlashed": "Total penalizado"
+      }
+    },
+    "fees": {
+      "title": "Configuração de taxas",
+      "description": "Defina suas taxas de atribuição e de resolução de disputas",
+      "tabs": {
+        "assignment": "Taxa de atribuição",
+        "dispute": "Taxa de disputa"
+      },
+      "assignmentFee": "Taxa de atribuição",
+      "disputeResolutionFee": "Taxa de resolução de disputas",
+      "updateAssignmentFee": "Atualizar taxa de atribuição",
+      "updateDisputeFee": "Atualizar taxa de disputa",
+      "status": {
+        "waitingForSignature": "Aguardando assinatura...",
+        "confirmingOnChain": "Confirmando on-chain...",
+        "indexingUpdate": "Indexando atualização...",
+        "feeUpdated": "Taxa atualizada com sucesso!"
+      },
+      "protocolLimits": "Transações individuais são necessárias para cada atualização. Limites do protocolo: 0,1% a 10,0%."
+    },
+    "stake": {
+      "increase": {
+        "title": "Aumentar stake",
+        "description": "Adicione colateral para aumentar seu Valor Máximo Arbitrável (MAV)",
+        "amountOf": "Quantidade de {symbol}",
+        "balance": "Saldo:",
+        "insufficientBalance": "Saldo insuficiente",
+        "mavNote": "Aumentar seu stake aumenta seu Valor Máximo Arbitrável (MAV).",
+        "signPermit": "Assinar permit para {symbol}",
+        "approveToken": "Aprovar {symbol}",
+        "stakeToken": "Fazer stake de {symbol}",
+        "permitSigned": "Permit assinado — clique novamente para fazer stake",
+        "stakeUpdated": "Stake atualizado com sucesso!"
+      },
+      "withdraw": {
+        "title": "Retirar stake",
+        "description": "Gerencie sua aposentadoria e retire o colateral disponível",
+        "statusActive": "Status: Ativo",
+        "statusRetiring": "Status: Retirando",
+        "activeDescription": "Você está aceitando novas disputas. Para retirar seu stake, primeiro desative a disponibilidade.",
+        "retiringDescription": "Disponibilidade desativada. Você não receberá novos casos.",
+        "prerequisiteCases": "Todos os casos ativos resolvidos ({count} pendentes)",
+        "prerequisiteAvailability": "Disponibilidade definida como desativada",
+        "prerequisiteCooldown": "Cooldown de segurança cumprido",
+        "cooldownEnds": "Termina: {date}",
+        "withdrawAll": "Retirar todo o stake",
+        "cooldownExplanation": "O cooldown de segurança garante que nenhuma ação maliciosa foi tomada antes de sair do protocolo. Quando todas as condições forem atendidas, o botão acima será habilitado."
+      },
+      "tabs": {
+        "increase": "Aumentar stake",
+        "withdraw": "Retirar stake"
+      }
+    },
+    "availability": {
+      "setAvailable": {
+        "title": "Definir como disponível",
+        "confirmText": "Definir como disponível",
+        "message": "Você voltará a receber novos convites de disputa."
+      },
+      "setUnavailable": {
+        "title": "Definir como indisponível",
+        "confirmText": "Definir como indisponível",
+        "message": "Enquanto estiver indisponível:\n• Você não receberá novos convites de disputa.\n• Qualquer escrow que te selecionou como agente não poderá te convidar durante uma disputa.\n• As partes podem ser forçadas a negociar um acordo (SPLIT) sem sua decisão.\n{casesLine}\nIsso pode reduzir a confiança das partes que te escolheram para arbitrar.",
+        "activeCasesLine": " Atualmente você tem {count} caso(s) ativo(s)."
+      }
+    },
+    "shared": {
+      "contact": {
+        "telegram": "Telegram",
+        "discord": "Discord",
+        "email": "Email",
+        "contact": "Contato",
+        "copiedToClipboard": "{label} copiado para a área de transferência",
+        "failedToCopy": "Falha ao copiar",
+        "noContactInfo": "Nenhuma informação de contato fornecida",
+        "primary": "Principal",
+        "secondary": "Secundário"
+      },
+      "contactFields": {
+        "telegram": "Telegram",
+        "discord": "Discord",
+        "email": "Email",
+        "custom": "Personalizado",
+        "none": "Nenhum",
+        "primaryContact": "Contato principal",
+        "secondaryContact": "Contato secundário",
+        "usernamePlaceholder": "@usuario",
+        "emailPlaceholder": "nome@exemplo.com",
+        "valuePlaceholder": "valor",
+        "namePlaceholder": "nome",
+        "primaryRequired": "O contato principal é obrigatório",
+        "optional": "Opcional",
+        "formatHint": "O formato de {kind} será armazenado on-chain como nome:valor",
+        "storedOnChain": "Armazenado on-chain como: <name>:<value>[;<name>:<value>]",
+        "totalExceedsMax": "O total de informações de contato excede {max} caracteres"
+      }
+    }
+  }
+}

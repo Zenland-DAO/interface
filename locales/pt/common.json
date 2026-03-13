@@ -1,0 +1,104 @@
+{
+  "common": {
+    "nav": {
+      "features": "Recursos",
+      "howItWorks": "Como funciona",
+      "stats": "Estatísticas",
+      "community": "Comunidade",
+      "blog": "Blog"
+    },
+    "buttons": {
+      "app": "⚡ App",
+      "learnMore": "Saiba mais",
+      "getStarted": "Começar",
+      "connectWallet": "Conectar carteira"
+    },
+    "footer": {
+      "tagline": "Escrow seguro e sem confiança para transações em blockchain. Feito para Web3, impulsionado por contratos inteligentes.",
+      "sections": {
+        "product": {
+          "title": "Produto",
+          "features": "Recursos",
+          "howItWorks": "Como funciona",
+          "community": "Comunidade",
+          "faq": "FAQ"
+        },
+        "resources": {
+          "title": "Recursos",
+          "documentation": "Documentação",
+          "apiReference": "API",
+          "contracts": "Contratos",
+          "blog": "Blog"
+        },
+        "legal": {
+          "title": "Legal",
+          "privacy": "Política de Privacidade",
+          "terms": "Termos de Serviço",
+          "agentTos": "Termos do Agente"
+        }
+      },
+      "copyright": "© {year} Zenland. Todos os direitos reservados.",
+      "bottomLinks": {
+        "privacy": "Privacidade",
+        "terms": "Termos"
+      },
+      "disclaimer": {
+        "title": "Transparência do Protocolo",
+        "text": "Zenland é um protocolo de código disponível governado por sua comunidade por meio da Zenland DAO — não é uma empresa financeira registrada. O protocolo opera 100% sem custódia: os fundos vão diretamente para contratos inteligentes auditados no Ethereum. Nenhuma pessoa ou entidade detém seus fundos. Como ninguém pode acessar ou controlar os fundos depositados, não é necessária licença de escrow.",
+        "verifyCode": "Verificar o código",
+        "learnMore": "Saiba mais"
+      }
+    },
+    "wallet": {
+      "title": "Conectar carteira",
+      "subtitle": "Escolha sua carteira para continuar",
+      "recommended": "Recomendada",
+      "otherWallets": "Outras carteiras",
+      "connecting": "Conectando…",
+      "showMore": "Mostrar mais {count} carteira",
+      "showMorePlural": "Mostrar mais {count} carteiras",
+      "noWalletsDetected": "Nenhuma carteira detectada",
+      "installWallet": "Instale uma carteira Web3 para continuar",
+      "sponsoredDescription": "Conectar com transações sem gas",
+      "defaultDescription": "Conectar com extensão do navegador",
+      "sponsorBadge": "Patrocinado pela Zenland — Sem taxas de gas",
+      "footer": "Ao conectar, você concorda com nossos <terms>Termos</terms> e <privacy>Política de Privacidade</privacy>",
+      "errors": {
+        "timedOut": "A conexão expirou. Tente novamente.",
+        "cancelled": "A conexão foi cancelada. Tente novamente."
+      }
+    },
+    "accessibility": {
+      "openMenu": "Abrir menu",
+      "closeMenu": "Fechar menu",
+      "changeLanguage": "Alterar idioma",
+      "selectLanguage": "Selecionar idioma"
+    },
+    "notFound": {
+      "title": "Página não encontrada",
+      "code": "404",
+      "heading": "Ops! Esta página não existe",
+      "description": "A página que você procura pode ter sido movida, removida ou nunca existiu. Vamos te colocar de volta no caminho certo.",
+      "backHome": "Voltar para o início",
+      "suggestions": {
+        "title": "Aqui estão alguns links úteis:",
+        "home": {
+          "title": "Início",
+          "description": "Voltar para a página principal"
+        },
+        "app": {
+          "title": "Abrir App",
+          "description": "Acessar a plataforma de escrow"
+        },
+        "docs": {
+          "title": "Documentação",
+          "description": "Aprenda como a Zenland funciona"
+        },
+        "community": {
+          "title": "Comunidade",
+          "description": "Entre no nosso grupo do Telegram"
+        }
+      }
+    }
+  }
+}

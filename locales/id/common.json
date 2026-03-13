@@ -1,0 +1,104 @@
+{
+  "common": {
+    "nav": {
+      "features": "Fitur",
+      "howItWorks": "Cara Kerja",
+      "stats": "Statistik",
+      "community": "Komunitas",
+      "blog": "Blog"
+    },
+    "buttons": {
+      "app": "⚡ App",
+      "learnMore": "Pelajari Lebih Lanjut",
+      "getStarted": "Mulai",
+      "connectWallet": "Hubungkan Wallet"
+    },
+    "footer": {
+      "tagline": "Escrow aman dan trustless untuk transaksi blockchain. Dibangun untuk Web3, ditenagai oleh smart contract.",
+      "sections": {
+        "product": {
+          "title": "Produk",
+          "features": "Fitur",
+          "howItWorks": "Cara Kerja",
+          "community": "Komunitas",
+          "faq": "FAQ"
+        },
+        "resources": {
+          "title": "Sumber Daya",
+          "documentation": "Dokumentasi",
+          "apiReference": "API",
+          "contracts": "Kontrak",
+          "blog": "Blog"
+        },
+        "legal": {
+          "title": "Legal",
+          "privacy": "Kebijakan Privasi",
+          "terms": "Ketentuan Layanan",
+          "agentTos": "Ketentuan Agent"
+        }
+      },
+      "copyright": "© {year} Zenland. Semua hak dilindungi undang-undang.",
+      "bottomLinks": {
+        "privacy": "Privasi",
+        "terms": "Ketentuan"
+      },
+      "disclaimer": {
+        "title": "Transparansi Protokol",
+        "text": "Zenland adalah protokol source-available yang dikelola oleh komunitas melalui Zenland DAO — bukan perusahaan keuangan terdaftar. Protokol ini beroperasi 100% non-custodial: dana masuk langsung ke smart contract yang telah diaudit di Ethereum. Tidak ada individu maupun entitas yang pernah memegang dana Anda. Karena tidak ada pihak yang dapat mengakses atau mengendalikan dana yang disetorkan, tidak diperlukan lisensi escrow.",
+        "verifyCode": "Verifikasi kode",
+        "learnMore": "Pelajari lebih lanjut"
+      }
+    },
+    "wallet": {
+      "title": "Hubungkan Wallet",
+      "subtitle": "Pilih Wallet Anda untuk melanjutkan",
+      "recommended": "Direkomendasikan",
+      "otherWallets": "Wallet Lain",
+      "connecting": "Menghubungkan…",
+      "showMore": "Tampilkan {count} Wallet lagi",
+      "showMorePlural": "Tampilkan {count} Wallet lagi",
+      "noWalletsDetected": "Tidak ada Wallet yang terdeteksi",
+      "installWallet": "Silakan instal Wallet Web3 untuk melanjutkan",
+      "sponsoredDescription": "Hubungkan dengan transaksi tanpa biaya gas",
+      "defaultDescription": "Hubungkan melalui ekstensi browser",
+      "sponsorBadge": "Disponsori oleh Zenland — Tanpa biaya gas",
+      "footer": "Dengan menghubungkan, Anda menyetujui <terms>Ketentuan</terms> dan <privacy>Kebijakan Privasi</privacy> kami",
+      "errors": {
+        "timedOut": "Koneksi melewati batas waktu. Silakan coba lagi.",
+        "cancelled": "Koneksi dibatalkan. Silakan coba lagi."
+      }
+    },
+    "accessibility": {
+      "openMenu": "Buka menu",
+      "closeMenu": "Tutup menu",
+      "changeLanguage": "Ubah bahasa",
+      "selectLanguage": "Pilih bahasa"
+    },
+    "notFound": {
+      "title": "Halaman Tidak Ditemukan",
+      "code": "404",
+      "heading": "Maaf, halaman ini tidak tersedia",
+      "description": "Halaman yang Anda cari mungkin telah dipindahkan, dihapus, atau tidak pernah ada. Mari kami arahkan Anda kembali.",
+      "backHome": "Kembali ke Beranda",
+      "suggestions": {
+        "title": "Berikut beberapa tautan yang mungkin membantu:",
+        "home": {
+          "title": "Beranda",
+          "description": "Kembali ke halaman utama"
+        },
+        "app": {
+          "title": "Buka App",
+          "description": "Akses platform Escrow"
+        },
+        "docs": {
+          "title": "Dokumentasi",
+          "description": "Pelajari cara kerja Zenland"
+        },
+        "community": {
+          "title": "Komunitas",
+          "description": "Bergabung dengan grup Telegram kami"
+        }
+      }
+    }
+  }
+}

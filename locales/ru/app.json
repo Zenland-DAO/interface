@@ -1,0 +1,32 @@
+{
+  "app": {
+    "nav": {
+      "dashboard": "Панель",
+      "escrows": "Эскроу",
+      "agents": "Агенты",
+      "verifyPdf": "Проверка PDF"
+    },
+    "header": {
+      "settings": "Настройки",
+      "disconnect": "Отключиться",
+      "connectWallet": "Подключить кошелёк",
+      "connect": "Подключить"
+    },
+    "sidebar": {
+      "banner": {
+        "badge": "Агент Zenland",
+        "title": "Зарабатывайте, решая споры.",
+        "description": "Присоединяйтесь к децентрализованной программе агентов и начните зарабатывать комиссии.",
+        "cta": "Узнать больше"
+      }
+    },
+    "userProfile": {
+      "addressCopied": "Адрес скопирован",
+      "addressCopiedDescription": "Адрес кошелька скопирован в буфер обмена"
+    },
+    "announcement": {
+      "betaMessage": "Zenland V2 в бете — помогите нам сделать продукт лучше! Нашли баг или есть идеи?",
+      "telegramLink": "Telegram"
+    }
+  }
+}

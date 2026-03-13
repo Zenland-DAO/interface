@@ -6,7 +6,7 @@
  * app pages use stored preference.
  */
 
-export const locales = ['en', 'zh', 'es'] as const;
+export const locales = ['en', 'zh', 'es', 'pt', 'ru', 'id', 'vi'] as const;
 export type Locale = (typeof locales)[number];
 
 export const defaultLocale: Locale = 'en';
@@ -18,6 +18,10 @@ export const localeNames: Record<Locale, string> = {
   en: 'English',
   zh: '中文',
   es: 'Español',
+  pt: 'Português',
+  ru: 'Русский',
+  id: 'Indonesia',
+  vi: 'Tiếng Việt',
 };
 
 /**
@@ -27,6 +31,10 @@ export const localeFlags: Record<Locale, string> = {
   en: '🇺🇸',
   zh: '🇨🇳',
   es: '🇪🇸',
+  pt: '🇧🇷',
+  ru: '🇷🇺',
+  id: '🇮🇩',
+  vi: '🇻🇳',
 };
 
 /**

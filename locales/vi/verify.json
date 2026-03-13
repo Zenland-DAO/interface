@@ -1,0 +1,155 @@
+{
+  "verify": {
+    "title": "Xác minh PDF",
+    "description": "Tải lên tệp PDF thỏa thuận ký quỹ Zenland để xác minh tính xác thực và kiểm tra xem có khớp với bản ghi on-chain hay không.",
+    "infoCard": {
+      "title": "Xác minh kiểm tra những gì?",
+      "signatureAuth": "Tính xác thực chữ ký số của Zenland",
+      "contentIntegrity": "Tính toàn vẹn nội dung PDF (phát hiện chỉnh sửa)",
+      "onChainMatch": "Khớp termsHash on-chain",
+      "roleGuidance": "Hướng dẫn theo vai trò cho các bên tham gia hợp đồng"
+    },
+    "signatureFailed": {
+      "title": "PDF không hợp lệ",
+      "description": "Tệp PDF này không phải là thỏa thuận ký quỹ Zenland hợp lệ",
+      "reason": "Lý do:",
+      "tryAnother": "Thử PDF khác"
+    },
+    "dropZone": {
+      "verifying": "Đang xác minh...",
+      "dropHere": "Thả tệp PDF của quý vị tại đây",
+      "pleaseWait": "Vui lòng chờ trong khi chúng tôi xác minh tài liệu",
+      "orClickToBrowse": "hoặc nhấp để chọn tệp. Chỉ hỗ trợ PDF ký quỹ Zenland.",
+      "pdfOnly": "Chỉ tệp PDF"
+    },
+    "status": {
+      "loading": {
+        "title": "Đang xác minh on-chain...",
+        "description": "Đang kiểm tra dữ liệu hợp đồng trên blockchain"
+      },
+      "hashMatch": {
+        "title": "Đã xác minh ✓",
+        "description": "PDF này khớp với bản ghi hợp đồng on-chain",
+        "signedBy": "Được Zenland ký"
+      },
+      "notDeployed": {
+        "title": "Hợp đồng chưa được triển khai",
+        "description": "Tệp PDF này được Zenland ký, nhưng hợp đồng không tồn tại trên blockchain.",
+        "warningTitle": "ĐÂY KHÔNG PHẢI LÀ HỢP ĐỒNG ĐANG HOẠT ĐỘNG",
+        "warningDescription": "Không gửi bất kỳ tiền hoặc hàng hóa nào dựa trên PDF này. Hợp đồng phải được triển khai trước."
+      },
+      "hashMismatch": {
+        "title": "🚨 Hash không khớp - Có thể là lừa đảo",
+        "description": "PDF này không khớp với bản ghi hợp đồng on-chain. Tài liệu có thể đã bị chỉnh sửa.",
+        "pdfHash": "Hash PDF (tài liệu này)",
+        "onChainHash": "Hash on-chain (kỳ vọng)",
+        "warningTitle": "⛔ KHÔNG TIN TÀI LIỆU NÀY",
+        "warningDescription": "Đây có thể là lừa đảo hoặc một phiên bản cũ/đã bị chỉnh sửa của hợp đồng. Chỉ tin các tài liệu khớp với hash on-chain."
+      },
+      "error": {
+        "title": "Lỗi xác minh"
+      }
+    },
+    "escrowDetails": {
+      "title": "Chi tiết ký quỹ",
+      "escrowAddress": "Địa chỉ ký quỹ",
+      "network": "Mạng",
+      "buyer": "Người mua",
+      "seller": "Người bán",
+      "agent": "Đại lý",
+      "noAgent": "Không có Đại lý (Locked)",
+      "lockStatus": "Trạng thái khóa",
+      "locked": "Đã khóa",
+      "unlocked": "Đã mở khóa",
+      "amount": "Số tiền",
+      "buyerProtection": "Bảo vệ người mua",
+      "viewEscrow": "Xem chi tiết ký quỹ",
+      "verifyAnother": "Xác minh tệp khác"
+    },
+    "walletInstructions": {
+      "roles": {
+        "buyer": "Người mua",
+        "seller": "Người bán",
+        "agent": "Đại lý",
+        "viewer": "Người xem"
+      },
+      "notConnected": "Chưa kết nối"
+    },
+    "instructions": {
+      "contractCompleted": {
+        "title": "Hợp đồng đã hoàn tất",
+        "description": "Hợp đồng này đã được hoàn tất và chốt."
+      },
+      "contractNotFound": {
+        "title": "Không tìm thấy hợp đồng",
+        "description": "Hợp đồng này chưa được triển khai on-chain. Không có hành động nào khả dụng."
+      },
+      "contractActive": {
+        "title": "Hợp đồng đang hoạt động",
+        "description": "Hợp đồng này đang được thực hiện."
+      },
+      "connectWallet": {
+        "title": "Kết nối ví",
+        "description": "Kết nối ví để nhận hướng dẫn phù hợp theo vai trò của quý vị trong hợp đồng này."
+      },
+      "notParticipant": {
+        "title": "Không phải là bên tham gia",
+        "description": "Ví đã kết nối của quý vị không phải là bên tham gia trong hợp đồng này. Quý vị đang xem với tư cách bên thứ ba."
+      },
+      "buyer": {
+        "pending": {
+          "title": "Đang chờ người bán",
+          "description": "Người bán cần xem xét và chấp nhận hợp đồng này. Vui lòng liên hệ họ để xác nhận tham gia."
+        },
+        "active": {
+          "title": "Hợp đồng đang hoạt động",
+          "description": "Hợp đồng đang hoạt động. Vui lòng chờ người bán giao hàng/dịch vụ, sau đó giải ngân khi quý vị hài lòng."
+        },
+        "fulfilled": {
+          "title": "Đã xác nhận giao hàng",
+          "description": "Người bán đã xác nhận hoàn thành. Vui lòng kiểm tra và giải ngân nếu quý vị hài lòng."
+        },
+        "disputed": {
+          "title": "Đã mở tranh chấp",
+          "description": "Quý vị đã mở tranh chấp. Quý vị có thể mời Đại lý giải quyết hoặc đề xuất phương án dàn xếp."
+        },
+        "agentInvited": {
+          "title": "Đại lý đang xem xét",
+          "description": "Đại lý đã được mời giải quyết tranh chấp. Vui lòng chờ quyết định của họ."
+        }
+      },
+      "seller": {
+        "pending": {
+          "title": "Cần hành động",
+          "description": "Hợp đồng này đang chờ quý vị xác nhận. Vui lòng xem kỹ điều khoản và chấp nhận để kích hoạt ký quỹ."
+        },
+        "active": {
+          "title": "An toàn để giao hàng/dịch vụ",
+          "description": "Hợp đồng đang hoạt động và tiền đã được khóa. Việc giao hàng/dịch vụ là an toàn. Tiền không thể bị rút ra ngoài các quy tắc của hợp đồng."
+        },
+        "fulfilled": {
+          "title": "Đang chờ giải ngân",
+          "description": "Quý vị đã xác nhận hoàn thành. Đang chờ người mua giải ngân. Nếu họ không giải ngân trong thời hạn bảo vệ, quý vị có thể nhận tiền."
+        },
+        "disputed": {
+          "title": "Đã mở tranh chấp",
+          "description": "Một tranh chấp đã được mở. Quý vị có thể mời Đại lý giải quyết, đề xuất phương án chia, hoặc hoàn tiền."
+        },
+        "agentInvited": {
+          "title": "Đại lý đang xem xét",
+          "description": "Đại lý đã được mời giải quyết tranh chấp. Vui lòng chờ quyết định của họ."
+        }
+      },
+      "agent": {
+        "invited": {
+          "title": "Cần hành động",
+          "description": "Quý vị là Đại lý. Hợp đồng này đang chờ quý vị xem xét và ra quyết định. Vui lòng đánh giá bằng chứng và đưa ra quyết định công bằng."
+        },
+        "assigned": {
+          "title": "Đại lý được chỉ định",
+          "description": "Quý vị là Đại lý được chỉ định cho hợp đồng này. Hiện tại các bên chưa mời quý vị xử lý tranh chấp."
+        }
+      }
+    }
+  }
+}

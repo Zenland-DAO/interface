@@ -1,0 +1,31 @@
+{
+  "settings": {
+    "title": "Pengaturan",
+    "description": "Kelola preferensi akun Anda",
+    "wallet": {
+      "title": "Wallet",
+      "connectedWallet": "Wallet Terhubung",
+      "disconnect": "Putuskan Koneksi",
+      "network": "Jaringan",
+      "networkDescription": "Beralih antara mainnet dan testnet",
+      "noWallet": "Tidak ada Wallet yang terhubung",
+      "noWalletDescription": "Hubungkan Wallet Anda untuk mengakses semua fitur",
+      "connectWallet": "Hubungkan Wallet"
+    },
+    "appearance": {
+      "title": "Tampilan",
+      "theme": "Tema",
+      "themeDescription": "Beralih antara mode terang dan gelap"
+    },
+    "about": {
+      "title": "Tentang",
+      "version": "Versi",
+      "versionDescription": "Versi aplikasi saat ini",
+      "documentation": "Dokumentasi",
+      "github": "GitHub",
+      "termsOfService": "Ketentuan Layanan",
+      "privacyPolicy": "Kebijakan Privasi",
+      "support": "Dukungan"
+    }
+  }
+}
