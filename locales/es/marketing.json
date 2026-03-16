@@ -1,13 +1,13 @@
 {
   "marketing": {
     "meta": {
-      "title": "Zenland - Plataforma de Escrow Web3",
+      "title": "Zenland - Plataforma de Escrow Crypto",
       "description": "Escrow seguro y sin confianza para transacciones blockchain. Sin intermediarios, solo contratos inteligentes."
     },
     "hero": {
-      "badge": "Web3 Nativo",
+      "badge": "Crypto Nativo",
       "title": {
-        "line1": "Web3",
+        "line1": "Crypto",
         "highlight": "Escrow",
         "line2": "Plataforma."
       },

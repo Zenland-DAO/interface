@@ -1,13 +1,13 @@
 {
   "marketing": {
     "meta": {
-      "title": "Zenland - Web3托管平台",
+      "title": "Zenland - 加密托管平台",
       "description": "区块链交易的安全、无信任托管。没有中介，只有智能合约。"
     },
     "hero": {
-      "badge": "Web3原生",
+      "badge": "加密原生",
       "title": {
-        "line1": "Web3",
+        "line1": "加密",
         "highlight": "托管",
         "line2": "平台。"
       },

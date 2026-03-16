@@ -1,15 +1,15 @@
 {
   "marketing": {
     "meta": {
-      "title": "Zenland - Nền tảng ký quỹ Web3",
+      "title": "Zenland - Nền tảng ký quỹ Crypto",
       "description": "Ký quỹ an toàn, không cần tin cậy cho giao dịch blockchain. Không trung gian, chỉ có hợp đồng thông minh."
     },
     "hero": {
-      "badge": "Web3 thuần gốc",
+      "badge": "Crypto thuần gốc",
       "title": {
         "line1": "Nền tảng",
         "highlight": "Ký quỹ",
-        "line2": "Web3."
+        "line2": "Crypto."
       },
       "description": "Bảo vệ giao dịch của quý vị bằng ký quỹ on-chain. Không trung gian, không cần đặt niềm tin. Chỉ có hợp đồng thông minh bảo vệ cả hai bên.",
       "stats": {
