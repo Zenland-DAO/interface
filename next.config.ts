@@ -79,7 +79,11 @@ const nextConfig: NextConfig = {
 
 export default withSentryConfig(withNextIntl(nextConfig), {
   org: "zenland-td",
-  project: "javascript-nextjs",
+  project: "interface",
+  authToken: process.env.SENTRY_AUTH_TOKEN,
+
+  // Upload dependency source maps for prettier stack traces (increases build time)
+  widenClientFileUpload: true,
 
   // Only print logs for uploading source maps in CI
   silent: !process.env.CI,

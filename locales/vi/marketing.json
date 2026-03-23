@@ -174,6 +174,11 @@
         "description": "Tham gia nhóm Telegram để thảo luận theo thời gian thực, nhận thông báo và được hỗ trợ nhanh từ cộng đồng.",
         "cta": "Tham gia trò chuyện"
       },
+      "discord": {
+        "title": "Discord",
+        "description": "Tham gia máy chủ Discord của chúng tôi để thảo luận cộng đồng, hỗ trợ và cập nhật mới nhất từ đội ngũ Zenland.",
+        "cta": "Tham gia Discord"
+      },
       "twitter": {
         "title": "X (Twitter)",
         "description": "Theo dõi chúng tôi trên X để cập nhật mới nhất, thông báo và góc nhìn từ đội ngũ Zenland.",

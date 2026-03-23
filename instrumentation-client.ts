@@ -72,7 +72,15 @@ Sentry.init({
   integrations: [
     // Send console.log, console.warn, and console.error calls as logs to Sentry
     Sentry.consoleLoggingIntegration({ levels: ["log", "warn", "error"] }),
+    // Session Replay — records user sessions for debugging
+    Sentry.replayIntegration(),
   ],
+
+  // Session Replay
+  // 10% of sessions in production; set to 1.0 during testing
+  replaysSessionSampleRate: 0.1,
+  // Always capture replays when an error occurs
+  replaysOnErrorSampleRate: 1.0,
 
   // Filter and downgrade non-actionable errors before sending to Sentry.
   beforeSend(event) {

@@ -174,6 +174,11 @@
         "description": "Entre no nosso grupo do Telegram para discussões em tempo real, anúncios e suporte rápido da comunidade.",
         "cta": "Entrar no chat"
       },
+      "discord": {
+        "title": "Discord",
+        "description": "Junte-se ao nosso servidor Discord para discussões da comunidade, suporte e as últimas atualizações da equipe Zenland.",
+        "cta": "Entrar no Discord"
+      },
       "twitter": {
         "title": "X (Twitter)",
         "description": "Siga a Zenland no X para atualizações, anúncios e insights do time.",
