@@ -5,7 +5,6 @@ import { motion, AnimatePresence } from "framer-motion";
 import { ArrowRight, ShieldCheck, Zap, Globe, Lock, CheckCircle2 } from "lucide-react";
 import { useTranslations } from "next-intl";
 import Link from "next/link";
-import { Button } from "@/components/ui";
 
 /**
  * HeroEscrowCard - Refined Mock Component
@@ -220,19 +219,17 @@ export function HeroEscrowCard() {
             </motion.div>
           </AnimatePresence>
 
-          <Button
-            asChild
-            className={`w-full py-6 rounded-2xl font-bold text-base transition-all duration-500 cursor-pointer ${
+          <Link
+            href="https://zen.land/app"
+            className={`w-full py-6 rounded-2xl font-bold text-base transition-all duration-500 cursor-pointer inline-flex items-center justify-center font-medium focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary-500 focus-visible:ring-offset-2 dark:focus-visible:ring-offset-neutral-900 bg-primary-500 text-white hover:bg-white hover:text-primary-600 hover:scale-[1.02] hover:shadow-lg active:scale-[0.98] shadow-sm ${
               step === 2 ? "bg-success-500 hover:bg-success-600" : ""
             }`}
           >
-            <Link href="https://zen.land/app">
-              {step === 0 && t("buttons.start")}
-              {step === 1 && t("buttons.verifying")}
-              {step === 2 && t("buttons.completed")}
-              {step === 0 && <ShieldCheck className="ml-2 w-4 h-4" />}
-            </Link>
-          </Button>
+            {step === 0 && t("buttons.start")}
+            {step === 1 && t("buttons.verifying")}
+            {step === 2 && t("buttons.completed")}
+            {step === 0 && <ShieldCheck className="ml-2 w-4 h-4" />}
+          </Link>
 
           <div className="flex items-center justify-center gap-6 opacity-40">
             <div className="flex items-center gap-1">
