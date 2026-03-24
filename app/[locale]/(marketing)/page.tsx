@@ -10,7 +10,8 @@ import {
   BentoGridSection,
   CommunitySection,
   OpenBookSection,
-  FAQSection
+  FAQSection,
+  TutorialVideoSection
 } from "@/components/marketing";
 import { ProtocolStatsSectionClient } from "@/components/marketing/ProtocolStatsSectionClient";
 import { AnimateOnScroll } from "@/hooks";
@@ -215,6 +216,9 @@ export default async function LandingPage() {
           </div>
         </Container>
       </section>
+
+      {/* Tutorial Video Section - Facade pattern (no LCP impact) */}
+      <TutorialVideoSection />
 
       {/* Community Section - Telegram + DAOForum */}
       <CommunitySection />

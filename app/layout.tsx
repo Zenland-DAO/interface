@@ -217,6 +217,18 @@ export default async function RootLayout({
                 },
                 // FAQ schema - uses shared data from faq.ts (DRY)
                 generateFAQSchema(SITE_URL),
+                // Tutorial video schema for SEO
+                {
+                  "@type": "VideoObject",
+                  "@id": `${SITE_URL}/#tutorial-video`,
+                  name: "Crypto Escrow Tutorial: Send USDT Safely Using Smart Contracts (Step-by-Step)",
+                  description: "Step-by-step walkthrough of how to send USDT safely using Zenland's smart contract escrow on Ethereum.",
+                  thumbnailUrl: "https://i.ytimg.com/vi/zZCREbx8b8g/maxresdefault.jpg",
+                  uploadDate: "2026-03-24",
+                  contentUrl: "https://www.youtube.com/watch?v=zZCREbx8b8g",
+                  embedUrl: "https://www.youtube-nocookie.com/embed/zZCREbx8b8g",
+                  publisher: { "@id": `${SITE_URL}/#organization` },
+                },
               ],
             }),
           }}

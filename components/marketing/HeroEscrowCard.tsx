@@ -4,6 +4,7 @@ import { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { ArrowRight, ShieldCheck, Zap, Globe, Lock, CheckCircle2 } from "lucide-react";
 import { useTranslations } from "next-intl";
+import Link from "next/link";
 import { Button } from "@/components/ui";
 
 /**
@@ -220,14 +221,17 @@ export function HeroEscrowCard() {
           </AnimatePresence>
 
           <Button
-            className={`w-full py-6 rounded-2xl font-bold text-base transition-all duration-500 ${
+            asChild
+            className={`w-full py-6 rounded-2xl font-bold text-base transition-all duration-500 cursor-pointer ${
               step === 2 ? "bg-success-500 hover:bg-success-600" : ""
             }`}
           >
-            {step === 0 && t("buttons.start")}
-            {step === 1 && t("buttons.verifying")}
-            {step === 2 && t("buttons.completed")}
-            {step === 0 && <ShieldCheck className="ml-2 w-4 h-4" />}
+            <Link href="https://zen.land/app">
+              {step === 0 && t("buttons.start")}
+              {step === 1 && t("buttons.verifying")}
+              {step === 2 && t("buttons.completed")}
+              {step === 0 && <ShieldCheck className="ml-2 w-4 h-4" />}
+            </Link>
           </Button>
 
           <div className="flex items-center justify-center gap-6 opacity-40">

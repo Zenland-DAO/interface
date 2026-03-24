@@ -283,6 +283,13 @@
       "title": "Pronto para começar?",
       "subtitle": "Conecte sua carteira e crie seu primeiro escrow em minutos."
     },
+    "tutorial": {
+      "badge": "Vídeo Tutorial",
+      "title": "Veja na Prática",
+      "subtitle": "Assista a um passo a passo de como enviar USDT com segurança usando o escrow de contratos inteligentes da Zenland.",
+      "videoTitle": "Tutorial de Crypto Escrow: Envie USDT com Segurança Usando Smart Contracts (Passo a Passo)",
+      "playButton": "Reproduzir vídeo tutorial"
+    },
     "heroCard": {
       "steps": {
         "creation": {

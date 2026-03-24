@@ -283,6 +283,13 @@
       "title": "准备开始了吗？",
       "subtitle": "连接您的钱包，几分钟内创建您的第一个托管。"
     },
+    "tutorial": {
+      "badge": "视频教程",
+      "title": "观看实际操作",
+      "subtitle": "观看分步演示，了解如何使用Zenland的智能合约托管安全地发送USDT。",
+      "videoTitle": "加密货币托管教程：使用智能合约安全发送USDT（分步指南）",
+      "playButton": "播放教程视频"
+    },
     "heroCard": {
       "steps": {
         "creation": {

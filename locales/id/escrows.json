@@ -255,6 +255,8 @@
       "wrongNetwork": "Jaringan Salah",
       "switchToNetwork": "Beralih ke {chain} untuk melakukan aksi pada Escrow ini.",
       "connectToInteract": "Hubungkan Wallet Anda untuk berinteraksi dengan Escrow ini.",
+      "walletNotParticipant": "Wallet Bukan Peserta",
+      "switchToParticipantWallet": "Wallet yang terhubung bukan pembeli, penjual, atau agen dalam escrow ini. Silakan beralih ke wallet yang benar untuk berinteraksi.",
       "noActionsAvailable": "Tidak ada aksi yang tersedia saat ini.",
       "contract": "Kontrak",
       "contractAddress": "Alamat Kontrak",

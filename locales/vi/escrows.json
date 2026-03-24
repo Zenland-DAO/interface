@@ -255,6 +255,8 @@
       "wrongNetwork": "Sai mạng",
       "switchToNetwork": "Chuyển sang {chain} để thực hiện hành động trên ký quỹ này.",
       "connectToInteract": "Kết nối ví để tương tác với ký quỹ này.",
+      "walletNotParticipant": "Ví không phải là bên tham gia",
+      "switchToParticipantWallet": "Ví đang kết nối không phải là người mua, người bán hoặc đại lý trong ký quỹ này. Vui lòng chuyển sang ví đúng để tương tác.",
       "noActionsAvailable": "Hiện tại không có hành động nào khả dụng.",
       "contract": "Hợp đồng",
       "contractAddress": "Địa chỉ hợp đồng",

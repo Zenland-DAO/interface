@@ -283,6 +283,13 @@
       "title": "Ready to get started?",
       "subtitle": "Connect your wallet and create your first escrow in minutes."
     },
+    "tutorial": {
+      "badge": "Video Tutorial",
+      "title": "See It In Action",
+      "subtitle": "Watch a step-by-step walkthrough of how to send USDT safely using Zenland's smart contract escrow.",
+      "videoTitle": "Crypto Escrow Tutorial: Send USDT Safely Using Smart Contracts (Step-by-Step)",
+      "playButton": "Play tutorial video"
+    },
     "heroCard": {
       "steps": {
         "creation": {

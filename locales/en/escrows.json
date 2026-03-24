@@ -255,6 +255,8 @@
       "wrongNetwork": "Wrong Network",
       "switchToNetwork": "Switch to {chain} to perform actions on this escrow.",
       "connectToInteract": "Connect your wallet to interact with this escrow.",
+      "walletNotParticipant": "Wallet Not a Participant",
+      "switchToParticipantWallet": "Your connected wallet is not the buyer, seller, or agent in this escrow. Please switch to the correct wallet to interact.",
       "noActionsAvailable": "No actions available at this time.",
       "contract": "Contract",
       "contractAddress": "Contract Address",

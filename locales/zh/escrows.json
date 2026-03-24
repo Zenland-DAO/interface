@@ -255,6 +255,8 @@
       "wrongNetwork": "网络错误",
       "switchToNetwork": "切换到 {chain} 以对此托管执行操作。",
       "connectToInteract": "连接你的钱包以与此托管交互。",
+      "walletNotParticipant": "钱包非参与方",
+      "switchToParticipantWallet": "您连接的钱包不是此托管的买方、卖方或代理人。请切换到正确的钱包进行交互。",
       "noActionsAvailable": "当前没有可用的操作。",
       "contract": "合约",
       "contractAddress": "合约地址",

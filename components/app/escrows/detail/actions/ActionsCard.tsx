@@ -183,12 +183,29 @@ export function ActionsCard() {
             </div>
           )}
 
-          {/* No Actions Available (but not terminal) */}
-          {!isTerminal && !isChainMismatch && !hasAnyAction && role.role === "viewer" && (
+          {/* Wallet not connected — prompt to connect */}
+          {!isTerminal && !isChainMismatch && !hasAnyAction && role.role === "viewer" && !isConnected && (
             <div className="text-center py-4">
               <Text variant="muted" className="text-sm">
                 {t("detail.connectToInteract")}
               </Text>
+            </div>
+          )}
+
+          {/* Wallet connected but not a participant — wrong wallet */}
+          {!isTerminal && !isChainMismatch && !hasAnyAction && role.role === "viewer" && isConnected && (
+            <div className="text-center py-4 space-y-3">
+              <div className="w-12 h-12 bg-warning-50 dark:bg-warning-900/20 rounded-full flex items-center justify-center mx-auto">
+                <AlertTriangle size={24} className="text-warning-500" />
+              </div>
+              <div>
+                <Text className="font-semibold text-warning-700 dark:text-warning-300">
+                  {t("detail.walletNotParticipant")}
+                </Text>
+                <Text variant="muted" className="text-sm mt-1">
+                  {t("detail.switchToParticipantWallet")}
+                </Text>
+              </div>
             </div>
           )}
 

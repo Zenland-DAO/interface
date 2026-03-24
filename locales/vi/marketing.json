@@ -283,6 +283,13 @@
       "title": "Sẵn sàng bắt đầu?",
       "subtitle": "Kết nối ví và tạo hợp đồng ký quỹ đầu tiên trong vài phút."
     },
+    "tutorial": {
+      "badge": "Video hướng dẫn",
+      "title": "Xem cách hoạt động",
+      "subtitle": "Xem hướng dẫn từng bước cách gửi USDT an toàn bằng ký quỹ hợp đồng thông minh của Zenland.",
+      "videoTitle": "Hướng dẫn ký quỹ crypto: Gửi USDT an toàn bằng hợp đồng thông minh (từng bước)",
+      "playButton": "Phát video hướng dẫn"
+    },
     "heroCard": {
       "steps": {
         "creation": {
