@@ -5,13 +5,18 @@
  *
  * Provides instant UI updates after successful on-chain transactions
  * by patching the TanStack Query cache optimistically, then reconciling
- * with the indexer via aggressive short-lived polling.
+ * with the indexer via controlled polling.
  *
- * Pattern: Optimistic Update → Aggressive Polling → Settle
+ * Pattern: Cancel → Optimistic Set → Controlled Poll → Settle
  *
- * 1. On tx success: immediately patch the cached GqlEscrow in TanStack Query
- * 2. Start polling the indexer every POLL_INTERVAL_MS for up to MAX_POLL_DURATION_MS
- * 3. Stop polling once the indexer returns data matching the optimistic state
+ * 1. On tx success: cancel in-flight fetches, patch cache with expected state
+ * 2. Poll the indexer every POLL_INTERVAL_MS using fetchQuery (controlled)
+ * 3. If indexer hasn't caught up yet, restore optimistic data (no visual flash)
+ * 4. Stop once the indexer returns data matching the optimistic state (or timeout)
+ *
+ * Key insight: we never use `invalidateQueries` during reconciliation because it
+ * triggers uncontrolled background refetches that overwrite the optimistic cache
+ * with stale indexer data before we can check or prevent it.
  */
 
 import { useCallback, useRef } from "react";
@@ -104,8 +109,12 @@ export function useOptimisticEscrowUpdate(
   const pollingStartRef = useRef<number>(0);
   const isReconcilingRef = useRef(false);
 
+  // Stores the optimistic escrow data during reconciliation so we can
+  // restore it if a fetch returns stale indexer data.
+  const optimisticEscrowRef = useRef<GqlEscrow | null>(null);
+
   /**
-   * Stop any active reconciliation polling.
+   * Stop any active reconciliation polling and clear optimistic state.
    */
   const stopPolling = useCallback(() => {
     if (pollingTimerRef.current) {
@@ -113,47 +122,84 @@ export function useOptimisticEscrowUpdate(
       pollingTimerRef.current = null;
     }
     isReconcilingRef.current = false;
+    optimisticEscrowRef.current = null;
   }, []);
 
   /**
    * Start reconciliation polling.
-   * Repeatedly invalidates the query until the indexer catches up
-   * or we exceed MAX_POLL_DURATION_MS.
+   *
+   * Uses a controlled fetch-then-compare pattern:
+   * - Each tick: cancel in-flight queries → fetchQuery → compare
+   * - If indexer caught up: stop (cache already has canonical data)
+   * - If indexer stale: immediately restore optimistic data to cache
+   *
+   * This avoids the bug where `invalidateQueries` triggers an uncontrolled
+   * background refetch that overwrites the cache with stale data.
    */
   const startReconciliationPolling = useCallback(
-    (expectedState: string) => {
+    (expectedState: string, optimisticEscrow: GqlEscrow) => {
       // Stop any existing polling first
       stopPolling();
 
       isReconcilingRef.current = true;
       pollingStartRef.current = Date.now();
+      optimisticEscrowRef.current = optimisticEscrow;
 
       const queryKey = escrowQueryKey(escrowId);
 
       pollingTimerRef.current = setInterval(async () => {
         const elapsed = Date.now() - pollingStartRef.current;
 
-        // Timeout — stop polling, the indexer will catch up eventually
+        // Timeout — stop polling, do a final invalidation so the UI
+        // settles on whatever the indexer currently has.
         if (elapsed >= MAX_POLL_DURATION_MS) {
           console.debug(
             "[OptimisticUpdate] Reconciliation polling timed out after %dms",
             MAX_POLL_DURATION_MS,
           );
           stopPolling();
+          queryClient.invalidateQueries({ queryKey });
           return;
         }
 
-        // Invalidate + refetch from the indexer
-        await queryClient.invalidateQueries({ queryKey });
+        try {
+          // Cancel any in-flight fetches (e.g., from window focus refetch)
+          // to prevent them from clobbering the cache while we're working.
+          await queryClient.cancelQueries({ queryKey });
 
-        // Check if the indexer has caught up
-        const cached = queryClient.getQueryData<GqlEscrow | null>(queryKey);
-        if (cached && cached.state === expectedState) {
-          console.debug(
-            "[OptimisticUpdate] Indexer reconciled — state matches '%s'",
-            expectedState,
-          );
-          stopPolling();
+          // Controlled fetch: fetchQuery returns the data AND updates the cache,
+          // but crucially it's synchronous from our perspective — we get the result
+          // in the same tick and can immediately restore if needed.
+          const freshData = await queryClient.fetchQuery<GqlEscrow | null>({
+            queryKey,
+            staleTime: 0, // Always fetch fresh from the indexer
+          });
+
+          if (freshData && freshData.state === expectedState) {
+            // Indexer has caught up — cache already holds canonical data from fetchQuery.
+            console.debug(
+              "[OptimisticUpdate] Indexer reconciled — state matches '%s'",
+              expectedState,
+            );
+            stopPolling();
+          } else {
+            // Indexer hasn't caught up — restore optimistic data to cache.
+            // React 18 batches these updates, so there's no visual flash.
+            console.debug(
+              "[OptimisticUpdate] Indexer still stale (got '%s', want '%s') — restoring optimistic data",
+              freshData?.state ?? "null",
+              expectedState,
+            );
+            if (optimisticEscrowRef.current) {
+              queryClient.setQueryData<GqlEscrow | null>(queryKey, optimisticEscrowRef.current);
+            }
+          }
+        } catch (err) {
+          // On fetch error, keep the optimistic data in cache
+          console.debug("[OptimisticUpdate] Fetch error during reconciliation:", err);
+          if (optimisticEscrowRef.current) {
+            queryClient.setQueryData<GqlEscrow | null>(queryKey, optimisticEscrowRef.current);
+          }
         }
       }, POLL_INTERVAL_MS);
     },
@@ -198,6 +244,10 @@ export function useOptimisticEscrowUpdate(
         action,
       );
 
+      // Cancel any in-flight fetches first to prevent them from overwriting
+      // our optimistic data when they resolve.
+      queryClient.cancelQueries({ queryKey });
+
       // Patch the cache immediately — UI re-renders instantly
       queryClient.setQueryData<GqlEscrow | null>(queryKey, result.escrow);
 
@@ -207,7 +257,7 @@ export function useOptimisticEscrowUpdate(
       });
 
       // Start background polling to reconcile with the indexer's canonical data
-      startReconciliationPolling(result.escrow.state);
+      startReconciliationPolling(result.escrow.state, result.escrow);
     },
     [escrowId, queryClient, startReconciliationPolling],
   );
