@@ -12,6 +12,7 @@ import {
   useContext,
   useCallback,
   useMemo,
+  useRef,
   type ReactNode,
 } from "react";
 import { type Address } from "viem";
@@ -22,6 +23,10 @@ import { useEscrowTimers, type UseEscrowTimersReturn } from "./hooks/useEscrowTi
 import { useAvailableActions, type UseAvailableActionsReturn } from "./hooks/useAvailableActions";
 import { useEscrowTransactions, type UseEscrowTransactionsReturn } from "./hooks/useEscrowTransactions";
 import { useEscrowActions, type UseEscrowActionsReturn } from "./hooks/useEscrowActions";
+import {
+  useOptimisticEscrowUpdate,
+  type OptimisticTransitionContext,
+} from "./hooks";
 import {
   type EscrowState,
   type SplitProposal,
@@ -75,6 +80,13 @@ export interface EscrowDetailContextValue {
 
   // Refetch function
   refetch: () => Promise<void>;
+
+  /**
+   * Set additional context for the next action (e.g., split bps).
+   * Call this before invoking a write function so the optimistic update
+   * can apply the correct field patches.
+   */
+  setActionContext: (ctx: Partial<OptimisticTransitionContext>) => void;
 }
 
 // =============================================================================
@@ -129,6 +141,25 @@ export function EscrowDetailProvider({
   onRefetch,
 }: EscrowDetailProviderProps) {
   const queryClient = useQueryClient();
+
+  // ==========================================================================
+  // ACTION CONTEXT REF
+  // Stores extra context (e.g., split bps) for the current/next action.
+  // Set by consumers (e.g., ActionsCard) before calling a write function,
+  // then read in onSuccess to build the optimistic transition context.
+  // ==========================================================================
+  const actionContextRef = useRef<Partial<OptimisticTransitionContext>>({});
+
+  const setActionContext = useCallback((ctx: Partial<OptimisticTransitionContext>) => {
+    actionContextRef.current = ctx;
+  }, []);
+
+  // ==========================================================================
+  // OPTIMISTIC ESCROW UPDATE
+  // ==========================================================================
+  const { applyOptimisticUpdate } = useOptimisticEscrowUpdate({
+    escrowId: escrow.id,
+  });
 
   // ==========================================================================
   // ROLE DETECTION
@@ -216,11 +247,31 @@ export function EscrowDetailProvider({
     escrowAddress: escrow.id,
     onSuccess: async (action: EscrowAction, txHash: string) => {
       console.log(`[EscrowDetail] Action ${action} succeeded: ${txHash}`);
-      // Refetch data after successful transaction
-      await refetch();
+
+      // 1. Apply optimistic update — patches cache instantly for immediate UI feedback.
+      //    Merges the ref-stored context (split bps, etc.) with always-available addresses.
+      const transitionContext: OptimisticTransitionContext = {
+        userAddress: role.userAddress,
+        buyer: escrow.buyer,
+        seller: escrow.seller,
+        ...actionContextRef.current,
+      };
+      applyOptimisticUpdate({ action, context: transitionContext });
+
+      // Clear the action context ref after use
+      actionContextRef.current = {};
+
+      // 2. Refetch transactions (timeline) — this is independent of the escrow state.
+      //    The optimistic update + reconciliation polling handle the escrow data.
+      await transactions.refetch();
+      await queryClient.invalidateQueries({
+        queryKey: ["escrow-transactions", escrow.id.toLowerCase()],
+      });
     },
     onError: (action: EscrowAction, error: unknown) => {
       console.error(`[EscrowDetail] Action ${action} failed:`, error);
+      // Clear context on error too
+      actionContextRef.current = {};
     },
   });
 
@@ -239,6 +290,7 @@ export function EscrowDetailProvider({
       splitProposal,
       isLoading: transactions.isLoading || write.isPending,
       refetch,
+      setActionContext,
     }),
     [
       escrow,
@@ -250,6 +302,7 @@ export function EscrowDetailProvider({
       write,
       splitProposal,
       refetch,
+      setActionContext,
     ]
   );
 

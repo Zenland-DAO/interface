@@ -49,3 +49,18 @@ export {
   type UseEscrowChainGuardParams,
   type UseEscrowChainGuardReturn,
 } from "./useEscrowChainGuard";
+
+// Optimistic updates (instant UI after tx confirmation)
+export {
+  applyOptimisticTransition,
+  isTerminalAction,
+  type OptimisticTransitionContext,
+  type OptimisticTransitionResult,
+} from "./optimistic-updates";
+
+export {
+  useOptimisticEscrowUpdate,
+  type UseOptimisticEscrowUpdateParams,
+  type UseOptimisticEscrowUpdateReturn,
+  type OptimisticUpdatePayload,
+} from "./useOptimisticEscrowUpdate";

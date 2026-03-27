@@ -53,7 +53,7 @@ interface ModalData {
 
 export function ActionsCard() {
   const t = useTranslations("escrows");
-  const { escrow, tokenInfo, write, actions, role } = useEscrowDetail();
+  const { escrow, tokenInfo, write, actions, role, setActionContext } = useEscrowDetail();
   const { hasAnyAction } = actions;
   const { isPending } = write;
 
@@ -86,6 +86,15 @@ export function ActionsCard() {
   // Handle modal confirmation
   const handleConfirm = useCallback(async () => {
     if (!activeModal) return;
+
+    // Set action context for parameterized actions so the optimistic update
+    // can apply the correct field patches (e.g., split bps).
+    if (modalData.buyerBps !== undefined || modalData.sellerBps !== undefined) {
+      setActionContext({
+        buyerBps: modalData.buyerBps,
+        sellerBps: modalData.sellerBps,
+      });
+    }
 
     try {
       switch (activeModal) {
@@ -131,7 +140,7 @@ export function ActionsCard() {
       // but we still log to avoid silent failures during development.
       console.error("[ActionsCard] Action confirm failed:", err);
     }
-  }, [activeModal, modalData, role.isSeller, write, closeModal]);
+  }, [activeModal, modalData, role.isSeller, write, closeModal, setActionContext]);
 
   // Format amount for modal
   const formattedAmount = formatAmount(escrow.amount, tokenInfo.decimals);
