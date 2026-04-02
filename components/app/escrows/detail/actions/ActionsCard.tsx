@@ -10,7 +10,7 @@
  */
 
 import { useState, useCallback } from "react";
-import { Zap, CheckCircle, AlertTriangle } from "lucide-react";
+import { Zap, CheckCircle, AlertTriangle, Loader2 } from "lucide-react";
 
 import { useTranslations } from "next-intl";
 import { Card, CardHeader, CardBody, Heading, Text } from "@/components/ui";
@@ -53,7 +53,7 @@ interface ModalData {
 
 export function ActionsCard() {
   const t = useTranslations("escrows");
-  const { escrow, tokenInfo, write, actions, role, setActionContext } = useEscrowDetail();
+  const { escrow, tokenInfo, write, actions, role, setActionContext, isOnChainLoading } = useEscrowDetail();
   const { hasAnyAction } = actions;
   const { isPending } = write;
 
@@ -175,8 +175,18 @@ export function ActionsCard() {
             </div>
           )}
 
+          {/* On-Chain State Loading — verifying contract state via RPC */}
+          {!isTerminal && isOnChainLoading && (
+            <div className="text-center py-6 space-y-3">
+              <Loader2 size={24} className="text-primary-500 animate-spin mx-auto" />
+              <Text variant="muted" className="text-sm">
+                {t("detail.verifyingContractState")}
+              </Text>
+            </div>
+          )}
+
           {/* Chain Mismatch Warning - Actions blocked */}
-          {!isTerminal && isChainMismatch && (
+          {!isTerminal && !isOnChainLoading && isChainMismatch && (
             <div className="text-center py-4 space-y-3">
               <div className="w-12 h-12 bg-warning-50 dark:bg-warning-900/20 rounded-full flex items-center justify-center mx-auto">
                 <AlertTriangle size={24} className="text-warning-500" />
@@ -193,7 +203,7 @@ export function ActionsCard() {
           )}
 
           {/* Wallet not connected — prompt to connect */}
-          {!isTerminal && !isChainMismatch && !hasAnyAction && role.role === "viewer" && !isConnected && (
+          {!isTerminal && !isOnChainLoading && !isChainMismatch && !hasAnyAction && role.role === "viewer" && !isConnected && (
             <div className="text-center py-4">
               <Text variant="muted" className="text-sm">
                 {t("detail.connectToInteract")}
@@ -202,7 +212,7 @@ export function ActionsCard() {
           )}
 
           {/* Wallet connected but not a participant — wrong wallet */}
-          {!isTerminal && !isChainMismatch && !hasAnyAction && role.role === "viewer" && isConnected && (
+          {!isTerminal && !isOnChainLoading && !isChainMismatch && !hasAnyAction && role.role === "viewer" && isConnected && (
             <div className="text-center py-4 space-y-3">
               <div className="w-12 h-12 bg-warning-50 dark:bg-warning-900/20 rounded-full flex items-center justify-center mx-auto">
                 <AlertTriangle size={24} className="text-warning-500" />
@@ -218,7 +228,7 @@ export function ActionsCard() {
             </div>
           )}
 
-          {!isTerminal && !isChainMismatch && !hasAnyAction && role.role !== "viewer" && (
+          {!isTerminal && !isOnChainLoading && !isChainMismatch && !hasAnyAction && role.role !== "viewer" && (
             <div className="text-center py-4">
               <Text variant="muted" className="text-sm">
                 {t("detail.noActionsAvailable")}
@@ -226,8 +236,8 @@ export function ActionsCard() {
             </div>
           )}
 
-          {/* Role-Based Actions - Only show when chain matches */}
-          {!isTerminal && !isChainMismatch && hasAnyAction && (
+          {/* Role-Based Actions - Only show when on-chain state loaded and chain matches */}
+          {!isTerminal && !isOnChainLoading && !isChainMismatch && hasAnyAction && (
             <div className="space-y-4">
               <PendingActions />
               {/* Primary Actions (by role) */}

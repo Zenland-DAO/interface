@@ -64,3 +64,11 @@ export {
   type UseOptimisticEscrowUpdateReturn,
   type OptimisticUpdatePayload,
 } from "./useOptimisticEscrowUpdate";
+
+// On-chain state (authoritative source of truth for action gating)
+export {
+  useEscrowOnChainState,
+  type OnChainEscrowState,
+  type UseEscrowOnChainStateParams,
+  type UseEscrowOnChainStateReturn,
+} from "./useEscrowOnChainState";

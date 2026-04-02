@@ -15,7 +15,7 @@ import {
   useRef,
   type ReactNode,
 } from "react";
-import { type Address } from "viem";
+import { type Address, zeroAddress } from "viem";
 import { useQueryClient } from "@tanstack/react-query";
 
 import { useEscrowRole, type UseEscrowRoleReturn } from "./hooks/useEscrowRole";
@@ -27,6 +27,10 @@ import {
   useOptimisticEscrowUpdate,
   type OptimisticTransitionContext,
 } from "./hooks";
+import {
+  useEscrowOnChainState,
+  type UseEscrowOnChainStateReturn,
+} from "./hooks/useEscrowOnChainState";
 import {
   type EscrowState,
   type SplitProposal,
@@ -63,7 +67,7 @@ export interface EscrowDetailContextValue {
   // Timer states
   timers: UseEscrowTimersReturn;
 
-  // Available actions
+  // Available actions (gated by on-chain state)
   actions: UseAvailableActionsReturn;
 
   // Transaction history
@@ -72,11 +76,17 @@ export interface EscrowDetailContextValue {
   // Contract write functions
   write: UseEscrowActionsReturn;
 
-  // Split proposal (derived from escrow)
+  // Split proposal (derived from on-chain state when available, indexer fallback)
   splitProposal: SplitProposal | null;
 
   // Loading states
   isLoading: boolean;
+
+  /**
+   * Whether on-chain state is still loading (initial RPC call).
+   * When true, ActionsCard should show a loading indicator instead of actions.
+   */
+  isOnChainLoading: boolean;
 
   // Refetch function
   refetch: () => Promise<void>;
@@ -162,6 +172,18 @@ export function EscrowDetailProvider({
   });
 
   // ==========================================================================
+  // ON-CHAIN STATE (authoritative source of truth for action gating)
+  //
+  // Reads state directly from the contract via RPC multicall.
+  // This prevents stale indexer data from showing wrong actions after
+  // recent transactions, even across page refreshes.
+  // ==========================================================================
+  const onChainState = useEscrowOnChainState({
+    escrowAddress: escrow.id,
+    chainId: escrow.chainId,
+  });
+
+  // ==========================================================================
   // ROLE DETECTION
   // ==========================================================================
   const role = useEscrowRole({
@@ -171,22 +193,53 @@ export function EscrowDetailProvider({
   });
 
   // ==========================================================================
-  // TIMERS
+  // AUTHORITATIVE STATE VALUES
+  //
+  // On-chain state is the authority for action gating and timers.
+  // Falls back to indexer data while the initial RPC call is loading.
+  // ==========================================================================
+  const authState = onChainState.data?.state ?? escrow.state;
+  const authAgent = onChainState.data?.agent ?? escrow.agent;
+  const authFulfilledAt = onChainState.data
+    ? onChainState.data.fulfilledAt > 0n ? onChainState.data.fulfilledAt : null
+    : escrow.fulfilledAt;
+  const authAgentInvitedAt = onChainState.data
+    ? onChainState.data.agentInvitedAt > 0n ? onChainState.data.agentInvitedAt : null
+    : escrow.agentInvitedAt;
+  const authAgentResponseTime = onChainState.data
+    ? onChainState.data.agentResponseTime
+    : agentResponseTime;
+
+  // ==========================================================================
+  // TIMERS (using authoritative on-chain values)
   // ==========================================================================
   const timers = useEscrowTimers({
-    state: escrow.state,
+    state: authState,
     createdAt: escrow.createdAt,
     sellerAcceptDeadline: escrow.sellerAcceptDeadline,
-    fulfilledAt: escrow.fulfilledAt,
+    fulfilledAt: authFulfilledAt,
     buyerProtectionTime: escrow.buyerProtectionTime,
-    agentInvitedAt: escrow.agentInvitedAt,
-    agentResponseTime,
+    agentInvitedAt: authAgentInvitedAt,
+    agentResponseTime: authAgentResponseTime,
   });
 
   // ==========================================================================
-  // SPLIT PROPOSAL (derived from escrow data)
+  // SPLIT PROPOSAL (from on-chain state when available, indexer fallback)
   // ==========================================================================
   const splitProposal = useMemo<SplitProposal | null>(() => {
+    if (onChainState.data) {
+      // Use on-chain data as authority for split state
+      const { splitProposer, proposedBuyerBps, proposedSellerBps, buyerApprovedSplit, sellerApprovedSplit } = onChainState.data;
+      if (!splitProposer || splitProposer === zeroAddress) return null;
+      return {
+        proposer: splitProposer,
+        buyerBps: proposedBuyerBps,
+        sellerBps: proposedSellerBps,
+        buyerApproved: buyerApprovedSplit,
+        sellerApproved: sellerApprovedSplit,
+      };
+    }
+    // Fallback to indexer data while on-chain is loading
     if (!escrow.splitProposer) return null;
     return {
       proposer: escrow.splitProposer,
@@ -196,6 +249,7 @@ export function EscrowDetailProvider({
       sellerApproved: escrow.sellerApprovedSplit ?? false,
     };
   }, [
+    onChainState.data,
     escrow.splitProposer,
     escrow.proposedBuyerBps,
     escrow.proposedSellerBps,
@@ -204,15 +258,15 @@ export function EscrowDetailProvider({
   ]);
 
   // ==========================================================================
-  // AVAILABLE ACTIONS
+  // AVAILABLE ACTIONS (gated by authoritative on-chain state)
   // ==========================================================================
   const actions = useAvailableActions({
-    state: escrow.state,
+    state: authState,
     role: role.role,
     isAcceptanceTimeoutExpired: timers.acceptanceTimer.isExpired,
     isProtectionExpired: timers.isProtectionExpired,
     isAgentTimeoutExpired: timers.isAgentTimeoutExpired,
-    agent: escrow.agent,
+    agent: authAgent,
     splitProposal,
     userAddress: role.userAddress,
     buyer: escrow.buyer,
@@ -230,7 +284,9 @@ export function EscrowDetailProvider({
   // REFETCH HANDLER
   // ==========================================================================
   const refetch = useCallback(async () => {
-    // Refetch escrow data
+    // Refetch on-chain state (authoritative)
+    await onChainState.refetch();
+    // Refetch indexer data (for rich display fields)
     await onRefetch?.();
     // Refetch transactions
     await transactions.refetch();
@@ -238,7 +294,7 @@ export function EscrowDetailProvider({
     await queryClient.invalidateQueries({
       queryKey: ["escrow-transactions", escrow.id.toLowerCase()],
     });
-  }, [onRefetch, transactions, queryClient, escrow.id]);
+  }, [onChainState, onRefetch, transactions, queryClient, escrow.id]);
 
   // ==========================================================================
   // CONTRACT WRITE ACTIONS
@@ -248,8 +304,8 @@ export function EscrowDetailProvider({
     onSuccess: async (action: EscrowAction, txHash: string) => {
       console.log(`[EscrowDetail] Action ${action} succeeded: ${txHash}`);
 
-      // 1. Apply optimistic update — patches cache instantly for immediate UI feedback.
-      //    Merges the ref-stored context (split bps, etc.) with always-available addresses.
+      // 1. Apply optimistic update — patches indexer cache for immediate UI feedback
+      //    on display fields (state badge, timeline, etc.)
       const transitionContext: OptimisticTransitionContext = {
         userAddress: role.userAddress,
         buyer: escrow.buyer,
@@ -261,11 +317,19 @@ export function EscrowDetailProvider({
       // Clear the action context ref after use
       actionContextRef.current = {};
 
-      // 2. Refetch transactions (timeline) — this is independent of the escrow state.
-      //    The optimistic update + reconciliation polling handle the escrow data.
+      // 2. Refetch on-chain state — this is the authoritative source for actions.
+      //    The RPC call returns the new state immediately (no indexer delay).
+      await onChainState.refetch();
+
+      // 3. Refetch transactions (timeline)
       await transactions.refetch();
       await queryClient.invalidateQueries({
         queryKey: ["escrow-transactions", escrow.id.toLowerCase()],
+      });
+
+      // 4. Invalidate escrow list queries so dashboards update
+      await queryClient.invalidateQueries({
+        queryKey: ["zenland", "escrows"],
       });
     },
     onError: (action: EscrowAction, error: unknown) => {
@@ -280,7 +344,14 @@ export function EscrowDetailProvider({
   // ==========================================================================
   const contextValue = useMemo<EscrowDetailContextValue>(
     () => ({
-      escrow,
+      escrow: {
+        ...escrow,
+        // Override indexer state with authoritative on-chain state for display
+        state: authState,
+        agent: authAgent,
+        fulfilledAt: authFulfilledAt,
+        agentInvitedAt: authAgentInvitedAt,
+      },
       tokenInfo,
       role,
       timers,
@@ -289,11 +360,16 @@ export function EscrowDetailProvider({
       write,
       splitProposal,
       isLoading: transactions.isLoading || write.isPending,
+      isOnChainLoading: onChainState.isLoading,
       refetch,
       setActionContext,
     }),
     [
       escrow,
+      authState,
+      authAgent,
+      authFulfilledAt,
+      authAgentInvitedAt,
       tokenInfo,
       role,
       timers,
@@ -301,6 +377,7 @@ export function EscrowDetailProvider({
       transactions,
       write,
       splitProposal,
+      onChainState.isLoading,
       refetch,
       setActionContext,
     ]

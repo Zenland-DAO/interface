@@ -255,6 +255,7 @@
       "wrongNetwork": "Red Incorrecta",
       "switchToNetwork": "Cambia a {chain} para realizar acciones en este escrow.",
       "connectToInteract": "Conecta tu billetera para interactuar con este escrow.",
+      "verifyingContractState": "Verificando el estado del contrato...",
       "walletNotParticipant": "La billetera no es participante",
       "switchToParticipantWallet": "Tu billetera conectada no es el comprador, vendedor ni agente de este escrow. Cambia a la billetera correcta para interactuar.",
       "noActionsAvailable": "No hay acciones disponibles en este momento.",
