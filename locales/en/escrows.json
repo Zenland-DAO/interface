@@ -373,7 +373,9 @@
         "enterDays": "Enter number of days",
         "maxDays": "Maximum: {max} days",
         "continueToReview": "Continue to Review",
-        "connectToContinue": "Connect Wallet to Continue"
+        "connectToContinue": "Connect Wallet to Continue",
+        "checkAgain": "Check again",
+        "feeNote": "Protocol fees will be added to this amount. The exact total will be shown on the review step."
       },
       "summary": {
         "title": "Quick Summary",
@@ -453,7 +455,8 @@
       "approve": {
         "backToReview": "Back to Review",
         "waitingForApproval": "Waiting for approval...",
-        "confirmInWallet": "Please confirm the transaction in your wallet"
+        "confirmInWallet": "Please confirm the transaction in your wallet",
+        "balanceAutoUpdates": "Your balance is checked automatically. If you've just deposited, it should update shortly."
       },
       "confirm": {
         "amount": "Amount",

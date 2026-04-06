@@ -373,7 +373,9 @@
         "enterDays": "输入天数",
         "maxDays": "最多：{max} 天",
         "continueToReview": "继续审查",
-        "connectToContinue": "连接钱包以继续"
+        "connectToContinue": "连接钱包以继续",
+        "checkAgain": "重新检查",
+        "feeNote": "协议费用将添加到此金额中。确切总额将在审查步骤中显示。"
       },
       "summary": {
         "title": "快速摘要",
@@ -453,7 +455,8 @@
       "approve": {
         "backToReview": "返回审查",
         "waitingForApproval": "等待批准...",
-        "confirmInWallet": "请在钱包中确认交易"
+        "confirmInWallet": "请在钱包中确认交易",
+        "balanceAutoUpdates": "余额会自动检查。如果您刚刚存款，余额将很快更新。"
       },
       "confirm": {
         "amount": "金额",

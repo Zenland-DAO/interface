@@ -63,7 +63,7 @@ export function BentoGridSection() {
             <div className="absolute inset-0 z-0">
               <NextImage
                 src="/images/bento-fees.webp"
-                alt="Zenland's low 1% platform fee visualization - the lowest fees in blockchain escrow, capped at $50 maximum"
+                alt="Zenland's low 1% protocol fee visualization - the lowest fees in blockchain escrow, capped at $50 maximum"
                 fill
                 className="object-cover object-right lg:object-center opacity-70 group-hover:opacity-90 transition-all duration-700"
                 priority

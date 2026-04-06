@@ -1,7 +1,7 @@
 {
   "marketing": {
     "meta": {
-      "title": "Zenland - Crypto Escrow Platform",
+      "title": "Zenland - Crypto Escrow Protocol",
       "description": "Secure, trustless escrow for blockchain transactions. No intermediaries, just smart contracts."
     },
     "hero": {
@@ -9,7 +9,7 @@
       "title": {
         "line1": "Crypto",
         "highlight": "Escrow",
-        "line2": "Platform."
+        "line2": "Protocol."
       },
       "description": "Secure your transactions with on-chain escrow. No intermediaries, no trust required. Just smart contracts protecting both parties.",
       "stats": {
@@ -271,7 +271,7 @@
         },
         "fees": {
           "question": "What are Zenland's fees for escrow services?",
-          "answer": "Zenland charges just 1% platform fee with a minimum of $0.50 and maximum of $50 per transaction - the lowest in the crypto escrow market. No hidden costs, no monthly subscriptions. Using NYKNYC wallet makes transactions completely gas-free."
+          "answer": "Zenland charges just 1% protocol fee with a minimum of $0.50 and maximum of $50 per transaction - the lowest in the crypto escrow market. No hidden costs, no monthly subscriptions. Using NYKNYC wallet makes transactions completely gas-free."
         },
         "supportedCrypto": {
           "question": "Which cryptocurrencies and networks does Zenland support?",
@@ -323,7 +323,7 @@
       },
       "metrics": {
         "gasFee": "Gas Fee",
-        "platform": "Platform",
+        "platform": "Protocol",
         "verified": "Smart Contract Verified Transaction"
       },
       "buttons": {

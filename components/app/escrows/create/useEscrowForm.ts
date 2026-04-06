@@ -21,6 +21,7 @@ import {
   useTokenApproval,
   useAgentEligibilityForEscrow,
   useTokenBalance,
+  useCalculateFee,
   type PermitSignature,
   type CreateEscrowInput,
   toCreateEscrowParams,
@@ -171,6 +172,8 @@ export interface UseEscrowFormReturn {
     hasEnoughBalance: boolean;
     /** Human-readable message describing the balance requirement */
     balanceError: string | null;
+    /** Manually re-fetch token balance (e.g. after a deposit) */
+    refetchBalance: () => void;
   };
 
   // Escrow creation
@@ -371,34 +374,70 @@ export function useEscrowForm(): UseEscrowFormReturn {
     shouldEnableApproval
   );
 
-  // Token balance (used for validation / UX gating)
-  const { balance: tokenBalance } = useTokenBalance({
+  // Token balance (used for validation / UX gating).
+  // Auto-polls so the UI picks up external deposits without a page refresh.
+  const { balance: tokenBalance, refetch: refetchBalance } = useTokenBalance({
     tokenAddress: computed.tokenAddress,
     ownerAddress: buyerAddress as Address | undefined,
     enabled: !!computed.tokenAddress && !!buyerAddress,
   });
 
+  // ==========================================================================
+  // EARLY FEE ESTIMATION (Form Step)
+  // ==========================================================================
+  // On the form step the full quote (which requires a salt) is not available
+  // yet, but we can call FeeManager.calculateFee() to get an estimate of the
+  // protocol fee. This lets us warn the user about the *total* cost up-front
+  // so they don't deposit only the escrow amount and then get surprised by
+  // fees on the approve step.
+  //
+  // The creation fee and agent assignment fee both use the same
+  // FeeManager.calculateFee(token, amount) under the hood, so:
+  //   estimatedTotal = amount + fee             (no agent)
+  //   estimatedTotal = amount + fee + fee        (with agent)
+
+  const { fee: estimatedProtocolFee } = useCalculateFee(
+    computed.tokenAddress,
+    computed.amountBigInt,
+  );
+
+  const estimatedTotal = useMemo(() => {
+    if (computed.amountBigInt === undefined || !estimatedProtocolFee) {
+      return undefined;
+    }
+    // Without agent: amount + 1× creation fee.
+    // With agent:    amount + 1× creation fee + 1× assignment fee (same rate).
+    const feeMultiplier = computed.hasAgent ? 2n : 1n;
+    return computed.amountBigInt + estimatedProtocolFee * feeMultiplier;
+  }, [computed.amountBigInt, estimatedProtocolFee, computed.hasAgent]);
+
+  // ==========================================================================
+  // BALANCE CHECK
+  // ==========================================================================
+
   const balanceCheck = useMemo(() => {
     const decimals = tokenConfig?.decimals ?? 6;
     const symbol = tokenConfig?.symbol ?? "USDC";
 
-    // 1) Form step: only validate the escrow amount (fees unknown).
+    // 1) Form step: validate against the estimated total (amount + est. fees).
+    //    Falls back to the raw amount when the fee estimate isn't available yet.
     if (currentStep === "form") {
-      if (tokenBalance === undefined || computed.amountBigInt === undefined) {
+      const requiredAmount = estimatedTotal ?? computed.amountBigInt;
+      if (tokenBalance === undefined || requiredAmount === undefined) {
         return { hasEnough: true, error: null };
       }
-      if (computed.amountBigInt > tokenBalance) {
-        const need = formatUnits(computed.amountBigInt, decimals);
+      if (requiredAmount > tokenBalance) {
+        const need = formatUnits(requiredAmount, decimals);
         const have = formatUnits(tokenBalance, decimals);
         return {
           hasEnough: false,
-          error: `Insufficient balance (need ${need} ${symbol}, have ${have} ${symbol})`,
+          error: `Insufficient balance (need ~${need} ${symbol} incl. fees, have ${have} ${symbol})`,
         };
       }
       return { hasEnough: true, error: null };
     }
 
-    // 2) Approve/Confirm: validate total required (amount + fees).
+    // 2) Approve/Confirm: validate against exact total (amount + fees from quote).
     if (currentStep === "approve" || currentStep === "confirm") {
       if (tokenBalance === undefined || computed.totalApprovalNeeded === undefined) {
         return { hasEnough: true, error: null };
@@ -415,7 +454,7 @@ export function useEscrowForm(): UseEscrowFormReturn {
     }
 
     return { hasEnough: true, error: null };
-  }, [currentStep, tokenBalance, computed.amountBigInt, computed.totalApprovalNeeded, tokenConfig]);
+  }, [currentStep, tokenBalance, computed.amountBigInt, computed.totalApprovalNeeded, estimatedTotal, tokenConfig]);
 
   // ==========================================================================
   // ESCROW CREATION
@@ -916,6 +955,7 @@ export function useEscrowForm(): UseEscrowFormReturn {
       balance: tokenBalance,
       hasEnoughBalance: balanceCheck.hasEnough,
       balanceError: balanceCheck.error,
+      refetchBalance,
     },
 
     // Escrow creation

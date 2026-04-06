@@ -27,6 +27,7 @@ import {
   AlertCircle,
   Info,
   Wallet,
+  RefreshCw,
 } from "lucide-react";
 
 import { AgentSelector } from "../AgentSelector";
@@ -216,7 +217,10 @@ export function FormStep({ form }: FormStepProps) {
 
   const { requireWallet, isConnected } = useWalletAction();
 
-  const amountError = errors.amount ?? tokenApproval.balanceError;
+  // Separate validation errors from balance errors so we can render
+  // the balance error with a dedicated "Check again" refresh button.
+  const amountValidationError = errors.amount ?? undefined;
+  const balanceError = !errors.amount ? tokenApproval.balanceError : null;
 
   // Token options for select
   const tokenOptions = useMemo(
@@ -282,27 +286,61 @@ export function FormStep({ form }: FormStepProps) {
               title={t("create.sections.paymentAmount")}
               description={t("create.sections.paymentAmountDesc")}
             >
-              <div className="flex gap-3">
-                <div className="w-32">
-                  <Select
-                    options={tokenOptions}
-                    value={formData.tokenType}
-                    onChange={(val) =>
-                      setField("tokenType", val as "USDC" | "USDT")
-                    }
-                    hideLabel
-                  />
+              <div className="space-y-2">
+                <div className="flex gap-3">
+                  <div className="w-32">
+                    <Select
+                      options={tokenOptions}
+                      value={formData.tokenType}
+                      onChange={(val) =>
+                        setField("tokenType", val as "USDC" | "USDT")
+                      }
+                      hideLabel
+                    />
+                  </div>
+                  <div className="flex-1">
+                    <NumberInput
+                      value={formData.amount}
+                      onChange={(val) => setField("amount", val)}
+                      onBlur={() => setTouched("amount")}
+                      placeholder="0.00"
+                      suffix={formData.tokenType}
+                      error={amountValidationError}
+                    />
+                  </div>
                 </div>
-                <div className="flex-1">
-                  <NumberInput
-                    value={formData.amount}
-                    onChange={(val) => setField("amount", val)}
-                    onBlur={() => setTouched("amount")}
-                    placeholder="0.00"
-                    suffix={formData.tokenType}
-                    error={amountError ?? undefined}
-                  />
-                </div>
+
+                {/* Balance error with "Check again" button */}
+                {balanceError && (
+                  <div className="flex items-center justify-between gap-2 p-3 rounded-lg bg-error-50 dark:bg-error-900/10 border border-error-200 dark:border-error-800 animate-slide-up">
+                    <div className="flex items-center gap-1.5 min-w-0">
+                      <AlertCircle size={14} className="text-error-500 shrink-0" />
+                      <Text className="text-xs text-error-600 dark:text-error-400 truncate">
+                        {balanceError}
+                      </Text>
+                    </div>
+                    <button
+                      type="button"
+                      onClick={() => tokenApproval.refetchBalance()}
+                      className="flex items-center gap-1 px-2.5 py-1 rounded-md text-xs font-medium
+                        text-error-700 dark:text-error-300 hover:bg-error-100 dark:hover:bg-error-800/30
+                        transition-colors shrink-0"
+                    >
+                      <RefreshCw size={12} />
+                      {t("create.form.checkAgain")}
+                    </button>
+                  </div>
+                )}
+
+                {/* Fee estimate note */}
+                {formData.amount && !amountValidationError && !balanceError && (
+                  <div className="flex items-start gap-1.5 pl-0.5">
+                    <Info size={12} className="text-[var(--text-tertiary)] mt-0.5 shrink-0" />
+                    <Text variant="muted" className="text-xs">
+                      {t("create.form.feeNote")}
+                    </Text>
+                  </div>
+                )}
               </div>
             </FormSection>
 

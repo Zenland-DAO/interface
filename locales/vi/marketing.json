@@ -1,13 +1,13 @@
 {
   "marketing": {
     "meta": {
-      "title": "Zenland - Nền tảng ký quỹ Crypto",
+      "title": "Zenland - Giao thức ký quỹ Crypto",
       "description": "Ký quỹ an toàn, không cần tin cậy cho giao dịch blockchain. Không trung gian, chỉ có hợp đồng thông minh."
     },
     "hero": {
       "badge": "Crypto thuần gốc",
       "title": {
-        "line1": "Nền tảng",
+        "line1": "Giao thức",
         "highlight": "Ký quỹ",
         "line2": "Crypto."
       },
@@ -271,7 +271,7 @@
         },
         "fees": {
           "question": "Phí dịch vụ ký quỹ của Zenland là bao nhiêu?",
-          "answer": "Zenland thu 1% phí nền tảng với mức tối thiểu $0.50 và tối đa $50 cho mỗi giao dịch — thuộc nhóm thấp nhất trên thị trường ký quỹ crypto. Không phí ẩn, không đăng ký theo tháng. Nếu dùng ví NYKNYC, giao dịch sẽ hoàn toàn không tốn phí gas."
+          "answer": "Zenland thu 1% phí giao thức với mức tối thiểu $0.50 và tối đa $50 cho mỗi giao dịch — thuộc nhóm thấp nhất trên thị trường ký quỹ crypto. Không phí ẩn, không đăng ký theo tháng. Nếu dùng ví NYKNYC, giao dịch sẽ hoàn toàn không tốn phí gas."
         },
         "supportedCrypto": {
           "question": "Zenland hỗ trợ những loại tiền và mạng nào?",
@@ -323,7 +323,7 @@
       },
       "metrics": {
         "gasFee": "Phí gas",
-        "platform": "Nền tảng",
+        "platform": "Giao thức",
         "verified": "Giao dịch hợp đồng thông minh đã được xác minh"
       },
       "buttons": {

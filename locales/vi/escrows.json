@@ -373,7 +373,9 @@
         "enterDays": "Nhập số ngày",
         "maxDays": "Tối đa: {max} ngày",
         "continueToReview": "Tiếp tục để xem lại",
-        "connectToContinue": "Kết nối ví để tiếp tục"
+        "connectToContinue": "Kết nối ví để tiếp tục",
+        "checkAgain": "Kiểm tra lại",
+        "feeNote": "Phí giao thức sẽ được cộng thêm vào số tiền này. Tổng chính xác sẽ được hiển thị ở bước xem lại."
       },
       "summary": {
         "title": "Tóm tắt nhanh",
@@ -453,7 +455,8 @@
       "approve": {
         "backToReview": "Quay lại",
         "waitingForApproval": "Đang chờ phê duyệt...",
-        "confirmInWallet": "Vui lòng xác nhận giao dịch trong ví của quý vị"
+        "confirmInWallet": "Vui lòng xác nhận giao dịch trong ví của quý vị",
+        "balanceAutoUpdates": "Số dư được kiểm tra tự động. Nếu quý vị vừa nạp tiền, số dư sẽ cập nhật trong giây lát."
       },
       "confirm": {
         "amount": "Số tiền",

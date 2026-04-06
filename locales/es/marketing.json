@@ -1,7 +1,7 @@
 {
   "marketing": {
     "meta": {
-      "title": "Zenland - Plataforma de Escrow Crypto",
+      "title": "Zenland - Protocolo de Escrow Crypto",
       "description": "Escrow seguro y sin confianza para transacciones blockchain. Sin intermediarios, solo contratos inteligentes."
     },
     "hero": {
@@ -9,7 +9,7 @@
       "title": {
         "line1": "Crypto",
         "highlight": "Escrow",
-        "line2": "Plataforma."
+        "line2": "Protocolo."
       },
       "description": "Asegura tus transacciones con escrow on-chain. Sin intermediarios, sin necesidad de confianza. Solo contratos inteligentes protegiendo a ambas partes.",
       "stats": {
@@ -271,7 +271,7 @@
         },
         "fees": {
           "question": "¿Cuáles son las tarifas de Zenland para servicios de escrow?",
-          "answer": "Zenland cobra solo 1% de tarifa de plataforma con un mínimo de $0.50 y máximo de $50 por transacción - la más baja en el mercado de escrow de criptomonedas. Sin costos ocultos, sin suscripciones mensuales. Usar la billetera NYKNYC hace que las transacciones sean completamente sin gas."
+          "answer": "Zenland cobra solo 1% de tarifa de protocolo con un mínimo de $0.50 y máximo de $50 por transacción - la más baja en el mercado de escrow de criptomonedas. Sin costos ocultos, sin suscripciones mensuales. Usar la billetera NYKNYC hace que las transacciones sean completamente sin gas."
         },
         "supportedCrypto": {
           "question": "¿Qué criptomonedas y redes soporta Zenland?",
@@ -323,7 +323,7 @@
       },
       "metrics": {
         "gasFee": "Tarifa de Gas",
-        "platform": "Plataforma",
+        "platform": "Protocolo",
         "verified": "Transacción Verificada por Contrato Inteligente"
       },
       "buttons": {

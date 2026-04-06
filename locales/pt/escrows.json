@@ -373,7 +373,9 @@
         "enterDays": "Informe o número de dias",
         "maxDays": "Máximo: {max} dias",
         "continueToReview": "Continuar para revisão",
-        "connectToContinue": "Conectar carteira para continuar"
+        "connectToContinue": "Conectar carteira para continuar",
+        "checkAgain": "Verificar novamente",
+        "feeNote": "Taxas do protocolo serão adicionadas a este valor. O total exato será mostrado na etapa de revisão."
       },
       "summary": {
         "title": "Resumo rápido",
@@ -453,7 +455,8 @@
       "approve": {
         "backToReview": "Voltar para revisão",
         "waitingForApproval": "Aguardando aprovação...",
-        "confirmInWallet": "Confirme a transação na sua carteira"
+        "confirmInWallet": "Confirme a transação na sua carteira",
+        "balanceAutoUpdates": "Seu saldo é verificado automaticamente. Se você acabou de depositar, ele será atualizado em breve."
       },
       "confirm": {
         "amount": "Valor",

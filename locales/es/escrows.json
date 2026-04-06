@@ -373,7 +373,9 @@
         "enterDays": "Ingresa el número de días",
         "maxDays": "Máximo: {max} días",
         "continueToReview": "Continuar a Revisión",
-        "connectToContinue": "Conectar Billetera para Continuar"
+        "connectToContinue": "Conectar Billetera para Continuar",
+        "checkAgain": "Verificar de nuevo",
+        "feeNote": "Se añadirán comisiones del protocolo a esta cantidad. El total exacto se mostrará en el paso de revisión."
       },
       "summary": {
         "title": "Resumen Rápido",
@@ -453,7 +455,8 @@
       "approve": {
         "backToReview": "Volver a Revisión",
         "waitingForApproval": "Esperando aprobación...",
-        "confirmInWallet": "Por favor confirma la transacción en tu billetera"
+        "confirmInWallet": "Por favor confirma la transacción en tu billetera",
+        "balanceAutoUpdates": "Tu saldo se verifica automáticamente. Si acabas de depositar, debería actualizarse en breve."
       },
       "confirm": {
         "amount": "Monto",

@@ -22,6 +22,7 @@ import {
 import {
   ArrowLeft,
   Loader2,
+  RefreshCw,
 } from "lucide-react";
 
 import { TokenApprovalAction } from "@/components/wallet";
@@ -104,8 +105,23 @@ export function ApproveStep({ form }: ApproveStepProps) {
         <CardBody className="p-4 sm:p-8">
           {!hasEnoughBalance && balanceError && (
             <div className="mb-6 p-4 rounded-xl bg-error-50 dark:bg-error-900/10 border border-error-200 dark:border-error-800">
-              <Text className="text-sm font-medium text-error-700 dark:text-error-300">
-                {balanceError}
+              <div className="flex items-center justify-between gap-3">
+                <Text className="text-sm font-medium text-error-700 dark:text-error-300">
+                  {balanceError}
+                </Text>
+                <button
+                  type="button"
+                  onClick={() => tokenApproval.refetchBalance()}
+                  className="flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-xs font-medium
+                    text-error-700 dark:text-error-300 hover:bg-error-100 dark:hover:bg-error-800/30
+                    border border-error-300 dark:border-error-700 transition-colors shrink-0"
+                >
+                  <RefreshCw size={12} />
+                  {t("create.form.checkAgain")}
+                </button>
+              </div>
+              <Text variant="muted" className="text-xs mt-2">
+                {t("create.approve.balanceAutoUpdates")}
               </Text>
             </div>
           )}

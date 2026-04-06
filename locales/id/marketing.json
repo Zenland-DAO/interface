@@ -1,7 +1,7 @@
 {
   "marketing": {
     "meta": {
-      "title": "Zenland - Platform Escrow Crypto",
+      "title": "Zenland - Protokol Escrow Crypto",
       "description": "Escrow aman dan trustless untuk transaksi blockchain. Tanpa perantara, hanya smart contract."
     },
     "hero": {
@@ -9,7 +9,7 @@
       "title": {
         "line1": "Crypto",
         "highlight": "Escrow",
-        "line2": "Platform."
+        "line2": "Protokol."
       },
       "description": "Amankan transaksi Anda dengan Escrow on-chain. Tanpa perantara, tanpa perlu kepercayaan. Hanya smart contract yang melindungi kedua pihak.",
       "stats": {
@@ -271,7 +271,7 @@
         },
         "fees": {
           "question": "Berapa biaya Zenland untuk layanan Escrow?",
-          "answer": "Zenland mengenakan biaya platform 1% dengan minimum $0.50 dan maksimum $50 per transaksi — biaya terendah di pasar crypto escrow. Tanpa biaya tersembunyi, tanpa langganan bulanan. Menggunakan NYKNYC Wallet membuat transaksi sepenuhnya tanpa biaya gas."
+          "answer": "Zenland mengenakan biaya protokol 1% dengan minimum $0.50 dan maksimum $50 per transaksi — biaya terendah di pasar crypto escrow. Tanpa biaya tersembunyi, tanpa langganan bulanan. Menggunakan NYKNYC Wallet membuat transaksi sepenuhnya tanpa biaya gas."
         },
         "supportedCrypto": {
           "question": "Cryptocurrency dan jaringan apa yang didukung Zenland?",
@@ -323,7 +323,7 @@
       },
       "metrics": {
         "gasFee": "Biaya Gas",
-        "platform": "Platform",
+        "platform": "Protokol",
         "verified": "Transaksi Terverifikasi Smart Contract"
       },
       "buttons": {

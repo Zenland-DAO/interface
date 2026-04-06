@@ -373,7 +373,9 @@
         "enterDays": "Masukkan jumlah hari",
         "maxDays": "Maksimum: {max} hari",
         "continueToReview": "Lanjut ke Tinjauan",
-        "connectToContinue": "Hubungkan Wallet untuk Melanjutkan"
+        "connectToContinue": "Hubungkan Wallet untuk Melanjutkan",
+        "checkAgain": "Periksa lagi",
+        "feeNote": "Biaya protokol akan ditambahkan ke jumlah ini. Total pasti akan ditampilkan pada langkah tinjauan."
       },
       "summary": {
         "title": "Ringkasan Singkat",
@@ -453,7 +455,8 @@
       "approve": {
         "backToReview": "Kembali ke Tinjauan",
         "waitingForApproval": "Menunggu persetujuan...",
-        "confirmInWallet": "Silakan konfirmasi transaksi di Wallet Anda"
+        "confirmInWallet": "Silakan konfirmasi transaksi di Wallet Anda",
+        "balanceAutoUpdates": "Saldo Anda diperiksa secara otomatis. Jika Anda baru saja melakukan deposit, saldo akan diperbarui segera."
       },
       "confirm": {
         "amount": "Jumlah",
