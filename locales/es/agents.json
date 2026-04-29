@@ -338,6 +338,8 @@
         "telegram": "Telegram",
         "discord": "Discord",
         "email": "Email",
+        "bitcointalk": "Bitcointalk",
+        "blackhatworld": "BlackHatWorld",
         "contact": "Contacto",
         "copiedToClipboard": "{label} copiado al portapapeles",
         "failedToCopy": "Error al copiar",

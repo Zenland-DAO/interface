@@ -338,6 +338,8 @@
         "telegram": "Telegram",
         "discord": "Discord",
         "email": "Email",
+        "bitcointalk": "Bitcointalk",
+        "blackhatworld": "BlackHatWorld",
         "contact": "Контакт",
         "copiedToClipboard": "{label} скопирован в буфер обмена",
         "failedToCopy": "Не удалось скопировать",
