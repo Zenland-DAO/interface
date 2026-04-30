@@ -310,21 +310,23 @@ export function FormStep({ form }: FormStepProps) {
                   </div>
                 </div>
 
-                {/* Balance error with "Check again" button */}
+                {/* Balance error with "Check again" button.
+                    Stacks vertically on mobile so the message has the full row width
+                    and never gets truncated by the action button next to it. */}
                 {balanceError && (
-                  <div className="flex items-center justify-between gap-2 p-3 rounded-lg bg-error-50 dark:bg-error-900/10 border border-error-200 dark:border-error-800 animate-slide-up">
-                    <div className="flex items-center gap-1.5 min-w-0">
-                      <AlertCircle size={14} className="text-error-500 shrink-0" />
-                      <Text className="text-xs text-error-600 dark:text-error-400 truncate">
+                  <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-2 p-3 rounded-lg bg-error-50 dark:bg-error-900/10 border border-error-200 dark:border-error-800 animate-slide-up">
+                    <div className="flex items-start gap-1.5 min-w-0">
+                      <AlertCircle size={14} className="text-error-500 shrink-0 mt-0.5" />
+                      <Text className="text-xs text-error-600 dark:text-error-400 break-words">
                         {balanceError}
                       </Text>
                     </div>
                     <button
                       type="button"
                       onClick={() => tokenApproval.refetchBalance()}
-                      className="flex items-center gap-1 px-2.5 py-1 rounded-md text-xs font-medium
+                      className="flex items-center justify-center gap-1 px-2.5 py-1 rounded-md text-xs font-medium
                         text-error-700 dark:text-error-300 hover:bg-error-100 dark:hover:bg-error-800/30
-                        transition-colors shrink-0"
+                        transition-colors shrink-0 self-end sm:self-auto"
                     >
                       <RefreshCw size={12} />
                       {t("create.form.checkAgain")}

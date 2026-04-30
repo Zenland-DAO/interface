@@ -105,16 +105,18 @@ export function ApproveStep({ form }: ApproveStepProps) {
         <CardBody className="p-4 sm:p-8">
           {!hasEnoughBalance && balanceError && (
             <div className="mb-6 p-4 rounded-xl bg-error-50 dark:bg-error-900/10 border border-error-200 dark:border-error-800">
-              <div className="flex items-center justify-between gap-3">
-                <Text className="text-sm font-medium text-error-700 dark:text-error-300">
+              {/* Stack on mobile so the long message has the full row width
+                  and never gets pushed off-screen by the action button. */}
+              <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3">
+                <Text className="text-sm font-medium text-error-700 dark:text-error-300 break-words">
                   {balanceError}
                 </Text>
                 <button
                   type="button"
                   onClick={() => tokenApproval.refetchBalance()}
-                  className="flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-xs font-medium
+                  className="flex items-center justify-center gap-1.5 px-3 py-1.5 rounded-lg text-xs font-medium
                     text-error-700 dark:text-error-300 hover:bg-error-100 dark:hover:bg-error-800/30
-                    border border-error-300 dark:border-error-700 transition-colors shrink-0"
+                    border border-error-300 dark:border-error-700 transition-colors shrink-0 self-end sm:self-auto"
                 >
                   <RefreshCw size={12} />
                   {t("create.form.checkAgain")}

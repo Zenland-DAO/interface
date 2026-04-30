@@ -221,16 +221,29 @@ export interface ContactDisplayProps {
 /**
  * Displays agent contact information with platform icons and clickable links.
  *
- * Recognised platforms (and aliases): telegram (`tg`, `tgram`), discord
- * (`dc`, `disc`), email (`mail`, `e-mail`), bitcointalk (`bct`, `btctalk`),
- * and blackhatworld (`bhw`, `blackhat`).
+ * Branded platforms (and aliases):
+ *   - telegram (`tg`, `tgram`)
+ *   - discord (`dc`, `disc`)
+ *   - email (`mail`, `e-mail`)
+ *   - twitter / X (`x`, `tw`)
+ *   - reddit (`rd`, `r`)
+ *   - matrix (`mx`)
+ *   - signal (`sgnl`)
+ *   - bitcointalk (`bct`, `btctalk`)
+ *   - blackhatworld (`bhw`, `blackhat`)
+ *   - daoforum (`dao`)
  *
- * Anything else still renders nicely via a generic fallback.
+ * Anything else (e.g. a custom `myforum:user`) falls back to a deterministic
+ * monogram chip — same name will always render with the same color + initials,
+ * making distinct custom platforms visually distinguishable. Truly empty
+ * names (legacy free-form values without a `name:` prefix) render with the
+ * generic globe icon.
  *
  * Supported on-chain formats:
  *   - New:    "telegram:@username;discord:@username"
  *   - Legacy: "contact1 | contact2"
  */
+
 export function ContactDisplay({
   contact,
   variant = "compact",

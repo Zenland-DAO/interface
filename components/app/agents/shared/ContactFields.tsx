@@ -27,12 +27,41 @@ export interface ContactFieldsProps {
   className?: string;
 }
 
-const CONTACT_KIND_OPTIONS: SelectOption[] = [
-  { label: "Telegram", value: "telegram" },
-  { label: "Discord", value: "discord" },
-  { label: "Email", value: "email" },
-  { label: "Custom", value: "custom" },
+/**
+ * Per-kind UI metadata for the editor dropdown. Adding a new predefined kind
+ * is now a single-place change here (label + placeholder), assuming the
+ * kind has been added to ContactKind in `contactCodec.ts` and given branding
+ * in `contactPlatforms.tsx`.
+ */
+const KIND_META: Record<Exclude<ContactKindOrEmpty, "">, { label: string; placeholder: string }> = {
+  telegram: { label: "Telegram", placeholder: "@username" },
+  discord: { label: "Discord", placeholder: "@username" },
+  email: { label: "Email", placeholder: "name@example.com" },
+  twitter: { label: "X (Twitter)", placeholder: "@handle" },
+  reddit: { label: "Reddit", placeholder: "u/username" },
+  matrix: { label: "Matrix", placeholder: "@user:server.tld" },
+  signal: { label: "Signal", placeholder: "+15551234567 or @user.42" },
+  custom: { label: "Custom", placeholder: "value" },
+};
+
+/**
+ * Order matters: this is what users see in the dropdown. Most-used at the top.
+ */
+const KIND_ORDER: readonly Exclude<ContactKindOrEmpty, "">[] = [
+  "telegram",
+  "discord",
+  "email",
+  "twitter",
+  "reddit",
+  "matrix",
+  "signal",
+  "custom",
 ];
+
+const CONTACT_KIND_OPTIONS: SelectOption[] = KIND_ORDER.map((kind) => ({
+  label: KIND_META[kind].label,
+  value: kind,
+}));
 
 const CONTACT_KIND_OPTIONS_WITH_NONE: SelectOption[] = [
   { label: "None", value: "" },
@@ -40,33 +69,13 @@ const CONTACT_KIND_OPTIONS_WITH_NONE: SelectOption[] = [
 ];
 
 function kindLabel(kind: ContactKindOrEmpty): string {
-  switch (kind) {
-    case "":
-      return "None";
-    case "telegram":
-      return "Telegram";
-    case "discord":
-      return "Discord";
-    case "email":
-      return "Email";
-    case "custom":
-      return "Custom";
-  }
+  if (kind === "") return "None";
+  return KIND_META[kind].label;
 }
 
 function placeholderForKind(kind: ContactKindOrEmpty): string {
-  switch (kind) {
-    case "":
-      return "";
-    case "telegram":
-      return "@username";
-    case "discord":
-      return "@username";
-    case "email":
-      return "name@example.com";
-    case "custom":
-      return "value";
-  }
+  if (kind === "") return "";
+  return KIND_META[kind].placeholder;
 }
 
 function defaultState(): ContactFieldsState {

@@ -6,8 +6,11 @@
  * display label, optional URL builder, and aliases.
  *
  * The display layer (ContactDisplay) calls `resolveContactPlatform(name)`
- * to look up branding for any contact entry. Unknown names fall back to a
- * polished generic platform, so even unexpected entries render nicely.
+ * to look up branding for any contact entry. Unknown but *named* entries
+ * fall back to a deterministic monogram chip so they remain visually
+ * distinct from each other (e.g. "myrandomforum" gets a stable color +
+ * "MY" monogram, while "daoforum" gets full brand identity). Truly empty
+ * names (legacy free-form) get the polished generic globe fallback.
  */
 
 import type { SVGProps } from "react";
@@ -64,7 +67,68 @@ function BlackHatWorldMark(props: BrandMarkProps) {
   );
 }
 
-/** Generic fallback — globe with subtle ring. */
+/**
+ * DAO Forum — speech bubble with three dots punched through.
+ *
+ * Note: the dots are drawn as circular subpaths and combined via the
+ * even-odd fill rule so they render as transparent holes regardless of
+ * background. This keeps the mark legible on both the brand-tinted
+ * compact pill and the solid brand-color expanded tile.
+ */
+function DaoforumMark(props: BrandMarkProps) {
+  return (
+    <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true" {...props}>
+      <path
+        fillRule="evenodd"
+        clipRule="evenodd"
+        d="M8.5 3A2.5 2.5 0 0 0 6 5.5v6A2.5 2.5 0 0 0 8.5 14h.4l.4 2.5a.5.5 0 0 0 .8.32L13.6 14h1.9A2.5 2.5 0 0 0 18 11.5v-6A2.5 2.5 0 0 0 15.5 3h-7Zm.5 6.5a1.2 1.2 0 1 0 0-2.4 1.2 1.2 0 0 0 0 2.4Zm3 0a1.2 1.2 0 1 0 0-2.4 1.2 1.2 0 0 0 0 2.4Zm4.2-1.2a1.2 1.2 0 1 1-2.4 0 1.2 1.2 0 0 1 2.4 0Z"
+      />
+    </svg>
+  );
+}
+
+
+/** Twitter / X — official X glyph. */
+function TwitterXMark(props: BrandMarkProps) {
+  return (
+    <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true" {...props}>
+      <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231 5.45-6.231Zm-1.161 17.52h1.833L7.084 4.126H5.117L17.083 19.77Z" />
+    </svg>
+  );
+}
+
+/** Reddit — Snoo-inspired wordless mark. */
+function RedditMark(props: BrandMarkProps) {
+  return (
+    <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true" {...props}>
+      <path d="M12 2.5a1.75 1.75 0 0 1 1.75 1.75v3.32c1.7.08 3.27.43 4.6 1A2.5 2.5 0 1 1 21.7 11.6c.2.55.31 1.13.31 1.73 0 3.83-4.48 6.94-10 6.94S2 17.16 2 13.33c0-.6.1-1.18.31-1.73a2.5 2.5 0 1 1 3.34-3.03c1.34-.57 2.92-.92 4.6-1V4.25c0-.97.79-1.75 1.75-1.75ZM7.5 13.5a1.5 1.5 0 1 0 3 0 1.5 1.5 0 0 0-3 0Zm6 0a1.5 1.5 0 1 0 3 0 1.5 1.5 0 0 0-3 0Zm-6.4 2.6a.7.7 0 0 0-.2.97c1.05 1.7 3.04 2.55 5.1 2.55s4.05-.85 5.1-2.55a.7.7 0 1 0-1.18-.74c-.8 1.27-2.39 1.9-3.92 1.9s-3.13-.63-3.92-1.9a.7.7 0 0 0-.97-.23ZM15.5 4a1 1 0 1 1 2 0 1 1 0 0 1-2 0Z" />
+    </svg>
+  );
+}
+
+/** Matrix — open-bracket "[m]" inspired mark. */
+function MatrixMark(props: BrandMarkProps) {
+  return (
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true" {...props}>
+      {/* Outer brackets */}
+      <path d="M5 3H3v18h2" />
+      <path d="M19 3h2v18h-2" />
+      {/* Inner "M" shape */}
+      <path d="M7 17V8l3.5 4L14 8v9" />
+    </svg>
+  );
+}
+
+/** Signal — speech-balloon outline mark. */
+function SignalMark(props: BrandMarkProps) {
+  return (
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true" {...props}>
+      <path d="M12 3a9 9 0 0 1 7.7 13.66l.8 3.34-3.55-.78A9 9 0 1 1 12 3Z" />
+    </svg>
+  );
+}
+
+/** Generic fallback — globe with subtle ring (used for empty/unnamed legacy entries). */
 function GenericMark(props: BrandMarkProps) {
   return (
     <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true" {...props}>
@@ -73,6 +137,36 @@ function GenericMark(props: BrandMarkProps) {
       <path d="M12 3a13.5 13.5 0 0 1 0 18M12 3a13.5 13.5 0 0 0 0 18" />
     </svg>
   );
+}
+
+/**
+ * Monogram mark — renders 1–2 capital letters from a name, centered.
+ * Used as a deterministic fallback for unknown but *named* platforms,
+ * so each unique name gets a distinctive, repeatable visual identity.
+ */
+function makeMonogramMark(letters: string): (props: BrandMarkProps) => React.ReactElement {
+  const text = letters.slice(0, 2).toUpperCase() || "?";
+  // Pick a font size so 1-letter monograms feel chunkier than 2-letter ones.
+  const fontSize = text.length === 1 ? 14 : 11;
+  const MonogramMark = (props: BrandMarkProps) => (
+    <svg viewBox="0 0 24 24" aria-hidden="true" {...props}>
+      <text
+        x="12"
+        y="12"
+        textAnchor="middle"
+        dominantBaseline="central"
+        fontSize={fontSize}
+        fontWeight={800}
+        fontFamily="system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif"
+        fill="currentColor"
+        letterSpacing="-0.5"
+      >
+        {text}
+      </text>
+    </svg>
+  );
+  MonogramMark.displayName = `MonogramMark(${text})`;
+  return MonogramMark;
 }
 
 // =============================================================================
@@ -96,8 +190,10 @@ export interface ContactPlatform {
   getLink?: (value: string) => string | null;
   /** Common alternate names users might type. */
   aliases?: readonly string[];
-  /** True if this is the catch-all generic fallback. */
+  /** True if this is the catch-all generic fallback (empty/unnamed entries). */
   isGeneric?: boolean;
+  /** True if this platform was synthesized at lookup-time for an unknown name. */
+  isMonogram?: boolean;
 }
 
 const TELEGRAM: ContactPlatform = {
@@ -163,6 +259,73 @@ const BLACKHATWORLD: ContactPlatform = {
   aliases: ["bhw", "blackhat", "blackhatworld-com"],
 };
 
+const DAOFORUM: ContactPlatform = {
+  canonical: "daoforum",
+  labelKey: "daoforum",
+  Mark: DaoforumMark,
+  brandColor: "#0B141C",
+  brandBgLight: "rgba(11, 20, 28, 0.08)",
+  brandBgDark: "rgba(255, 255, 255, 0.10)",
+  // DAO Forum (XenForo) profile URLs include a numeric ID after the slug; copy-only is safest.
+  aliases: ["dao", "daoforum-com", "daoforum-org"],
+};
+
+const TWITTER: ContactPlatform = {
+  canonical: "twitter",
+  labelKey: "twitter",
+  Mark: TwitterXMark,
+  brandColor: "#0F1419",
+  brandBgLight: "rgba(15, 20, 25, 0.08)",
+  brandBgDark: "rgba(255, 255, 255, 0.10)",
+  getLink: (value) => {
+    const handle = value.trim().replace(/^@/, "");
+    if (!handle) return null;
+    return `https://x.com/${encodeURIComponent(handle)}`;
+  },
+  aliases: ["x", "tw"],
+};
+
+const REDDIT: ContactPlatform = {
+  canonical: "reddit",
+  labelKey: "reddit",
+  Mark: RedditMark,
+  brandColor: "#FF4500",
+  brandBgLight: "rgba(255, 69, 0, 0.10)",
+  brandBgDark: "rgba(255, 69, 0, 0.18)",
+  getLink: (value) => {
+    const handle = value.trim().replace(/^(?:u\/|@)/i, "");
+    if (!handle) return null;
+    return `https://www.reddit.com/user/${encodeURIComponent(handle)}`;
+  },
+  aliases: ["rd", "r"],
+};
+
+const MATRIX: ContactPlatform = {
+  canonical: "matrix",
+  labelKey: "matrix",
+  Mark: MatrixMark,
+  brandColor: "#0DBD8B",
+  brandBgLight: "rgba(13, 189, 139, 0.10)",
+  brandBgDark: "rgba(13, 189, 139, 0.18)",
+  getLink: (value) => {
+    const v = value.trim();
+    if (!v.startsWith("@") || !v.includes(":")) return null;
+    return `https://matrix.to/#/${encodeURIComponent(v)}`;
+  },
+  aliases: ["mx"],
+};
+
+const SIGNAL: ContactPlatform = {
+  canonical: "signal",
+  labelKey: "signal",
+  Mark: SignalMark,
+  brandColor: "#3A76F0",
+  brandBgLight: "rgba(58, 118, 240, 0.10)",
+  brandBgDark: "rgba(58, 118, 240, 0.18)",
+  // Signal usernames/phone numbers are not reliably web-linkable.
+  aliases: ["sgnl"],
+};
+
 const GENERIC: ContactPlatform = {
   canonical: "contact",
   labelKey: "contact",
@@ -177,8 +340,13 @@ export const CONTACT_PLATFORMS: readonly ContactPlatform[] = [
   TELEGRAM,
   DISCORD,
   EMAIL,
+  TWITTER,
+  REDDIT,
+  MATRIX,
+  SIGNAL,
   BITCOINTALK,
   BLACKHATWORLD,
+  DAOFORUM,
 ] as const;
 
 // Build a lookup map: canonical + every alias → ContactPlatform.
@@ -193,14 +361,73 @@ const PLATFORM_LOOKUP: ReadonlyMap<string, ContactPlatform> = (() => {
   return map;
 })();
 
+// =============================================================================
+// MONOGRAM FALLBACK
+// =============================================================================
+
 /**
- * Resolve a stored contact "name" (e.g. "telegram", "bhw", "BCT") to a
- * ContactPlatform. Always returns a platform — unknown names get the
- * generic fallback so the UI never breaks.
+ * Curated palette of brand-style colors for monogram fallbacks. Picked to be
+ * legible on white tiles and to feel "branded" rather than random.
+ */
+const MONOGRAM_PALETTE: readonly { fg: string; bgLight: string; bgDark: string }[] = [
+  { fg: "#0EA5E9", bgLight: "rgba(14, 165, 233, 0.10)", bgDark: "rgba(14, 165, 233, 0.20)" }, // sky
+  { fg: "#10B981", bgLight: "rgba(16, 185, 129, 0.10)", bgDark: "rgba(16, 185, 129, 0.20)" }, // emerald
+  { fg: "#F59E0B", bgLight: "rgba(245, 158, 11, 0.12)", bgDark: "rgba(245, 158, 11, 0.22)" }, // amber
+  { fg: "#EF4444", bgLight: "rgba(239, 68, 68, 0.10)", bgDark: "rgba(239, 68, 68, 0.20)" }, // red
+  { fg: "#8B5CF6", bgLight: "rgba(139, 92, 246, 0.10)", bgDark: "rgba(139, 92, 246, 0.20)" }, // violet
+  { fg: "#EC4899", bgLight: "rgba(236, 72, 153, 0.10)", bgDark: "rgba(236, 72, 153, 0.20)" }, // pink
+  { fg: "#14B8A6", bgLight: "rgba(20, 184, 166, 0.10)", bgDark: "rgba(20, 184, 166, 0.20)" }, // teal
+  { fg: "#F97316", bgLight: "rgba(249, 115, 22, 0.10)", bgDark: "rgba(249, 115, 22, 0.20)" }, // orange
+  { fg: "#6366F1", bgLight: "rgba(99, 102, 241, 0.10)", bgDark: "rgba(99, 102, 241, 0.20)" }, // indigo
+  { fg: "#A855F7", bgLight: "rgba(168, 85, 247, 0.10)", bgDark: "rgba(168, 85, 247, 0.20)" }, // purple
+  { fg: "#22C55E", bgLight: "rgba(34, 197, 94, 0.10)", bgDark: "rgba(34, 197, 94, 0.20)" }, // green
+  { fg: "#0891B2", bgLight: "rgba(8, 145, 178, 0.10)", bgDark: "rgba(8, 145, 178, 0.20)" }, // cyan
+] as const;
+
+/** djb2-style string hash → unsigned 32-bit. Stable, fast, no deps. */
+function hashName(name: string): number {
+  let h = 5381;
+  for (let i = 0; i < name.length; i++) {
+    h = ((h << 5) + h + name.charCodeAt(i)) | 0;
+  }
+  return h >>> 0;
+}
+
+/** Pull initials from a contact name like "daoforum" → "DA", "bhw" → "BH". */
+function initialsForName(name: string): string {
+  const cleaned = name.replace(/[^a-z0-9]+/gi, "");
+  if (!cleaned) return "?";
+  // For multi-word-like names (e.g. "blackhatworld"), use the first two chars.
+  // This is intentionally simple and deterministic.
+  return cleaned.slice(0, 2);
+}
+
+/** Build a synthetic ContactPlatform that renders a monogram chip. */
+function buildMonogramPlatform(rawName: string): ContactPlatform {
+  const normalized = rawName.trim().toLowerCase();
+  const palette = MONOGRAM_PALETTE[hashName(normalized) % MONOGRAM_PALETTE.length];
+  const Mark = makeMonogramMark(initialsForName(normalized));
+  return {
+    canonical: normalized,
+    labelKey: normalized,
+    Mark,
+    brandColor: palette.fg,
+    brandBgLight: palette.bgLight,
+    brandBgDark: palette.bgDark,
+    isMonogram: true,
+  };
+}
+
+/**
+ * Resolve a stored contact "name" (e.g. "telegram", "bhw", "BCT", "daoforum",
+ * "myrandomforum") to a ContactPlatform. Always returns a platform — unknown
+ * names get a deterministic monogram chip; empty names get the generic globe.
  */
 export function resolveContactPlatform(rawName: string | undefined | null): ContactPlatform {
   if (!rawName) return GENERIC;
   const key = rawName.trim().toLowerCase();
   if (!key) return GENERIC;
-  return PLATFORM_LOOKUP.get(key) ?? GENERIC;
+  const found = PLATFORM_LOOKUP.get(key);
+  if (found) return found;
+  return buildMonogramPlatform(key);
 }

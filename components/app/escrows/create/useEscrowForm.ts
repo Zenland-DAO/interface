@@ -14,7 +14,7 @@ import { toast } from "sonner";
 import { useCallback, useMemo, useEffect, useRef } from "react";
 import { useConnection, useChainId } from "wagmi";
 import { mainnet, sepolia } from "wagmi/chains";
-import { type Address, type Hex, isAddress, formatUnits } from "viem";
+import { type Address, type Hex, isAddress } from "viem";
 
 import {
   useCreateEscrow,
@@ -427,11 +427,12 @@ export function useEscrowForm(): UseEscrowFormReturn {
         return { hasEnough: true, error: null };
       }
       if (requiredAmount > tokenBalance) {
-        const need = formatUnits(requiredAmount, decimals);
-        const have = formatUnits(tokenBalance, decimals);
+        // Use compact, rounded display values so the message fits on mobile.
+        const need = formatAmount(requiredAmount, decimals, DISPLAY_DECIMALS);
+        const have = formatAmount(tokenBalance, decimals, DISPLAY_DECIMALS);
         return {
           hasEnough: false,
-          error: `Insufficient balance (need ~${need} ${symbol} incl. fees, have ${have} ${symbol})`,
+          error: `Need ~${need} ${symbol}, have ${have} ${symbol}`,
         };
       }
       return { hasEnough: true, error: null };
@@ -443,11 +444,11 @@ export function useEscrowForm(): UseEscrowFormReturn {
         return { hasEnough: true, error: null };
       }
       if (computed.totalApprovalNeeded > tokenBalance) {
-        const need = formatUnits(computed.totalApprovalNeeded, decimals);
-        const have = formatUnits(tokenBalance, decimals);
+        const need = formatAmount(computed.totalApprovalNeeded, decimals, DISPLAY_DECIMALS);
+        const have = formatAmount(tokenBalance, decimals, DISPLAY_DECIMALS);
         return {
           hasEnough: false,
-          error: `Insufficient balance (need ${need} ${symbol}, have ${have} ${symbol})`,
+          error: `Need ${need} ${symbol}, have ${have} ${symbol}`,
         };
       }
       return { hasEnough: true, error: null };

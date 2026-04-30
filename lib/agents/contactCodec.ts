@@ -15,7 +15,15 @@
  *   parseContactString supports both `;` and `|`.
  */
 
-export type ContactKind = "telegram" | "discord" | "email" | "custom";
+export type ContactKind =
+  | "telegram"
+  | "discord"
+  | "email"
+  | "twitter"
+  | "reddit"
+  | "matrix"
+  | "signal"
+  | "custom";
 export type ContactKindOrEmpty = ContactKind | "";
 
 export interface ContactEntryInput {
@@ -44,8 +52,44 @@ export interface ContactValidationError {
 export const CONTACT_MAX_BYTES = 50;
 export const CONTACT_ENTRY_SEPARATOR = ";";
 
-const PREDEFINED_NAMES = ["telegram", "discord", "email"] as const;
+const PREDEFINED_NAMES = ["telegram", "discord", "email", "twitter", "reddit", "matrix", "signal"] as const;
 export type PredefinedContactName = (typeof PREDEFINED_NAMES)[number];
+
+/**
+ * Per-kind value validators. Centralised so adding a new predefined kind is a
+ * single-place change. Each entry returns an error message if the value is
+ * invalid, or null if it is valid.
+ */
+const PREDEFINED_VALUE_VALIDATORS: Record<PredefinedContactName, (value: string) => string | null> = {
+  telegram: (v) =>
+    /^@[A-Za-z0-9_]{3,32}$/.test(v)
+      ? null
+      : "Must be in the format @username (3-32 chars, letters/numbers/underscore)",
+  discord: (v) =>
+    /^@[A-Za-z0-9_]{3,32}$/.test(v)
+      ? null
+      : "Must be in the format @username (3-32 chars, letters/numbers/underscore)",
+  email: (v) =>
+    v.length <= 254 && /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(v)
+      ? null
+      : "Invalid email address",
+  twitter: (v) =>
+    /^@?[A-Za-z0-9_]{1,15}$/.test(v)
+      ? null
+      : "Must be a valid X/Twitter handle (1-15 chars, letters/numbers/underscore)",
+  reddit: (v) =>
+    /^(?:u\/|@)?[A-Za-z0-9_-]{3,20}$/.test(v)
+      ? null
+      : "Must be a valid Reddit username (3-20 chars, letters/numbers/_/-)",
+  matrix: (v) =>
+    /^@[A-Za-z0-9._=\/+-]+:[A-Za-z0-9.-]+\.[A-Za-z]{2,}$/.test(v)
+      ? null
+      : "Must be a Matrix ID like @user:server.tld",
+  signal: (v) =>
+    /^(?:\+\d{6,15}|@?[A-Za-z0-9_.]{3,32})$/.test(v)
+      ? null
+      : "Must be a phone number (+1234567890) or Signal username",
+};
 
 export function byteLengthUtf8(value: string): number {
   // Browser-safe UTF-8 byte length.
@@ -141,7 +185,10 @@ export function validateContactEntry(input: ContactEntryInput): ContactValidatio
       });
     }
     if (PREDEFINED_NAMES.includes(name as PredefinedContactName)) {
-      errors.push({ field: "name", message: "Custom contact name cannot be telegram/discord/email" });
+      errors.push({
+        field: "name",
+        message: `Custom contact name cannot be ${PREDEFINED_NAMES.join("/")}`,
+      });
     }
   } else {
     if (!PREDEFINED_NAMES.includes(name as PredefinedContactName)) {
@@ -160,17 +207,12 @@ export function validateContactEntry(input: ContactEntryInput): ContactValidatio
     errors.push({ field: "value", message: `Value cannot include '${CONTACT_ENTRY_SEPARATOR}'` });
   }
 
-  // Predefined semantic validation
-  if (name === "telegram" || name === "discord") {
-    if (!/^@[A-Za-z0-9_]{3,32}$/.test(value)) {
-      errors.push({ field: "value", message: "Must be in the format @username (3-32 chars, letters/numbers/underscore)" });
-    }
-  }
-
-  if (name === "email") {
-    // Conservative email validation.
-    if (value.length > 254 || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(value)) {
-      errors.push({ field: "value", message: "Invalid email address" });
+  // Predefined semantic validation — dispatched via the central validators map.
+  if (input.kind !== "custom") {
+    const validator = PREDEFINED_VALUE_VALIDATORS[name as PredefinedContactName];
+    if (validator) {
+      const msg = validator(value);
+      if (msg) errors.push({ field: "value", message: msg });
     }
   }
 
@@ -203,11 +245,41 @@ export function parsedEntryToInput(entry: ParsedContactEntry): ContactEntryInput
   return { kind, value: entry.value };
 }
 
+/**
+ * Aliases users may type/store on-chain that should map back to a predefined
+ * kind in the editor. Keep this in sync with the visual aliases in
+ * `lib/agents/contactPlatforms.tsx` for the predefined kinds.
+ */
+const KIND_ALIASES: Readonly<Record<string, PredefinedContactName>> = {
+  // telegram
+  tg: "telegram",
+  tgram: "telegram",
+  // discord
+  dc: "discord",
+  disc: "discord",
+  // email
+  mail: "email",
+  "e-mail": "email",
+  // twitter / x
+  x: "twitter",
+  tw: "twitter",
+  // reddit
+  rd: "reddit",
+  r: "reddit",
+  // matrix
+  mx: "matrix",
+  // signal
+  sgnl: "signal",
+};
+
 function kindFromParsedName(name: string): ContactKind {
   const normalized = name.trim().toLowerCase();
-  if (normalized === "telegram") return "telegram";
-  if (normalized === "discord") return "discord";
-  if (normalized === "email") return "email";
+  if (PREDEFINED_NAMES.includes(normalized as PredefinedContactName)) {
+    return normalized as PredefinedContactName;
+  }
+  if (KIND_ALIASES[normalized]) {
+    return KIND_ALIASES[normalized];
+  }
   return "custom";
 }
 
