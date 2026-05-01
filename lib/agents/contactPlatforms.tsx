@@ -49,23 +49,53 @@ function EmailMark(props: BrandMarkProps) {
   );
 }
 
-/** Bitcointalk — Bitcoin "₿" mark inside a rounded square. */
+/**
+ * Bitcointalk — bold ₿ glyph (without an enclosing frame).
+ *
+ * The brand-tinted pill (compact) and orange brand tile (expanded) already
+ * provide the surrounding shape, so the mark itself is just the iconic
+ * Bitcoin currency symbol. Drawn with the even-odd fill rule so the inner
+ * lobes of the "B" remain transparent regardless of background.
+ */
 function BitcointalkMark(props: BrandMarkProps) {
   return (
-    <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true" {...props}>
-      <path d="M3 6.5C3 4.567 4.567 3 6.5 3h11C19.433 3 21 4.567 21 6.5v11c0 1.933-1.567 3.5-3.5 3.5h-11C4.567 21 3 19.433 3 17.5v-11Zm10.94 2.197V7h-1.346v1.654c-.354 0-.715.007-1.075.014V7H10.17v1.697c-.293.006-.58.012-.86.012H7.45L7.45 10.143s.99-.018.973-.001c.543 0 .72.315.771.587v1.933h.13c-.043 0-.087 0-.13.002v2.708c-.024.17-.123.443-.502.443.016.015-.973 0-.973 0l-.27 1.611h1.756c.327 0 .649.005.965.008V19h1.348v-1.539c.37.008.728.011 1.078.011L11.594 19h1.346v-1.541c2.27-.13 3.857-.701 4.054-2.823.16-1.71-.643-2.473-1.928-2.78.78-.395 1.268-1.094 1.157-2.262-.151-1.59-1.519-2.124-3.283-2.273Zm.488 6.949c0 .985-1.357.967-2.182.952l-.222-.005c-.026.001-.117 0-.235.001-.582.005-1.715.014-1.715-.014l.342-2.057s2.14-.001 2.74.001c.6.002 1.272.337 1.272 1.122Zm-.473-3.967c0 .9-1.13.882-1.815.871l-.18-.005c-.02 0-.083 0-.176.002-.467.005-1.461.013-1.461-.014l.31-1.872s1.788-.001 2.292.001c.504.002 1.03.32 1.03 1.017Z" />
+    <svg viewBox="0 0 24 24" fill="currentColor" fillRule="evenodd" clipRule="evenodd" aria-hidden="true" {...props}>
+      <path d="M14 3v2.55c.3.02.59.05.86.1 2.13.33 3.62 1.45 3.46 3.55-.1 1.34-.85 2.13-1.97 2.55 1.55.36 2.42 1.34 2.34 3.13-.13 2.5-2.05 3.3-4.69 3.43V21h-2v-2.62h-1.6V21h-2v-2.62H5v-2h1.5c.69 0 .8-.46.8-.84V7.7c0-.36-.1-.66-.66-.66L5 7.06V5.13l3.4.04V3h2v2.13H12V3h2Zm-3.5 7.55h2.97c1.32 0 2.49-.34 2.49-1.6 0-1.3-1.17-1.6-2.49-1.6H10.5v3.2Zm0 5.85h3.18c1.45 0 2.74-.34 2.74-1.7 0-1.4-1.3-1.74-2.74-1.74H10.5v3.44Z" />
     </svg>
   );
 }
 
-/** BlackHatWorld — top hat brand mark. */
+/**
+ * BlackHatWorld — minimalist gold-globe mark.
+ *
+ * Inspired by the BHW logotype's iconic globe. We deliberately reduce the
+ * full multi-color reference (radial gold gradient + grid lines + golden
+ * continents) to a single-color glyph because:
+ *   1. The Mark renders at 12px in compact pills and 18px white-on-gold in
+ *      expanded tiles — a gradient + fine grid would turn into mush.
+ *   2. All other platform marks are monochrome via `currentColor`, so this
+ *      keeps visual consistency across the contact row.
+ *
+ * The composition still reads unmistakably as "globe": a circle, a clear
+ * equator, a curved meridian, and two abstract continent silhouettes.
+ */
 function BlackHatWorldMark(props: BrandMarkProps) {
   return (
-    <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true" {...props}>
-      <path d="M7.5 4.5C7.5 3.672 8.172 3 9 3h6c.828 0 1.5.672 1.5 1.5v8.25H21a.75.75 0 0 1 .75.75v3a3 3 0 0 1-3 3H5.25a3 3 0 0 1-3-3v-3a.75.75 0 0 1 .75-.75h4.5V4.5Zm9 8.25V4.875A.375.375 0 0 0 16.125 4.5h-8.25a.375.375 0 0 0-.375.375v7.875h9Zm-12.75 1.5v2.25c0 .828.672 1.5 1.5 1.5h13.5c.828 0 1.5-.672 1.5-1.5v-2.25H3.75Zm10.875 1.125a.75.75 0 0 1 .75-.75h2.25a.75.75 0 0 1 0 1.5h-2.25a.75.75 0 0 1-.75-.75Z" />
+    <svg viewBox="0 0 24 24" aria-hidden="true" {...props}>
+      <g fill="none" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round">
+        <circle cx="12" cy="12" r="9" />
+        <path d="M3 12h18" />
+        <ellipse cx="12" cy="12" rx="3.6" ry="9" />
+      </g>
+      <g fill="currentColor">
+        {/* Continent silhouettes — top-left + bottom-right for visual balance. */}
+        <path d="M7.4 8.4c1.1-.45 2.35-.05 2.55.95.2 1-.75 1.75-1.95 1.65-1.1-.1-1.7-.75-1.5-1.45.1-.55.4-1.0 0.9-1.15Z" />
+        <path d="M14.6 14c1.05-.35 2.3.05 2.4 1.05.1 1-.85 1.65-2.05 1.55-1.1-.1-1.65-.75-1.5-1.4.1-.55.5-1.0 1.15-1.2Z" />
+      </g>
     </svg>
   );
 }
+
 
 /**
  * DAO Forum — speech bubble with three dots punched through.
@@ -252,12 +282,19 @@ const BLACKHATWORLD: ContactPlatform = {
   canonical: "blackhatworld",
   labelKey: "blackhatworld",
   Mark: BlackHatWorldMark,
-  brandColor: "#C9201D",
-  brandBgLight: "rgba(201, 32, 29, 0.10)",
-  brandBgDark: "rgba(201, 32, 29, 0.18)",
+  // BHW's brand pairs warm gold (#C2AE70) with near-black backgrounds. We use
+  // the gold as the foreground color so the mark reads clearly on tinted
+  // pills (light + dark theme) and on the solid expanded tile.
+  brandColor: "#C2AE70",
+  // Gold is less saturated than typical brand colors, so the tints need a
+  // touch more opacity than e.g. Telegram's blue to feel present without
+  // overpowering the surrounding card.
+  brandBgLight: "rgba(194, 174, 112, 0.18)",
+  brandBgDark: "rgba(194, 174, 112, 0.22)",
   // BHW (XenForo) profile URLs need username + user-id; copy-only is safest.
   aliases: ["bhw", "blackhat", "blackhatworld-com"],
 };
+
 
 const DAOFORUM: ContactPlatform = {
   canonical: "daoforum",
