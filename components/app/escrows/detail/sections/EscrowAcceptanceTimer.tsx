@@ -60,7 +60,7 @@ export function EscrowAcceptanceTimer() {
     const isBuyer = role.role === "buyer";
 
     // Determine status color and icon
-    const isWarning = isExpired || (remainingSeconds < 3600 && !isExpired); // Warn if expired or < 1 hour
+    const isWarning = isExpired || (remainingSeconds < acceptanceTimer.totalSeconds * 0.2 && !isExpired); // Warn if expired or < 20% remaining
 
     return (
         <Card
