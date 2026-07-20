@@ -63,6 +63,30 @@ const nextConfig: NextConfig = {
 
       // React Query
       "@tanstack/react-query$": require.resolve("@tanstack/react-query"),
+
+      // Neutralize optional x402 micropayment modules pulled in transitively via
+      // @base-org/account → @coinbase/cdp-sdk. These `@x402/*` packages are optional
+      // peer deps we never install or use (escrow flows don't touch x402), but their
+      // lazy imports otherwise fail the build with "Module not found".
+      // Resolving them to `false` maps them to an empty module.
+      "@x402/core/client": false,
+      "@x402/evm": false,
+      "@x402/evm/exact/client": false,
+      "@x402/evm/upto/client": false,
+      "@x402/svm/exact/client": false,
+
+      // Neutralize wagmi's experimental "Tempo" connector, which does
+      // `import(/* turbopackOptional: true */ "accounts")`. The `turbopackOptional`
+      // hint is understood by Turbopack but NOT by webpack, so webpack tries to
+      // resolve the optional `accounts` package (which we don't install or use) and
+      // fails. Map it to an empty module.
+      "accounts": false,
+
+      // Neutralize wagmi's optional "Porto" connector, which imports `porto/internal`.
+      // Porto is not installed and unused by our wallet setup; map it to an empty module
+      // to avoid a "Module not found" warning/error during the build.
+      "porto/internal": false,
+      "porto": false,
     };
 
     // Allow importing `.graphql` documents as raw strings.
