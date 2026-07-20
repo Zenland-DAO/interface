@@ -1,14 +1,17 @@
-import { createConfig, http } from "wagmi";
-import { mainnet, sepolia } from "wagmi/chains";
+import { createConfig } from "wagmi";
 import { walletConnect, baseAccount } from "wagmi/connectors";
 import { nyknyc } from "@nyknyc/wagmi-connector";
+
+import { appChains, wagmiTransports } from "@/lib/rpc";
 
 /**
  * Supported chains for the app.
  *
  * Note: Keep this list small and explicit.
+ * Chains and RPC endpoints are defined in the shared `@/lib/rpc` module.
  */
-export const appChains = [mainnet, sepolia] as const;
+export { appChains };
+
 
 /**
  * Wagmi config for Zenland.
@@ -54,8 +57,6 @@ export const config = createConfig({
     // EIP-6963 injected wallets (MetaMask, Rabby, Brave, OKX, Ledger, etc.)
     // are auto-discovered by createConfig — no explicit connector needed.
   ],
-  transports: {
-    [mainnet.id]: http("https://lb.drpc.live/ethereum/AjFvmgJ_7Uw7qTxlyHKwHFxIalWDHGIR8Z89tuZZzRRv"),
-    [sepolia.id]: http("https://lb.drpc.live/sepolia/AjFvmgJ_7Uw7qTxlyHKwHFxIalWDHGIR8Z89tuZZzRRv"),
-  },
+  transports: wagmiTransports,
 });
+

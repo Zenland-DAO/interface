@@ -1,64 +1,36 @@
 /**
  * On-chain verification utilities
- * 
- * Uses viem to read contract state directly from RPC
+ *
+ * Uses viem to read contract state directly from RPC.
+ *
+ * RPC endpoints come from the shared `@/lib/rpc` module (dRPC) — NOT viem's
+ * default public RPC. Using the default public transport previously caused
+ * "invalid key" errors that were misclassified as "contract not deployed".
  */
 
-import {
-  createPublicClient,
-  http,
-  type Address,
-  type Hex,
-  type PublicClient,
-} from "viem";
-import { mainnet, sepolia } from "viem/chains";
+import { type Address, type Hex } from "viem";
 import { escrowImplementationAbi } from "@/lib/contracts/abis/escrowImplementation";
+import {
+  createAppPublicClient,
+  getBlockExplorerUrl,
+  getChainName,
+  isSupportedChainId,
+  type SupportedChainId,
+} from "@/lib/rpc";
 import type { OnChainStatus, EscrowStateValue } from "./types";
 
-/**
- * Chain configurations for public clients
- */
-const CHAIN_CONFIGS = {
-  1: { chain: mainnet, name: "Ethereum Mainnet" },
-  11155111: { chain: sepolia, name: "Sepolia Testnet" },
-} as const;
-
-export type SupportedChainId = keyof typeof CHAIN_CONFIGS;
+// Re-export shared helpers so existing consumers of this module keep working.
+export { getBlockExplorerUrl, getChainName };
+export type { SupportedChainId };
 
 /**
- * Get chain name from chain ID
- */
-export function getChainName(chainId: number): string {
-  const config = CHAIN_CONFIGS[chainId as SupportedChainId];
-  return config?.name ?? `Unknown Chain (${chainId})`;
-}
-
-/**
- * Check if chain ID is supported
+ * Check if chain ID is supported.
+ *
+ * Kept as a named export for backwards compatibility; delegates to the shared
+ * RPC module which is the single source of truth for supported chains.
  */
 export function isSupportedChain(chainId: number): chainId is SupportedChainId {
-  return chainId in CHAIN_CONFIGS;
-}
-
-/**
- * Get public client for a chain
- */
-function getPublicClient(chainId: SupportedChainId): PublicClient {
-  const config = CHAIN_CONFIGS[chainId];
-  return createPublicClient({
-    chain: config.chain,
-    transport: http(),
-  });
-}
-
-/**
- * Get block explorer URL for an address
- */
-export function getBlockExplorerUrl(chainId: number, address: string): string {
-  if (chainId === 1) {
-    return `https://etherscan.io/address/${address}`;
-  }
-  return `https://sepolia.etherscan.io/address/${address}`;
+  return isSupportedChainId(chainId);
 }
 
 /**
@@ -71,9 +43,9 @@ export interface OnChainVerificationResult {
 
 /**
  * Verify escrow contract on-chain
- * 
+ *
  * Reads termsHash and state from the contract to:
- * 1. Detect if contract exists (not deployed if call returns 0x)
+ * 1. Detect if contract exists (no bytecode → not deployed)
  * 2. Compare PDF hash with on-chain termsHash
  * 3. Get current contract state
  */
@@ -92,10 +64,20 @@ export async function verifyOnChain(
     };
   }
 
-  const publicClient = getPublicClient(chainId);
+  const publicClient = createAppPublicClient(chainId);
 
   try {
-    // Try to read both termsHash and state in a multicall for efficiency
+    // Authoritative deployment check: does the address have bytecode?
+    // This distinguishes a genuinely-missing contract from a transport/RPC
+    // error (e.g. "invalid key"), which must NOT be reported as not_deployed.
+    const bytecode = await publicClient.getBytecode({ address: escrowAddress });
+    if (!bytecode || bytecode === "0x") {
+      return {
+        status: { status: "not_deployed" },
+      };
+    }
+
+    // Read both termsHash and state in a single multicall for efficiency.
     const results = await publicClient.multicall({
       contracts: [
         {
@@ -114,11 +96,13 @@ export async function verifyOnChain(
 
     const [termsHashResult, stateResult] = results;
 
-    // Check if contract exists - if termsHash call fails, contract doesn't exist
+    // Contract has bytecode but doesn't expose the expected interface.
     if (termsHashResult.status === "failure") {
-      // Contract doesn't exist or doesn't have termsHash function
       return {
-        status: { status: "not_deployed" },
+        status: {
+          status: "error",
+          message: "Contract does not expose a termsHash — not a Zenland escrow",
+        },
       };
     }
 
@@ -155,20 +139,10 @@ export async function verifyOnChain(
       };
     }
   } catch (err) {
-    // Handle unexpected errors
+    // Any thrown error here is a transport/RPC-level failure (e.g. network
+    // error, "invalid key", rate limiting). These are NOT "contract not
+    // deployed" — deployment is checked explicitly via getBytecode above.
     const message = err instanceof Error ? err.message : "Unknown error occurred";
-    
-    // Check if the error indicates contract doesn't exist
-    if (
-      message.includes("returned no data") ||
-      message.includes("is not a contract") ||
-      message.includes("execution reverted")
-    ) {
-      return {
-        status: { status: "not_deployed" },
-      };
-    }
-
     return {
       status: {
         status: "error",
