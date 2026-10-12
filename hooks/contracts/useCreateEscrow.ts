@@ -6,6 +6,7 @@ import {
   useWaitForTransactionReceipt,
   useChainId,
 } from "wagmi";
+import { useQueryClient } from "@tanstack/react-query";
 import { type Address, type Hex, zeroAddress, decodeEventLog } from "viem";
 
 import {
@@ -96,6 +97,7 @@ export function useCreateEscrow(): UseCreateEscrowReturn {
     () => getContractAddresses(chainId),
     [chainId]
   );
+  const queryClient = useQueryClient();
 
   // Track if we initiated a creation
   const [didInitiate, setDidInitiate] = useState(false);
@@ -192,10 +194,13 @@ export function useCreateEscrow(): UseCreateEscrowReturn {
     // Track successful escrow creation for analytics
     trackEscrowCreated();
 
+    // Mark escrow lists / stats stale so they refetch (and include the new escrow) on next view.
+    queryClient.invalidateQueries({ queryKey: ["zenland"] });
+
     createInFlightRef.current.resolve(escrowAddress);
     createInFlightRef.current = null;
     didSendCreateTxRef.current = false;
-  }, [txHash, isTxSuccess, isTxError, txError, receipt, escrowAddress]);
+  }, [txHash, isTxSuccess, isTxError, txError, receipt, escrowAddress, queryClient]);
 
   // Derive status from wagmi state (computed, not effect-based)
   const status = useMemo<CreateEscrowStatus>(() => {

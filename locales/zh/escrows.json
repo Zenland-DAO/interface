@@ -8,6 +8,7 @@
       "error": "加载托管失败。请稍后重试。",
       "showing": "显示 {count} 个托管",
       "showingPlural": "显示 {count} 个托管",
+      "updating": "正在更新…",
       "addressCopied": "地址已复制",
       "roles": {
         "all": "所有角色",

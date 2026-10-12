@@ -13,7 +13,7 @@
 
 import { useState, useMemo } from "react";
 import Link from "next/link";
-import { Bell } from "lucide-react";
+import { Bell, Loader2 } from "lucide-react";
 import { useTranslations } from "next-intl";
 import { Button } from "@/components/ui";
 import { PageHeader } from "@/components/shared";
@@ -102,15 +102,21 @@ function StateTabButton({ label, active, onClick, isAttention, badge }: StateTab
 
 export default function EscrowsPage() {
   const t = useTranslations("escrows.list");
-  const { address } = useConnection();
+  const { address, isConnecting, isReconnecting } = useConnection();
   const [role, setRole] = useState<EscrowRole>("all");
   const [stateTab, setStateTab] = useState<EscrowStateTab>("all");
 
   // Fetch escrows based on role and state filters
-  const { data, isLoading, error } = useEscrows({
+  const { data, isLoading: isQueryLoading, isFetching, error } = useEscrows({
     role,
     stateTab,
   });
+
+  // The query is disabled until the wallet (re)connects on page load; show the
+  // skeleton then too instead of flashing the empty state.
+  const isLoading = isQueryLoading || isConnecting || isReconnecting;
+  // Background refresh of already-shown data (RPC sync can take a few seconds).
+  const isRefreshing = isFetching && !isLoading;
 
   // Memoize the fallback array so it doesn't change identity on every render.
   const escrows = useMemo(
@@ -169,6 +175,14 @@ export default function EscrowsPage() {
       {error && (
         <div className="p-4 bg-error-50 dark:bg-error-900/20 border border-error-200 dark:border-error-800 rounded-lg text-error-600 dark:text-error-400 text-center">
           {t("error")}
+        </div>
+      )}
+
+      {/* Background refresh indicator */}
+      {isRefreshing && !error && (
+        <div className="flex items-center justify-center gap-2 text-xs text-[var(--text-secondary)]" role="status">
+          <Loader2 size={14} className="animate-spin" />
+          {t("updating")}
         </div>
       )}
 

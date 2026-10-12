@@ -145,11 +145,11 @@ function useCreateAgentActions(): UseAgentActionsReturn {
       try {
         await Promise.all([
           queryClient.refetchQueries({
-            queryKey: ["indexer", "agent", address],
+            queryKey: ["zenland", "agent", address],
             type: "active",
           }),
           queryClient.refetchQueries({
-            queryKey: ["indexer", "agents"],
+            queryKey: ["zenland", "agents"],
             type: "active",
           }),
         ]);

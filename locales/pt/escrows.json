@@ -8,6 +8,7 @@
       "error": "Falha ao carregar escrows. Tente novamente mais tarde.",
       "showing": "Mostrando {count} escrow",
       "showingPlural": "Mostrando {count} escrows",
+      "updating": "Atualizando…",
       "addressCopied": "Endereço copiado",
       "roles": {
         "all": "Todos os papéis",

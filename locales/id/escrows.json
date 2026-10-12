@@ -8,6 +8,7 @@
       "error": "Gagal memuat Escrow. Silakan coba lagi nanti.",
       "showing": "Menampilkan {count} Escrow",
       "showingPlural": "Menampilkan {count} Escrow",
+      "updating": "Memperbarui…",
       "addressCopied": "Alamat disalin",
       "roles": {
         "all": "Semua Peran",

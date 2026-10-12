@@ -8,6 +8,7 @@
       "error": "Failed to load escrows. Please try again later.",
       "showing": "Showing {count} escrow",
       "showingPlural": "Showing {count} escrows",
+      "updating": "Updating…",
       "addressCopied": "Address copied",
       "roles": {
         "all": "All Roles",

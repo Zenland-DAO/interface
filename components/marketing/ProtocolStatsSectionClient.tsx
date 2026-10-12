@@ -4,9 +4,24 @@ import { useState } from "react";
 import dynamic from "next/dynamic";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 
-// Dynamic import with SSR disabled - must be in a client component
+// Dynamic import with SSR disabled - must be in a client component.
+// The ZenlandProvider is loaded in the same lazy chunk: without it the SDK hooks
+// fall back to the indexer's GraphQL API instead of reading the chain via RPC.
 const ProtocolStatsSection = dynamic(
-  () => import("./ProtocolStatsSection").then(mod => mod.ProtocolStatsSection),
+  async () => {
+    const [{ ProtocolStatsSection }, { ZenlandProvider }, { zenlandConfig }] = await Promise.all([
+      import("./ProtocolStatsSection"),
+      import("@zenland/sdk/react"),
+      import("@/lib/zenland"),
+    ]);
+    return function ProtocolStatsSectionWithProvider() {
+      return (
+        <ZenlandProvider config={zenlandConfig}>
+          <ProtocolStatsSection />
+        </ZenlandProvider>
+      );
+    };
+  },
   { 
     ssr: false,
     loading: () => (

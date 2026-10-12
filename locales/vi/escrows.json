@@ -8,6 +8,7 @@
       "error": "Không thể tải danh sách ký quỹ. Vui lòng thử lại sau.",
       "showing": "Đang hiển thị {count} ký quỹ",
       "showingPlural": "Đang hiển thị {count} ký quỹ",
+      "updating": "Đang cập nhật…",
       "addressCopied": "Đã sao chép địa chỉ",
       "roles": {
         "all": "Tất cả vai trò",

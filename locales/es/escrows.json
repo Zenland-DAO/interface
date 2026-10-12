@@ -8,6 +8,7 @@
       "error": "No se pudieron cargar los escrows. Por favor, inténtalo de nuevo más tarde.",
       "showing": "Mostrando {count} escrow",
       "showingPlural": "Mostrando {count} escrows",
+      "updating": "Actualizando…",
       "addressCopied": "Dirección copiada",
       "roles": {
         "all": "Todos los Roles",
