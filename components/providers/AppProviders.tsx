@@ -3,10 +3,21 @@
 import { PropsWithChildren, useState } from "react";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { WagmiProvider, type State } from "wagmi";
-import { ZenlandProvider } from "@zenland/sdk/react";
+import { ZenlandProvider, type ZenlandClientConfig } from "@zenland/sdk/react";
 
 import { config } from "@/lib/wagmi/config";
 import "@/lib/wagmi/register";
+import { appChains, RPC_URLS } from "@/lib/rpc";
+
+/**
+ * Read protocol data directly from the chain via RPC (no indexer).
+ * Module-level so the SDK client (and its in-memory cache) is created once.
+ */
+const zenlandConfig: ZenlandClientConfig = {
+  rpc: {
+    chains: appChains.map((chain) => ({ chainId: chain.id, rpcUrl: RPC_URLS[chain.id] })),
+  },
+};
 
 type AppProvidersProps = PropsWithChildren<{
   initialState?: State
@@ -30,7 +41,7 @@ export function AppProviders({ children, initialState }: AppProvidersProps) {
   return (
     <WagmiProvider config={config} initialState={initialState} reconnectOnMount>
       <QueryClientProvider client={queryClient}>
-        <ZenlandProvider>
+        <ZenlandProvider config={zenlandConfig}>
           {children}
         </ZenlandProvider>
       </QueryClientProvider>
