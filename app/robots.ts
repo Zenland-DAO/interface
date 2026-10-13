@@ -9,7 +9,9 @@ import type { MetadataRoute } from "next";
  *
  * Private pages disallowed:
  * - User-specific pages (/dashboard, /escrows, /settings, /app)
- * - API routes, Next.js internals
+ * - API routes
+ *
+ * /_next/ is NOT disallowed: crawlers need its JS/CSS to render pages.
  *
  * @see https://nextjs.org/docs/app/api-reference/file-conventions/metadata/robots
  */
@@ -35,7 +37,6 @@ export default function robots(): MetadataRoute.Robots {
           "/agents/dashboard", // Agent dashboard (requires wallet)
           "/agents/edit", // Agent edit (requires wallet)
           "/api/", // Exclude API routes
-          "/_next/", // Exclude Next.js internals
           "/private/", // Exclude any private pages
         ],
       },
@@ -55,7 +56,17 @@ export default function robots(): MetadataRoute.Robots {
       },
       {
         // Allow AI crawlers for better AI indexing
-        userAgent: ["GPTBot", "ChatGPT-User", "Google-Extended", "Anthropic"],
+        userAgent: [
+          "GPTBot",
+          "OAI-SearchBot",
+          "ChatGPT-User",
+          "ClaudeBot",
+          "Claude-SearchBot",
+          "Claude-User",
+          "PerplexityBot",
+          "Perplexity-User",
+          "Google-Extended",
+        ],
         allow: ["/", "/agents", "/agents/register", "/escrows/new", "/verify"],
         disallow: [
           "/app/",

@@ -1,0 +1,38 @@
+# Zenland
+
+> Zenland is a non-custodial crypto escrow protocol on Ethereum. A buyer locks USDT or USDC in a per-deal smart contract; the seller is paid when they deliver, and a staked third-party agent resolves disputes. Protocol fee: 1% of the escrow amount (minimum $0.50, maximum $50). Governed by the Zenland DAO; not a licensed or registered financial company.
+
+Key facts:
+
+- Network: Ethereum mainnet only. Tokens: USDT and USDC (ERC-20). No BTC, ETH, or TRC-20/BEP-20 USDT.
+- Custody: none. Funds are held by the escrow contract; Zenland cannot move them.
+- Flow: buyer creates and funds escrow with written terms, a buyer protection period (7, 14, 30 days, or custom 1-365), and an agent → seller accepts within an acceptance window (otherwise buyer can cancel for a full refund) → seller marks fulfilled, which starts the protection period → buyer releases funds, or the seller claims them after the protection period ends.
+- Disputes: the buyer can open a dispute during the protection period. Parties can agree a split (distributed automatically when both approve) or invite the assigned agent, who decides the split. Agents must respond within a deadline (7 days by default) or either party can claim a timeout.
+- Without an agent, disputes cannot be resolved and funds can stay locked if the parties disagree.
+- Agents stake stablecoins (they can handle escrows up to 20x that stake, the "MAV") plus DAO tokens that the DAO can slash for misconduct. Agents set their own assignment fee and dispute fee, each 0.1%-10%.
+- Each escrow generates a PDF agreement linked to the contract on-chain; anyone can verify it at https://zen.land/verify.
+- Gas: paid in ETH, or gas-free with the NYKNYC smart wallet (ERC-4337). Other supported wallets: browser wallets (MetaMask, Rabby, etc.), WalletConnect, Base Account. No sign-up.
+
+## Pages
+
+- [Home](https://zen.land/): overview, fees, how it works, FAQ (also in es, zh, pt, ru, id, vi under /{locale})
+- [USDT escrow](https://zen.land/usdt-escrow): how stablecoin escrow works on Zenland, fees, limits, FAQ
+- [Create an escrow](https://zen.land/escrows/new): the escrow creation app
+- [Agents](https://zen.land/agents): directory of dispute resolution agents with their fees and stake
+- [Become an agent](https://zen.land/agents/register): requirements for agents
+- [Verify a PDF](https://zen.land/verify): check that an escrow agreement PDF matches the on-chain contract
+
+## Docs
+
+- [What is Zenland](https://docs.zen.land/getting-started/what-is-zenland): protocol introduction
+- [Documentation](https://docs.zen.land/): full user, agent, and developer docs
+- [FAQ](https://docs.zen.land/resources/faq): extended FAQ
+- [API](https://api.zen.land/): protocol data API
+
+## Optional
+
+- [Smart contracts](https://github.com/zenland-dao/core): contract source code
+- [Terms of Service](https://zen.land/terms)
+- [Agent Terms](https://zen.land/agent-tos)
+- [Privacy Policy](https://zen.land/privacy)
+- [Tutorial video](https://www.youtube.com/watch?v=zZCREbx8b8g): sending USDT safely with Zenland escrow
