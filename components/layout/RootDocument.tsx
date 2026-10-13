@@ -1,30 +1,32 @@
 import type { Metadata } from "next";
-import { GoogleAnalytics } from "@next/third-parties/google";
 import { Inter, Figtree } from "next/font/google";
-import { getLocale } from "next-intl/server";
 import { ThemeProvider } from "@/components/providers/ThemeProvider";
 import { LenisProvider } from "@/components/providers/LenisProvider";
 import { Toaster } from "@/components/ui/Toaster";
+import { GoogleAnalytics } from "@/components/layout/GoogleAnalytics";
 import { GA_MEASUREMENT_ID } from "@/lib/analytics/gtag";
 import { SITE_URL, SITE_NAME, OG_IMAGE } from "@/lib/seo";
-import "./globals.css";
+import "@/app/globals.css";
 
 const TWITTER_HANDLE = "@zenland_app";
 
+// `subsets` only controls which files are preloaded: the CSS still declares every
+// subset (Cyrillic, Vietnamese, ...) via unicode-range, so those pages fetch their
+// glyphs on demand instead of every page preloading ~50 KB of fonts it never uses.
 const inter = Inter({
-  subsets: ["latin", "cyrillic", "cyrillic-ext", "vietnamese"],
+  subsets: ["latin"],
   display: "optional",
   variable: "--font-inter",
 });
 
 const figtree = Figtree({
-  subsets: ["latin", "latin-ext"],
+  subsets: ["latin"],
   display: "optional",
   variable: "--font-figtree",
   weight: ["400", "500", "600", "700"],
 });
 
-export const metadata: Metadata = {
+export const rootMetadata: Metadata = {
   metadataBase: new URL(SITE_URL),
   title: {
     default: "Zenland - Web3 Escrow Platform",
@@ -105,21 +107,26 @@ export const metadata: Metadata = {
   category: "Finance",
 };
 
-export default async function RootLayout({
+/**
+ * Shared <html> document for Zenland's two root layouts.
+ *
+ * Marketing pages (`app/[locale]/layout.tsx`) and the dApp (`app/(app)/layout.tsx`)
+ * are separate root layouts so the dApp's wallet stack (wagmi, WalletConnect, Reown)
+ * never ships to marketing pages. With a single `app/layout.tsx`, Next merges the
+ * `(app)` layout's client manifest into the root group (route groups are stripped
+ * from manifest group names), which made every marketing page load and execute the
+ * dApp layout chunk. Both roots render this component so the document stays identical.
+ */
+export function RootDocument({
+  locale,
   children,
 }: Readonly<{
+  locale: string;
   children: React.ReactNode;
 }>) {
-  // The root layout sits above the [locale] segment, so params never carry the
-  // locale. next-intl resolves it from the middleware (marketing routes) and
-  // falls back to the default locale for unlocalized app routes.
-  const locale = await getLocale();
-
   return (
     <html lang={locale} translate="no" className={`${inter.variable} ${figtree.variable} notranslate`} suppressHydrationWarning>
       <head>
-        {/* Preconnect to Sentry ingestion endpoint to save ~300ms on first error report */}
-        <link rel="preconnect" href="https://o4510866637258752.ingest.de.sentry.io" />
         {/* Prevent flash of wrong theme */}
         <script
           dangerouslySetInnerHTML={{
@@ -207,7 +214,7 @@ export default async function RootLayout({
           <Toaster />
         </ThemeProvider>
       </body>
-      {/* Google Analytics - @next/third-parties handles optimized loading & auto page view tracking */}
+      {/* Google Analytics - gtag.js loads once the page is idle (see GoogleAnalytics) */}
       <GoogleAnalytics gaId={GA_MEASUREMENT_ID} />
     </html>
   );

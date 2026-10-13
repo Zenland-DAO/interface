@@ -7,7 +7,8 @@
 export { Header } from "./Header";
 export { Footer } from "./Footer";
 export { FeaturesSection } from "./FeaturesSection";
-export { ProtocolStatsSection } from "./ProtocolStatsSection";
+// ProtocolStatsSection is intentionally not exported here: it pulls in the SDK, viem and
+// react-query, so it is only loaded lazily through ProtocolStatsSectionClient.
 export { SupportedNetworksSection } from "./SupportedNetworksSection";
 export { HeroEscrowCard } from "./HeroEscrowCard";
 export { WalletSupportSection } from "./WalletSupportSection";

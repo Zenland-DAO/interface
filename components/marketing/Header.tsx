@@ -6,7 +6,9 @@ import { useTranslations } from "next-intl";
 import NextLink from "next/link";
 import { Logo, Button, BaseHeader } from "@/components/ui";
 import { ThemeToggle } from "@/components/ui/ThemeToggle";
+import { Link } from "@/i18n/navigation";
 import { LanguageSwitcher } from "./LanguageSwitcher";
+import { useHomeSectionHref } from "./useHomeSectionHref";
 
 /**
  * Marketing Header Component
@@ -32,6 +34,7 @@ export function Header() {
   const t = useTranslations("common.nav");
   const tButtons = useTranslations("common.buttons");
   const tA11y = useTranslations("common.accessibility");
+  const sectionHref = useHomeSectionHref();
   
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
 
@@ -66,13 +69,13 @@ export function Header() {
         centerSlot={
           <nav className="flex items-center gap-1">
             {navLinks.map((link) => (
-              <a
+              <Link
                 key={link.href}
-                href={link.href}
+                href={sectionHref(link.href)}
                 className="px-4 py-2 text-sm font-medium text-[var(--nav-text)] rounded-lg transition-colors hover:text-[var(--nav-text-hover)] hover:bg-[var(--state-hover)]"
               >
                 {t(link.labelKey)}
-              </a>
+              </Link>
             ))}
           </nav>
         }
@@ -161,14 +164,14 @@ export function Header() {
               <div className="p-4">
                 <nav className="flex flex-col gap-1">
                   {navLinks.map((link) => (
-                    <a
+                    <Link
                       key={link.href}
-                      href={link.href}
+                      href={sectionHref(link.href)}
                       onClick={() => setMobileMenuOpen(false)}
                       className="px-4 py-3 text-base font-medium text-[var(--nav-text)] rounded-xl transition-colors hover:text-[var(--nav-text-hover)] hover:bg-[var(--state-hover)]"
                     >
                       {t(link.labelKey)}
-                    </a>
+                    </Link>
                   ))}
                 </nav>
 

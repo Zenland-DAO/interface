@@ -6,7 +6,7 @@ import { ChevronDown } from "lucide-react";
 import { motion } from "framer-motion";
 import { Heading, Text, Container } from "@/components/ui";
 import { FAQ_ITEMS, type FAQItem } from "@/lib/constants/faq";
-import { AnimateOnScroll } from "@/hooks";
+import { AnimateOnScroll } from "@/hooks/useScrollAnimation";
 
 /**
  * FAQ Accordion Item Component

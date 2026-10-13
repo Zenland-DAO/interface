@@ -1,7 +1,7 @@
 "use client";
 
 import { useTranslations } from "next-intl";
-import { useScrollAnimation } from "@/hooks";
+import { useScrollAnimation } from "@/hooks/useScrollAnimation";
 import { Heading, Text, Container, FeatureCard } from "@/components/ui";
 import { Lock, ShieldCheck, Zap } from "lucide-react";
 

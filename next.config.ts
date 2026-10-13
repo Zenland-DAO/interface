@@ -11,6 +11,12 @@ const nextConfig: NextConfig = {
   // Enable standalone output for Docker deployment
   output: "standalone",
 
+  experimental: {
+    // Marketing (`app/[locale]`) and the dApp (`app/(app)`) are separate root layouts,
+    // so unmatched URLs need a self-contained 404 document: app/global-not-found.tsx.
+    globalNotFound: true,
+  },
+
   // Long-lived cache for static branding assets (SVGs are content-addressed via deploys)
   async headers() {
     return [
@@ -111,4 +117,9 @@ export default withSentryConfig(withNextIntl(nextConfig), {
 
   // Only print logs for uploading source maps in CI
   silent: !process.env.CI,
+
+  // Strip the SDK's internal debug logging from the client bundle.
+  bundleSizeOptimizations: {
+    excludeDebugStatements: true,
+  },
 });

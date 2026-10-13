@@ -1,6 +1,6 @@
 "use client";
 
-import { useScrollAnimation } from "@/hooks";
+import { useScrollAnimation } from "@/hooks/useScrollAnimation";
 import { Heading, Text, Container, Button } from "@/components/ui";
 import Link from "next/link";
 import Image from "next/image";

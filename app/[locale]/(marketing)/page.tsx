@@ -14,7 +14,7 @@ import {
   TutorialVideoSection
 } from "@/components/marketing";
 import { ProtocolStatsSectionClient } from "@/components/marketing/ProtocolStatsSectionClient";
-import { AnimateOnScroll } from "@/hooks";
+import { AnimateOnScroll } from "@/hooks/useScrollAnimation";
 import { generateFAQSchema } from "@/lib/constants/faq";
 import { SITE_URL, OG_IMAGE, OG_LOCALES, localizedAlternates, localizedUrl } from "@/lib/seo";
 
@@ -110,8 +110,9 @@ export default async function LandingPage({ params }: { params: Promise<{ locale
       <section className="relative py-16 sm:py-20 lg:py-28 overflow-hidden">
         <Container>
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-16 items-center">
-            {/* Left Content - Text */}
-            <AnimateOnScroll animation="fade-up" className="order-2 lg:order-1">
+            {/* Left Content - Text. Above the fold, so it uses a CSS-only entrance
+                (not AnimateOnScroll, which keeps it at opacity 0 until hydration). */}
+            <div className="fade-up order-2 lg:order-1">
               {/* Eyebrow - stays within container */}
               <div className="inline-flex items-center gap-2 px-3 py-1.5 mb-6 rounded-full bg-primary-500/10 border border-primary-500/20">
                 <span className="w-2 h-2 rounded-full bg-primary-500 animate-pulse" />
@@ -168,7 +169,7 @@ export default async function LandingPage({ params }: { params: Promise<{ locale
                   </div>
                 ))}
               </div>
-            </AnimateOnScroll>
+            </div>
 
             {/* Right Content - Visual */}
             <div className="order-1 lg:order-2 relative">

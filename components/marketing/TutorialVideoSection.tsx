@@ -4,7 +4,7 @@ import { useState, useCallback } from "react";
 import { useTranslations } from "next-intl";
 import { Play } from "lucide-react";
 import { Heading, Text, Container } from "@/components/ui";
-import { useScrollAnimation } from "@/hooks";
+import { useScrollAnimation } from "@/hooks/useScrollAnimation";
 
 /** YouTube video configuration */
 const VIDEO_CONFIG = {

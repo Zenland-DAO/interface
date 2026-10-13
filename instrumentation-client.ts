@@ -72,8 +72,7 @@ Sentry.init({
   integrations: [
     // Send console.log, console.warn, and console.error calls as logs to Sentry
     Sentry.consoleLoggingIntegration({ levels: ["log", "warn", "error"] }),
-    // Session Replay — records user sessions for debugging
-    Sentry.replayIntegration(),
+    // Session Replay is added lazily below (see loadReplayWhenIdle)
   ],
 
   // Session Replay
@@ -126,6 +125,28 @@ Sentry.init({
     return event;
   },
 });
+
+/**
+ * Session Replay (rrweb) is the heaviest part of the Sentry SDK, and bundling it made
+ * Sentry the most expensive script on mobile page loads. It is fetched from Sentry's
+ * CDN instead, once the page has loaded and the main thread is idle.
+ * If the CDN is blocked (e.g. by an ad blocker) the app simply runs without Replay.
+ */
+function loadReplayWhenIdle() {
+  const load = () => {
+    Sentry.lazyLoadIntegration("replayIntegration")
+      .then((replayIntegration) => Sentry.addIntegration(replayIntegration()))
+      .catch(() => {});
+  };
+  const whenIdle = () =>
+    "requestIdleCallback" in window ? window.requestIdleCallback(load, { timeout: 5000 }) : setTimeout(load, 0);
+  const afterLoad = () => setTimeout(whenIdle, 3000);
+
+  if (document.readyState === "complete") afterLoad();
+  else window.addEventListener("load", afterLoad, { once: true });
+}
+
+loadReplayWhenIdle();
 
 // This export will instrument router navigations
 export const onRouterTransitionStart = Sentry.captureRouterTransitionStart;

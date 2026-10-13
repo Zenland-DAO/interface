@@ -3,7 +3,8 @@
 import { useTranslations } from "next-intl";
 import { Link } from "@/i18n/navigation";
 import { Container, Logo, Text } from "@/components/ui";
-import { VersionInfo } from "@/components/shared";
+import { VersionInfo } from "@/components/shared/VersionInfo";
+import { useHomeSectionHref } from "./useHomeSectionHref";
 
 /**
  * Marketing Footer Component
@@ -84,6 +85,7 @@ const socialLinks = [
 
 export function Footer() {
   const t = useTranslations("common.footer");
+  const sectionHref = useHomeSectionHref();
   const currentYear = new Date().getFullYear();
 
   return (
@@ -128,7 +130,7 @@ export function Footer() {
                 {section.links.map((link) => (
                   <li key={link.href}>
                     <Link
-                      href={link.href}
+                      href={sectionHref(link.href)}
                       className="text-sm text-[var(--text-tertiary)] hover:text-[var(--text-primary)] transition-colors"
                     >
                       {t(`sections.${link.labelKey}`)}

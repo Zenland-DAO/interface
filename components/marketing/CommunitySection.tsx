@@ -1,6 +1,6 @@
 "use client";
 
-import { useScrollAnimation } from "@/hooks";
+import { useScrollAnimation } from "@/hooks/useScrollAnimation";
 import { Heading, Text, Container } from "@/components/ui";
 // import { Button } from "@/components/ui"; // Temporarily unused - for DAOForum
 import Link from "next/link";

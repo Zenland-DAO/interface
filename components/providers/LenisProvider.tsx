@@ -1,7 +1,7 @@
 "use client";
 
 import { useEffect, useRef, ReactNode } from "react";
-import Lenis from "@studio-freight/lenis";
+import type Lenis from "@studio-freight/lenis";
 
 /**
  * LenisProvider - Enables smooth momentum scrolling
@@ -30,31 +30,40 @@ export function LenisProvider({ children }: LenisProviderProps) {
       return;
     }
 
-    // Add class to HTML for CSS targeting
-    document.documentElement.classList.add("lenis-active");
-
-    // Initialize Lenis with refined momentum settings for desktop
-    lenisRef.current = new Lenis({
-      duration: 1.0,
-      easing: (t: number) => 1 - Math.pow(1 - t, 4),
-      orientation: "vertical",
-      gestureOrientation: "vertical",
-      smoothWheel: true,
-      wheelMultiplier: 1.1,
-    });
-
-    // Animation frame loop - only runs if lenis is initialized
+    // Loaded on demand: Lenis only runs on desktop, so phones never download it.
+    let cancelled = false;
     let rafId: number;
-    function raf(time: number) {
-      lenisRef.current?.raf(time);
-      rafId = requestAnimationFrame(raf);
-    }
 
-    rafId = requestAnimationFrame(raf);
+    import("@studio-freight/lenis").then(({ default: LenisClass }) => {
+      if (cancelled) return;
+
+      // Add class to HTML for CSS targeting
+      document.documentElement.classList.add("lenis-active");
+
+      // Initialize Lenis with refined momentum settings for desktop
+      lenisRef.current = new LenisClass({
+        duration: 1.0,
+        easing: (t: number) => 1 - Math.pow(1 - t, 4),
+        orientation: "vertical",
+        gestureOrientation: "vertical",
+        smoothWheel: true,
+        wheelMultiplier: 1.1,
+      });
+
+      // Animation frame loop - only runs if lenis is initialized
+      function raf(time: number) {
+        lenisRef.current?.raf(time);
+        rafId = requestAnimationFrame(raf);
+      }
+
+      rafId = requestAnimationFrame(raf);
+    });
 
     // Cleanup
     return () => {
+      cancelled = true;
       lenisRef.current?.destroy();
+      lenisRef.current = null;
       cancelAnimationFrame(rafId);
       document.documentElement.classList.remove("lenis-active");
     };

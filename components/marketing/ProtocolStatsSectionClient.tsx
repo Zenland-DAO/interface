@@ -2,27 +2,43 @@
 
 import { useState } from "react";
 import dynamic from "next/dynamic";
-import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 
 // Dynamic import with SSR disabled - must be in a client component.
 // The ZenlandProvider is loaded in the same lazy chunk: without it the SDK hooks
 // fall back to the indexer's GraphQL API instead of reading the chain via RPC.
+// React Query lives in the lazy chunk too, so marketing pages don't ship it (or the
+// viem/wagmi chunk webpack groups it with) in their initial JavaScript.
 const ProtocolStatsSection = dynamic(
   async () => {
-    const [{ ProtocolStatsSection }, { ZenlandProvider }, { zenlandConfig }] = await Promise.all([
-      import("./ProtocolStatsSection"),
-      import("@zenland/sdk/react"),
-      import("@/lib/zenland"),
-    ]);
+    const [{ ProtocolStatsSection }, { ZenlandProvider }, { zenlandConfig }, { QueryClient, QueryClientProvider }] =
+      await Promise.all([
+        import("./ProtocolStatsSection"),
+        import("@zenland/sdk/react"),
+        import("@/lib/zenland"),
+        import("@tanstack/react-query"),
+      ]);
     return function ProtocolStatsSectionWithProvider() {
+      // Create a standalone QueryClient for the stats section
+      const [queryClient] = useState(() => new QueryClient({
+        defaultOptions: {
+          queries: {
+            staleTime: 1000 * 60 * 5, // 5 minutes
+            gcTime: 1000 * 60 * 10, // 10 minutes
+            refetchOnWindowFocus: false,
+          },
+        },
+      }));
+
       return (
-        <ZenlandProvider config={zenlandConfig}>
-          <ProtocolStatsSection />
-        </ZenlandProvider>
+        <QueryClientProvider client={queryClient}>
+          <ZenlandProvider config={zenlandConfig}>
+            <ProtocolStatsSection />
+          </ZenlandProvider>
+        </QueryClientProvider>
       );
     };
   },
-  { 
+  {
     ssr: false,
     loading: () => (
       <div className="py-16 sm:py-20 lg:py-24">
@@ -38,25 +54,10 @@ const ProtocolStatsSection = dynamic(
  * Client wrapper for ProtocolStatsSection that handles SSR.
  * This wrapper uses dynamic import with ssr: false to avoid React Query
  * hydration issues with the SDK hooks.
- * 
- * Includes its own QueryClientProvider since marketing pages don't have
- * the full AppProviders (for LCP optimization).
+ *
+ * The lazy chunk includes its own QueryClientProvider since marketing pages don't
+ * have the full AppProviders (for LCP optimization).
  */
 export function ProtocolStatsSectionClient() {
-  // Create a standalone QueryClient for the stats section
-  const [queryClient] = useState(() => new QueryClient({
-    defaultOptions: {
-      queries: {
-        staleTime: 1000 * 60 * 5, // 5 minutes
-        gcTime: 1000 * 60 * 10, // 10 minutes
-        refetchOnWindowFocus: false,
-      },
-    },
-  }));
-
-  return (
-    <QueryClientProvider client={queryClient}>
-      <ProtocolStatsSection />
-    </QueryClientProvider>
-  );
+  return <ProtocolStatsSection />;
 }

@@ -20,7 +20,7 @@ import { NetworkBadge } from "@/components/shared/NetworkBadge";
 import { useProtocolStats } from "@/hooks/indexer/useProtocolStats";
 import { useRecentEscrows, type RecentEscrow } from "@/hooks/indexer/useRecentEscrows";
 import { formatUsdValue, formatCompactNumber } from "@/lib/utils/format";
-import { AnimateOnScroll } from "@/hooks";
+import { AnimateOnScroll } from "@/hooks/useScrollAnimation";
 
 /**
  * Indexer API URL for the "Data source" link.

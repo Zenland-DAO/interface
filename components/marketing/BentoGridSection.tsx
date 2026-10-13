@@ -5,7 +5,7 @@ import { useTranslations } from "next-intl";
 import { Heading, Text, Container } from "@/components/ui";
 import { Zap, Code } from "lucide-react";
 import NextImage from "next/image";
-import { AnimateOnScroll } from "@/hooks";
+import { AnimateOnScroll } from "@/hooks/useScrollAnimation";
 
 /**
  * BentoGridSection
