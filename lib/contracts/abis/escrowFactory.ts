@@ -261,6 +261,85 @@ export const escrowFactoryAbi = [
     name: "AgentAssignmentFeePaid",
     type: "event",
   },
+
+  // ═══════════════════════════════════════════════════════════════════════════════════
+  //                                     ERRORS
+  // ═══════════════════════════════════════════════════════════════════════════════════
+  // Required so viem can decode reverts (e.g. Factory__AmountBelowMinimum) instead of
+  // reporting "Execution reverted for an unknown reason".
+  {
+    type: "error",
+    name: "Factory__VersionNotRegistered",
+    inputs: [
+      { name: "version", type: "uint256" },
+    ],
+  },
+  {
+    type: "error",
+    name: "Factory__AddressMismatch",
+    inputs: [
+      { name: "predicted", type: "address" },
+      { name: "expected", type: "address" },
+    ],
+  },
+  {
+    type: "error",
+    name: "Factory__TokenNotWhitelisted",
+    inputs: [
+      { name: "token", type: "address" },
+    ],
+  },
+  {
+    type: "error",
+    name: "Factory__AmountBelowMinimum",
+    inputs: [
+      { name: "amount", type: "uint256" },
+      { name: "minimum", type: "uint256" },
+    ],
+  },
+  {
+    type: "error",
+    name: "Factory__ProtectionTimeTooShort",
+    inputs: [
+      { name: "provided", type: "uint256" },
+      { name: "minimum", type: "uint256" },
+    ],
+  },
+  {
+    type: "error",
+    name: "Factory__AgentInvalid",
+    inputs: [
+      { name: "agent", type: "address" },
+    ],
+  },
+  { type: "error", name: "Factory__AgentIsBuyer", inputs: [] },
+  { type: "error", name: "Factory__AgentIsSeller", inputs: [] },
+  {
+    type: "error",
+    name: "Factory__TokenDecimalsExceedWad",
+    inputs: [
+      { name: "token", type: "address" },
+      { name: "decimals", type: "uint8" },
+    ],
+  },
+  { type: "error", name: "Factory__SellerIsZeroAddress", inputs: [] },
+  { type: "error", name: "Factory__SellerIsBuyer", inputs: [] },
+  { type: "error", name: "Factory__PermitFailed", inputs: [] },
+  {
+    type: "error",
+    name: "Fee__TokenNotWhitelisted",
+    inputs: [
+      { name: "token", type: "address" },
+    ],
+  },
+  {
+    type: "error",
+    name: "SafeERC20FailedOperation",
+    inputs: [
+      { name: "token", type: "address" },
+    ],
+  },
+  { type: "error", name: "ReentrancyGuardReentrantCall", inputs: [] },
 ] as const;
 
 /**

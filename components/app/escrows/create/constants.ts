@@ -204,6 +204,8 @@ export const ERROR_MESSAGES = {
   amountRequired: "Amount is required",
   amountInvalid: "Please enter a valid amount",
   amountTooSmall: "Amount must be greater than 0",
+  amountBelowMinimum: (minimum: string, symbol: string) =>
+    `Minimum escrow amount is ${minimum} ${symbol}`,
   amountExceedsBalance: "Amount exceeds your balance",
 
   // Protection time

@@ -24,7 +24,7 @@ import { toast } from "sonner";
 
 import { generateUserSalt } from "@/lib/utils/salt";
 import { getTokenConfig, type TokenConfig } from "@/lib/contracts";
-import { useMinBuyerProtectionTime, useEscrowQuote } from "@/hooks";
+import { useMinBuyerProtectionTime, useEscrowQuote, useTokenMinimum } from "@/hooks";
 
 import {
   type EscrowFormState,
@@ -539,6 +539,9 @@ export function EscrowFormProvider({
     [chainId, state.formData.tokenType]
   );
 
+  // Get minimum escrow amount for the selected token from FeeManager
+  const { minimum: tokenMinimum } = useTokenMinimum(tokenConfig?.address);
+
   // ==========================================================================
   // COMPUTED VALUES
   // ==========================================================================
@@ -627,9 +630,18 @@ export function EscrowFormProvider({
         : undefined,
       buyerBalance: undefined, // TODO: Add balance check if needed
       tokenDecimals: computed.tokenDecimals,
+      minimumAmount: tokenMinimum,
+      tokenSymbol: tokenConfig?.symbol ?? "USDC",
       validateLockedConfirmations: computed.isLockedEscrow,
     }),
-    [buyerAddress, minBuyerProtectionTime, computed.tokenDecimals, computed.isLockedEscrow]
+    [
+      buyerAddress,
+      minBuyerProtectionTime,
+      computed.tokenDecimals,
+      tokenMinimum,
+      tokenConfig?.symbol,
+      computed.isLockedEscrow,
+    ]
   );
 
   const validationResult = useMemo(

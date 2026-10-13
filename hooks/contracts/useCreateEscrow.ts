@@ -5,9 +5,18 @@ import {
   useWriteContract,
   useWaitForTransactionReceipt,
   useChainId,
+  useConnection,
+  usePublicClient,
 } from "wagmi";
 import { useQueryClient } from "@tanstack/react-query";
-import { type Address, type Hex, zeroAddress, decodeEventLog } from "viem";
+import {
+  type Address,
+  type Hex,
+  zeroAddress,
+  decodeEventLog,
+  BaseError,
+  ContractFunctionRevertedError,
+} from "viem";
 
 import {
   escrowFactoryAbi,
@@ -17,6 +26,29 @@ import {
 import { getContractAddresses } from "@/lib/contracts";
 import { humanizeBlockchainError } from "@/lib/blockchain/errors";
 import { trackEscrowCreated } from "@/lib/analytics/gtag";
+
+/**
+ * Simulate the call against our own RPC before handing it to the wallet.
+ *
+ * Some wallets (e.g. sponsored/relayed ones) broadcast even when gas estimation
+ * fails and drop the revert data, so a doomed tx lands on-chain and we only see
+ * "Execution reverted for an unknown reason". Simulating first blocks the send and
+ * surfaces the decoded custom error (e.g. Factory__AmountBelowMinimum).
+ *
+ * Only contract reverts are rethrown; RPC/network failures fall through to the wallet.
+ */
+async function assertCallSucceeds(simulate: () => Promise<unknown>): Promise<void> {
+  try {
+    await simulate();
+  } catch (err) {
+    if (
+      err instanceof BaseError &&
+      err.walk((e) => e instanceof ContractFunctionRevertedError)
+    ) {
+      throw err;
+    }
+  }
+}
 
 /**
  * Status of the escrow creation process.
@@ -91,6 +123,8 @@ export interface UseCreateEscrowReturn {
  */
 export function useCreateEscrow(): UseCreateEscrowReturn {
   const chainId = useChainId();
+  const { address: account } = useConnection();
+  const publicClient = usePublicClient({ chainId });
 
   // Get contract addresses for current chain
   const contractAddresses = useMemo(
@@ -278,6 +312,18 @@ export function useCreateEscrow(): UseCreateEscrowReturn {
           agent: params.agent || zeroAddress,
         };
 
+        if (publicClient && account) {
+          await assertCallSucceeds(() =>
+            publicClient.simulateContract({
+              address: contractAddresses.escrowFactory as Address,
+              abi: escrowFactoryAbi,
+              functionName: "createEscrow",
+              args: [normalizedParams],
+              account,
+            })
+          );
+        }
+
         await mutateAsync({
           address: contractAddresses.escrowFactory as Address,
           abi: escrowFactoryAbi,
@@ -301,7 +347,7 @@ export function useCreateEscrow(): UseCreateEscrowReturn {
         throw err instanceof Error ? err : new Error(message);
       }
     },
-    [chainId, contractAddresses, mutateAsync]
+    [chainId, contractAddresses, mutateAsync, publicClient, account]
   );
 
   /**
@@ -346,6 +392,18 @@ export function useCreateEscrow(): UseCreateEscrowReturn {
           agent: params.agent || zeroAddress,
         };
 
+        if (publicClient && account) {
+          await assertCallSucceeds(() =>
+            publicClient.simulateContract({
+              address: contractAddresses.escrowFactory as Address,
+              abi: escrowFactoryAbi,
+              functionName: "createEscrowWithPermit",
+              args: [normalizedParams, permit],
+              account,
+            })
+          );
+        }
+
         await mutateAsync({
           address: contractAddresses.escrowFactory as Address,
           abi: escrowFactoryAbi,
@@ -370,7 +428,7 @@ export function useCreateEscrow(): UseCreateEscrowReturn {
         throw err instanceof Error ? err : new Error(message);
       }
     },
-    [chainId, contractAddresses, mutateAsync]
+    [chainId, contractAddresses, mutateAsync, publicClient, account]
   );
 
   /**

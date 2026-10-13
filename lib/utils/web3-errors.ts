@@ -79,12 +79,19 @@ const ESCROW_ERROR_MESSAGES: Record<string, string> = {
  * Factory contract error names to user-friendly messages.
  */
 const FACTORY_ERROR_MESSAGES: Record<string, string> = {
-  Factory__InvalidToken: "The selected token is not supported.",
+  Factory__VersionNotRegistered: "This escrow version is not available.",
+  Factory__AddressMismatch: "The escrow parameters changed. Please review and try again.",
+  Factory__TokenNotWhitelisted: "The selected token is not supported.",
   Factory__AmountBelowMinimum: "The escrow amount is below the minimum required.",
-  Factory__InvalidAgent: "The selected agent is not valid.",
-  Factory__BuyerCannotBeSeller: "Buyer and seller must be different addresses.",
-  Factory__InsufficientFee: "Insufficient fee provided.",
-  Factory__InvalidProtectionTime: "The protection time is invalid.",
+  Factory__ProtectionTimeTooShort: "The buyer protection time is too short.",
+  Factory__AgentInvalid: "The selected agent is not valid or unavailable.",
+  Factory__AgentIsBuyer: "The agent cannot be the buyer.",
+  Factory__AgentIsSeller: "The agent cannot be the seller.",
+  Factory__TokenDecimalsExceedWad: "The selected token has too many decimals.",
+  Factory__SellerIsZeroAddress: "Invalid seller address.",
+  Factory__SellerIsBuyer: "Buyer and seller must be different addresses.",
+  Factory__PermitFailed: "Permit signature failed and token allowance is insufficient.",
+  SafeERC20FailedOperation: "Token transfer failed. Please check your balance and allowance.",
 };
 
 /**

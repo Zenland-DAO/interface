@@ -132,6 +132,12 @@ export interface ValidationContext {
   /** Token decimals (for amount parsing) */
   tokenDecimals: number;
 
+  /** Minimum escrow amount in token's smallest unit (from FeeManager) */
+  minimumAmount: bigint | undefined;
+
+  /** Token symbol (for error messages) */
+  tokenSymbol: string;
+
   /** Whether to validate locked escrow confirmations */
   validateLockedConfirmations: boolean;
 }
@@ -144,6 +150,8 @@ export const DEFAULT_VALIDATION_CONTEXT: ValidationContext = {
   minProtectionTimeSeconds: undefined,
   buyerBalance: undefined,
   tokenDecimals: 6, // Default to USDC/USDT decimals
+  minimumAmount: undefined,
+  tokenSymbol: "USDC",
   validateLockedConfirmations: true,
 };
 
@@ -194,6 +202,17 @@ export function validateAmount(
 
   if (parsed <= 0) {
     return ERROR_MESSAGES.amountTooSmall;
+  }
+
+  // Check minimum from contract (FeeManager token minimum)
+  if (context.minimumAmount !== undefined) {
+    const amountInSmallestUnit = parseAmountToBigInt(value, context.tokenDecimals);
+    if (amountInSmallestUnit !== undefined && amountInSmallestUnit < context.minimumAmount) {
+      return ERROR_MESSAGES.amountBelowMinimum(
+        formatUnits(context.minimumAmount, context.tokenDecimals),
+        context.tokenSymbol
+      );
+    }
   }
 
   // Optional: validate against balance
