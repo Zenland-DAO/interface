@@ -6,6 +6,7 @@ import type { MetadataRoute } from "next";
  * Includes:
  * - Marketing pages with localized versions (hreflang)
  * - Public app pages (agents, escrow creation, verification)
+ * - English-only content pages (USDT escrow)
  *
  * @see https://nextjs.org/docs/app/api-reference/file-conventions/metadata/sitemap
  */
@@ -22,8 +23,9 @@ export default function sitemap(): MetadataRoute.Sitemap {
     { path: "/agent-tos", priority: 0.3, changeFrequency: "yearly" as const },
   ];
 
-  // Public app pages (no localization)
+  // Public pages without localized versions (app pages, English-only content)
   const appPages = [
+    { path: "/usdt-escrow", priority: 0.9, changeFrequency: "monthly" as const },
     { path: "/agents", priority: 0.8, changeFrequency: "daily" as const },
     {
       path: "/agents/register",

@@ -29,6 +29,7 @@ const footerSections: FooterSection[] = [
       { labelKey: "product.features", href: "#features" },
       { labelKey: "product.howItWorks", href: "#how-it-works" },
       { labelKey: "product.community", href: "#community" },
+      { labelKey: "product.usdtEscrow", href: "/usdt-escrow" },
       { labelKey: "product.faq", href: "https://docs.zen.land/resources/faq" },
     ],
   },
