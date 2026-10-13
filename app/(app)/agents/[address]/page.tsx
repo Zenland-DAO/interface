@@ -1,3 +1,4 @@
+import { pageMetadata } from "@/lib/seo";
 import { AgentProfileClient } from "./AgentProfileClient";
 
 interface AgentProfilePageProps {
@@ -8,10 +9,11 @@ interface AgentProfilePageProps {
 export async function generateMetadata({ params }: AgentProfilePageProps) {
   const { address } = await params;
   const shortAddress = `${address.slice(0, 6)}...${address.slice(-4)}`;
-  return {
-    title: `Agent ${shortAddress} | Zenland`,
-    description: `View agent profile for ${shortAddress}`,
-  };
+  return pageMetadata({
+    path: `/agents/${address}`,
+    title: `Agent ${shortAddress}`,
+    description: `Zenland escrow dispute resolution agent ${shortAddress}: fees, staked collateral, and availability.`,
+  });
 }
 
 export default async function AgentProfilePage({ params, searchParams }: AgentProfilePageProps) {

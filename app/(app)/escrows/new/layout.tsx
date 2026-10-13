@@ -1,9 +1,13 @@
 import type { Metadata } from "next";
+import { pageMetadata } from "@/lib/seo";
 
 export const metadata: Metadata = {
-  title: "Create Escrow | Zenland",
-  description:
-    "Create a secure crypto escrow contract for your transactions. Protect both buyers and sellers with smart contract-based escrow on multiple blockchain networks.",
+  ...pageMetadata({
+    path: "/escrows/new",
+    title: "Create Escrow",
+    description:
+      "Create a secure crypto escrow contract for your transactions. Protect both buyers and sellers with smart contract-based escrow on multiple blockchain networks.",
+  }),
   keywords: [
     "create escrow",
     "crypto escrow",
@@ -13,19 +17,6 @@ export const metadata: Metadata = {
     "buyer protection",
     "seller protection",
   ],
-  openGraph: {
-    title: "Create Escrow | Zenland",
-    description:
-      "Create a secure crypto escrow contract for your transactions. Protect both buyers and sellers with smart contract-based escrow.",
-    type: "website",
-    url: "https://zen.land/escrows/new",
-  },
-  twitter: {
-    card: "summary_large_image",
-    title: "Create Escrow | Zenland",
-    description:
-      "Create a secure crypto escrow contract for your transactions.",
-  },
   robots: {
     index: true,
     follow: true,

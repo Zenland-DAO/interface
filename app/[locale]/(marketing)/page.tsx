@@ -15,20 +15,8 @@ import {
 } from "@/components/marketing";
 import { ProtocolStatsSectionClient } from "@/components/marketing/ProtocolStatsSectionClient";
 import { AnimateOnScroll } from "@/hooks";
-
-/** Site URL for SEO */
-const SITE_URL = "https://zen.land";
-
-/** Locale to OpenGraph locale mapping */
-const OG_LOCALES: Record<string, string> = {
-  en: "en_US",
-  es: "es_ES",
-  zh: "zh_CN",
-  pt: "pt_BR",
-  ru: "ru_RU",
-  id: "id_ID",
-  vi: "vi_VN",
-};
+import { generateFAQSchema } from "@/lib/constants/faq";
+import { SITE_URL, OG_IMAGE, OG_LOCALES, localizedAlternates, localizedUrl } from "@/lib/seo";
 
 /**
  * Generate localized metadata with proper hreflang and canonical URLs
@@ -40,23 +28,12 @@ export async function generateMetadata({ params }: { params: Promise<{ locale: s
   return {
     title: t("title"),
     description: t("description"),
-    alternates: {
-      canonical: locale === "en" ? SITE_URL : `${SITE_URL}/${locale}`,
-      languages: {
-        "en": SITE_URL,
-        "es": `${SITE_URL}/es`,
-        "zh": `${SITE_URL}/zh`,
-        "pt": `${SITE_URL}/pt`,
-        "ru": `${SITE_URL}/ru`,
-        "id": `${SITE_URL}/id`,
-        "vi": `${SITE_URL}/vi`,
-        "x-default": SITE_URL,
-      },
-    },
+    alternates: localizedAlternates(locale),
     openGraph: {
       title: t("title"),
       description: t("description"),
-      url: `${SITE_URL}/${locale}`,
+      url: localizedUrl(locale),
+      images: [OG_IMAGE],
       locale: OG_LOCALES[locale] || "en_US",
       alternateLocale: Object.values(OG_LOCALES).filter((l) => l !== OG_LOCALES[locale]),
     },
@@ -69,9 +46,32 @@ export async function generateMetadata({ params }: { params: Promise<{ locale: s
  * The main marketing page with all sections.
  * Uses server-side translations for static content.
  */
-export default async function LandingPage() {
+export default async function LandingPage({ params }: { params: Promise<{ locale: string }> }) {
+  const { locale } = await params;
   const t = await getTranslations("marketing");
   const tCommon = await getTranslations("common");
+  const tFaq = await getTranslations("marketing.faq.items");
+  const pageUrl = localizedUrl(locale);
+
+  // Page-specific structured data. Lives here (not the root layout) so it only
+  // appears on the page that renders the FAQ and video, in the page's language.
+  const jsonLd = {
+    "@context": "https://schema.org",
+    "@graph": [
+      generateFAQSchema(pageUrl, tFaq),
+      {
+        "@type": "VideoObject",
+        "@id": `${SITE_URL}/#tutorial-video`,
+        name: t("tutorial.videoTitle"),
+        description: t("tutorial.subtitle"),
+        thumbnailUrl: "https://i.ytimg.com/vi/zZCREbx8b8g/maxresdefault.jpg",
+        uploadDate: "2026-03-24",
+        contentUrl: "https://www.youtube.com/watch?v=zZCREbx8b8g",
+        embedUrl: "https://www.youtube-nocookie.com/embed/zZCREbx8b8g",
+        publisher: { "@id": `${SITE_URL}/#organization` },
+      },
+    ],
+  };
 
   // Trust indicators - key stats (translated)
   const stats = [
@@ -101,6 +101,11 @@ export default async function LandingPage() {
 
   return (
     <div className="min-h-[calc(100vh-8rem)]">
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+      />
+
       {/* Hero Section - Body stays in centered container */}
       <section className="relative py-16 sm:py-20 lg:py-28 overflow-hidden">
         <Container>

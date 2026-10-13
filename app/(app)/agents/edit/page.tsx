@@ -2,7 +2,7 @@ import { AgentEditClient } from "./AgentEditClient";
 import { AgentActionsProvider } from "@/hooks";
 
 export const metadata = {
-  title: "Edit Agent Profile | Zenland",
+  title: "Edit Agent Profile",
   description: "Update your agent profile information",
 };
 

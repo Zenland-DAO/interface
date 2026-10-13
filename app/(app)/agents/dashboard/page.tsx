@@ -2,7 +2,7 @@ import { AgentDashboardClient } from "./AgentDashboardClient";
 import { AgentActionsProvider } from "@/hooks";
 
 export const metadata = {
-  title: "Agent Dashboard | Zenland",
+  title: "Agent Dashboard",
   description: "Manage your dispute resolution cases",
 };
 

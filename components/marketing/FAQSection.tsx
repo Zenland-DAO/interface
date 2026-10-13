@@ -3,7 +3,7 @@
 import { useState } from "react";
 import { useTranslations } from "next-intl";
 import { ChevronDown } from "lucide-react";
-import { motion, AnimatePresence } from "framer-motion";
+import { motion } from "framer-motion";
 import { Heading, Text, Container } from "@/components/ui";
 import { FAQ_ITEMS, type FAQItem } from "@/lib/constants/faq";
 import { AnimateOnScroll } from "@/hooks";
@@ -45,24 +45,23 @@ function FAQAccordionItem({
         </motion.span>
       </button>
       
-      <AnimatePresence initial={false}>
-        {isOpen && (
-          <motion.div
-            id={`faq-answer-${index}`}
-            initial={{ height: 0, opacity: 0 }}
-            animate={{ height: "auto", opacity: 1 }}
-            exit={{ height: 0, opacity: 0 }}
-            transition={{ duration: 0.3, ease: "easeInOut" }}
-            className="overflow-hidden"
-          >
-            <div className="pb-6 pr-12">
-              <Text className="text-[var(--text-secondary)] leading-relaxed">
-                {t(`${item.key}.answer`)}
-              </Text>
-            </div>
-          </motion.div>
-        )}
-      </AnimatePresence>
+      {/* Always rendered (collapsed when closed) so every answer is in the
+          server HTML and matches the FAQPage JSON-LD. */}
+      <motion.div
+        id={`faq-answer-${index}`}
+        initial={false}
+        animate={isOpen ? { height: "auto", opacity: 1 } : { height: 0, opacity: 0 }}
+        transition={{ duration: 0.3, ease: "easeInOut" }}
+        className="overflow-hidden"
+        aria-hidden={!isOpen}
+        inert={!isOpen}
+      >
+        <div className="pb-6 pr-12">
+          <Text className="text-[var(--text-secondary)] leading-relaxed">
+            {t(`${item.key}.answer`)}
+          </Text>
+        </div>
+      </motion.div>
     </div>
   );
 }

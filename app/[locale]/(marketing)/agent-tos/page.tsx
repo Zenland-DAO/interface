@@ -1,4 +1,5 @@
 import { getTranslations } from "next-intl/server";
+import { OG_IMAGE, OG_LOCALES, localizedAlternates, localizedUrl } from "@/lib/seo";
 import { Container, Heading, Text } from "@/components/ui";
 import { Link } from "@/i18n/navigation";
 import { AlertTriangle, Shield, Scale, Coins, Clock, Ban } from "lucide-react";
@@ -13,6 +14,14 @@ export async function generateMetadata({ params }: { params: Promise<{ locale: s
   return {
     title: t("meta.title"),
     description: t("meta.description"),
+    alternates: localizedAlternates(locale, "/agent-tos"),
+    openGraph: {
+      title: t("meta.title"),
+      description: t("meta.description"),
+      url: localizedUrl(locale, "/agent-tos"),
+      locale: OG_LOCALES[locale] || "en_US",
+      images: [OG_IMAGE],
+    },
   };
 }
 

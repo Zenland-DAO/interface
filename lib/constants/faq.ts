@@ -2,19 +2,16 @@
  * FAQ Configuration
  * 
  * Single source of truth for FAQ data used in:
- * - JSON-LD structured data (SEO)
+ * - JSON-LD structured data (SEO), rendered on the localized landing page
  * - Visible FAQ section on marketing page
  * 
- * This follows DRY principles - define once, use everywhere.
+ * Question/answer text lives in the locale files (marketing.faq.items.<key>),
+ * so the JSON-LD always matches the visible content in every language.
  */
 
 export interface FAQItem {
   /** Unique key for i18n translations */
   key: string;
-  /** Default question (English) - used in JSON-LD */
-  question: string;
-  /** Default answer (English) - used in JSON-LD */
-  answer: string;
 }
 
 /**
@@ -28,52 +25,29 @@ export interface FAQItem {
  * - Ethereum escrow
  */
 export const FAQ_ITEMS: FAQItem[] = [
-  {
-    key: "whatIsCryptoEscrow",
-    question: "What is crypto escrow and how does Zenland work?",
-    answer: "Crypto escrow is a secure method for protecting cryptocurrency transactions between parties who don't fully trust each other. Zenland uses smart contracts on Ethereum to lock funds until predefined conditions are met, eliminating the need for traditional intermediaries.",
-  },
-  {
-    key: "howToCreate",
-    question: "How do I create an escrow on Zenland?",
-    answer: "Creating an escrow is simple: connect your wallet, define the terms and conditions, set the payment amount, and deposit funds into the smart contract. No coding required - our visual interface guides you through the entire process in minutes.",
-  },
-  {
-    key: "fundsProtection",
-    question: "How are funds protected in blockchain escrow?",
-    answer: "All escrow logic lives on the Ethereum blockchain. Funds are locked in audited smart contracts that are transparent, immutable, and verifiable by anyone. Zenland is non-custodial - we never have access to your funds.",
-  },
-  {
-    key: "disputeResolution",
-    question: "What happens if there is a dispute?",
-    answer: "Professional agents are available to resolve disputes fairly and efficiently. If an agent is unresponsive, either party can claim a timeout and settle via mutual agreement. The DAO oversees agent quality and can slash misbehaving agents' stakes.",
-  },
-  {
-    key: "fees",
-    question: "What are Zenland's fees for escrow services?",
-    answer: "Zenland charges just 1% platform fee with a minimum of $0.50 and maximum of $50 per transaction - the lowest in the crypto escrow market. No hidden costs, no monthly subscriptions. Using NYKNYC wallet makes transactions completely gas-free.",
-  },
-  {
-    key: "supportedCrypto",
-    question: "Which cryptocurrencies and networks does Zenland support?",
-    answer: "Zenland currently operates on Ethereum mainnet, supporting USDC and USDT stablecoins. More tokens can be added through DAO governance. We focus on Ethereum for its battle-tested security and wide adoption.",
-  },
+  { key: "whatIsCryptoEscrow" },
+  { key: "howToCreate" },
+  { key: "fundsProtection" },
+  { key: "disputeResolution" },
+  { key: "fees" },
+  { key: "supportedCrypto" },
 ];
 
 /**
  * Generate JSON-LD FAQPage schema from FAQ items
- * Used in root layout for SEO structured data
+ * @param pageUrl - Absolute URL of the page that renders the FAQ
+ * @param t - Translator scoped to `marketing.faq.items`
  */
-export function generateFAQSchema(siteUrl: string) {
+export function generateFAQSchema(pageUrl: string, t: (key: string) => string) {
   return {
     "@type": "FAQPage",
-    "@id": `${siteUrl}/#faq`,
+    "@id": `${pageUrl}#faq`,
     mainEntity: FAQ_ITEMS.map((item) => ({
       "@type": "Question",
-      name: item.question,
+      name: t(`${item.key}.question`),
       acceptedAnswer: {
         "@type": "Answer",
-        text: item.answer,
+        text: t(`${item.key}.answer`),
       },
     })),
   };

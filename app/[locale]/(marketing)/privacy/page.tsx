@@ -1,4 +1,5 @@
 import { getTranslations } from "next-intl/server";
+import { OG_IMAGE, OG_LOCALES, localizedAlternates, localizedUrl } from "@/lib/seo";
 import { Container, Heading, Text } from "@/components/ui";
 import { Link } from "@/i18n/navigation";
 
@@ -12,6 +13,14 @@ export async function generateMetadata({ params }: { params: Promise<{ locale: s
   return {
     title: t("meta.title"),
     description: t("meta.description"),
+    alternates: localizedAlternates(locale, "/privacy"),
+    openGraph: {
+      title: t("meta.title"),
+      description: t("meta.description"),
+      url: localizedUrl(locale, "/privacy"),
+      locale: OG_LOCALES[locale] || "en_US",
+      images: [OG_IMAGE],
+    },
   };
 }
 
