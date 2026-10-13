@@ -1,7 +1,9 @@
 "use client";
 
-import { useScrollAnimation } from "@/hooks";
+import { useScrollAnimation } from "@/hooks/useScrollAnimation";
 import { useTranslations } from "next-intl";
+import { ArrowRight } from "lucide-react";
+import { Link } from "@/i18n/navigation";
 import { Heading, Text, Container } from "@/components/ui";
 
 /**
@@ -61,6 +63,13 @@ export function SupportedNetworksSection() {
                 {t("mainnet")}
               </p>
             </div>
+            <Link
+              href="/usdt-escrow"
+              className="inline-flex items-center gap-1 text-sm font-medium text-primary-500 hover:text-primary-400 transition-colors"
+            >
+              {t("usdtLink")}
+              <ArrowRight className="w-4 h-4" />
+            </Link>
           </div>
         </div>
 

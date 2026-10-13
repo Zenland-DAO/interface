@@ -45,7 +45,7 @@
       },
       "disclaimer": {
         "title": "Protocol Transparency",
-        "text": "Zenland is a source-available protocol governed by its community through the Zenland DAO — not a registered financial company. The protocol operates 100% non-custodially: funds go directly into audited smart contracts on Ethereum. No person or entity ever holds your funds. Because no one can access or control deposited funds, no escrow license is required.",
+        "text": "Zenland is a source-available protocol governed by its community through the Zenland DAO — not a registered financial company. The protocol operates 100% non-custodially: funds go directly into smart contracts on Ethereum. No person or entity ever holds your funds. Because no one can access or control deposited funds, no escrow license is required.",
         "verifyCode": "Verify the code",
         "learnMore": "Learn more"
       }
