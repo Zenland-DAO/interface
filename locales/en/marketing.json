@@ -1,8 +1,8 @@
 {
   "marketing": {
     "meta": {
-      "title": "Zenland - Crypto Escrow Protocol",
-      "description": "Secure, trustless escrow for blockchain transactions. No intermediaries, just smart contracts."
+      "title": "Crypto Escrow Service for USDT & USDC",
+      "description": "Non-custodial crypto escrow on Ethereum. Lock USDT or USDC in a smart contract, release on delivery, with dispute agents. 1% fee, max $50."
     },
     "hero": {
       "badge": "Crypto Native",

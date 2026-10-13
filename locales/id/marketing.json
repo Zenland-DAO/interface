@@ -1,8 +1,8 @@
 {
   "marketing": {
     "meta": {
-      "title": "Zenland - Protokol Escrow Crypto",
-      "description": "Escrow aman dan trustless untuk transaksi blockchain. Tanpa perantara, hanya smart contract."
+      "title": "Layanan Escrow Crypto untuk USDT & USDC",
+      "description": "Escrow crypto non-kustodial di Ethereum. Kunci USDT atau USDC di smart contract, cairkan setelah barang diterima, dengan agen penyelesaian sengketa. Biaya 1%, maks $50."
     },
     "hero": {
       "badge": "Native Crypto",
