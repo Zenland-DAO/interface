@@ -1,3 +1,4 @@
+# syntax=docker/dockerfile:1
 # ===========================================
 # ZENLAND INTERFACE - MULTI-STAGE DOCKERFILE
 # ===========================================
@@ -10,7 +11,9 @@
 #   - NEXT_PUBLIC_PDF_URL
 #   - NEXT_PUBLIC_COMMIT_HASH
 #   - NEXT_PUBLIC_CLARITY_PROJECT_ID (optional, enables Microsoft Clarity)
-#   - SENTRY_AUTH_TOKEN (uploads source maps to Sentry during build)
+#
+# Build secrets (BuildKit --secret, never stored in layers or provenance):
+#   - sentry_auth_token (uploads source maps to Sentry during build; optional)
 #
 # Usage:
 #   docker build -t zenland-interface .
@@ -49,13 +52,11 @@ ARG NEXT_PUBLIC_API_URL
 ARG NEXT_PUBLIC_PDF_URL
 ARG NEXT_PUBLIC_COMMIT_HASH
 ARG NEXT_PUBLIC_CLARITY_PROJECT_ID
-ARG SENTRY_AUTH_TOKEN
 
 ENV NEXT_PUBLIC_API_URL=$NEXT_PUBLIC_API_URL
 ENV NEXT_PUBLIC_PDF_URL=$NEXT_PUBLIC_PDF_URL
 ENV NEXT_PUBLIC_COMMIT_HASH=$NEXT_PUBLIC_COMMIT_HASH
 ENV NEXT_PUBLIC_CLARITY_PROJECT_ID=$NEXT_PUBLIC_CLARITY_PROJECT_ID
-ENV SENTRY_AUTH_TOKEN=$SENTRY_AUTH_TOKEN
 
 # Disable Next.js telemetry during build
 ENV NEXT_TELEMETRY_DISABLED=1
@@ -63,8 +64,10 @@ ENV NEXT_TELEMETRY_DISABLED=1
 # Increase Node.js heap memory for build (helps on low-memory servers)
 ENV NODE_OPTIONS="--max-old-space-size=3072"
 
-# Build the application
-RUN npm run build
+# Build the application. The Sentry token is mounted as a BuildKit secret: a build
+# arg would be recorded in the image's provenance attestation (mode=max).
+RUN --mount=type=secret,id=sentry_auth_token \
+    SENTRY_AUTH_TOKEN="$(cat /run/secrets/sentry_auth_token 2>/dev/null)" npm run build
 # ===========================================
 FROM node:20-alpine AS runner
 

@@ -13,11 +13,12 @@
 #   3. SSHs into production server
 #   4. Pulls new image and restarts container
 #
-# Required GitHub Secrets:
+# Required GitHub Secrets (production environment):
 #   - SSH_PRIVATE_KEY: Private key for deploy@server
 #   - SSH_HOST: Server IP address
 #   - SSH_USER: SSH username (deploy)
-#   - SENTRY_AUTH_TOKEN: Auth token for Sentry source map uploads
+#   - SENTRY_AUTH_TOKEN: Auth token for Sentry source map uploads (passed to
+#     the build as a BuildKit secret, not a build arg)
 #
 # Optional GitHub Variables (Settings → Secrets and variables → Actions → Variables):
 #   - NEXT_PUBLIC_CLARITY_PROJECT_ID: Microsoft Clarity project ID (public, ends
@@ -42,6 +43,8 @@ jobs:
   build-and-push:
     name: Build & Push Image
     runs-on: ubuntu-latest
+    # Needed to read SENTRY_AUTH_TOKEN, which is a production environment secret
+    environment: production
     permissions:
       contents: read
       packages: write
@@ -85,7 +88,8 @@ jobs:
             NEXT_PUBLIC_PDF_URL=https://pdf.zen.land
             NEXT_PUBLIC_COMMIT_HASH=${{ github.sha }}
             NEXT_PUBLIC_CLARITY_PROJECT_ID=${{ vars.NEXT_PUBLIC_CLARITY_PROJECT_ID }}
-            SENTRY_AUTH_TOKEN=${{ secrets.SENTRY_AUTH_TOKEN }}
+          secrets: |
+            sentry_auth_token=${{ secrets.SENTRY_AUTH_TOKEN }}
           cache-from: type=gha
           cache-to: type=gha,mode=max
 
