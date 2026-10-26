@@ -9,6 +9,7 @@
     },
     "buttons": {
       "app": "⚡ App",
+      "createEscrow": "Crear Escrow",
       "learnMore": "Más Información",
       "getStarted": "Comenzar",
       "connectWallet": "Conectar Billetera"

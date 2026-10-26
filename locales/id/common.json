@@ -9,6 +9,7 @@
     },
     "buttons": {
       "app": "⚡ App",
+      "createEscrow": "Buat Escrow",
       "learnMore": "Pelajari Lebih Lanjut",
       "getStarted": "Mulai",
       "connectWallet": "Hubungkan Wallet"

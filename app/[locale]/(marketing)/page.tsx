@@ -1,6 +1,7 @@
 import { getTranslations } from "next-intl/server";
 import { ArrowRight, CheckCircle2 } from "lucide-react";
 import { Button, Heading, Text, Container } from "@/components/ui";
+import NextLink from "next/link";
 import { Link } from "@/i18n/navigation";
 import { 
   FeaturesSection, 
@@ -144,12 +145,13 @@ export default async function LandingPage({ params }: { params: Promise<{ locale
               </p>
               {/* CTA Buttons */}
               <div className="flex flex-row flex-wrap sm:flex-row items-start gap-3 mb-10">
-                <Link href="/app" className="shrink-0">
+                {/* Straight to the create form (it works before connecting a wallet); app routes never get a locale prefix */}
+                <NextLink href="/escrows/new" className="shrink-0">
                   <Button size="lg" className="group whitespace-nowrap">
-                    {tCommon("buttons.app")}
+                    {tCommon("buttons.createEscrow")}
                     <ArrowRight className="ml-2 w-4 h-4 transition-transform group-hover:translate-x-1" />
                   </Button>
-                </Link>
+                </NextLink>
                 <Link href="#features" className="shrink-0">
                   <Button variant="outline" size="lg" className="whitespace-nowrap">
                     {tCommon("buttons.learnMore")}
@@ -245,12 +247,12 @@ export default async function LandingPage({ params }: { params: Promise<{ locale
             <Text variant="lead" className="mb-12 text-xl sm:text-2xl">
               {t("cta.subtitle")}
             </Text>
-            <Link href="/app">
+            <NextLink href="/escrows/new">
               <Button size="lg" className="px-10 py-7 text-lg rounded-2xl group">
-                {tCommon("buttons.app")}
+                {tCommon("buttons.createEscrow")}
                 <ArrowRight className="ml-3 w-5 h-5 transition-transform group-hover:translate-x-1" />
               </Button>
-            </Link>
+            </NextLink>
           </AnimateOnScroll>
         </Container>
       </section>

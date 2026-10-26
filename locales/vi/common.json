@@ -9,6 +9,7 @@
     },
     "buttons": {
       "app": "⚡ Ứng dụng",
+      "createEscrow": "Tạo ký quỹ",
       "learnMore": "Tìm hiểu thêm",
       "getStarted": "Bắt đầu",
       "connectWallet": "Kết nối ví"

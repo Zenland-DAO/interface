@@ -7,7 +7,7 @@
       },
       "title": "Términos de Servicio",
       "lastUpdated": "Última actualización",
-      "date": "3 de febrero de 2026",
+      "date": "26 de octubre de 2026",
       "notice": "Las traducciones se proporcionan únicamente por conveniencia. En caso de cualquier inconsistencia, prevalecerá la versión en inglés.",
       "sections": {
         "introduction": {
@@ -27,7 +27,7 @@
           "title": "4. Naturaleza del Protocolo",
           "p1": "Zenland DAO es un protocolo descentralizado que opera de forma autónoma mediante contratos inteligentes en la blockchain de Ethereum. El Protocolo no tiene un operador, administrador ni entidad controladora central.",
           "p2": "El Protocolo proporciona una interfaz sin custodia para que los usuarios interactúen con los contratos inteligentes. No retenemos, controlamos ni tenemos acceso a tus fondos en ningún momento. Todas las transacciones se ejecutan directamente en la blockchain por los propios usuarios.",
-          "p3": "No operamos servidores backend, bases de datos ni infraestructura centralizada. No recopilamos, almacenamos ni procesamos datos personales. El Protocolo es únicamente una interfaz frontend para interactuar con contratos inteligentes descentralizados."
+          "p3": "No operamos servidores backend, bases de datos ni infraestructura centralizada. No recopilamos datos personales como tu nombre o tus datos de contacto; solo usamos analíticas de uso para mejorar la interfaz, como se describe en nuestra Política de privacidad. El Protocolo es únicamente una interfaz frontend para interactuar con contratos inteligentes descentralizados."
         },
         "smartContracts": {
           "title": "5. Contratos inteligentes",
@@ -120,11 +120,11 @@
     "privacy": {
       "meta": {
         "title": "Política de Privacidad - Zenland DAO",
-        "description": "Política de privacidad del protocolo descentralizado de escrow de Zenland DAO — no recopilamos tus datos."
+        "description": "Política de privacidad del protocolo descentralizado de escrow de Zenland DAO — sin cuentas, sin datos personales, solo analíticas de uso."
       },
       "title": "Política de Privacidad",
       "lastUpdated": "Última actualización",
-      "date": "3 de febrero de 2026",
+      "date": "26 de octubre de 2026",
       "notice": "Las traducciones se proporcionan únicamente por conveniencia. En caso de cualquier inconsistencia, prevalecerá la versión en inglés.",
       "sections": {
         "introduction": {
@@ -133,14 +133,12 @@
           "p2": "Zenland DAO es fundamentalmente diferente de los servicios web tradicionales. Somos un protocolo descentralizado que prioriza la privacidad del usuario por diseño. Esta política explica nuestro enfoque de privacidad y qué interacciones pueden involucrar información limitada."
         },
         "noCollection": {
-          "title": "🛡️ No recopilamos tus datos",
-          "p1": "Zenland DAO está diseñado con la privacidad como principio fundamental. A diferencia de los servicios tradicionales, no recopilamos, almacenamos ni procesamos información personal. En particular:",
+          "title": "🛡️ Privacidad desde el diseño",
+          "p1": "Zenland DAO está diseñado con la privacidad como principio fundamental. Nunca te pedimos tu nombre, correo electrónico ni otros datos de contacto, y no vendemos datos ni los usamos para publicidad. En particular:",
           "items": {
             "noBackend": "Sin servidores backend — el Protocolo es solo una interfaz frontend",
-            "noDatabase": "Sin bases de datos — no tenemos dónde almacenar tus datos",
-            "noAnalytics": "Sin analíticas — no usamos Google Analytics ni servicios de seguimiento",
-            "noCookies": "Sin cookies de seguimiento — no rastreamos tu comportamiento de navegación",
-            "noTracking": "Sin seguimiento de usuarios — no creamos perfiles ni rastreamos sesiones",
+            "noDatabase": "Sin bases de datos — no operamos bases de datos con tu información personal",
+            "usageAnalytics": "Solo analíticas de uso — medimos cómo se usa la interfaz, no quién eres, y nunca lo vinculamos a la dirección de tu billetera (ver sección 5)",
             "noAccounts": "Sin cuentas de usuario — te conectas con tu propia billetera, no se requiere registro"
           }
         },
@@ -171,8 +169,18 @@
           },
           "p2": "Estos datos se almacenan solo en tu dispositivo y nunca se transmiten a nosotros ni a terceros. Puedes borrar estos datos en cualquier momento desde la configuración de tu navegador."
         },
+        "analytics": {
+          "title": "5. Analíticas",
+          "p1": "Para entender cómo se usa la interfaz y qué mejorar, utilizamos estos servicios de analítica:",
+          "items": {
+            "googleAnalytics": "Google Analytics (Google LLC) — registra las visitas a páginas, el dispositivo, el navegador y el sistema operativo, la ubicación aproximada (país y ciudad, derivada de tu dirección IP), el sitio web que te refirió y acciones en la interfaz, como abrir el diálogo de billetera, avanzar por el formulario de escrow o el fallo de una transacción. Usa cookies propias (_ga, _ga_*) para reconocer visitas repetidas.",
+            "clarity": "Microsoft Clarity (Microsoft Corporation) — registra cómo se usan las páginas (clics, desplazamiento, movimiento del ratón) para generar mapas de calor y repeticiones de sesión. El texto escrito en los campos de formulario se oculta; las repeticiones pueden mostrar información pública visible en la página, como direcciones abreviadas de billeteras o escrows. Usa cookies como _clck y _clsk."
+          },
+          "p2": "No enviamos a estos servicios la dirección de tu billetera, los importes o términos de tus escrows ni lo que escribes en los formularios, y usamos los datos solo de forma agregada para mejorar la interfaz. Las direcciones de página que se les reportan pueden incluir direcciones públicas de contratos de escrow o de agentes cuando visitas esas páginas. Google y Microsoft tratan estos datos según sus propias políticas de privacidad (policies.google.com/privacy y privacy.microsoft.com/privacystatement).",
+          "p3": "Puedes excluirte en cualquier momento bloqueando las cookies de este sitio en tu navegador, usando un bloqueador de contenido o instalando el complemento de inhabilitación de Google (tools.google.com/dlpage/gaoptout). La interfaz funciona completamente sin analíticas."
+        },
         "thirdParty": {
-          "title": "5. Servicios de terceros",
+          "title": "6. Servicios de terceros",
           "p1": "El Protocolo puede interactuar con servicios de terceros para funcionar:",
           "items": {
             "rpc": "Proveedores RPC de blockchain (para leer datos on-chain y enviar transacciones)",
@@ -182,25 +190,25 @@
           "p2": "Estos servicios de terceros tienen sus propias políticas de privacidad. Te recomendamos revisarlas. No tenemos control ni asumimos responsabilidad por sus prácticas de privacidad."
         },
         "pdf": {
-          "title": "6. Documentos PDF",
+          "title": "7. Documentos PDF",
           "p1": "Cuando creas un escrow, se puede generar en tu navegador un documento PDF que contiene los términos. Este PDF se genera completamente del lado del cliente y no se sube ni se almacena en ningún servidor.",
           "p2": "Eres responsable de almacenar y gestionar tus documentos PDF de escrow. No conservamos copias de estos documentos."
         },
         "rights": {
-          "title": "7. Tus derechos",
-          "p1": "Como no recopilamos datos personales, los derechos tradicionales de protección de datos (acceso, corrección, eliminación) no aplican en el sentido convencional.",
+          "title": "8. Tus derechos",
+          "p1": "No guardamos información personal como tu nombre o tus datos de contacto. Puedes limitar la recopilación de analíticas como se describe en la sección 5. Si quieres que se eliminen los datos de analítica asociados a tu navegador, contáctanos (sección 11) y solicitaremos su eliminación al proveedor.",
           "p2": "Para datos de blockchain: debido a la naturaleza inmutable de la tecnología blockchain, los datos on-chain no pueden modificarse ni eliminarse. Esto es una característica fundamental de las blockchains públicas."
         },
         "children": {
-          "title": "8. Privacidad de menores",
+          "title": "9. Privacidad de menores",
           "content": "Los Servicios no están destinados a personas menores de 18 años. No proporcionamos servicios a menores a sabiendas. Si tienes menos de 18 años, por favor no uses los Servicios."
         },
         "changes": {
-          "title": "9. Cambios en esta política",
+          "title": "10. Cambios en esta política",
           "content": "Podemos actualizar esta Política de Privacidad ocasionalmente. Te notificaremos cualquier cambio publicando la nueva Política de Privacidad en esta página con una fecha de \"Última actualización\" revisada."
         },
         "contact": {
-          "title": "10. Contacto",
+          "title": "11. Contacto",
           "content": "Si tienes preguntas sobre esta Política de Privacidad, contáctanos a través de nuestros canales comunitarios en DAOForum.org o nuestro Telegram comunitario."
         }
       },

@@ -19,6 +19,10 @@
 #   - SSH_USER: SSH username (deploy)
 #   - SENTRY_AUTH_TOKEN: Auth token for Sentry source map uploads
 #
+# Optional GitHub Variables (Settings → Secrets and variables → Actions → Variables):
+#   - NEXT_PUBLIC_CLARITY_PROJECT_ID: Microsoft Clarity project ID (public, ends
+#     up in the page source); Clarity stays off when unset
+#
 # ===========================================
 
 name: Build and Deploy
@@ -80,6 +84,7 @@ jobs:
             NEXT_PUBLIC_API_URL=https://api.zen.land
             NEXT_PUBLIC_PDF_URL=https://pdf.zen.land
             NEXT_PUBLIC_COMMIT_HASH=${{ github.sha }}
+            NEXT_PUBLIC_CLARITY_PROJECT_ID=${{ vars.NEXT_PUBLIC_CLARITY_PROJECT_ID }}
             SENTRY_AUTH_TOKEN=${{ secrets.SENTRY_AUTH_TOKEN }}
           cache-from: type=gha
           cache-to: type=gha,mode=max

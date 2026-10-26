@@ -9,6 +9,7 @@
     },
     "buttons": {
       "app": "⚡ Приложение",
+      "createEscrow": "Создать эскроу",
       "learnMore": "Узнать больше",
       "getStarted": "Начать",
       "connectWallet": "Подключить кошелёк"

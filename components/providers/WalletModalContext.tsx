@@ -17,6 +17,7 @@ import {
     type ReactNode,
 } from "react";
 import { useConnection } from "wagmi";
+import { trackWalletModalDismissed, trackWalletModalOpened } from "@/lib/analytics/gtag";
 
 // Defer state updates to avoid `react-hooks/set-state-in-effect`.
 function defer(fn: () => void) {
@@ -56,11 +57,14 @@ export function WalletModalProvider({ children }: WalletModalProviderProps) {
 
     const openModal = useCallback(() => {
         setIsOpen(true);
+        trackWalletModalOpened();
     }, []);
 
+    // Only called on user dismissal; the auto-close below sets state directly.
     const closeModal = useCallback(() => {
         setIsOpen(false);
-    }, []);
+        if (status !== "connected") trackWalletModalDismissed();
+    }, [status]);
 
     // Auto-close modal when wallet connects successfully
     useEffect(() => {

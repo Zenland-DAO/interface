@@ -27,8 +27,18 @@ import {
   toCreateEscrowParams,
 } from "@/hooks";
 import { getTokenConfig, getContractAddresses } from "@/lib/contracts";
-import { humanizeBlockchainError } from "@/lib/blockchain/errors";
+import { ERROR_MESSAGES, humanizeBlockchainError } from "@/lib/blockchain/errors";
 import { usePdfGeneration } from "@/hooks/services/usePdfGeneration";
+import {
+  classifyError,
+  trackEscrowApproveFailed,
+  trackEscrowCreateFailed,
+  trackEscrowCreateSubmitted,
+  trackEscrowFormError,
+  trackEscrowFormStarted,
+  trackEscrowInsufficientBalance,
+  trackEscrowStep,
+} from "@/lib/analytics/gtag";
 
 import {
   useEscrowFormContext,
@@ -820,6 +830,12 @@ export function useEscrowForm(): UseEscrowFormReturn {
 
     const params = toCreateEscrowParams(input);
 
+    trackEscrowCreateSubmitted({
+      token: state.formData.tokenType,
+      has_agent: computed.hasAgent,
+      method: permitSignature ? "permit" : "approve",
+    });
+
     try {
       dispatch({ type: "SET_SUBMITTING", isSubmitting: true });
 
@@ -839,6 +855,7 @@ export function useEscrowForm(): UseEscrowFormReturn {
       }
     } catch (error) {
       console.error("Escrow creation failed:", error);
+      trackEscrowCreateFailed(error);
 
       // Show toast with humanized error
       const message = humanizeBlockchainError(error);
@@ -891,6 +908,57 @@ export function useEscrowForm(): UseEscrowFormReturn {
   }, [tokenConfig, computed, state.quote]);
 
   // ==========================================================================
+  // ANALYTICS: funnel events (see lib/analytics/gtag)
+  // ==========================================================================
+
+  useEffect(() => {
+    trackEscrowStep(currentStep);
+  }, [currentStep]);
+
+  const didStartFormRef = useRef(false);
+  const setFieldTracked = useCallback<UseEscrowFormReturn["setField"]>(
+    (field, value) => {
+      if (!didStartFormRef.current) {
+        didStartFormRef.current = true;
+        trackEscrowFormStarted();
+      }
+      ctx.setField(field, value);
+    },
+    [ctx]
+  );
+
+  // Once per field per visit, so a user fixing a typo doesn't inflate counts.
+  const trackedFormErrorsRef = useRef(new Set<string>());
+  useEffect(() => {
+    for (const [field, message] of Object.entries(errors)) {
+      if (!message || trackedFormErrorsRef.current.has(field)) continue;
+      trackedFormErrorsRef.current.add(field);
+      trackEscrowFormError(field, String(message));
+    }
+  }, [errors]);
+
+  // Debounced: while typing an amount the balance error flickers on and off.
+  const trackedBalanceStepsRef = useRef(new Set<WizardStep>());
+  useEffect(() => {
+    if (!balanceCheck.error || trackedBalanceStepsRef.current.has(currentStep)) return;
+    const timeout = setTimeout(() => {
+      trackedBalanceStepsRef.current.add(currentStep);
+      trackEscrowInsufficientBalance(state.formData.tokenType, currentStep);
+    }, 1500);
+    return () => clearTimeout(timeout);
+  }, [balanceCheck.error, currentStep, state.formData.tokenType]);
+
+  useEffect(() => {
+    if (!approvalError || currentStep !== "approve") return;
+    // approvalError is already humanized, so match the rejection message directly.
+    const reason =
+      approvalError === ERROR_MESSAGES.USER_REJECTED
+        ? "user_rejected"
+        : classifyError(new Error(approvalError));
+    trackEscrowApproveFailed(reason, approvalError);
+  }, [approvalError, currentStep]);
+
+  // ==========================================================================
   // EFFECT: Auto-advance from approve step
   // ==========================================================================
 
@@ -918,7 +986,7 @@ export function useEscrowForm(): UseEscrowFormReturn {
     stepValidation,
 
     // Actions
-    setField: ctx.setField,
+    setField: setFieldTracked,
     setTouched: ctx.setTouched,
     setAgent: ctx.setAgent,
     setLockedConfirmation: ctx.setLockedConfirmation,

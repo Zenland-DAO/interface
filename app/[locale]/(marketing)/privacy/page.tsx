@@ -27,7 +27,7 @@ export async function generateMetadata({ params }: { params: Promise<{ locale: s
 /**
  * Privacy Policy Page
  * 
- * Privacy policy for Zenland DAO protocol - emphasizing no data collection.
+ * Privacy policy for Zenland DAO protocol - minimal data, usage analytics only.
  */
 export default async function PrivacyPage({ params }: { params: Promise<{ locale: string }> }) {
   const { locale } = await params;
@@ -77,6 +77,7 @@ export default async function PrivacyPage({ params }: { params: Promise<{ locale
             <ul className="list-disc list-inside text-[var(--text-secondary)] space-y-2 ml-4">
               <li>{t("sections.noCollection.items.noBackend")}</li>
               <li>{t("sections.noCollection.items.noDatabase")}</li>
+              <li>{t("sections.noCollection.items.usageAnalytics")}</li>
               <li>{t("sections.noCollection.items.noAccounts")}</li>
             </ul>
           </section>
@@ -131,6 +132,26 @@ export default async function PrivacyPage({ params }: { params: Promise<{ locale
             </ul>
             <Text className="text-[var(--text-secondary)] leading-relaxed mt-4">
               {t("sections.localStorage.p2")}
+            </Text>
+          </section>
+
+          {/* Analytics */}
+          <section className="mb-12">
+            <Heading level={2} className="text-2xl mb-4">
+              {t("sections.analytics.title")}
+            </Heading>
+            <Text className="text-[var(--text-secondary)] leading-relaxed mb-4">
+              {t("sections.analytics.p1")}
+            </Text>
+            <ul className="list-disc list-inside text-[var(--text-secondary)] space-y-2 ml-4">
+              <li>{t("sections.analytics.items.googleAnalytics")}</li>
+              <li>{t("sections.analytics.items.clarity")}</li>
+            </ul>
+            <Text className="text-[var(--text-secondary)] leading-relaxed mt-4">
+              {t("sections.analytics.p2")}
+            </Text>
+            <Text className="text-[var(--text-secondary)] leading-relaxed mt-4">
+              {t("sections.analytics.p3")}
             </Text>
           </section>
 

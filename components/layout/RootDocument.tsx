@@ -4,9 +4,13 @@ import { ThemeProvider } from "@/components/providers/ThemeProvider";
 import { LenisProvider } from "@/components/providers/LenisProvider";
 import { Toaster } from "@/components/ui/Toaster";
 import { GoogleAnalytics } from "@/components/layout/GoogleAnalytics";
+import { MicrosoftClarity } from "@/components/layout/MicrosoftClarity";
 import { GA_MEASUREMENT_ID } from "@/lib/analytics/gtag";
 import { SITE_URL, SITE_NAME, OG_IMAGE } from "@/lib/seo";
 import "@/app/globals.css";
+
+// Microsoft Clarity is off unless a project ID is configured at build time.
+const CLARITY_PROJECT_ID = process.env.NEXT_PUBLIC_CLARITY_PROJECT_ID;
 
 const TWITTER_HANDLE = "@zenland_app";
 
@@ -216,6 +220,7 @@ export function RootDocument({
       </body>
       {/* Google Analytics - gtag.js loads once the page is idle (see GoogleAnalytics) */}
       <GoogleAnalytics gaId={GA_MEASUREMENT_ID} />
+      {CLARITY_PROJECT_ID && <MicrosoftClarity projectId={CLARITY_PROJECT_ID} />}
     </html>
   );
 }

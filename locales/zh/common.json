@@ -9,6 +9,7 @@
     },
     "buttons": {
       "app": "⚡ 应用",
+      "createEscrow": "创建托管",
       "learnMore": "了解更多",
       "getStarted": "开始使用",
       "connectWallet": "连接钱包"
