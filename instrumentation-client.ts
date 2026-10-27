@@ -1,4 +1,15 @@
 import * as Sentry from "@sentry/nextjs";
+import { analyticsSessionId, linkClaritySession, linkSentryEvent } from "@/lib/analytics/session";
+
+/**
+ * Wallet addresses (0x + 40 hex) show up in viem error messages and console logs.
+ * The privacy policy promises we never send them to analytics/monitoring tools, so
+ * they are masked. Transaction hashes (64 hex) are left alone.
+ */
+const ADDRESS = /0x[0-9a-fA-F]{40}(?![0-9a-fA-F])/g;
+const redactAddresses = (text: string) => text.replace(ADDRESS, "0x[address]");
+const redactValue = (value: unknown): unknown =>
+  typeof value === "string" ? redactAddresses(value) : value;
 
 /**
  * Error messages produced by third-party wallet browser extensions fighting
@@ -75,11 +86,30 @@ Sentry.init({
     // Session Replay is added lazily below (see loadReplayWhenIdle)
   ],
 
+  // Shared with the Clarity session (custom tag zl_session), see lib/analytics/session
+  initialScope: { tags: { zl_session: analyticsSessionId() } },
+
   // Session Replay
   // 10% of sessions in production; set to 1.0 during testing
   replaysSessionSampleRate: 0.1,
   // Always capture replays when an error occurs
   replaysOnErrorSampleRate: 1.0,
+
+  beforeBreadcrumb(breadcrumb) {
+    if (breadcrumb.message) breadcrumb.message = redactAddresses(breadcrumb.message);
+    if (Array.isArray(breadcrumb.data?.arguments)) {
+      breadcrumb.data.arguments = breadcrumb.data.arguments.map(redactValue);
+    }
+    return breadcrumb;
+  },
+
+  beforeSendLog(log) {
+    // May be a parameterized String object; only replace it when there is something to mask.
+    const original = String(log.message);
+    const redacted = redactAddresses(original);
+    if (redacted !== original) log.message = redacted;
+    return log;
+  },
 
   // Filter and downgrade non-actionable errors before sending to Sentry.
   beforeSend(event) {
@@ -121,6 +151,14 @@ Sentry.init({
         // Override fingerprint so all wallet extension noise groups into one issue
         event.fingerprint = ["wallet-extension-provider-conflict"];
       }
+
+      for (const v of values) if (v.value) v.value = redactAddresses(v.value);
+    }
+    if (event.message) event.message = redactAddresses(event.message);
+
+    if (event.event_id && event.level !== "warning") {
+      const message = values?.map((v) => `${v.type}: ${v.value}`).join(" ") ?? event.message ?? "";
+      linkSentryEvent(event.event_id, message, Boolean(event.tags?.funnel_event));
     }
     return event;
   },
@@ -147,6 +185,7 @@ function loadReplayWhenIdle() {
 }
 
 loadReplayWhenIdle();
+linkClaritySession();
 
 // This export will instrument router navigations
 export const onRouterTransitionStart = Sentry.captureRouterTransitionStart;

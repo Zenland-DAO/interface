@@ -17,10 +17,15 @@
  * dimensions to show up in reports. Keep analytics/src/events.ts in sync.
  *
  * Events are mirrored to Microsoft Clarity (when loaded) so session recordings
- * can be filtered by them.
+ * can be filtered by them, and added as Sentry breadcrumbs so every error report
+ * shows the funnel steps leading up to it. Failures that look like bugs (not user
+ * rejections or timeouts) are also reported to Sentry. See ./session for how the
+ * three tools are linked.
  */
 
+import * as Sentry from "@sentry/nextjs";
 import { parseWeb3Error } from "@/lib/utils/web3-errors";
+import { clarity } from "./session";
 
 declare global {
   interface Window {
@@ -47,7 +52,8 @@ export const trackEvent = (
   if (typeof window === "undefined") return;
 
   window.gtag?.("event", eventName, params ?? {});
-  window.clarity?.("event", eventName);
+  clarity("event", eventName);
+  Sentry.addBreadcrumb({ category: "funnel", message: eventName, data: params, level: "info" });
 };
 
 // =============================================================================
@@ -59,6 +65,7 @@ export const trackEvent = (
  * @param walletName - Name of the wallet (e.g., "MetaMask", "WalletConnect")
  */
 export const trackWalletConnected = (walletName: string): void => {
+  Sentry.setTag("wallet_type", walletName);
   trackEvent("wallet_connected", {
     wallet_type: walletName,
   });
@@ -109,6 +116,26 @@ export const classifyError = (error: unknown): FailureReason => {
 const errorSummary = (error: unknown): string =>
   (error instanceof Error ? error.message : String(error ?? "")).split("\n")[0].slice(0, 100);
 
+/**
+ * Send a handled failure to Sentry unless it's the user's own doing. The
+ * `funnel_event` tag marks it as already tracked in GA (see linkSentryEvent).
+ */
+const reportFailure = (
+  funnelEvent: string,
+  error: unknown,
+  reason: FailureReason,
+  tags: Record<string, string> = {}
+): void => {
+  if (reason === "user_rejected" || reason === "timeout") return;
+  const isError = error instanceof Error;
+  Sentry.captureException(isError ? error : new Error(String(error)), {
+    level: reason === "network" ? "warning" : "error",
+    tags: { funnel_event: funnelEvent, reason, ...tags },
+    // Errors rebuilt from a message share one stack, so group them by message instead.
+    fingerprint: isError ? undefined : [funnelEvent, errorSummary(error)],
+  });
+};
+
 export const trackWalletModalOpened = (): void => {
   trackEvent("wallet_modal_opened");
 };
@@ -123,17 +150,20 @@ export const trackWalletConnectAttempt = (walletName: string): void => {
 };
 
 export const trackWalletConnectFailed = (walletName: string, error: unknown): void => {
+  const reason = classifyError(error);
   trackEvent("wallet_connect_failed", {
     wallet_type: walletName,
-    reason: classifyError(error),
+    reason,
     error_message: errorSummary(error),
   });
+  reportFailure("wallet_connect_failed", error, reason, { wallet_type: walletName });
 };
 
 /** A wizard step became visible: escrow_step_form, escrow_step_review, ... */
 export const trackEscrowStep = (
   step: "form" | "review" | "approve" | "confirm" | "success"
 ): void => {
+  Sentry.setTag("escrow_step", step);
   trackEvent(`escrow_step_${step}`);
 };
 
@@ -154,6 +184,7 @@ export const trackEscrowInsufficientBalance = (token: string, step: string): voi
 
 export const trackEscrowApproveFailed = (reason: FailureReason, message: string): void => {
   trackEvent("escrow_approve_failed", { reason, error_message: errorSummary(message) });
+  reportFailure("escrow_approve_failed", message, reason);
 };
 
 export const trackEscrowCreateSubmitted = (params: {
@@ -165,8 +196,7 @@ export const trackEscrowCreateSubmitted = (params: {
 };
 
 export const trackEscrowCreateFailed = (error: unknown): void => {
-  trackEvent("escrow_create_failed", {
-    reason: classifyError(error),
-    error_message: errorSummary(error),
-  });
+  const reason = classifyError(error);
+  trackEvent("escrow_create_failed", { reason, error_message: errorSummary(error) });
+  reportFailure("escrow_create_failed", error, reason);
 };
