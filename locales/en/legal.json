@@ -171,12 +171,13 @@
         },
         "analytics": {
           "title": "5. Analytics",
-          "p1": "To understand how the interface is used and what to improve, we use these analytics services:",
+          "p1": "To understand how the interface is used, what to improve and what breaks, we use these analytics and error-monitoring services:",
           "items": {
             "googleAnalytics": "Google Analytics (Google LLC) - records page visits, device, browser and operating system, approximate location (country and city, derived from your IP address), the website that referred you, and interface actions such as opening the wallet dialog, moving through the escrow form, or a transaction failing. It sets first-party cookies (_ga, _ga_*) to recognize repeat visits.",
-            "clarity": "Microsoft Clarity (Microsoft Corporation) - records how pages are used (clicks, scrolling, mouse movement) to produce heatmaps and session replays. Text typed into form fields is masked; replays can show public information displayed on the page, such as shortened wallet or escrow addresses. It sets cookies such as _clck and _clsk."
+            "clarity": "Microsoft Clarity (Microsoft Corporation) - records how pages are used (clicks, scrolling, mouse movement) to produce heatmaps and session replays. Text typed into form fields is masked; replays can show public information displayed on the page, such as shortened wallet or escrow addresses. It sets cookies such as _clck and _clsk.",
+            "sentry": "Sentry (Functional Software, Inc.) - receives a report when something breaks in the interface: the error and where it happened in the code, the page, browser, device and operating system, your IP address, and the interface steps leading up to the error. For sessions with an error it also keeps a short replay of the page with all text and images masked. Wallet addresses are removed from error reports before they are sent."
           },
-          "p2": "We don't send your wallet address, the amounts or terms of your escrows, or what you type into forms to these services, and we use the data only in aggregate to improve the interface. Page addresses reported to them can include public escrow or agent contract addresses when you view those pages. Google and Microsoft process this data under their own privacy policies (policies.google.com/privacy and privacy.microsoft.com/privacystatement).",
+          "p2": "We don't send your wallet address, the amounts or terms of your escrows, or what you type into forms to these services, and we use the data only in aggregate to improve the interface. Page addresses reported to them can include public escrow or agent contract addresses when you view those pages. To tell which recording belongs to which error, each browser tab gets a random visit ID that is shared between Clarity and Sentry; it is not derived from your wallet. Google, Microsoft and Sentry process this data under their own privacy policies (policies.google.com/privacy, privacy.microsoft.com/privacystatement and sentry.io/privacy).",
           "p3": "You can opt out at any time by blocking cookies for this site in your browser, using a content blocker, or installing Google's opt-out add-on (tools.google.com/dlpage/gaoptout). The interface works fully without analytics."
         },
         "thirdParty": {

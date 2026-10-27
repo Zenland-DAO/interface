@@ -146,6 +146,7 @@ export default async function PrivacyPage({ params }: { params: Promise<{ locale
             <ul className="list-disc list-inside text-[var(--text-secondary)] space-y-2 ml-4">
               <li>{t("sections.analytics.items.googleAnalytics")}</li>
               <li>{t("sections.analytics.items.clarity")}</li>
+              <li>{t("sections.analytics.items.sentry")}</li>
             </ul>
             <Text className="text-[var(--text-secondary)] leading-relaxed mt-4">
               {t("sections.analytics.p2")}

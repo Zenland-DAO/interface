@@ -171,12 +171,13 @@
         },
         "analytics": {
           "title": "5. 数据分析",
-          "p1": "为了解界面的使用情况并确定改进方向，我们使用以下分析服务：",
+          "p1": "为了解界面的使用情况、确定改进方向并发现故障，我们使用以下分析和错误监控服务：",
           "items": {
             "googleAnalytics": "Google Analytics（Google LLC）——记录页面访问、设备、浏览器和操作系统、大致位置（国家和城市，根据您的 IP 地址推断）、引荐您的网站，以及界面操作，例如打开钱包对话框、在托管表单中前进或交易失败。它会设置第一方 Cookie（_ga、_ga_*）以识别重复访问。",
-            "clarity": "Microsoft Clarity（Microsoft Corporation）——记录页面的使用方式（点击、滚动、鼠标移动），用于生成热力图和会话回放。在表单字段中输入的文字会被遮盖；回放可能显示页面上的公开信息，例如缩写的钱包地址或托管地址。它会设置 _clck 和 _clsk 等 Cookie。"
+            "clarity": "Microsoft Clarity（Microsoft Corporation）——记录页面的使用方式（点击、滚动、鼠标移动），用于生成热力图和会话回放。在表单字段中输入的文字会被遮盖；回放可能显示页面上的公开信息，例如缩写的钱包地址或托管地址。它会设置 _clck 和 _clsk 等 Cookie。",
+            "sentry": "Sentry（Functional Software, Inc.）——在界面出现故障时接收报告：错误及其在代码中发生的位置、页面、浏览器、设备和操作系统、您的 IP 地址，以及出错前的界面操作步骤。对于发生错误的会话，它还会保留一段简短的页面回放，其中所有文字和图片均被遮盖。钱包地址会在错误报告发送前被移除。"
           },
-          "p2": "我们不会向这些服务发送您的钱包地址、托管的金额或条款，也不会发送您在表单中输入的内容，并且仅以汇总形式使用这些数据来改进界面。当您查看托管或代理页面时，上报的页面地址可能包含公开的托管合约或代理合约地址。Google 和 Microsoft 依据其各自的隐私政策处理这些数据（policies.google.com/privacy 和 privacy.microsoft.com/privacystatement）。",
+          "p2": "我们不会向这些服务发送您的钱包地址、托管的金额或条款，也不会发送您在表单中输入的内容，并且仅以汇总形式使用这些数据来改进界面。当您查看托管或代理页面时，上报的页面地址可能包含公开的托管合约或代理合约地址。为了将回放与对应的错误关联起来，每个浏览器标签页会获得一个在 Clarity 和 Sentry 之间共享的随机访问 ID；该 ID 并非由您的钱包生成。Google、Microsoft 和 Sentry 依据其各自的隐私政策处理这些数据（policies.google.com/privacy、privacy.microsoft.com/privacystatement 和 sentry.io/privacy）。",
           "p3": "您可以随时退出：在浏览器中屏蔽本网站的 Cookie、使用内容拦截器，或安装 Google 的停用插件（tools.google.com/dlpage/gaoptout）。不启用分析时，界面的所有功能均可正常使用。"
         },
         "thirdParty": {
