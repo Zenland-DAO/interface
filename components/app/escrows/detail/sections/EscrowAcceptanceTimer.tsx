@@ -154,10 +154,18 @@ export function EscrowAcceptanceTimer() {
                         </div>
                     )}
 
-                    {isSeller && !isExpired && (
+                    {isSeller && (
                         <div className="pt-2 border-t border-[var(--border-secondary)]">
                             <Text variant="muted" className="text-xs">
-                                {t("sellerReview")}
+                                {isExpired ? t("sellerCanStillAccept") : t("sellerReview")}
+                            </Text>
+                        </div>
+                    )}
+
+                    {isExpired && !isBuyer && !isSeller && (
+                        <div className="pt-2 border-t border-[var(--border-secondary)]">
+                            <Text variant="muted" className="text-xs">
+                                {t("observerNote")}
                             </Text>
                         </div>
                     )}

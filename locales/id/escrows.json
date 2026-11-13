@@ -280,14 +280,16 @@
         "noProtection": "Tanpa perlindungan"
       },
       "acceptance": {
-        "title": "Batas Waktu Persetujuan Penjual",
-        "expired": "Batas waktu persetujuan telah berakhir",
-        "waiting": "Menunggu Penjual menerima Escrow",
-        "deadlinePassed": "Tenggat telah lewat",
+        "title": "Menunggu Penjual",
+        "expired": "Penjual belum menerima. Pembeli sekarang dapat membatalkan dan menerima refund.",
+        "waiting": "Penjual perlu menerima agar Escrow dapat dimulai",
+        "deadlinePassed": "Penjual diminta menerima sebelum",
         "acceptBy": "Terima sebelum",
-        "timeLimitReached": "Batas waktu tercapai",
-        "buyerCanCancel": "Penjual tidak menerima tepat waktu. Anda dapat membatalkan dan menerima refund penuh.",
-        "sellerReview": "Silakan tinjau dan terima syarat Escrow sebelum tenggat."
+        "timeLimitReached": "Masih tertunda, kini tanpa tenggat",
+        "buyerCanCancel": "Penjual tidak menerima tepat waktu. Anda dapat membatalkan sekarang dan menerima refund penuh, atau terus menunggu. Penjual masih dapat menerima selama Anda belum membatalkan.",
+        "sellerReview": "Silakan tinjau dan terima syarat Escrow sebelum tenggat.",
+        "sellerCanStillAccept": "Anda masih dapat menerima, tetapi Pembeli dapat membatalkan kapan saja.",
+        "observerNote": "Escrow ini masih terbuka. Tidak ada yang berubah sampai Penjual menerima atau Pembeli membatalkan."
       },
       "agentTimer": {
         "title": "Respons Agent",

@@ -280,14 +280,16 @@
         "noProtection": "Không có bảo vệ"
       },
       "acceptance": {
-        "title": "Thời hạn người bán chấp nhận",
-        "expired": "Thời hạn chấp nhận đã hết",
-        "waiting": "Đang chờ người bán chấp nhận ký quỹ",
-        "deadlinePassed": "Đã quá hạn",
+        "title": "Đang chờ người bán",
+        "expired": "Người bán chưa chấp nhận. Người mua hiện có thể hủy để được hoàn tiền.",
+        "waiting": "Người bán cần chấp nhận để ký quỹ bắt đầu",
+        "deadlinePassed": "Người bán được yêu cầu chấp nhận trước",
         "acceptBy": "Chấp nhận trước",
-        "timeLimitReached": "Đã đến giới hạn thời gian",
-        "buyerCanCancel": "Người bán không chấp nhận kịp thời. Quý vị có thể hủy và nhận hoàn tiền đầy đủ.",
-        "sellerReview": "Vui lòng xem xét và chấp nhận điều khoản ký quỹ trước thời hạn."
+        "timeLimitReached": "Vẫn đang chờ, không còn thời hạn",
+        "buyerCanCancel": "Người bán không chấp nhận kịp thời. Quý vị có thể hủy ngay để nhận hoàn tiền đầy đủ, hoặc tiếp tục chờ. Người bán vẫn có thể chấp nhận cho đến khi Quý vị hủy.",
+        "sellerReview": "Vui lòng xem xét và chấp nhận điều khoản ký quỹ trước thời hạn.",
+        "sellerCanStillAccept": "Quý vị vẫn có thể chấp nhận, nhưng người mua có thể hủy bất cứ lúc nào.",
+        "observerNote": "Ký quỹ này vẫn đang mở. Không có gì thay đổi cho đến khi người bán chấp nhận hoặc người mua hủy."
       },
       "agentTimer": {
         "title": "Phản hồi của đại lý",

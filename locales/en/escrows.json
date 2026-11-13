@@ -280,14 +280,16 @@
         "noProtection": "No protection"
       },
       "acceptance": {
-        "title": "Seller Acceptance Window",
-        "expired": "Acceptance window has expired",
-        "waiting": "Waiting for seller to accept the escrow",
-        "deadlinePassed": "Deadline passed",
+        "title": "Waiting for Seller",
+        "expired": "Seller hasn't accepted yet. The buyer can now cancel for a refund.",
+        "waiting": "The seller needs to accept before the escrow can start",
+        "deadlinePassed": "Seller was asked to accept by",
         "acceptBy": "Accept by",
-        "timeLimitReached": "Time limit reached",
-        "buyerCanCancel": "Seller did not accept in time. You can cancel and get a full refund.",
-        "sellerReview": "Please review and accept the escrow terms before the deadline."
+        "timeLimitReached": "Still pending, no deadline now",
+        "buyerCanCancel": "The seller didn't accept in time. You can cancel now for a full refund, or keep waiting. The seller can still accept until you cancel.",
+        "sellerReview": "Please review and accept the escrow terms before the deadline.",
+        "sellerCanStillAccept": "You can still accept, but the buyer may cancel at any time.",
+        "observerNote": "This escrow is still open. Nothing happens until the seller accepts or the buyer cancels."
       },
       "agentTimer": {
         "title": "Agent Response",

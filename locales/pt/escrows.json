@@ -280,14 +280,16 @@
         "noProtection": "Sem proteção"
       },
       "acceptance": {
-        "title": "Janela de aceitação do vendedor",
-        "expired": "A janela de aceitação expirou",
-        "waiting": "Aguardando o vendedor aceitar o escrow",
-        "deadlinePassed": "Prazo expirado",
+        "title": "Aguardando o vendedor",
+        "expired": "O vendedor ainda não aceitou. O comprador já pode cancelar e receber o reembolso.",
+        "waiting": "O vendedor precisa aceitar para o escrow começar",
+        "deadlinePassed": "O vendedor deveria aceitar até",
         "acceptBy": "Aceitar até",
-        "timeLimitReached": "Limite de tempo atingido",
-        "buyerCanCancel": "O vendedor não aceitou a tempo. Você pode cancelar e receber um reembolso integral.",
-        "sellerReview": "Revise e aceite os termos do escrow antes do prazo."
+        "timeLimitReached": "Ainda pendente, agora sem prazo",
+        "buyerCanCancel": "O vendedor não aceitou a tempo. Você pode cancelar agora e receber um reembolso integral, ou continuar aguardando. O vendedor ainda pode aceitar enquanto você não cancelar.",
+        "sellerReview": "Revise e aceite os termos do escrow antes do prazo.",
+        "sellerCanStillAccept": "Você ainda pode aceitar, mas o comprador pode cancelar a qualquer momento.",
+        "observerNote": "Este escrow continua aberto. Nada acontece até o vendedor aceitar ou o comprador cancelar."
       },
       "agentTimer": {
         "title": "Resposta do agente",

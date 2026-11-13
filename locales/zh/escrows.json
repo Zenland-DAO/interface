@@ -280,14 +280,16 @@
         "noProtection": "无保护"
       },
       "acceptance": {
-        "title": "卖方接受窗口",
-        "expired": "接受窗口已过期",
-        "waiting": "等待卖方接受托管",
-        "deadlinePassed": "截止日期已过",
+        "title": "等待卖方",
+        "expired": "卖方尚未接受。买方现在可以取消并获得退款。",
+        "waiting": "卖方接受后托管才会开始",
+        "deadlinePassed": "卖方原定接受截止",
         "acceptBy": "接受截止",
-        "timeLimitReached": "时间限制已到",
-        "buyerCanCancel": "卖方未在规定时间内接受。你可以取消并获得全额退款。",
-        "sellerReview": "请在截止日期前审查并接受托管条款。"
+        "timeLimitReached": "仍在等待，已无截止期限",
+        "buyerCanCancel": "卖方未在规定时间内接受。你可以立即取消并获得全额退款，也可以继续等待。在你取消之前，卖方仍可接受。",
+        "sellerReview": "请在截止日期前审查并接受托管条款。",
+        "sellerCanStillAccept": "你仍可接受，但买方可能随时取消。",
+        "observerNote": "此托管仍处于开放状态。在卖方接受或买方取消之前，不会发生任何变化。"
       },
       "agentTimer": {
         "title": "代理人响应",
